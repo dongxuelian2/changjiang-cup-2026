@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "description": "SYNTHETIC toy sequences and artificial metrics; not binder designs.",
+  "metric_definitions": {
+    "toy.raw_score": {
+      "model": "synthetic-generator",
+      "version": "1",
+      "meaning": "Artificial individual ranking score, family-biased in clustered regime",
+      "units": "arbitrary",
+      "direction": "higher"
+    }
+  }
+}

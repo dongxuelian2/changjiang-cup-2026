@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "description": "SYNTHETIC toy sequences and artificial metrics; not binder designs.",
+  "metric_definitions": {
+    "toy.raw_score": {
+      "model": "synthetic-generator",
+      "version": "1",
+      "meaning": "Artificial individual ranking score, family-biased in clustered regime",
+      "units": "arbitrary",
+      "direction": "higher"
+    }
+  },
+  "candidates": [
+    {
+      "id": "syn-000",
+      "sequence": "DSWLTHHGRGYKLNNNMPTSYPHYLWTEVPDA",
+      "target_id": "SYNTHETIC-NOT-A-COMPETITION-TARGET",
+      "design_type": "toy-label",
+      "source_model": "synthetic-generator",
+      "source_version": "1",
+      "run_id": "seed-7",
+      "metrics": {
+        "toy.raw_score": 0.8325171839888401
+      },
+      "structures": [],
+      "epitope_residues": [
+        "synthetic-chain:0",
+        "synthetic-chain:1",
+        "synthetic-chain:2",
+        "synthetic-chain:3"
+      ],
+      "risk_group": "family-0",
+      "structural_group": "toy-fold-0",
+      "metadata": {
+        "toy_quality": 0.9062738666511667,
+        "regime": "clustered"
+      }
+    },
+    {
+      "id": "syn-001",
+      "sequence": "KADMVITYTPKMGLIFEACEYQVFPILAPTQE",
+      "target_id": "SYNTHETIC-NOT-A-COMPETITION-TARGET",
+      "design_type": "toy-label",
+      "source_model": "synthetic-generator",
+      "source_version": "1",
+      "run_id": "seed-7",
+      "metrics": {
+        "toy.raw_score": 0.6040681391502842
+      },
+      "structures": [],
+      "epitope_residues": [
+        "synthetic-chain:10",
+        "synthetic-chain:11",
+        "synthetic-chain:12",
+        "synthetic-chain:13"
+      ],
+      "risk_group": "family-1",
+      "structural_group": "toy-fold-1",
+      "metadata": {
+        "toy_quality": 0.9743034502423938,
+        "regime": "clustered"
+      }
+    },
+    {
+      "id": "syn-002",
+      "sequence": "MLYVEMWTRPAVLCFMNMPVQIPNDCQIYHFA",
+      "target_id": "SYNTHETIC-NOT-A-COMPETITION-TARGET",
+      "design_type": "toy-label",
+      "source_model": "synthetic-generator",
+      "source_version": "1",
+      "run_id": "seed-7",
+      "metrics": {
+        "toy.raw_score": 0.5191567824087142
+      },
+      "structures": [],
+      "epitope_residues": [
+        "synthetic-chain:20",
+        "synthetic-chain:21",
+        "synthetic-chain:22",
+        "synthetic-chain:23"
+      ],
+      "risk_group": "family-2",
+      "structural_group": "toy-fold-2",
+      "metadata": {
+        "toy_quality": 0.9439214225612984,
+        "regime": "clustered"
+      }
+    },
+    {
+      "id": "syn-003",
+      "sequence": "ITKINYINKDKPMQITNKIFCWTCKYYFAQAA",
+      "target_id": "SYNTHETIC-NOT-A-COMPETITION-TARGET",
+      "design_type": "toy-label",
+      "source_model": "synthetic-generator",
+      "source_version": "1",
+      "run_id": "seed-7",
+      "metrics": {
+        "toy.raw_score": 0.36283580887394157
+      },
+      "structures": [],
+      "epitope_residues": [
+        "synthetic-chain:30",
+        "synthetic-chain:31",
+        "synthetic-chain:32",
+        "synthetic-chain:33"
+      ],
+      "risk_group": "family-3",
+      "structural_group": "toy-fold-3",
+      "metadata": {
+        "toy_quality": 0.806301797497648,
+        "regime": "clustered"
+      }
+    },
+    {
+      "id": "syn-004",
+      "sequence": "DSDNTHHGRGYCLMNNMYTSQPHVLFTEHPDA",
+      "target_id": "SYNTHETIC-NOT-A-COMPETITION-TARGET",
+      "design_type": "toy-label",
+      "source_model": "synthetic-generator",
+      "source_version": "1",
+      "run_id": "seed-7",
+      "metrics": {
+        "toy.raw_score": 0.7740299312840204
+      },
+      "structures": [],
+      "epitope_residues": [
+        "synthetic-chain:0",
+        "synthetic-chain:1",
+        "synthetic-chain:2",
+        "synthetic-chain:3"
+      ],
+      "risk_group": "family-0",
+      "structural_group": "toy-fold-0",
+      "metadata": {
+        "toy_quality": 0.8250415712278063,
+        "regime": "clustered"
+      }
+    },
+    {
+      "id": "syn-005",
+      "sequence": "KADMYLTWTPKEGLIFYACYYQVFRWLAKTQE",
+      "target_id": "SYNTHETIC-NOT-A-COMPETITION-TARGET",
+      "design_type": "toy-label",
+      "source_model": "synthetic-generator",
+      "source_version": "1",
+      "run_id": "seed-7",
+      "metrics": {
+        "toy.raw_score": 0.6004007840364206
+      },
+      "structures": [],
+      "epitope_residues": [
+        "synthetic-chain:10",
+        "synthetic-chain:11",
+        "synthetic-chain:12",
+        "synthetic-chain:13"
+      ],
+      "risk_group": "family-1",
+      "structural_group": "toy-fold-1",
+      "metadata": {
+        "toy_quality": 0.9683883613490655,
+        "regime": "clustered"
+      }
+    },
+    {
+      "id": "syn-006",
+      "sequence": "TGYVEMWTTPARLCFMRYPVQIPKDCQINHFA",
+      "target_id": "SYNTHETIC-NOT-A-COMPETITION-TARGET",
+      "design_type": "toy-label",
+      "source_model": "synthetic-generator",
+      "source_version": "1",
+      "run_id": "seed-7",
+      "metrics": {
+        "toy.raw_score": 0.41322397937776656
+      },
+      "structures": [],
+      "epitope_residues": [
+        "synthetic-chain:20",
+        "synthetic-chain:21",
+        "synthetic-chain:22",
+        "synthetic-chain:23"
+      ],
+      "risk_group": "family-2",
+      "structural_group": "toy-fold-2",
+      "metadata": {
+        "toy_quality": 0.7513163261413937,
+        "regime": "clustered"
+      }
+    },
+    {
+      "id": "syn-007",
+      "sequence": "ITKINYINKPKPMQIENKFFCKTCWYYFAQEE",
+      "target_id": "SYNTHETIC-NOT-A-COMPETITION-TARGET",
+      "design_type": "toy-label",
+      "source_model": "synthetic-generator",
+      "source_version": "1",
+      "run_id": "seed-7",
+      "metrics": {
+        "toy.raw_score": 0.4298881970680612
+      },
+      "structures": [],
+      "epitope_residues": [
+        "synthetic-chain:30",
+        "synthetic-chain:31",
+        "synthetic-chain:32",
+        "synthetic-chain:33"
+      ],
+      "risk_group": "family-3",
+      "structural_group": "toy-fold-3",
+      "metadata": {
+        "toy_quality": 0.9553071045956916,
+        "regime": "clustered"
+      }
+    }
+  ]
+}
