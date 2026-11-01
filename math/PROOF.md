@@ -450,3 +450,182 @@ distribution. Full current ESMFold2/Fast checkpoints include ESMC-6B, exceeding
 full-trimer job is unexecuted. Official checkpoint/MSA/ipSAE configuration and
 experimental KD calibration remain unavailable. No paid compute, competition
 account, or existing Colab session was used.
+
+
+## 10. Budgeted context preservation: complementarity, not portfolio coverage
+
+### Model and boundary of the claim
+
+This section concerns **abstract context selection**, not selection of candidate
+sequences. Let finite `V` be optional context units together with a mandatory
+core `C`. Supplied motifs `H_j ⊆ V` have nonnegative rational weights `w_j`;
+a motif contributes only if **all** its units are retained. Define
+
+$$G(S)=\sum_j w_j\mathbf1[H_j\subseteq S],\qquad
+ c(S)=\sum_{i\in S}c_i,\qquad
+ \mathrm{OPT}(B)=\max_{C\subseteq S,\ c(S)\le B}G(S).$$
+
+Costs are nonnegative rationals, and `c(C)≤B` is required. Empty motifs contribute
+constants; duplicate motifs add their weights; zero costs are allowed. Conditioning
+on the core replaces each motif by `H_j\C`, charges `c(C)` once, and preserves
+already-completed motifs as a constant. Weights encode a declared **synergy
+surrogate**, not physical fidelity, folding probability or affinity. Motifs and
+weights must be supplied independently of the optimizer. No geometric interaction
+radius, connectivity, contiguous sequence constraint, or uncertainty model is
+silently assumed. Adding such constraints needs another analysis.
+
+**Proposition (opposite curvature and hardness).** `G` is monotone supermodular.
+Already for unit costs, empty core and rank-two motifs, its budget problem is
+NP-hard. The candidate-portfolio `1−1/e` guarantee in section 2 does not apply.
+
+**Proof.** For `i∉S`, the marginal is the sum of weights of motifs containing `i`
+whose other units are all in `S`. This sum increases with `S`. One two-unit motif
+has zero singleton gains but positive pair gain, violating submodularity. For a
+simple graph, take its edges as unit-weight motifs and ask if a budget-`k` set
+has reward at least `k(k−1)/2`. This is equivalent to a `k`-clique (the bound is
+also valid for sets smaller than `k`). Thus the model includes densest-`k`-subgraph.
+
+### What penalty tuning can and cannot solve
+
+For any rational `λ≥0`, define
+
+$$P(\lambda)=\max_{S\supseteq C}\{G(S)-\lambda c(S)\},\qquad
+ U_\lambda(B)=P(\lambda)+\lambda B.$$
+
+**Proposition (exact priced oracle; budget upper bound).** `P(λ)` is computable
+by one maximum-flow/minimum-cut problem, and `OPT(B)≤U_λ(B)`. A feasible set
+with `G(S)=U_λ(B)` is optimal for this surrogate.
+
+**Proof.** Make a reward vertex for each motif with source capacity `w_j`, a
+vertex for each optional unit with sink capacity `λc_i`, and an arc from each
+reward vertex to each of its optional prerequisites. Give prerequisite arcs
+capacity `W+1`, where `W=Σ_j w_j`. The cut putting all optional and reward vertices
+on the sink side costs `W`, so a minimum cut cannot cut a prerequisite arc.
+For a fixed source-side retained set, place every completed reward vertex on the
+source side: the cut costs `W−G(S)+λc(S\C)`. Therefore its minimizing retained
+set maximizes `G(S)−λc(S)`; the fixed core cost is subtracted afterward. This also
+handles empty/core-only motifs. For any feasible `S`,
+`G(S)≤P(λ)+λc(S)≤P(λ)+λB`, proving the bound and equality criterion.
+
+**Counterexample (unbounded optimized-penalty gap, even rank two).** On the
+complete graph `K_n`, `n≥3`, use unit node costs and edge rewards, `C=∅`, `B=2`.
+Then `OPT=1`, whereas
+
+$$\inf_{\lambda\ge0}U_\lambda(2)=n-1.$$
+
+**Proof.** A size-`s` set has priced value `s(s−1)/2−λs`, strictly convex in `s`.
+Every intermediate value is strictly below the chord joining sizes 0 and `n`;
+only the empty or full set can maximize it, at any price. Hence
+`P(λ)=max(0,n(n−1)/2−λn)`. The minimum of `2λ+P(λ)` occurs at
+`λ=(n−1)/2`, giving `n−1`. Every two-unit motif itself fits the budget: the failure
+is not caused by individually infeasible requirements. For `n=3`, the hard optimum
+is 1 and the dual bound is 2. No denser price grid or min-cut tie-break returns a
+pair in this example. A randomized choice of entire empty/full sets satisfies an
+*expected* budget, not the hard budget on every realization.
+
+### A rank-sensitive recovery result between tied priced optima
+
+Now require **unit costs**. Suppose `C⊆A⊆T` are both *global* optimizers at the
+**same** price `λ≥0`, and `|A|≤B≤|T|`, with integer `B`. Put
+`m=|T\A|`, `k=B−|A|`, `a=G(A)`, `Δ=G(T)−G(A)`.
+For a uniformly chosen size-`k` subset `R` of `T\A`,
+
+$$L=\mathbb E G(A\cup R)=a+
+ \sum_{\substack{H_j\subseteq T\\H_j\nsubseteq A}}
+ w_j\frac{\binom{k}{r_j}}{\binom{m}{r_j}},\qquad r_j=|H_j\setminus A|,$$
+
+where `binom(k,r)=0` for `r>k`. There is a deterministic feasible set with reward
+at least `L`: reveal units one at a time, retaining the include/exclude branch
+with larger conditional expectation, while keeping exactly `k` total additions.
+The current expectation is a convex combination of these branches, so it never
+decreases. Each branch's value is given by the same formula on the remaining
+units. The final value is at least the initial expectation.
+
+**Theorem (conditional rank certificate; rank-one exactness).** If `1≤d≤k≤m`
+and every positive-weight motif counted in the sum has `r_j≤d`, this construction
+returns a budget-feasible `S` satisfying
+
+$$G(S)\ge L\ge a+\frac{\binom{k}{d}}{\binom{m}{d}}\Delta,
+ \qquad \frac{G(S)}{\mathrm{OPT}(B)}\ge
+ \frac{\binom{k-1}{d-1}}{\binom{m-1}{d-1}}$$
+
+whenever `OPT(B)>0`. More informatively, report the instance-specific bracket
+`G(S)≤OPT(B)≤U_λ(B)`. For residual rank one, the construction is exact.
+
+**Proof.** The probability that all `r` specified additions are selected is
+`binom(k,r)/binom(m,r)`, decreasing in `r`; this proves the expectation and its
+rank lower bound. Equality of the two priced optima gives `Δ=λm` and therefore
+`U_λ(B)=a+(k/m)Δ`. Write `p=binom(k,d)/binom(m,d)`, `q=k/m`. Since `a≥0` and
+`p≤q`, `a+pΔ≥(p/q)(a+qΔ)=(p/q)U_λ(B)`. The desired ratio follows from
+`U_λ(B)≥OPT(B)`, and `p/q=binom(k−1,d−1)/binom(m−1,d−1)`. For `d=1`,
+`L=U_λ(B)` and feasibility forces equality. If `k=0` or `m=0`, `A` itself attains
+the bound. If no positive residual motifs remain, `Δ=0` and every intermediate
+set has reward `a`. These cases need no division. For `k<d` the rank-only bound
+can be zero; use the exact expectation instead. The existence of a useful
+same-price nested bracket is an assumption, not a guarantee of this routine.
+
+**Sharpness of this dual-based ratio, not of actual solution quality.** Take all
+`d`-subsets of `m` optional units as unit-weight motifs. At
+`λ=binom(m,d)/m`, the empty and full sets are priced optima: for `s≥1`,
+`binom(s,d)/s=binom(s−1,d−1)/d` is nondecreasing. Thus
+`U_λ(k)=(k/m)binom(m,d)`, whereas every size-`k` set has reward `binom(k,d)`.
+Their ratio is exactly the theorem's factor. The constructed set is actually
+optimal here; the looseness is entirely in the dual bound. This includes the
+clique obstruction above. One must not call the factor a tight performance ratio
+for the rounding algorithm itself.
+
+### Minimal implementation and falsifiable use
+
+`math/context_motifs.py` implements exact-rational priced min-cut, a bound at a
+**supplied** price, the exact conditional expectation, and its deterministic
+cardinality rounding. `priced(price)` and `priced(price, maximal=True)` return
+the inclusion-minimal and inclusion-maximal priced optima, allowing a bracket
+check at that price. In the final residual network, source-reachable vertices
+must belong to every source-side minimum cut; vertices that can reach the sink
+must belong to none. The source-reachable set and the complement of the
+sink-reachable set have no outgoing positive residual arc, hence define the
+extremal minimum cuts. The routine does not search prices for a
+bracket, enforce connectivity, or solve the general hard-budget problem.
+For `N=|V|+number of
+motifs+2` and `E=O(|V|+number of motifs+Σ_j|H_j|)`, the elementary Edmonds–Karp
+oracle uses `O(N E²)` augmenting-path work (rational bit costs additional).
+Rounding evaluates at most two expectations per optional unit; with set-membership
+work it uses `O(|V|+m (|T|+Σ_j(1+|H_j|)))` set/arithmetic operations (rational and
+binomial bit costs additional). This is proof-oriented
+code for small inputs, not a protein-scale performance claim.
+
+Run `python -m unittest discover -s tests -p test_context_motifs.py -v`.
+Inputs are integer node labels, core, motifs, rational weights/costs, and a price
+or cardinality bracket; outputs are retained sets, exact rewards and bounds.
+Tests enumerate all 64 unweighted graphs on four nodes, compare priced solutions
+with exhaustive search, and check seeded rational hypergraphs, conditioning,
+zero costs, empty/duplicate motifs, clique gaps, complete-hypergraph sharpness,
+and rank-one exactness. These finite checks validate code, not the general proof.
+The existing candidate-portfolio implementation and tests are unchanged.
+
+For the collaborator's later experiments, freeze the core, motif definition and
+weights **before** selecting a context. Compare equal-budget contexts and retain
+omitted-motif weight and residual ranks alongside independently measured context
+errors. Mathematical predictions are falsifiable without protein data: a verified
+same-price rank-one bracket must give zero surrogate optimization gap; complete
+rank-two examples must have the stated penalty gap; the deterministic reward must
+never fall below the exact restriction expectation. A separate empirical hypothesis
+is that lower omitted-motif weight predicts fewer independently assessed context
+failures at matched size. Failure of that association rejects the surrogate's
+relevance, not the optimization proof. No structural experiments are run here.
+
+**Novelty boundary and primary sources.** AND-preservation is weighted
+[densest-`k`-subhypergraph](https://arxiv.org/abs/1605.04284), not a new problem;
+maximum closure/min-cut is classical
+[Picard (1976)](https://doi.org/10.1287/mnsc.22.11.1268), with an explicit
+[closure construction in Hochbaum (2001)](https://hochbaum.ieor.berkeley.edu/html/pub/HPF-closure-Net2001.pdf).
+The conditional-expectation argument is standard derandomization. The contribution
+here is a separate context surrogate, an explicit failure diagnostic, and a
+core-conditioned rank certificate with tested implementation—not a claim of
+priority for these optimization ingredients or biological improvement.
+Discontinuous fragments are also [prior art](https://arxiv.org/abs/2509.25479);
+noncontiguity or multichain context alone is not claimed as novel.
+[Kim et al. (2026)](https://arxiv.org/abs/2610.33195) study epitope excision with
+contact/halo-based contiguous cropping. Those empirical findings motivate careful
+context definitions; they are not universal sufficiency guarantees for this
+abstract motif surrogate or evidence that it improves a real design.

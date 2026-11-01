@@ -135,6 +135,13 @@ with polymer metadata. No sponsor account, credential or paid allocation was use
 
 ## Reuse the mathematical tools
 
+[Section 10 of the proofs](math/PROOF.md#10-budgeted-context-preservation-complementarity-not-portfolio-coverage)
+adds an abstract context-motif model: penalty tuning can miss every hard-budget
+optimum, while a core-conditioned rank certificate supports bounded or exact
+recovery in specified cases. The small exact-rational tools live in
+`math/context_motifs.py`; they do not process proteins or replace the candidate
+portfolio objective below.
+
 ```sh
 python -m pip install -e .
 python scripts/triage_candidates.py results/tl1a_20261101/candidates.json --k 2
@@ -164,3 +171,4 @@ python -m changjiang_select benchmark
 
 See math/PROOF.md for the original 90-instance synthetic benchmark and its limitations.
 No synthetic scores or sequences are mixed with the real TL1A results.
+
