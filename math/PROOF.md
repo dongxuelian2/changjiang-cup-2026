@@ -255,7 +255,7 @@ experimental probability calibration has been inferred from them in this stage.
 
 The November 1 public rules specify per-sequence ESMFold2/ipSAE ranking with
 target-only MSA, one seed/sample and no template. They do not publish an exact
-software/configuration bundle; see [RULES.md](RULES.md). A public implementation
+software/configuration bundle; see [RULES.md](../RULES.md). A public implementation
 with a matching name is not evidence of matching organizer weights or defaults.
 
 We inspected the actually downloaded `DunbrackLab/IPSAE` revision

@@ -13,7 +13,7 @@ A personal mathematical and computational protein-design project for the 2026 Ch
 
 ## Repository conventions
 
-- Keep mathematical findings and short proofs in `MATH.md`, current official rules in `RULES.md`, and a concise description of actual results and usage in `README.md`.
+- Keep mathematics and short proofs in `math/PROOF.md`, and put small proof-oriented programs in `math/` when needed. Keep real-structure inputs and engineering results in `targets/`, `scripts/`, `results/`, and `gpu/`, retaining their existing working paths. Use `RULES.md` for official rules and `README.md` for a concise project overview and links to both research streams.
 - Retain useful source code, small input examples, and necessary tests. Put temporary calculations, generated results, caches, and large artifacts in ignored `build/`.
 - Reuse existing programs and libraries. Avoid unnecessary CI/CD, cryptographic seals, certificate bundles, repetitive reports, dashboards, sprawling configuration, and procedural scaffolding.
 - Do not create extra documentation or infrastructure merely to record each research round. Remove superseded material while preserving the results needed for further work.

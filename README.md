@@ -10,7 +10,7 @@ screen.** No experimental binder, measured KD, or official admission score has
 been obtained.
 
 [RULES.md](RULES.md) records the verified November 1 targets/rules and the missing
-official ESMFold2/ipSAE configuration. [MATH.md](MATH.md) separates proofs,
+official ESMFold2/ipSAE configuration. [math/PROOF.md](math/PROOF.md) separates proofs,
 synthetic benchmarks, actual model observations and biological hypotheses.
 
 ## Why TL1A
@@ -162,5 +162,5 @@ python -m changjiang_select select examples/synthetic/candidates.csv --scenarios
 python -m changjiang_select benchmark
 ```
 
-See MATH.md for the original 90-instance synthetic benchmark and its limitations.
+See math/PROOF.md for the original 90-instance synthetic benchmark and its limitations.
 No synthetic scores or sequences are mixed with the real TL1A results.
