@@ -1,6 +1,6 @@
 # Changjiang Cup 2026: TL1A minibinder research
 
-This private research project now works on the competition's **real TL1A target**,
+This research project works on the competition's **real TL1A target**,
 using de novo RFdiffusion backbones and ProteinMPNN sequences. The original
 candidate-portfolio mathematics and solvers are reused for prediction triage.
 There are **28 real sequences from seven backbones**, and **18 all-atom Boltz
