@@ -1,0 +1,747 @@
+{
+  "schema_version": 1,
+  "synthetic": false,
+  "description": "Real de novo model output. Backbone poses and limited proxies only; no official score or wet-lab KD.",
+  "metric_definitions": {
+    "sequence.length": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "mature designed chain length",
+      "units": "aa",
+      "direction": "unspecified"
+    },
+    "sequence.gravy": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "Kyte-Doolittle mean hydropathy; not solubility",
+      "units": "hydropathy",
+      "direction": "unspecified"
+    },
+    "sequence.pI": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "sequence-only estimated isoelectric point",
+      "units": "pH",
+      "direction": "unspecified"
+    },
+    "sequence.charged_fraction": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "D/E/K/R fraction; extreme charge may explain a score artifact",
+      "units": "fraction",
+      "direction": "unspecified"
+    },
+    "sequence.hydrophobic_fraction": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "A/F/I/L/M/V/W/Y fraction; not all exposed hydrophobicity",
+      "units": "fraction",
+      "direction": "unspecified"
+    },
+    "sequence.entropy": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "single-residue Shannon entropy; not a novelty test",
+      "units": "bits",
+      "direction": "unspecified"
+    },
+    "sequence.instability_index": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "Guruprasad sequence heuristic; not measured stability",
+      "units": "index",
+      "direction": "lower"
+    },
+    "sequence.hydrophobic8_max": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "maximum hydrophobic fraction in eight-residue window; aggregation-risk proxy",
+      "units": "fraction",
+      "direction": "lower"
+    },
+    "geometry.target_CA_rmsd": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "generated target CA versus reference A88-251 after alignment",
+      "units": "angstrom",
+      "direction": "lower"
+    },
+    "geometry.binder_Rg": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder CA radius of gyration; rod/compactness diagnostic, not an affinity score",
+      "units": "angstrom",
+      "direction": "unspecified"
+    },
+    "geometry.binder_nonlocal_CA_pairs8": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder CA pairs within 8 A separated by at least 8 sequence positions",
+      "units": "count",
+      "direction": "higher"
+    },
+    "geometry.CA_contact_pairs8": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "full observed trimer / binder CA pairs within 8 A",
+      "units": "count",
+      "direction": "higher"
+    },
+    "geometry.epitope_residues5": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "target residues with any heavy atom within 5 A of binder BACKBONE",
+      "units": "count",
+      "direction": "higher"
+    },
+    "geometry.other_chain_min_BB_distance": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder backbone to unconditioned trimer B/C heavy atoms",
+      "units": "angstrom",
+      "direction": "higher"
+    },
+    "geometry.other_chain_BB_clash_pairs2": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder backbone / trimer B/C atom pairs below 2 A",
+      "units": "count",
+      "direction": "lower"
+    },
+    "geometry.glycan_ND2_min_BB_distance": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "minimum binder backbone distance to six N133/N229 ND2 anchors; not a glycan simulation",
+      "units": "angstrom",
+      "direction": "higher"
+    },
+    "geometry.missing_tail_anchor_distance": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder backbone distance to resolved A88 N; proximity flag only",
+      "units": "angstrom",
+      "direction": "higher"
+    },
+    "rfd.final_binder_plddt": {
+      "model": "RFdiffusion Complex_base",
+      "version": "86507b6",
+      "meaning": "last denoising-step mean binder confidence; shared by all sequences on one backbone, NOT refold confidence",
+      "units": "fraction 0-1",
+      "direction": "higher"
+    },
+    "mpnn.score": {
+      "model": "ProteinMPNN v_48_020",
+      "version": "8907e66",
+      "meaning": "mean designed-residue negative log probability, T=0.1, C omitted",
+      "units": "nats/residue",
+      "direction": "lower"
+    },
+    "official.ipsae": {
+      "model": "official ESMFold2 + ipSAE",
+      "version": "unpublished",
+      "meaning": "official admission score; no substitute imputed",
+      "units": "score",
+      "direction": "higher"
+    },
+    "boltz.iptm": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "maximum directional binder-target pair ipTM; excludes target-target pairs; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz.binder_plddt": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "mean designed-chain token pLDDT; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz.ipsae_10": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 10 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz.ipsae_15": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 15 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz.binder_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder CA RMSD to design after experimental target beta-core alignment (pose agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz.binder_fold_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder-only aligned CA RMSD to design (fold agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz.target_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "predicted target A88-251 versus 2RE9 aligned CA RMSD; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz.other_chain_clash_pairs2": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs observed native trimer B/C atom pairs <2 A; NOT official ESMFold2 screening",
+      "units": "count",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz.glycan_ND2_min_distance": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs six native N133/N229 ND2 anchors; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer.iptm": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "maximum directional binder-target pair ipTM; excludes target-target pairs; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer.binder_plddt": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "mean designed-chain token pLDDT; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer.ipsae_10": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 10 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer.ipsae_15": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 15 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer.binder_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder CA RMSD to design after experimental target beta-core alignment (pose agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer.binder_fold_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder-only aligned CA RMSD to design (fold agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer.target_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "predicted target A88-251 versus 2RE9 aligned CA RMSD; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer.other_chain_clash_pairs2": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs observed native trimer B/C atom pairs <2 A; NOT official ESMFold2 screening",
+      "units": "count",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer.glycan_ND2_min_distance": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs six native N133/N229 ND2 anchors; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz_template.iptm": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "maximum directional binder-target pair ipTM; excludes target-target pairs; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_template.binder_plddt": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "mean designed-chain token pLDDT; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_template.ipsae_10": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 10 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_template.ipsae_15": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 15 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_template.binder_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder CA RMSD to design after experimental target beta-core alignment (pose agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_template.binder_fold_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder-only aligned CA RMSD to design (fold agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_template.target_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "predicted target A88-251 versus 2RE9 aligned CA RMSD; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_template.other_chain_clash_pairs2": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs observed native trimer B/C atom pairs <2 A; NOT official ESMFold2 screening",
+      "units": "count",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_template.glycan_ND2_min_distance": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs six native N133/N229 ND2 anchors; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_deepmsa.iptm": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "maximum directional binder-target pair ipTM; excludes target-target pairs; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_deepmsa.binder_plddt": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "mean designed-chain token pLDDT; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_deepmsa.ipsae_10": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 10 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_deepmsa.ipsae_15": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 15 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_deepmsa.binder_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder CA RMSD to design after experimental target beta-core alignment (pose agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_deepmsa.binder_fold_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder-only aligned CA RMSD to design (fold agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_deepmsa.target_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "predicted target A88-251 versus 2RE9 aligned CA RMSD; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_deepmsa.other_chain_clash_pairs2": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs observed native trimer B/C atom pairs <2 A; NOT official ESMFold2 screening",
+      "units": "count",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_deepmsa.glycan_ND2_min_distance": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs six native N133/N229 ND2 anchors; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "higher",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_deepmsa.target_beta_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "aligned CA RMSD over experimental 2RE9 SHEET residues only; separate from flexible loops; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz.target_beta_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "aligned CA RMSD over experimental 2RE9 SHEET residues only; separate from flexible loops; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer_template.iptm": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "maximum directional binder-target pair ipTM; excludes target-target pairs; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer_template.binder_plddt": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "mean designed-chain token pLDDT; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer_template.ipsae_10": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 10 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer_template.ipsae_15": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 15 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer_template.binder_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder CA RMSD to design after experimental target beta-core alignment (pose agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer_template.binder_fold_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder-only aligned CA RMSD to design (fold agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer_template.target_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "predicted target A88-251 versus 2RE9 aligned CA RMSD; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer_template.target_beta_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "aligned CA RMSD over experimental 2RE9 SHEET residues only; separate from flexible loops; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer_template.other_chain_clash_pairs2": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs observed native trimer B/C atom pairs <2 A; NOT official ESMFold2 screening",
+      "units": "count",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer_template.glycan_ND2_min_distance": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs six native N133/N229 ND2 anchors; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_template.target_beta_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "aligned CA RMSD over experimental 2RE9 SHEET residues only; separate from flexible loops; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "monomer",
+      "target_template": true,
+      "msa_depth_cap": 64
+    },
+    "boltz_trimer_deepmsa.iptm": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "maximum directional binder-target pair ipTM; excludes target-target pairs; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.binder_plddt": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "mean designed-chain token pLDDT; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.ipsae_10": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 10 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.ipsae_15": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 15 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.binder_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder CA RMSD to design after experimental target beta-core alignment (pose agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.binder_fold_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder-only aligned CA RMSD to design (fold agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.target_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "predicted target A88-251 versus 2RE9 aligned CA RMSD; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.target_beta_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "aligned CA RMSD over experimental 2RE9 SHEET residues only; separate from flexible loops; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.other_chain_clash_pairs2": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs observed native trimer B/C atom pairs <2 A; NOT official ESMFold2 screening",
+      "units": "count",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.glycan_ND2_min_distance": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs six native N133/N229 ND2 anchors; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer.target_beta_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "aligned CA RMSD over experimental 2RE9 SHEET residues only; separate from flexible loops; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 64
+    }
+  }
+}

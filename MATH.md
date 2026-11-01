@@ -12,8 +12,8 @@ $$F(S)=\sum_{s=1}^M w_s\max\left(\{0\}\cup\{u_{is}:i\in S\}\right),
 The maximum reflects ranking by the team's best experimental candidate.
 Utilities must be defined from the actual track's experimental endpoint and
 preferences. Raw confidence metrics from different predictors do not supply
-these utilities automatically. In this repository, all numerical utilities
-and weights are **synthetic modelling inputs**.
+these utilities automatically. Section 6 uses **synthetic modelling inputs**;
+section 8 applies an explicitly uncalibrated rank objective to real model output.
 
 A joint scenario can set `u[i,s]=a[i,s]*r[i,s]`, where `a` is an admission /
 expression / assay-validity mask and `r` is utility conditional on those stages.
@@ -248,3 +248,205 @@ are generated in ignored `build/benchmark/`.
 
 These sources motivate provenance and independent evaluation. No target-specific
 experimental probability calibration has been inferred from them in this stage.
+
+## 8. Real TL1A designs: separating admission, affinity and triage
+
+### Official screening: verified facts and code inspection
+
+The November 1 public rules specify per-sequence ESMFold2/ipSAE ranking with
+target-only MSA, one seed/sample and no template. They do not publish an exact
+software/configuration bundle; see [RULES.md](RULES.md). A public implementation
+with a matching name is not evidence of matching organizer weights or defaults.
+
+We inspected the actually downloaded `DunbrackLab/IPSAE` revision
+`6174cf9e71cb1bd660cc805856a18c4871a6dec3`. For its core residue-normalized
+ipSAE, let `J_i={j in other chain: PAE[i,j]<cutoff}`. It computes a row mean
+of `1/(1+(PAE[i,j]/d0(|J_i|))^2)` over `J_i`, then the best alignment row.
+It reports both directional values and a symmetric maximum. Thus low interchain
+PAE, the number of accepted residues and the normalization affect the score;
+changing cutoff can change both the population and its normalization.
+
+**Specific to this revision**, coordinate distance cutoff contributes to contact
+statistics, not the main ipSAE formula. pLDDT and hydropathy are also not terms in
+that formula. Interface geometry can help diagnose physically implausible models
+without being the official scalar score. For a trimer, never take an unrestricted
+maximum over all chain pairs: a confident target–target interaction can swamp a
+failed binder. Retain both directions and only binder–target pairs; official
+stoichiometry and aggregation are still unknown. No PAE is inferred from a design
+backbone or from RFdiffusion's own confidence.
+
+### An actual failure found by adding native context
+
+The first real batch used two 60-residue RFdiffusion backbones conditioned on
+2RE9 A88–251, hotspots A187/A188, deterministic seeds 0/1, 50 diffusion steps,
+and zero additional denoiser noise. ProteinMPNN `v_48_020`, seed 2026, T=0.1,
+four samples/backbone produced **eight distinct real sequences**. Only the
+generated chain was redesigned; the target remained fixed. These are not toy
+data and have no wet-lab evidence.
+
+| First-batch backbone | RFdiffusion binder confidence | CA contact pairs <8 Å | Binder-backbone / other-subunit atom pairs <2 Å | Closest glycan ND2 anchor |
+|---|---:|---:|---:|---:|
+| seed 0 | 0.99246 | 23 | 0 | 12.98 Å |
+| seed 1 | 0.99089 | 253 | 122 | 5.01 Å |
+
+The contact count is measured after aligning the target to the **full observed
+trimer**. The second pose's apparent large interface comes partly from occupying
+another subunit. Both confidence values are almost one. The wrong sequence-only
+rule "best ProteinMPNN score wins" also favors the rejected family (its best
+score is 1.0701, versus 1.1393 nats/residue for seed 0). This finite observation
+motivated full-trimer conditioning for the next run. It does not estimate any
+model's general false-positive rate.
+
+### Uncalibrated compute-allocation objective on real measurements
+
+`proxies.py` maps a complete nonconstant metric to its oriented midrank divided
+by `N-1`. Missing official scores are omitted, never set to zero. Metrics retain
+their raw units in the candidate file. Every source family (metric prefix) has
+equal total weight, divided among its available viewpoints. This limits the
+extra weight a model would receive merely by exposing more confidence heads.
+It does not establish statistical independence, and geometry/RFdiffusion remain
+related. Leave-one-metric and leave-one-family-out selections expose sensitivity.
+
+The same existing `ScenarioObjective`, portfolio/greedy and exhaustive solvers
+operate on these columns. Their submodular guarantee still holds because the
+matrix is fixed and nonnegative. **The guarantee concerns rank coverage only**;
+the weights are decision assumptions, not a joint experimental outcome law.
+Percentiles are cohort-dependent and must be recomputed after explicit filtering;
+they cannot be compared across cohorts as absolute biological utilities.
+
+The initial geometry gate rejects any noncanonical/wrong-length sequence, any
+unconditioned-subunit backbone clash below 2 Å, zero CA contacts within 8 Å, or
+a backbone closer than 12 Å to an N133/N229 ND2 anchor. The 12 Å exclusion is a
+heuristic for allocating prediction compute, **not** a glycan conformational
+simulation or a calibrated assay threshold. It cannot rule out sidechain clashes
+because design poses lack binder sidechains. All rejected records are retained.
+
+On the first eight sequences this leaves four variants of one backbone. Their
+geometry and generating-model confidence are identical, so those columns are
+omitted as constant. A `k=2` run of the existing CLI gave portfolio/exact rank
+coverage **0.916667 / 0.916667**. Alternative optimal sets exist; this agreement
+does not establish better affinity or meaningful epitope diversity.
+
+`triage_candidates.py` reports pairwise-complete Spearman correlations with
+sample counts and nulls for constant columns. Sequence variants share backbone
+measurements, so eight sequences are only two backbone families. We do not report
+inferential p-values or success probabilities. Cross-model correlations and
+prediction failures must be assessed before expanding a high-scoring family.
+
+### Biological hypotheses and limits
+
+- A rigid external TL1A surface away from glycans is a useful minibinder target;
+  its superiority to other competition targets is a research choice, not a theorem.
+- The native trimer should be a more relevant steric context than an isolated
+  protomer. The assay construct/glycoform and immobilization remain unknown.
+- Full-target, template-free Boltz prediction with target-only MSA provides a
+  second model view. Its ipSAE would be **Boltz-derived**, not an official ESMFold2
+  score; even a high value would not predict KD without experimental calibration.
+- Selecting the best over many seeds and then quoting that seed alone induces
+  optimistic selection bias. Keep the one-seed run, failures and any later seed
+  ensemble separate. Compare models on the same sequences/configurations, and
+  examine family-level rather than pseudo-replicated sequence-only agreement.
+
+## 9. Expanded real experiment and failure analysis (2026-11-01)
+
+**Actually run:** seven RFdiffusion backbones and four ProteinMPNN samples each:
+20 sequences of length 60 and eight of length 80, all distinct. Conditioning was
+monomer A187/A188 (seeds 0/1), full observed trimer A187/A188 (seed 2), outer
+A110/A123 (seeds 3/4), then outer A110/A123 with binder-ROG guidance (seeds 5/6,
+80 aa, weight 1, min_dist 8, guide_scale 2, quadratic decay). No known binder
+sequence or scaffold was supplied.
+
+### Why generation confidence and low hydropathy were insufficient
+
+The outer-site 60 aa designs had CA radii of gyration 25.42/25.55 Å and **zero**
+CA contacts between residues separated by at least eight sequence positions.
+They are long rods, including extremely charged sequences. Treating lower
+hydrophobic-window content as uniformly better solubility would reward these
+designs. The original proxy objective did exactly what its columns requested,
+without establishing a globular binding module. Adding compactness guidance
+produced Rg 17.62/17.54 Å and 75/78 nonlocal contacts at 80 aa. This is observed
+geometric improvement, not demonstrated binding or stability improvement.
+
+The final research gate additionally prioritizes at least ten nonlocal CA
+contacts, charged fraction <=0.65 and hydrophobic fraction >=0.15. These are
+declared **exploration assumptions for globular binders**, not competition rules
+or validated developability thresholds. A designed helix could in principle
+bind through coupled folding; these criteria intentionally give it lower priority.
+
+### Independent model results and native-state controls
+
+Boltz-2 2.2.1 / torch 2.5.1+cu121 produced **18 actual all-atom complex predictions
+covering 12 distinct candidates**, plus two target-only controls. Each complex
+has one sample, seed argument 2026, three recycles and 200 diffusion steps.
+Multi-input runs seed the batch RNG once; input order affects later draws.
+They are not matched-noise per-sequence replicates. Single-input runs avoid that
+batch-order ambiguity. No result is an official ESMFold2 score.
+
+| Context | Candidate / control | Target all-CA / beta-core RMSD (Å) | ipTM / ipSAE(10) | Interpretation |
+|---|---|---:|---:|---|
+| No template, MSA 64, monomer | highest-ipSAE `outer_3_s4` | 13.46 / 6.89 | .861 / .731 | High scalar score with incorrect target core and rod-like design; reject |
+| No template, target only, MSA 64 | public target control | 11.23 / 6.63 | — | This approximate configuration is a poor target predictor |
+| No template, target only, MSA 512 | public target control | 5.33 / .445 | — | Native beta core recovered; flexible regions still differ |
+| No template, MSA 512, monomer | `receptor_0_s1` | 4.83 / .490 | .738 / .359 | Incompatible native trimer/glycan placement |
+| Native target template, monomer | `receptor_0_s1` | .515 / separately recorded | .791 / .556 | Binder-only RMSD .700 Å, but clashes/glycan incompatibility; not official-equivalent |
+| Native target templates, trimer | `receptor_0_s1` | .425 / .233 | .186 / .000 | No supported interface even with preserved target state |
+| **No template, MSA 512, trimer** | `receptor_0_s1` | **2.052 / .326** | **.387 / .000** | Binder-only RMSD .702 Å, native-context clearance, but no confident binding |
+
+The final row's ipSAE(15) is .005. It uses only binder–target pairs; target–target
+confidence is excluded. Its glycan-anchor distance is 14.85 Å and it has no
+<2 Å clashes with adjacent native subunits. Thus a successfully refolded sequence
+and geometrically possible placement still do not establish association.
+
+The beta core is the union of experimental chain-A `SHEET` records in 2RE9,
+remapped +71 to UniProt, fixed independently of the predictions. Whole-target
+RMSD is preserved separately. All binder-pose/trimer/glycan geometry uses a
+beta-core alignment (derived geometry v2); flexible loops must not define that
+rigid frame. `import_boltz.py` retains both alignment measures and checks chain
+sequence, PAE and pLDDT indexing. Template-assisted scores have their own namespace
+and cannot replace no-template evidence. The depth comparison is finite evidence,
+not a controlled estimate of MSA's causal effect: global batch RNG draws differ.
+
+### Correlation, optimization and what remains unknown
+
+On the selected 12-sequence, seven-backbone MSA-64 cohort:
+
+| Raw / oriented ranking comparison | Spearman rho |
+|---|---:|
+| Better ProteinMPNN score versus Boltz ipSAE(10), direction corrected | .042 |
+| RFdiffusion generating confidence versus Boltz ipSAE(10) | -.035 |
+| Boltz ipTM versus Boltz ipSAE(10) | .895 |
+| Better ProteinMPNN score versus Boltz binder pLDDT, direction corrected | .615 |
+
+Related Boltz confidence heads strongly agree with each other; this is not
+independent experimental evidence. Sequence-design quality is more associated
+with the second model's fold confidence than with its interface score in this
+small selected cohort. Shared backbones, selected inputs and model bias preclude
+IID significance or KD-success estimates. Correlations remain descriptive.
+
+After all measured checks, **none of the twelve independently evaluated
+sequences passes the complete research gate**. The no-template context with the
+largest available target state/depth takes priority; an exact zero ipSAE(10)
+means no interface support at that local cutoff, not an official admission rule.
+Four unmeasured variants remain eligible for further prediction, not wet lab.
+At k=2, existing portfolio, singleton and exact solvers all give rank coverage
+**.833333**. Portfolio chooses two variants of backbone 6, whereas an equally
+optimal exact set covers two backbones. We retain the latter for exploratory
+compute allocation: `tl1a_receptor_0_s2` and `tl1a_outer_6_s3`. This secondary
+preference changes neither fitted objective value nor its guarantee; it is not
+a proof of biological benefit. Their CSV/FASTA explicitly mean compute priority.
+
+An earlier 20-sequence proxy run gave portfolio/exact .931818 versus singleton
+.840909, but its initial geometry survivors included the rods later rejected.
+That apparent optimization improvement therefore **does not establish candidate
+quality improvement**. Better biological constraints mattered more than solver
+precision. The final complete-case report deliberately contains no accepted set,
+and stale nonempty shortlists are cleared when later evidence rejects them.
+
+The current route has produced foldable hypotheses but no credible binder hit.
+We stopped expanding these families. Native Windows resolution of BoltzGen 0.3.2
+fails on mandatory Linux-only cuEquivariance CUDA wheels; WSL has no installed
+distribution. Full current ESMFold2/Fast checkpoints include ESMC-6B, exceeding
+8 GB in the native GPU path before activations. The prepared Linux BoltzGen
+full-trimer job is unexecuted. Official checkpoint/MSA/ipSAE configuration and
+experimental KD calibration remain unavailable. No paid compute, competition
+account, or existing Colab session was used.

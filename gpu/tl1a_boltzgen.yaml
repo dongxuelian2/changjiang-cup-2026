@@ -1,0 +1,17 @@
+# Prepared job, NOT executed in this checkout. Requires a supported Linux GPU.
+# Full observed trimer; unresolved 72-87 and glycans are absent (see manifest).
+# No known same-target binder, framework or sequence motif is provided.
+entities:
+  - protein:
+      id: D
+      sequence: 60..90
+  - file:
+      # Original RCSB mmCIF includes required polymer metadata. Author +71 is UniProt.
+      path: ../build/sources/2RE9.cif
+      include:
+        - chain:
+            id: A
+        - chain:
+            id: B
+        - chain:
+            id: C

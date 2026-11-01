@@ -1,0 +1,4 @@
+# Preserve the exact structural inputs/outputs recorded in model provenance.
+*.pdb -text -whitespace
+*.cif -text -whitespace
+*.sh text eol=lf
