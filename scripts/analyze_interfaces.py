@@ -55,6 +55,17 @@ def main(args):
             angles=[np.degrees(pair) for peptide in PPBuilder().build_peptides(binder)
                     for pair in peptide.get_phi_psi_list() if all(x is not None for x in pair)]
             alpha=sum(-100<=phi<=-30 and -80<=psi<=-5 for phi,psi in angles)/max(1,len(angles))
+            bca=np.array([r['CA'].coord for r in binder])
+            internal=np.linalg.norm(bca[:,None]-bca,axis=-1)
+            nonlocal_mask=np.abs(np.arange(len(bca))[:,None]-np.arange(len(bca)))>=3
+            sulfurs=[r['SG'].coord for r in binder if r.resname=='CYS' and 'SG' in r]
+            sulfur_min=None; sulfur_pairs=0; sulfur_degree=0
+            if len(sulfurs)>1:
+                sd=np.linalg.norm(np.array(sulfurs)[:,None]-np.array(sulfurs),axis=-1)
+                np.fill_diagonal(sd,np.inf)
+                sulfur_min=float(sd.min())
+                sulfur_pairs=int((sd<2.2).sum()//2)
+                sulfur_degree=int((sd<2.2).sum(-1).max())
             # Preserve the original frame for the finite-point SASA calculation;
             # transform only afterwards for original-pose native steric checks.
             fit.apply(list(raw.get_atoms()))
@@ -64,6 +75,9 @@ def main(args):
                 hydrophobic_burial_fraction=sum(burial[r.id] for r in binder if seq1(r.resname) in "AFILMVWY")/max(area, 1e-8),
                 aromatic_burial_fraction=sum(burial[r.id] for r in binder if seq1(r.resname) in "FWY")/max(area, 1e-8),
                 alpha_torsion_fraction=alpha,
+                min_nonlocal_CA_distance_A=float(internal[nonlocal_mask].min()),
+                cysteine_min_SG_distance_A=sulfur_min,
+                cysteine_SG_pairs22=sulfur_pairs,cysteine_SG_max_degree22=sulfur_degree,
                 AELK_fraction=sum(x in "AELK" for x in row["sequence"])/len(row["sequence"]),
                 native_BB_clashes=int((np.linalg.norm(bb[:,None]-native_heavy,axis=-1)<2).sum()),
                 glycan_BB_distance_A=float(np.linalg.norm(bb[:,None]-glycans,axis=-1).min())))

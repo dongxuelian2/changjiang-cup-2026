@@ -1,0 +1,38 @@
+{
+  "synthetic": false,
+  "purpose": "local steric repair; NOT binding energy or KD",
+  "source_allatom_structure": "results/tl1a_pose_design_20261102/generation/tl1a_bg_ab72_0_trim65_consensus.pdb",
+  "source_target_beta_CA_rmsd": 6.1902255116721655e-15,
+  "supported_new_sequence_followup": true,
+  "openmm": "8.3.1.dev-6e13f13",
+  "pdbfixer_revision": "5e658a4fb8d2b90d65ca8408c845cbf104ce7099",
+  "forcefield": [
+    "amber14-all.xml",
+    "implicit/obc2.xml"
+  ],
+  "platform": "CPU",
+  "threads": 4,
+  "iterations_limit": 500,
+  "tolerance_kJ_mol_nm": 10.0,
+  "binder_BB_restraint_kJ_mol_nm2": 5000.0,
+  "target_all_particles_zero_mass": true,
+  "unresolved_residues_added": false,
+  "added_heavy_atoms": [
+    "B:110:CG",
+    "B:110:CD1",
+    "B:110:CE1",
+    "B:110:CZ",
+    "B:110:CE2",
+    "B:110:CD2",
+    "D:65:OXT"
+  ],
+  "glycan_heavy_penalty_radius_A": 13.0,
+  "source_backbone_overlaps": 4,
+  "target_max_movement_A": 0.0,
+  "binder_CA_rms_movement_A": 0.34827155315099667,
+  "binder_CA_max_movement_A": 1.9980958187494668,
+  "elapsed_seconds": 420.75,
+  "timing_scope": "LocalEnergyMinimizer call only; topology and hydrogen preparation excluded",
+  "forcefield_energy_kJ_mol_before": 287282756032.07117,
+  "forcefield_energy_kJ_mol_after": 169048.91337489872
+}

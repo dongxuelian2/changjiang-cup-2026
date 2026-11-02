@@ -17,6 +17,11 @@ from scripts.import_boltz import align_prediction, ipsae
 
 
 def main(args):
+    namespace=getattr(args,'namespace','af2')
+    if not namespace.startswith('af2') or not all(c in 'abcdefghijklmnopqrstuvwxyz0123456789_' for c in namespace):
+        raise ValueError('AF2 namespace must be a safe lowercase af2-prefixed identifier')
+    def metric_name(key):
+        return namespace+key.removeprefix('af2')
     dataset = load_candidates(args.candidates)
     predictions = (ROOT / args.predictions).resolve()
     out = Path(args.candidates).resolve().parent
@@ -41,7 +46,7 @@ def main(args):
         ("glycan_ND2_min_distance", "binder heavy-atom minimum distance to six native N133/N229 ND2 anchors", "angstrom", "higher"),
         ("binder_buried_sasa", "binder SASA lost upon binding, Shrake-Rupley 100 points, 1.4 A probe", "angstrom^2", "higher"),
         ("boltz_pose_CA_rmsd", "AF2 vs Boltz-2 interface pose RMSD, allowing homotrimer relabelling", "angstrom", "lower")]:
-        dataset["metric_definitions"]["af2."+key] = dict(model="AF2-Multimer-v3 / ipSAE or geometry",
+        dataset["metric_definitions"][namespace+"."+key] = dict(model="AF2-Multimer-v3 / ipSAE or geometry",
             version=f"ColabFold {meta['package_version']}; model {meta['model_order'][0]} multimer v3; ipSAE 6174cf9",
             meaning=meaning+"; NOT official ESMFold2 score", units=units, direction=direction)
     processed,missing = [],[]
@@ -123,21 +128,21 @@ def main(args):
             cross=predicted.copy()
             align_prediction(native,cross,boltz[0]["D"],"ABC","D",core)
             values["af2.boltz_pose_CA_rmsd"]=float(np.sqrt(np.mean(np.sum((np.array([r["CA"].coord for r in cross[0]["D"]])-np.array([r["CA"].coord for r in boltz[0]["D"]]))**2,axis=1))))
-        row["metrics"].update(values)
-        destination=out/"predictions/af2"/row["id"]
+        row["metrics"].update({metric_name(k):v for k,v in values.items()})
+        destination=out/"predictions"/namespace/row["id"]
         destination.mkdir(parents=True,exist_ok=True)
         for source in (source_pdb,score_file):
             shutil.copyfile(source,destination/source.name)
-        record=dict(path=(destination/source_pdb.name).relative_to(ROOT).as_posix(),role="af2_predicted_complex",chain_id=binder_id)
+        record=dict(path=(destination/source_pdb.name).relative_to(ROOT).as_posix(),role=namespace+"_predicted_complex",chain_id=binder_id)
         row["structures"]=[s for s in row["structures"] if s["path"]!=record["path"]]+[record]
-        row["metadata"]["af2"]=dict(run=predictions.relative_to(ROOT).as_posix(),ipsae_pairs=pair_scores,
+        row["metadata"][namespace]=dict(run=predictions.relative_to(ROOT).as_posix(),ipsae_pairs=pair_scores,
             symmetry_alignment_trials=trials,target_chain_permutation=list(permutation),
             confidence_summary={k:v for k,v in confidence.items() if k not in ("pae","plddt")},
             original_score_sha256=hashlib.sha256(score_file.read_bytes()).hexdigest(),official_equivalence=False)
         processed.append(row["id"])
     save_candidates(dataset,args.candidates)
     save_csv(dataset,out/"candidates.csv")
-    report_path=out/"af2_evaluation.json"
+    report_path=out/(namespace+"_evaluation.json")
     history=json.loads(report_path.read_text()) if report_path.exists() else {"runs":{}}
     if "runs" not in history:
         history={"runs":{history["run"].get("candidate_ids",["previous"])[0]:history}}
@@ -150,4 +155,5 @@ if __name__=="__main__":
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("candidates")
     p.add_argument("predictions")
+    p.add_argument('--namespace',default='af2',help='preserve additional checkpoints/seeds separately, e.g. af2_model3')
     main(p.parse_args())

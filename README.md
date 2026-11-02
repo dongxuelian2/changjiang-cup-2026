@@ -47,6 +47,7 @@ SASA, neighboring-subunit burial, glycan-anchor distance and receptor context.
 | [AF2 gradient experiments](results/tl1a_afdesign_20261102) | 5 sequences / 3 new backbones, including 2 soluble-MPNN core variants | 3 held-out AF2 model-1 complexes; 3 Boltz-2 complexes + 3 binder-alone controls |
 | [L235/Y238 BoltzGen round](results/tl1a_boltzgen_terminal_20261102) | 24 sequences / 8 new backbones, 90–100 aa, full native trimer | 3 AF2 model-1 complexes; 3 Boltz-2 complexes + 3 binder-alone controls |
 | [Three-helix BoltzGen/MPNN round](results/tl1a_boltzgen_helix_20261102) | 14 sequences / 4 new 80 aa backbones, including 2 full-binder soluble-MPNN designs | 5 AF2 model-1 complexes; 4 Boltz-2 complexes + 4 binder-alone controls |
+| [Alpha/beta pose and core tests](results/tl1a_pose_design_20261102) | 7 sequences / 2 new 72 aa backbones: 2 raw, 2 IF, 2 AF2 refinements and one supported 65 aa core follow-up | 7 AF2 model-1 + 2 model-3 complexes; 4 Boltz-2 complexes across two seeds + 2 binder-alone controls |
 
 BoltzGen counts include actual atom14-generated sequences and two inverse-folded
 variants per backbone. They are distinct sequences, not independent backbones.
@@ -142,6 +143,40 @@ and zero accepted candidates.
 2RE9 also lacks the **B:F110 aromatic ring**. It remains absent in experimental
 native inputs; PDBFixer rebuilt it only in the explicitly labeled force-field
 preparation, without adding missing residues. See the updated target manifest.
+
+The latest round changes topology to one helix plus three beta strands. Actual
+conditioning masks contain 18 HELIX, 24 SHEET and 30 LOOP positions. A new
+six-anchor log-determinant objective constrains local pose observability;
+AF2 optimization also penalizes native and predicted-target heavy-atom overlaps.
+Neither the strict nor the staged AF2 sequence refinement retains an independent
+model-1 interface signal. Full-rank geometric constraints do not make a desired
+binding pose learnable by sequence gradients.
+
+The **raw co-design** `tl1a_bg_ab72_0_gen` instead gives AF2 model-1/model-3
+ipSAE(10) **.470/.530**, and Boltz seeds 2026/2027 **.486/.333**. Its apparent
+cross-model disagreement is concentrated at the termini: full-chain AF2/Boltz
+pose RMSD is 3.11 A, versus 1.68 A for residues 5–69. This motivated one actual
+65-aa truncation, preserving all four Cys, with a parent-prediction-derived
+reference pose and a small fixed-target repair. Fresh predictions use no
+template or initial guess; no parent scores are inherited.
+
+The truncated sequence has AF2/Boltz fold RMSDs .77/1.05 A and cross-model pose
+RMSD 2.70 A, but Boltz ipSAE is **0/.025** across two seeds, versus AF2
+**.4996/.441** across checkpoints. Parent seed 2027 also approaches a native
+glycan anchor to **10.10 A**. Better geometric agreement therefore does not
+establish a confident, glycan-safe association. Both jointly evaluated sequences
+fail the [complete screen](results/tl1a_pose_design_20261102/evaluated_triage.json);
+five further sequences are explicit early AF2 rejections, not complete cases.
+This family is frozen after that single targeted follow-up. The next useful
+direction is to preserve co-designed interface/Cys chemistry on new backbones
+with larger glycan clearance, and test interface confidence across models and
+seeds before expanding a family.
+
+Raw Cys SG clusters are chemically inconsistent and remain visible in the
+interface audit. Ordinary disulfide bonding cannot be inferred from these
+unrelaxed coordinates. A single-IF output filename collision was also fixed;
+original atom14 and IF CIF/NPZ files are retained separately and checked against
+their actual sequences. See section 16 of [the research notes](math/PROOF.md).
 
 ## Continue the configured local pipeline
 

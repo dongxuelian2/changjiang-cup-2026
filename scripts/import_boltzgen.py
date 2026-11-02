@@ -21,6 +21,13 @@ from changjiang_select.data import load_candidates, save_candidates, save_csv
 from scripts.evaluate_designs import geometry, sequence_metrics
 
 
+def retained_filename(cif, raw, stage):
+    # A single IF sequence is emitted with EXACTLY the atom14 parent's name.
+    # Keeping only basename would replace its genuine sidechains with IF
+    # placeholders and invalidate the raw provenance hash/sequence.
+    return 'inverse_folding_'+cif.name if stage == 'inverse_folding' and cif.name == raw.name else cif.name
+
+
 def main(args):
     run = (ROOT / args.run).resolve()
     meta = json.loads((run / "run.json").read_text())
@@ -86,6 +93,9 @@ def main(args):
                       sha256=hashlib.sha256(cif.read_bytes()).hexdigest(), stage=stage,
                       backbone=raw.stem, original_binder_chain=original_binder,
                       original_target_chains=original_targets)
+        retained = retained_filename(cif, raw, stage)
+        if retained != cif.name:
+            source['retained_file'] = (out/'generation'/retained).relative_to(ROOT).as_posix()
         # Audit the ACTUAL emitted conditioning mask, including chain order and
         # the unresolved N-terminal offset, rather than trusting YAML labels.
         token_residues = [(c.id,i) for c in chains for i,_ in enumerate(c)]
@@ -170,7 +180,10 @@ def main(args):
         writer.set_structure(canonical)
         writer.save(str(destination))
         for f in (cif, cif.with_suffix(".npz")):
-            shutil.copyfile(f, out / "generation" / f.name)
+            destination_file = out/'generation'/Path(retained).with_suffix(f.suffix)
+            if destination_file.exists() and destination_file.read_bytes() != f.read_bytes():
+                raise ValueError(f'different generation artifacts share {destination_file}; preserve both in separate runs')
+            shutil.copyfile(f, destination_file)
         row = dict(id=name, sequence=sequence, target_id="TL1A", design_type="minibinder",
                    source_model="BoltzGen" if stage == "atom14" else "BoltzGen + BoltzGen-IF",
                    source_version="0.3.2", run_id=run.name,

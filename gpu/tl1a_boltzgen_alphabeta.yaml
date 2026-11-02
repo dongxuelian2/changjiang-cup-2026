@@ -1,0 +1,34 @@
+# New compact alpha/beta topology at the stable L235/Y238 patch. No binder
+# sequence, coordinates or known same-target binder initializes generation.
+entities:
+- protein:
+    id: D
+    sequence: 72
+    secondary_structure:
+      helix: 8..25
+      sheet: 33..40,45..52,59..66
+      loop: 1..7,26..32,41..44,53..58,67..72
+    residue_constraints:
+    - position: 1..72
+      disallowed: C
+    - position: 8..25
+      disallowed: PG
+    - position: 33..40,45..52,59..66
+      disallowed: P
+- file:
+    path: ../build/sources/2RE9.cif
+    include:
+    - chain: {id: A, res_index: 18..181}
+    - chain: {id: B, res_index: 18..181}
+    - chain: {id: C, res_index: 18..181}
+    binding_types:
+    - chain:
+        id: A
+        not_binding: 18..21,25..27,29,34..49,51..52,57..73,77,79..81,83,85,93..104,108..115,119..127,144,152..163,166,172,176
+        binding: 165,168
+    - chain:
+        id: B
+        not_binding: 18..21,25..27,29,34..49,51..52,57..73,79,81,83,85,93..104,108..115,120..127,144,152..163,166,172,176
+    - chain:
+        id: C
+        not_binding: 18..21,23..29,34..52,56..73,77,79..81,83,85,93..104,108..115,119..127,144,152..163,166,172,176,178

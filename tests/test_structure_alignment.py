@@ -1,5 +1,6 @@
 """Scientific geometry regression; requires the optional research dependencies."""
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import unittest
@@ -56,3 +57,58 @@ class TrimerAlignmentTests(unittest.TestCase):
         _, _, _, best, alternatives = align_prediction(reference, predicted, designed, "ABC", "D", core)
         self.assertLess(best, 1e-4)
         self.assertGreater(min(t["binder_pose_CA_rmsd"] for t in alternatives), 50)
+
+
+@unittest.skipUnless(importlib.util.find_spec("Bio"), "requires BioPython research environment")
+class PoseAnchorTests(unittest.TestCase):
+    def test_retained_new_atom14_and_if_files_match_actual_sequences(self):
+        from Bio.PDB import MMCIFParser, PDBParser
+        from Bio.SeqUtils import seq1
+        folder = ROOT/'results/tl1a_pose_design_20261102'
+        data = json.loads((folder/'candidates.json').read_text())
+        for row in data['candidates']:
+            design = PDBParser(QUIET=True).get_structure('design', ROOT/row['structures'][0]['path'])
+            self.assertEqual(row['sequence'], ''.join(seq1(r.resname) for r in design[0]['D']))
+            generation = row['metadata']['generation']
+            if generation.get('stage') not in ('atom14', 'inverse_folding'):
+                continue
+            file = ROOT/generation['retained_file'] if 'retained_file' in generation else folder/'generation'/Path(generation['file']).name
+            self.assertEqual(hashlib.sha256(file.read_bytes()).hexdigest(), generation['sha256'])
+            pose = MMCIFParser(QUIET=True).get_structure('real', file)
+            self.assertIn(row['sequence'], [''.join(seq1(r.resname) for r in c) for c in pose[0]])
+
+    def test_single_if_output_cannot_overwrite_original_atom14_file(self):
+        from scripts.import_boltzgen import retained_filename
+        raw = Path('intermediate_designs/design_0.cif')
+        inverse = Path('intermediate_designs_inverse_folded/design_0.cif')
+        self.assertNotEqual(retained_filename(raw, raw, 'atom14'),
+                            retained_filename(inverse, raw, 'inverse_folding'))
+        many = Path('intermediate_designs_inverse_folded/design_0_1.cif')
+        self.assertEqual(retained_filename(many, raw, 'inverse_folding'), many.name)
+
+    def test_two_anchors_leave_a_rigid_rotation_unobserved(self):
+        from scripts.design_context import select_pose_anchors
+        rng = np.random.default_rng(42)
+        binder = rng.normal(size=(40, 3))*3
+        target = np.array([[8., 0., 0.], [0., 8., 0.], [0., 0., 8.], [-5., -6., -7.]])
+        _, two = select_pose_anchors(target, binder, range(4), k=2)
+        _, four = select_pose_anchors(target, binder, range(4), k=4)
+        self.assertLess(abs(two['unregularized_information_eigenvalues'][0]), 1e-12)
+        self.assertGreater(four['unregularized_information_eigenvalues'][0], .01)
+        matrices = np.array(four['candidate_information_matrices'])
+        self.assertGreaterEqual(np.linalg.eigvalsh(matrices).min(), -1e-12)
+        gains = four['marginal_gains']
+        self.assertTrue(all(a >= b-1e-12 for a,b in zip(gains, gains[1:])))
+
+    def test_anchor_objective_is_invariant_to_global_rigid_motion(self):
+        from scripts.design_context import select_pose_anchors
+        rng = np.random.default_rng(8)
+        binder = rng.normal(size=(35, 3))*3
+        target = rng.normal(size=(12, 3))*6
+        q, _ = np.linalg.qr(rng.normal(size=(3,3)))
+        a, first = select_pose_anchors(target, binder, range(12), k=6)
+        b, second = select_pose_anchors(target@q+11, binder@q+11, range(12), k=6)
+        self.assertEqual(a, b)
+        self.assertAlmostEqual(first['logdet'], second['logdet'], places=11)
+        np.testing.assert_allclose(first['unregularized_information_eigenvalues'],
+                                   second['unregularized_information_eigenvalues'], atol=1e-12)

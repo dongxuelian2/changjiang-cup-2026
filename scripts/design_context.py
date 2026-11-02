@@ -14,6 +14,52 @@ from changjiang_select.optimize import portfolio,singleton_top_k,exhaustive
 ROOT=Path(__file__).resolve().parents[1]
 
 
+def select_pose_anchors(target_ca, binder_ca, eligible, k=6, cutoff=20.):
+    """Greedy log-det information for LOCAL rigid-pose distance constraints.
+
+    Translation is in Angstroms; rotation is scaled by binder Rg so both
+    Jacobian blocks are dimensionless. This is a geometric linearization,
+    not predictor uncertainty or a calibrated binding objective.
+    """
+    target_ca, binder_ca = np.asarray(target_ca), np.asarray(binder_ca)
+    center = binder_ca.mean(0)
+    rg = np.sqrt(np.mean(np.sum((binder_ca-center)**2, axis=-1)))
+    if rg <= 0 or k <= 0:
+        raise ValueError('nondegenerate binder and positive anchor budget required')
+    matrices, indices = [], []
+    for index in eligible:
+        delta = binder_ca-target_ca[index]
+        distance = np.linalg.norm(delta, axis=-1)
+        use = (distance < cutoff) & (distance > 1e-6)
+        if use.sum() < 4:
+            continue
+        normal = delta[use]/distance[use, None]
+        jacobian = np.concatenate([normal, np.cross((binder_ca[use]-center)/rg, normal)], axis=-1)
+        matrices.append(jacobian.T@jacobian/len(jacobian))
+        indices.append(int(index))
+    if len(indices) < k:
+        raise ValueError('not enough eligible native anchors around this binder')
+    matrices = np.array(matrices)
+    information = np.eye(6)
+    chosen, gains = [], []
+    for _ in range(k):
+        baseline = np.linalg.slogdet(information)[1]
+        values = [np.linalg.slogdet(information+m)[1]-baseline if i not in chosen else -np.inf
+                  for i, m in enumerate(matrices)]
+        best = int(np.argmax(values))
+        chosen.append(best)
+        gains.append(float(values[best]))
+        information += matrices[best]
+    selected = [indices[i] for i in chosen]
+    return selected, dict(method='greedy logdet(I + sum local rigid-distance information)',
+        selected_target_indices=selected, eligible_target_indices=indices,
+        binder_Rg_A=float(rg), pair_cutoff_A=cutoff, ridge=1., marginal_gains=gains,
+        logdet=float(np.linalg.slogdet(information)[1]),
+        unregularized_information_eigenvalues=np.linalg.eigvalsh(information-np.eye(6)).tolist(),
+        candidate_information_matrices=matrices.tolist(),
+        interpretation='local geometric pose observability, NOT binding probability or neural prediction fidelity')
+
+
 def select_occlusion_context(native,probes,residue_budget):
     data=load_candidates(ROOT/probes)
     if data['synthetic']:

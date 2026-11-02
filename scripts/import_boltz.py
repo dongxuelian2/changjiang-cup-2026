@@ -78,6 +78,11 @@ def main(args):
     context_key = "boltz_trimer_template" if trimer and templated else (
         "boltz_template" if templated else ("boltz_trimer_deepmsa" if trimer and deep_msa else (
             "boltz_trimer" if trimer else ("boltz_deepmsa" if deep_msa else "boltz"))))
+    namespace=getattr(args,'namespace',None)
+    if namespace:
+        if not namespace.startswith(context_key+'_') or not all(c in 'abcdefghijklmnopqrstuvwxyz0123456789_' for c in namespace):
+            raise ValueError('replicate namespace must extend the actual Boltz context with a safe suffix')
+        context_key=namespace
     prefix = context_key+"."
     target_ids, binder_id = ("ABC", "D") if trimer else ("A", "B")
     target_count = 180*len(target_ids)
@@ -265,4 +270,5 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("candidates")
     p.add_argument("predictions")
+    p.add_argument('--namespace',help='keep a replicate separate, e.g. boltz_trimer_deepmsa_seed2027')
     main(p.parse_args())

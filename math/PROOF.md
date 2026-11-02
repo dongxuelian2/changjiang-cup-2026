@@ -820,3 +820,135 @@ MPNN sample 1 is separately labeled an early AF2 rejection with no Boltz run,
 rather than silently treated as a complete-case result. Missing measurements
 and failed measurements remain distinct. There is no calibrated success
 probability, official admission score or experimental KD.
+
+## 16. Pose observability instead of contact coverage (2026-11-02)
+
+Contact coverage alone does not determine a binding orientation. For a fixed
+new scaffold, let centered binder CAs be `q_i`, its CA radius of gyration be
+`R`, and native target anchors be `t_r`. For a distance constraint within a
+fixed 20 A neighborhood, put
+
+\[
+n_{ir}=(q_i-t_r)/\|q_i-t_r\|,\quad
+g_{ir}=\begin{bmatrix}n_{ir}\\(q_i/R)\times n_{ir}\end{bmatrix},\quad
+M_r=|I_r|^{-1}\sum_{i\in I_r}g_{ir}g_{ir}^{T}.
+\]
+
+Coordinates for both `q_i` and `t_r` use the binder-centered frame. The
+Jacobian describes infinitesimal translation and rotation scaled by `R`.
+`M_r` is positive semidefinite; it is **geometric information**, not a learned
+predictor's Fisher information or an experimentally calibrated uncertainty.
+Native exposure, glycan distance and historical prediction disagreement define
+the eligible anchor set before optimization.
+
+**Proposition.** For fixed eligible anchors and fixed pair neighborhoods,
+`H(S)=log det(I_6 + sum_{r in S} M_r)` is normalized, monotone and submodular.
+Consequently the cardinality greedy bound in section 2 applies.
+
+**Proof.** Write `A_S=I_6+sum_{r in S}M_r`. The marginal of `M` equals
+`integral_0^1 tr((A_S+xM)^(-1) M) dx`. It is nonnegative. For `S subset T`,
+`A_S+xM <= A_T+xM` in positive-semidefinite order, so inversion reverses the
+order. Taking the trace against positive-semidefinite `M` preserves the
+inequality. Integrating proves diminishing returns. This is the standard
+log-determinant design argument, applied here to local rigid-pose distances.
+
+**Geometric limit.** Distances from an arbitrary rigid binder to just two
+fixed target anchors leave a free rotation about their line, even if every
+binder atom is constrained. The Jacobian has a null direction. Four
+noncoplanar target anchors, with all binder distances present, determine each
+binder point uniquely by subtracting squared-distance equations. If the binder
+contains three noncollinear points, its rigid pose is then unique. This is a
+sufficient condition; masked real pair sets need a separate eigenvalue check.
+Learned hotspot-contact losses are weaker than these exact distances.
+
+`scripts/design_context.py` implements six-anchor greedy selection; the actual
+matrices, gains and unregularized eigenvalues are retained in run provenance.
+Tests verify the two-anchor null direction, positive semidefiniteness and
+invariance under global rigid motion. The new AF2 experiment supplies scaffold
+distances only as supervised losses: no binder template or initial guess is
+passed. This constrains a desired pose during design; only subsequent
+unconditioned prediction can test whether the resulting sequence supports it.
+
+### What actually moved in the previous near-interface sequence
+
+The new `scripts/analyze_pose_ambiguity.py` audit of the frozen
+`tl1a_bg_helix_2_mpnn2` family gives AF2/Boltz **0.619 A fold RMSD**, but
+4.948 A pose RMSD, 4.361 A centroid shift and 12.08 degrees fitted rigid
+rotation. These measurements already allow equivalent trimer relabelling.
+Native-residue contact Jaccard is .667 at 4.5 A, so the predictors contact much
+of the same region while positioning the folded binder differently.
+
+Of Boltz's 23 and AF2's 39 native heavy-atom overlaps below 2 A, **all involve
+binder sidechains**. Boltz has 1 binder-SC/target-BB and 22 SC/SC pairs; AF2 has
+3 and 36. Neither has a binder-BB/native-target-BB overlap. Thus these data do
+not establish a backbone penetrating another protomer. They still fail the
+declared all-atom, glycan and interface/pose criteria. Native sidechain
+conformations and a spherical glycan envelope remain approximations; this
+diagnosis neither rescues the sequence nor establishes experimental nonbinding.
+The new experiment adds native and predicted-target **heavy-atom** penalties
+alongside existing backbone sterics, rather than expanding the frozen family.
+
+### Executed alpha/beta experiments and a supported-core follow-up
+
+BoltzGen diverse/500 steps, seed 20261120, generated two new 72-aa backbones
+and one IF sequence each. Actual NPZ masks contain 18 HELIX, 24 SHEET and 30
+LOOP positions; IF masks exclude C, helix P/G and sheet P. These are learned
+structural conditions, not guaranteed secondary structure. Original all-atom
+interfaces bury 935/876 A^2, with aromatic fractions .203/.080. Both contain
+an SG with two neighbors below 2.2 A (minima 1.40/1.68 A), which cannot describe
+ordinary disulfide matching. Backbone nonlocal CA minima are 4.39/4.32 A;
+the sulfur issue is not a backbone collision conclusion. Fixed-target local
+repairs remove 2/3 backbone/native-atom overlaps, with CA RMS movements .268/.262 A.
+
+The new AF2 geometry-supervised redesigns start from genuine IF sequences,
+without binder templates or initial guesses. Six greedy anchors give local
+information minimum eigenvalues .289/.209. One trajectory applies all losses
+from the start. The other, on a different backbone, uses native-fixed distance
+anchors, stronger fold preservation, a .2 pose-RMSD weight and staged sterics.
+Both really run 50/25/10 optimization steps plus a discrete final prediction.
+The first retains 47 backbone/native overlaps; the second passes generation
+backbone geometry but still has weak generator ipSAE .061. Their independent
+full-trimer AF2 model-1 ipSAE values are both zero. These are two exploratory
+trajectories with several differing factors, not a controlled curriculum ablation.
+
+The six-sequence initial batch is frozen before independent prediction. Both
+IF sequences also give AF2 ipSAE zero; the two raw co-design sequences instead
+give .470/.125. Many residues differ between raw and IF, so this does **not**
+isolate a causal effect of Cys removal. The first raw sequence is the new
+cross-supported near-interface case:
+
+| Sequence | AF2 model 1 / model 3 ipSAE(10) | Boltz seed 2026 / 2027 ipSAE(10) |
+|---|---:|---:|
+| `tl1a_bg_ab72_0_gen`, 72 aa | .470 / .530 | .486 / .333 |
+| `tl1a_bg_ab72_0_trim65`, 65 aa | .4996 / .441 | 0 / .025 |
+
+For the parent, full-chain AF2/Boltz pose/fold RMSDs are 3.110/2.727 A,
+but the retained 5–69 core has pose RMSD 1.678 A and separately fitted fold
+RMSD below 1 A. The original full-chain fit gives 1.051 A on those core CAs.
+Errors are largest at residues 1–4 and 70–72. This supports one targeted
+terminal truncation, rather than another sequence sweep. Its reference is the
+parent's generated backbone rigidly fitted to the two parent predictions'
+core consensus. No new-sequence confidence or predicted coordinates enter
+that reference construction. Fixed-target minimization removes four local
+overlaps, with .348 A CA RMS movement (maximum 1.998 A); all native target
+particles remain immobile. This is a prediction-guided derivative of the same
+family, not a new independent scaffold or held-out family.
+
+Fresh full-target, no-template predictions of the actual 65-aa sequence give
+AF2/Boltz fold RMSD .766/1.046 A, pose RMSD to the frozen design 1.085/2.655 A,
+and cross-model pose RMSD 2.700 A. Nevertheless its Boltz interface confidence
+is absent or weak in **both** fresh seeds. Binder-alone Boltz pLDDT .914 and
+fold RMSD 1.133 A support the fold only. AF2's glycan-anchor clearance is
+11.76/11.12 A across checkpoints. The parent's second Boltz seed similarly
+loses clearance (10.10 A). No sequence passes the complete screen. Parent
+and truncation are correlated; two diffusion seeds are not IID experimental
+outcomes, and changes in input length change random draws as well as sequence.
+
+This finite experiment separates geometric consistency from association
+confidence: improving the former did not rescue the latter. Log-determinant
+observability assumes a fixed local rigid scaffold; it does not guarantee
+global distance uniqueness, sequence-gradient controllability, chemical
+validity, predictor calibration or experimental binding. Five initial AF2
+rejections have no Boltz run and are explicitly outside the two-sequence
+complete-case cohort. Additional checkpoints/seeds retain separate namespaces;
+no best-over-seed score is substituted into the original screen.

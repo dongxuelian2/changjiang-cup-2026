@@ -27,9 +27,17 @@ from scripts.evaluate_designs import geometry
 def main(args):
     path=(ROOT/args.candidates).resolve();data=load_candidates(path)
     row=next(r for r in data['candidates'] if r['id']==args.id)
-    if any(k.startswith(('af2.','boltz')) and v is not None
+    screened_family=any(k.startswith(('af2.','boltz')) and v is not None
            for r in data['candidates'] if r['structural_group']==row['structural_group']
-           for k,v in r['metrics'].items()):
+           for k,v in r['metrics'].items())
+    generation=row['metadata']['generation']
+    supported_followup=False
+    if generation.get('stage')=='consensus_truncation':
+        parent=next(r for r in data['candidates'] if r['id']==generation['consensus_parent'])
+        supported_followup=(min(parent['metrics'].get(k,0) for k in ('af2.ipsae_10','boltz_trimer_deepmsa.ipsae_10'))>=.4
+            and generation['parent_core_cross_pose_A']<=2 and generation['parent_core_cross_fold_A']<=2
+            and not any(k.startswith(('af2.','boltz')) and v is not None for k,v in row['metrics'].items()))
+    if screened_family and not supported_followup:
         raise ValueError('local repair is only for a new, independently unscreened family')
     if row['metrics']['geometry.native_all_chain_BB_clash_pairs2']>10:
         raise ValueError('not a local repair: more than ten backbone/native atom overlaps')
@@ -40,9 +48,16 @@ def main(args):
     native=parser.get_structure('native',ROOT/'targets/TL1A/observed.pdb')
     manifest=json.loads((ROOT/'targets/manifest.json').read_text())
     core=next(t['beta_core_uniprot'] for t in manifest['targets'] if t['target_id']=='TL1A')
-    generation=row['metadata']['generation']
     fit=Superimposer()
-    if generation.get('stage')=='atom14':
+    if generation.get('source_allatom_complex'):
+        source=ROOT/generation['source_allatom_complex']
+        raw=parser.get_structure('consensus',source)
+        binder=raw[0]['D']
+        if ''.join(seq1(r.resname) for r in binder)!=row['sequence']:
+            raise ValueError('consensus sequence and all-atom coordinates differ')
+        fit.set_atoms([native[0][c][n]['CA'] for c in 'ABC' for n in core],
+                      [raw[0][c][n]['CA'] for c in 'ABC' for n in core])
+    elif generation.get('stage')=='atom14':
         source=path.parent/'generation'/Path(generation['file']).name
         raw=MMCIFParser(QUIET=True).get_structure('generated',source)
         expected=''.join(seq1(r.resname) for r in native[0]['A'])
@@ -53,7 +68,7 @@ def main(args):
         fit.set_atoms([native[0][c][n]['CA'] for c in 'ABC' for n in core],
                       [list(c)[n-88]['CA'] for c in targets for n in core])
         binder=binders[0]
-    elif row['source_model']=='ColabDesign AF2-Multimer gradient hallucination':
+    elif row['source_model'].startswith('ColabDesign AF2-Multimer'):
         history=json.loads((path.parent/'generation.json').read_text())['runs'][row['run_id']]
         mapping=history.get('target_residue_map',[dict(chain='A',uniprot=n) for n in range(88,252)])
         source=ROOT/generation['path']
@@ -115,6 +130,7 @@ def main(args):
     report=dict(synthetic=False,purpose='local steric repair; NOT binding energy or KD',
         source_allatom_structure=source.relative_to(ROOT).as_posix(),
         source_target_beta_CA_rmsd=float(fit.rms),
+        supported_new_sequence_followup=supported_followup,
         openmm=mm.version.full_version,pdbfixer_revision=subprocess.check_output(['git','-C',str(ROOT/'build/models/PDBFixer'),'rev-parse','HEAD'],text=True).strip(),
         forcefield=['amber14-all.xml','implicit/obc2.xml'],platform='CPU',threads=4,
         iterations_limit=args.iterations,tolerance_kJ_mol_nm=10.,binder_BB_restraint_kJ_mol_nm2=5000.,

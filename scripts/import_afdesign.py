@@ -114,15 +114,16 @@ def main(args):
         if (run/'design_context.pdb').exists():
             shutil.copyfile(run/'design_context.pdb',out/'generation'/f'{run.name}_context.pdb')
         rows.append(dict(id=name,sequence=sequence,target_id='TL1A',design_type='minibinder',
-            source_model='ColabDesign AF2-Multimer gradient hallucination',source_version=meta['upstream_revision'],
-            run_id=run.name,structural_group=f"afdesign_{meta['site']}_{trial['seed']}",
+            source_model=meta.get('model','ColabDesign AF2-Multimer gradient hallucination'),source_version=meta['upstream_revision'],
+            run_id=run.name,structural_group=meta.get('structural_group',f"afdesign_{meta['site']}_{trial['seed']}"),
             epitope_residues=epitope,metrics=metrics,
             structures=[dict(path=filename.relative_to(ROOT).as_posix(),chain_id='D',role='generated_backbone_complex_not_refolded')],
             metadata=dict(status='generated_not_independently_validated',
                 generation=dict(path=(destination/'generated.pdb').relative_to(ROOT).as_posix(),
                     sha256=hashlib.sha256((source/'generated.pdb').read_bytes()).hexdigest(),
                     seed=trial['seed'],target_template=True,binder_template=False,
-                    source_target_chain='A',source_binder_chain='B',generator_ipsae_pairs=pair_scores),
+                    source_target_chain='A',source_binder_chain='B',generator_ipsae_pairs=pair_scores,
+                    supervised_scaffold_parent=meta.get('parent_id')),
                 coordinates='native full ABC context + generated binder BACKBONE; original all-atom model retained separately')))
         sequences.add(sequence);imported.append(name)
     if not imported:
