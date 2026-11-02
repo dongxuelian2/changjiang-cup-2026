@@ -2,3 +2,4 @@
 *.pdb -text -whitespace
 *.cif -text -whitespace
 *.sh text eol=lf
+gpu/*.yaml text eol=lf

@@ -1,0 +1,20 @@
+# Native observed trimer; exposed SHEET residues R156/M158 (UniProt) anchor
+# the hypothesis. Unlike the first loop-rich patch, both lie in the beta core.
+entities:
+  - protein:
+      id: D
+      sequence: 60..90
+  - file:
+      path: ../build/sources/2RE9.cif
+      include:
+        - chain: {id: A, res_index: 18..181}
+        - chain: {id: B, res_index: 18..181}
+        - chain: {id: C, res_index: 18..181}
+      binding_types:
+        # 2RE9 canonical label_seq_id = UniProt - 70 (author numbering differs).
+        - chain:
+            id: A
+            binding: 86,88
+            not_binding: 61..67,155..163
+        - chain: {id: B, not_binding: all}
+        - chain: {id: C, not_binding: all}

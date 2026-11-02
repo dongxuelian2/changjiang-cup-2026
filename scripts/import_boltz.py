@@ -12,12 +12,39 @@ import subprocess
 import sys
 
 import numpy as np
-from Bio.PDB import MMCIFParser, PDBParser, Superimposer
+from Bio.PDB import MMCIFParser, PDBParser, Superimposer, ShrakeRupley
 from Bio.SeqUtils import seq1
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from changjiang_select.data import load_candidates, save_candidates, save_csv
+
+
+def align_prediction(reference, predicted, designed, target_ids, binder_id, beta_core):
+    """Remove homotrimer chain-label ambiguity for pose comparison only.
+
+    Among permutations within 0.5 A of the best target-core fit, choose the
+    smallest binder-pose RMSD. Never modifies predictor confidence or PAE.
+    The target-only best fit and all alternatives are retained for inspection.
+    """
+    trials = []
+    bca = np.array([r["CA"].coord for r in predicted[0][binder_id]])
+    dca = np.array([r["CA"].coord for r in designed])
+    for perm in permutations(target_ids):
+        whole, core = Superimposer(), Superimposer()
+        whole.set_atoms([r["CA"] for c in target_ids for r in reference[0][c]],
+                        [predicted[0][c][n-71]["CA"] for c in perm for n in range(88, 252)])
+        core.set_atoms([reference[0][c][n]["CA"] for c in target_ids for n in beta_core],
+                       [predicted[0][c][n-71]["CA"] for c in perm for n in beta_core])
+        rot, tran = core.rotran
+        pose = float(np.sqrt(np.mean(np.sum((bca @ rot+tran-dca)**2, axis=1))))
+        trials.append((whole, core, perm, pose))
+    minimum = min(t[1].rms for t in trials)
+    chosen = min((t for t in trials if t[1].rms <= minimum+0.5), key=lambda t: t[3])
+    chosen[1].apply(list(predicted.get_atoms()))
+    details = [{"permutation": list(t[2]), "target_beta_CA_rmsd": float(t[1].rms),
+                "binder_pose_CA_rmsd": t[3]} for t in trials]
+    return chosen[0], chosen[1], chosen[2], minimum, details
 
 
 def ipsae(pae, cif, cutoff, binder_id="B", target_ids="A"):
@@ -74,8 +101,26 @@ def main(args):
             "version": "boltz 2.2.1; ipSAE 6174cf9", "meaning": meaning+"; NOT official ESMFold2 screening",
             "units": units, "direction": direction, "target_stoichiometry": "trimer" if trimer else "monomer",
             "target_template": templated, "msa_depth_cap": meta["msa_depth_cap"]}
+    for key, meaning, units, direction in [
+        ("target_best_beta_CA_rmsd", "best target-only beta-core RMSD across chain permutations", "angstrom", "lower"),
+        ("native_all_chain_clash_pairs2", "predicted binder / ALL observed native target chains heavy-atom pairs below 2 A", "count", "lower"),
+        ("predicted_clash_pairs2", "binder / target heavy-atom pairs below 2 A in the prediction itself", "count", "lower"),
+        ("binder_buried_sasa", "binder solvent area lost upon complex formation; Shrake-Rupley 100 points, probe 1.4 A", "angstrom^2", "higher")]:
+        defs[prefix+key] = dict(model="Boltz-2 / geometry", version="boltz 2.2.1; derived geometry v3",
+                               meaning=meaning+"; NOT official screening", units=units, direction=direction)
+    if meta.get("binder_controls"):
+        for key, meaning, units, direction in [
+            ("binder_alone_plddt", "mean pLDDT of sequence-only binder-alone prediction, no MSA/template", "fraction", "higher"),
+            ("binder_alone_CA_rmsd", "binder-alone CA RMSD to generated fold after binder-only alignment", "angstrom", "lower")]:
+            defs[prefix+key] = dict(model="Boltz-2 binder-alone control", version="boltz 2.2.1",
+                                   meaning=meaning, units=units, direction=direction)
     processed, missing = [], []
+    requested = set(meta["candidate_ids"])
+    if requested - {r["id"] for r in dataset["candidates"]}:
+        raise ValueError("prediction metadata contains unknown candidate IDs")
     for row in dataset["candidates"]:
+        if row["id"] not in requested:
+            continue
         name = row["id"]
         files = list(predictions.glob(f"boltz_results_*/predictions/{name}/{name}_model_0.cif"))
         if not files:
@@ -93,21 +138,9 @@ def main(args):
             raise ValueError("prediction chain/sequence mismatch")
         if np.load(pae)["pae"].shape != (target_count+len(binder), target_count+len(binder)):
             raise ValueError("PAE/residue indexing mismatch")
-        align, best_permutation = None, None
-        for perm in permutations(target_ids):
-            trial = Superimposer()
-            trial.set_atoms([r["CA"] for c in target_ids for r in reference[0][c]],
-                            [predicted[0][c][n-71]["CA"] for c in perm for n in range(88, 252)])
-            if align is None or trial.rms < align.rms:
-                align, best_permutation = trial, perm
-        align.apply(list(predicted.get_atoms()))
-        core_align = Superimposer()
-        core_align.set_atoms([reference[0][c][n]["CA"] for c in target_ids for n in beta_core],
-                             [predicted[0][c][n-71]["CA"] for c in best_permutation for n in beta_core])
-        # Flexible target loops must not set the rigid frame used for assessing
-        # binder pose, adjacent-subunit clashes or glycan proximity.
-        core_align.apply(list(predicted.get_atoms()))
         designed = PDBParser(QUIET=True).get_structure("design", ROOT / row["structures"][0]["path"])[0]["D"]
+        align, core_align, best_permutation, best_core, symmetry_trials = align_prediction(
+            reference, predicted, designed, target_ids, binder_id, beta_core)
         bca = np.array([r["CA"].coord for r in binder])
         dca = np.array([r["CA"].coord for r in designed])
         fold = Superimposer()
@@ -115,6 +148,14 @@ def main(args):
         bxyz = np.array([a.coord for a in binder.get_atoms() if a.element != "H"])
         neighbors = np.array([a.coord for c in reference[0] if c.id != "A" for a in c.get_atoms()])
         anchors = np.array([reference[0][c][n]["ND2"].coord for c in "ABC" for n in (133, 229)])
+        native_all = np.array([a.coord for a in reference.get_atoms() if a.element != "H"])
+        predicted_target = np.array([a.coord for c in target_ids for a in predicted[0][c].get_atoms() if a.element != "H"])
+        sr = ShrakeRupley(n_points=100)
+        sr.compute(predicted, level="A")
+        complex_area = sum(a.sasa for a in binder.get_atoms())
+        isolated = binder.copy()
+        sr.compute(isolated, level="A")
+        buried_area = sum(a.sasa for a in isolated.get_atoms())-complex_area
         plddt_path = cif.with_name(f"plddt_{name}_model_0.npz")
         plddt = np.load(plddt_path)["plddt"]
         if plddt.shape != (target_count+len(binder),):
@@ -128,7 +169,11 @@ def main(args):
              "boltz.binder_fold_CA_rmsd": float(fold.rms), "boltz.target_CA_rmsd": float(align.rms),
              "boltz.target_beta_CA_rmsd": float(core_align.rms),
              "boltz.other_chain_clash_pairs2": int((np.linalg.norm(bxyz[:, None]-neighbors, axis=-1) < 2).sum()),
-             "boltz.glycan_ND2_min_distance": float(np.linalg.norm(bxyz[:, None]-anchors, axis=-1).min())}
+             "boltz.glycan_ND2_min_distance": float(np.linalg.norm(bxyz[:, None]-anchors, axis=-1).min()),
+             "boltz.target_best_beta_CA_rmsd": float(best_core),
+             "boltz.native_all_chain_clash_pairs2": int((np.linalg.norm(bxyz[:, None]-native_all, axis=-1) < 2).sum()),
+             "boltz.predicted_clash_pairs2": int((np.linalg.norm(bxyz[:, None]-predicted_target, axis=-1) < 2).sum()),
+             "boltz.binder_buried_sasa": float(buried_area)}
         iprows = {}
         for cutoff in (10, 15):
             score, raw = ipsae(pae, cif, cutoff, binder_id, target_ids)
@@ -138,7 +183,7 @@ def main(args):
         dest = out / "predictions"
         if trimer or templated or deep_msa:
             dest = dest / context_key.removeprefix("boltz_")
-        dest.mkdir(exist_ok=True)
+        dest.mkdir(parents=True, exist_ok=True)
         for source in (cif, pae, plddt_path):
             shutil.copyfile(source, dest / source.name)
         structure_record = {"path": (dest / cif.name).relative_to(ROOT).as_posix(),
@@ -150,8 +195,37 @@ def main(args):
             "official_equivalence": False, "pae_sha256": hashlib.sha256(pae.read_bytes()).hexdigest(),
             "ipsae_pairs": iprows, "target_template": templated, "target_chain_permutation": list(best_permutation),
             "native_context_geometry_caveat": "alignment unreliable if target core differs substantially from native structure"}
-        row["metadata"][context_key]["geometry_alignment"] = "2RE9 SHEET beta core; derived geometry v2"
+        row["metadata"][context_key]["geometry_alignment"] = "2RE9 SHEET core; symmetry-aware derived geometry v3; pose selection only among fits within 0.5 A of best target-only core"
+        row["metadata"][context_key]["symmetry_alignment_trials"] = symmetry_trials
         processed.append(name)
+    for control_id, candidate_id in meta.get("binder_controls", {}).items():
+        matches = list(predictions.glob(f"boltz_results_*/predictions/{control_id}/{control_id}_model_0.cif"))
+        if len(matches) != 1:
+            missing.append(control_id)
+            continue
+        row = next(r for r in dataset["candidates"] if r["id"] == candidate_id)
+        cif = matches[0]
+        folded = MMCIFParser(QUIET=True).get_structure(control_id, cif)
+        if len(list(folded[0])) != 1 or "".join(seq1(r.resname) for r in folded[0]["A"]) != row["sequence"]:
+            raise ValueError("binder-alone sequence/chain mismatch")
+        design = PDBParser(QUIET=True).get_structure("design", ROOT / row["structures"][0]["path"])
+        fit = Superimposer()
+        fit.set_atoms([r["CA"] for r in design[0]["D"]], [r["CA"] for r in folded[0]["A"]])
+        plddt_path = cif.with_name(f"plddt_{control_id}_model_0.npz")
+        plddt = np.load(plddt_path)["plddt"]
+        if plddt.shape != (len(row["sequence"]),):
+            raise ValueError("binder-alone pLDDT shape mismatch")
+        row["metrics"][prefix+"binder_alone_CA_rmsd"] = float(fit.rms)
+        row["metrics"][prefix+"binder_alone_plddt"] = float(plddt.mean())
+        folder = out / "predictions" / context_key
+        folder.mkdir(parents=True, exist_ok=True)
+        for source in (cif, plddt_path):
+            shutil.copyfile(source, folder / source.name)
+        structure_record = dict(path=(folder / cif.name).relative_to(ROOT).as_posix(),
+                                chain_id="A", role=context_key+"_predicted_binder_alone")
+        row["structures"] = [s for s in row["structures"] if s["path"] != structure_record["path"]]+[structure_record]
+        row["metadata"].setdefault(context_key, {})["binder_alone_control"] = dict(
+            id=control_id, confidence=json.loads(cif.with_name(f"confidence_{control_id}_model_0.json").read_text()))
     save_candidates(dataset, args.candidates)
     save_csv(dataset, out / "candidates.csv")
     report_name = context_key+"_evaluation.json"

@@ -6,7 +6,10 @@ Primary sources: [home](https://aiprotein.sjtu.edu.cn/),
 was downloaded directly, including its target and rule text, rather than relying
 only on an older search index. The site still calls the regulations interim;
 later official notices prevail. `scripts/fetch_research_inputs.py` retrieves the
-source and hashes into ignored `build/sources/downloads.json`.
+source and hashes into ignored `build/sources/downloads.json`. A fresh check on
+2026-11-02 was unsuccessful (web retrieval failed; Windows and Ubuntu clients
+received TLS EOF errors); the last successfully retrieved rule text remains
+the November 1 version. This is not evidence that the rules have stayed unchanged.
 
 ## Confirmed tracks
 

@@ -1,0 +1,286 @@
+{
+  "runs": {
+    "build/af2_bg_crosscheck_v3": {
+      "run": {
+        "synthetic": false,
+        "model": "AF2-Multimer-v3",
+        "candidate_ids": [
+          "tl1a_bg_a_1_if1",
+          "tl1a_bg_a_0_gen"
+        ],
+        "target_stoichiometry": "trimer",
+        "target": "O95150:72-251",
+        "package_version": "1.6.3",
+        "jax_version": "0.6.2",
+        "seed": 2026,
+        "num_seeds": 1,
+        "model_order": [
+          3
+        ],
+        "num_models": 1,
+        "num_recycles": 3,
+        "msa_depth": [
+          128,
+          256
+        ],
+        "target_msa_records": 2286,
+        "target_msa_sha256": "12e895a1ec22575e6671879e7e64c89df851a3c5fa8e8120f0b63da6bdf9fba6",
+        "binder_msa": "query only; no evolutionary homologs",
+        "template": false,
+        "initial_guess": false,
+        "official_equivalence": false,
+        "status": "finished",
+        "kernel_backend": "cuda_legacy",
+        "compatibility_adapters": {
+          "cuequivariance_ops_0.5.1": "WSL unsupported NVML power/clock are unknown; use real Torch device properties and skip telemetry-based tuning cache; requires CUEQ_WSL_METADATA=1 and default configs",
+          "colabfold_1.6.3": "load only requested parameter sets plus compilation model; forward arithmetic unchanged"
+        },
+        "checkpoint": {
+          "url": "https://storage.googleapis.com/alphafold/alphafold_params_colab_2022-12-06.tar",
+          "archive_member": "params_model_3_multimer_v3.npz",
+          "byte_offset": 2980471808,
+          "size": 373043148,
+          "sha256": "46d9bcad288edc7ad5a6362ee8e5f84307a69712e00e6c36b1ef9daf96ebc9ce",
+          "validation": "complete NPZ ZIP CRC; original parameter bytes"
+        },
+        "parsed_msa": {
+          "tl1a_bg_a_0_gen": {
+            "cardinality": [
+              3,
+              1
+            ],
+            "binder_unpaired_records": 1,
+            "target_unpaired_records": 2286
+          },
+          "tl1a_bg_a_1_if1": {
+            "cardinality": [
+              3,
+              1
+            ],
+            "binder_unpaired_records": 1,
+            "target_unpaired_records": 2286
+          }
+        },
+        "execution_order": [
+          "tl1a_bg_a_1_if1",
+          "tl1a_bg_a_0_gen"
+        ],
+        "prediction_count": 2,
+        "elapsed_seconds": 187.30802099000002,
+        "effective_kernel_backend": "XLA fallback (requested CUDA legacy kernel unavailable for this GPU)",
+        "effective_kernel_backend_source": "prediction.log"
+      },
+      "processed": [
+        "tl1a_bg_a_0_gen",
+        "tl1a_bg_a_1_if1"
+      ]
+    },
+    "build/af2_bg_beta": {
+      "run": {
+        "synthetic": false,
+        "model": "AF2-Multimer-v3",
+        "candidate_ids": [
+          "tl1a_bg_beta_1_gen",
+          "tl1a_bg_beta_2_gen",
+          "tl1a_bg_beta_2_if0",
+          "tl1a_bg_beta_3_gen"
+        ],
+        "target_stoichiometry": "trimer",
+        "target": "O95150:72-251",
+        "package_version": "1.6.3",
+        "jax_version": "0.6.2",
+        "seed": 2026,
+        "num_seeds": 1,
+        "model_order": [
+          3
+        ],
+        "num_models": 1,
+        "num_recycles": 3,
+        "msa_depth": [
+          128,
+          256
+        ],
+        "target_msa_records": 2286,
+        "target_msa_sha256": "12e895a1ec22575e6671879e7e64c89df851a3c5fa8e8120f0b63da6bdf9fba6",
+        "binder_msa": "query only; no evolutionary homologs",
+        "template": false,
+        "initial_guess": false,
+        "official_equivalence": false,
+        "status": "finished",
+        "kernel_backend": "cuda_legacy",
+        "compatibility_adapters": {
+          "cuequivariance_ops_0.5.1": "WSL unsupported NVML power/clock are unknown; use real Torch device properties and skip telemetry-based tuning cache; requires CUEQ_WSL_METADATA=1 and default configs",
+          "colabfold_1.6.3": "load only requested parameter sets plus compilation model; forward arithmetic unchanged"
+        },
+        "checkpoint": {
+          "url": "https://storage.googleapis.com/alphafold/alphafold_params_colab_2022-12-06.tar",
+          "archive_member": "params_model_3_multimer_v3.npz",
+          "byte_offset": 2980471808,
+          "size": 373043148,
+          "sha256": "46d9bcad288edc7ad5a6362ee8e5f84307a69712e00e6c36b1ef9daf96ebc9ce",
+          "validation": "complete NPZ ZIP CRC; original parameter bytes"
+        },
+        "parsed_msa": {
+          "tl1a_bg_beta_1_gen": {
+            "cardinality": [
+              3,
+              1
+            ],
+            "binder_unpaired_records": 1,
+            "target_unpaired_records": 2286
+          },
+          "tl1a_bg_beta_2_gen": {
+            "cardinality": [
+              3,
+              1
+            ],
+            "binder_unpaired_records": 1,
+            "target_unpaired_records": 2286
+          },
+          "tl1a_bg_beta_3_gen": {
+            "cardinality": [
+              3,
+              1
+            ],
+            "binder_unpaired_records": 1,
+            "target_unpaired_records": 2286
+          },
+          "tl1a_bg_beta_2_if0": {
+            "cardinality": [
+              3,
+              1
+            ],
+            "binder_unpaired_records": 1,
+            "target_unpaired_records": 2286
+          }
+        },
+        "execution_order": [
+          "tl1a_bg_beta_1_gen",
+          "tl1a_bg_beta_2_gen",
+          "tl1a_bg_beta_2_if0",
+          "tl1a_bg_beta_3_gen"
+        ],
+        "prediction_count": 4,
+        "elapsed_seconds": 321.84397062200003,
+        "effective_kernel_backend": "XLA fallback (requested CUDA legacy kernel unavailable for this GPU)",
+        "effective_kernel_backend_source": "prediction.log"
+      },
+      "processed": [
+        "tl1a_bg_beta_1_gen",
+        "tl1a_bg_beta_2_gen",
+        "tl1a_bg_beta_3_gen",
+        "tl1a_bg_beta_2_if0"
+      ],
+      "missing": []
+    },
+    "build/af2_bg_tip": {
+      "run": {
+        "synthetic": false,
+        "model": "AF2-Multimer-v3",
+        "candidate_ids": [
+          "tl1a_bg_tip_0_if0",
+          "tl1a_bg_tip_1_gen",
+          "tl1a_bg_tip_2_gen",
+          "tl1a_bg_tip_3_gen"
+        ],
+        "target_stoichiometry": "trimer",
+        "target": "O95150:72-251",
+        "package_version": "1.6.3",
+        "jax_version": "0.6.2",
+        "seed": 2026,
+        "num_seeds": 1,
+        "model_order": [
+          3
+        ],
+        "num_models": 1,
+        "num_recycles": 3,
+        "msa_depth": [
+          128,
+          256
+        ],
+        "target_msa_records": 2286,
+        "target_msa_sha256": "12e895a1ec22575e6671879e7e64c89df851a3c5fa8e8120f0b63da6bdf9fba6",
+        "binder_msa": "query only; no evolutionary homologs",
+        "template": false,
+        "initial_guess": false,
+        "official_equivalence": false,
+        "status": "finished",
+        "kernel_backend": "cuda_legacy",
+        "compatibility_adapters": {
+          "cuequivariance_ops_0.5.1": "WSL unsupported NVML power/clock are unknown; use real Torch device properties and skip telemetry-based tuning cache; requires CUEQ_WSL_METADATA=1 and default configs",
+          "colabfold_1.6.3": "load only requested parameter sets plus compilation model; forward arithmetic unchanged"
+        },
+        "checkpoint": {
+          "url": "https://storage.googleapis.com/alphafold/alphafold_params_colab_2022-12-06.tar",
+          "archive_member": "params_model_3_multimer_v3.npz",
+          "byte_offset": 2980471808,
+          "size": 373043148,
+          "sha256": "46d9bcad288edc7ad5a6362ee8e5f84307a69712e00e6c36b1ef9daf96ebc9ce",
+          "validation": "complete NPZ ZIP CRC; original parameter bytes"
+        },
+        "parsed_msa": {
+          "tl1a_bg_tip_1_gen": {
+            "cardinality": [
+              3,
+              1
+            ],
+            "binder_unpaired_records": 1,
+            "target_unpaired_records": 2286
+          },
+          "tl1a_bg_tip_2_gen": {
+            "cardinality": [
+              3,
+              1
+            ],
+            "binder_unpaired_records": 1,
+            "target_unpaired_records": 2286
+          },
+          "tl1a_bg_tip_3_gen": {
+            "cardinality": [
+              3,
+              1
+            ],
+            "binder_unpaired_records": 1,
+            "target_unpaired_records": 2286
+          },
+          "tl1a_bg_tip_0_if0": {
+            "cardinality": [
+              3,
+              1
+            ],
+            "binder_unpaired_records": 1,
+            "target_unpaired_records": 2286
+          }
+        },
+        "execution_order": [
+          "tl1a_bg_tip_0_if0",
+          "tl1a_bg_tip_1_gen",
+          "tl1a_bg_tip_2_gen",
+          "tl1a_bg_tip_3_gen"
+        ],
+        "prediction_count": 4,
+        "elapsed_seconds": 318.980191183,
+        "effective_kernel_backend": "XLA fallback (requested CUDA legacy kernel unavailable for this GPU)",
+        "cohort_definition": {
+          "compute_allocation": "results/tl1a_boltzgen_20261101/compute_priority/triage.json",
+          "priority_ids": [
+            "tl1a_bg_tip_2_gen",
+            "tl1a_bg_tip_0_if0"
+          ],
+          "diagnostic_ids": [
+            "tl1a_bg_tip_1_gen",
+            "tl1a_bg_tip_3_gen"
+          ],
+          "diagnostic_reason": "one representative per additional new backbone, despite 1/6 generated backbone-native atom overlaps; not gate-approved candidates"
+        }
+      },
+      "processed": [
+        "tl1a_bg_tip_1_gen",
+        "tl1a_bg_tip_2_gen",
+        "tl1a_bg_tip_3_gen",
+        "tl1a_bg_tip_0_if0"
+      ],
+      "missing": []
+    }
+  }
+}

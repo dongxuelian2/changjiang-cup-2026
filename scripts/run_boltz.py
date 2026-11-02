@@ -28,6 +28,8 @@ if __name__ == "__main__":
     p.add_argument("--trimer", action="store_true", help="three full target protomers A/B/C and binder D")
     p.add_argument("--target-template", action="store_true", help="diagnostic native-target template; NEVER official-equivalent")
     p.add_argument("--with-target-control", action="store_true", help="also fold target alone to diagnose target-state failure")
+    p.add_argument("--with-binder-controls", action="store_true", help="also refold each binder alone, with no MSA or template")
+    p.add_argument("--per-record", action="store_true", help="one fresh CLI invocation/seed per complex or control record; releases GPU between records")
     p.add_argument("--target-msa", default="build/target_msa/target.a3m")
     args = p.parse_args()
     data = json.loads(Path(args.candidates).read_text())
@@ -37,6 +39,8 @@ if __name__ == "__main__":
     if not rows or (args.ids and set(args.ids) != {r["id"] for r in rows}):
         raise ValueError("candidate IDs missing")
     out = (ROOT / args.out).resolve()
+    if (out / "run.json").exists():
+        raise ValueError("choose a fresh output directory; preserve prior prediction provenance")
     inputs = out / "inputs"
     inputs.mkdir(parents=True, exist_ok=True)
     msa = (ROOT / args.target_msa).resolve()
@@ -78,6 +82,9 @@ if __name__ == "__main__":
             with (inputs / (row["id"]+".yaml")).open("a") as f:
                 f.write(f"templates:\n  - cif: {native_template.as_posix()}\n"
                         f"    chain_id: {ids}\n    template_id: {template_ids}\n    force: true\n    threshold: 1.0\n")
+        if args.with_binder_controls:
+            (inputs / (row["id"]+"_binder_only.yaml")).write_text(
+                f"version: 1\nsequences:\n  - protein:\n      id: A\n      sequence: {row['sequence']}\n      msa: empty\n")
     if args.with_target_control:
         (inputs / "tl1a_target_only.yaml").write_text(
             f"version: 1\nsequences:\n  - protein:\n      id: A\n      sequence: {target}\n      msa: {target_csv.as_posix()}\n")
@@ -94,11 +101,18 @@ if __name__ == "__main__":
               "target_msa_sha256": hashlib.sha256(msa.read_bytes()).hexdigest(),
               "target_msa_records": len(records), "msa_depth_cap": args.msa_depth, "binder_msa": False, "template": args.target_template,
               "controls": ["tl1a_target_only"] if args.with_target_control else [],
+              "binder_controls": {r["id"]+"_binder_only": r["id"] for r in rows} if args.with_binder_controls else {},
               "official_equivalence": False, "precision": "upstream bf16-mixed", "status": "running"}
     record["seed_scope"] = "one global seed per CLI invocation; batch file order affects RNG draws; not a verified official per-sequence seed implementation"
     command += ["--max_msa_seqs", str(args.msa_depth), "--num_subsampled_msa", str(args.msa_depth)]
     if args.target_template:
         command += ["--use_potentials"]
+    commands = [command]
+    if args.per_record:
+        commands = [command[:2]+[str(path)]+command[3:] for path in sorted(inputs.glob("*.yaml"))]
+        record["seed_scope"] = "one fresh CLI invocation with the recorded seed per individual input; no preceding-record RNG draws"
+    record["command"] = commands[0]
+    record["commands"] = commands
     checkpoint = ROOT / "build/models/boltz2/boltz2_conf.ckpt"
     if checkpoint.exists():
         digest = hashlib.sha256()
@@ -111,11 +125,16 @@ if __name__ == "__main__":
     (out / "run.json").write_text(json.dumps(record, indent=2)+"\n")
     try:
         with (out / "prediction.log").open("w", encoding="utf-8") as log:
-            result = subprocess.run(command, env=env, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
-        record["exit_code"] = result.returncode
+            exits = []
+            for item in commands:
+                result = subprocess.run(item, env=env, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
+                exits.append(result.returncode)
+                if result.returncode:
+                    break
+        record["exit_code"] = next((code for code in exits if code != 0), 0)
         record["prediction_count"] = len(list(out.glob("boltz_results_*/predictions/*/*_model_0.cif")))
-        record["expected_predictions"] = len(rows)+len(record["controls"])
-        record["status"] = "finished" if result.returncode == 0 and record["prediction_count"] == record["expected_predictions"] else "partial_or_failed_prediction"
+        record["expected_predictions"] = len(rows)+len(record["controls"])+len(record["binder_controls"])
+        record["status"] = "finished" if record["exit_code"] == 0 and record["prediction_count"] == record["expected_predictions"] else "partial_or_failed_prediction"
     finally:
         record["elapsed_seconds"] = time.monotonic()-started
         (out / "run.json").write_text(json.dumps(record, indent=2)+"\n")

@@ -1,0 +1,174 @@
+"""Import actual BoltzGen atom14 and inverse-folding outputs, never placeholders.
+
+Preserve original CIF/NPZ; derive canonical ABC target / D binder backbone poses
+for the existing independent prediction and portfolio entry points.
+"""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import shutil
+import sys
+
+import numpy as np
+from Bio.PDB import MMCIFParser, PDBParser, PDBIO, Superimposer
+from Bio.SeqUtils import seq1
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from changjiang_select.data import load_candidates, save_candidates, save_csv
+from scripts.evaluate_designs import geometry, sequence_metrics
+
+
+def main(args):
+    run = (ROOT / args.run).resolve()
+    meta = json.loads((run / "run.json").read_text())
+    if meta["synthetic"] or meta["model"] != "BoltzGen":
+        raise ValueError("requires genuine BoltzGen provenance")
+    out = (ROOT / args.out).resolve()
+    existing = load_candidates(out / "candidates.json") if args.append else None
+    if (out / "candidates.json").exists() and not args.append:
+        raise ValueError("import into a fresh dataset; never overwrite independent evaluations")
+    for folder in ("poses", "generation"):
+        (out / folder).mkdir(parents=True, exist_ok=True)
+    previous = json.loads((ROOT / "results/tl1a_20261101/candidates.json").read_text())
+    defs = {k: v for k, v in previous["metric_definitions"].items()
+            if k.startswith(("sequence.", "geometry.")) or k == "official.ipsae"}
+    defs["geometry.native_all_chain_BB_clash_pairs2"] = dict(
+        model="observed 2RE9 + BoltzGen backbone", version="local-v1",
+        meaning="designed binder BACKBONE vs ALL observed native trimer heavy atoms, distance <2 A",
+        units="count", direction="lower")
+    if existing:
+        defs.update(existing["metric_definitions"])
+    reference = PDBParser(QUIET=True).get_structure("native", ROOT / "targets/TL1A/observed.pdb")
+    expected = "".join((ROOT / "targets/TL1A/construct.fasta").read_text().splitlines()[1:])[16:]
+    raw_files = sorted((run / "intermediate_designs").glob("*.cif"))
+    raw_files = [f for f in raw_files if not f.name.endswith("_native.cif")]
+    files = [(f, f, "atom14") for f in raw_files]
+    if not args.raw_only:
+        if meta["status"] != "generated_not_independently_validated":
+            raise ValueError("wait for the actual inverse-folding stage to finish")
+        for f in sorted((run / "intermediate_designs_inverse_folded").glob("*.cif")):
+            if f.name.endswith("_native.cif"):
+                continue
+            parents = [r for r in raw_files if f.stem.startswith(r.stem+"_") or f.stem == r.stem]
+            if not parents:
+                raise ValueError(f"unknown source backbone: {f.name}")
+            files.append((f, max(parents, key=lambda r: len(r.stem)), "inverse_folding"))
+    rows = existing["candidates"] if existing else []
+    seen = {r["sequence"]:r for r in rows}
+    parser = MMCIFParser(QUIET=True)
+    for cif, raw, stage in files:
+        pose = parser.get_structure(cif.stem, cif)
+        chains = list(pose[0])
+        sequences = {c.id: "".join(seq1(r.resname) for r in c) for c in chains}
+        targets = [c for c in chains if sequences[c.id] == expected]
+        binders = [c for c in chains if sequences[c.id] != expected]
+        if len(targets) != 3 or len(binders) != 1:
+            raise ValueError(f"require intact, sequence-correct trimer and one binder: {cif}")
+        binder = binders[0]
+        sequence = sequences[binder.id]
+        if not 40 <= len(sequence) <= 100 or not set(sequence) <= set("ACDEFGHIKLMNPQRSTVWY"):
+            raise ValueError(f"invalid generated sequence: {cif}")
+        masks = np.load(cif.with_suffix(".npz"))
+        if int(masks["design_mask"].sum()) != len(sequence):
+            raise ValueError("source design mask disagrees with designed chain")
+        original_binder, original_targets = binder.id, [c.id for c in targets]
+        source = dict(file=cif.relative_to(ROOT).as_posix(),
+                      sha256=hashlib.sha256(cif.read_bytes()).hexdigest(), stage=stage,
+                      backbone=raw.stem, original_binder_chain=original_binder,
+                      original_target_chains=original_targets)
+        # Audit the ACTUAL emitted conditioning mask, including chain order and
+        # the unresolved N-terminal offset, rather than trusting YAML labels.
+        token_residues = [(c.id,i) for c in chains for i,_ in enumerate(c)]
+        if len(token_residues) != len(masks["binding_type"]):
+            raise ValueError("conditioning-mask residue order mismatch")
+        if not np.array_equal(masks["design_mask"].astype(bool),
+                              np.array([c == original_binder for c,_ in token_residues])):
+            raise ValueError("emitted design mask does not match the verified binder chain")
+        source["binding_sites_uniprot"] = [
+            f"{'ABC'[original_targets.index(c)]}:{i+88}"
+            for (c,i),kind in zip(token_residues,masks["binding_type"])
+            if kind == 1 and c in original_targets]
+        if sequence in seen:
+            seen[sequence]["metadata"].setdefault("duplicate_outputs", []).append(source)
+            continue
+        # Upstream writer renames chains A/B/C/D by order. Restore canonical
+        # target ABC and designed D by verified sequence, not presumed labels.
+        for c in chains:
+            pose[0].detach_child(c.id)
+        for c, name in zip(targets, "ABC"):
+            c.id = name
+            residues = list(c)
+            for r in residues:
+                c.detach_child(r.id)
+            for r, n in zip(residues, range(88, 252)):
+                r.id = (" ", n, " ")
+                c.add(r)
+            pose[0].add(c)
+        binder.id = "D"
+        for r in binder:
+            for atom in list(r):
+                if atom.name not in ("N", "CA", "C", "O"):
+                    r.detach_child(atom.id)
+        pose[0].add(binder)
+        fit = Superimposer()
+        fit.set_atoms([r["CA"] for c in "ABC" for r in reference[0][c]],
+                      [r["CA"] for c in "ABC" for r in pose[0][c]])
+        fit.apply(list(pose.get_atoms()))
+        backbone_index = raw.stem.rsplit("_", 1)[-1]
+        suffix = "gen" if stage == "atom14" else "if"+cif.stem[len(raw.stem):].strip("_")
+        name = f"{args.label}_{backbone_index}_{suffix}"
+        temporary = out / "poses" / (name+"_source.pdb")
+        writer = PDBIO()
+        writer.set_structure(pose)
+        writer.save(str(temporary))
+        canonical, metrics, epitope = geometry(temporary, reference, "D")
+        temporary.unlink()
+        bxyz = np.array([a.coord for a in canonical[0]["D"].get_atoms()])
+        txyz = np.array([a.coord for c in "ABC" for a in reference[0][c].get_atoms()])
+        metrics["geometry.native_all_chain_BB_clash_pairs2"] = int((np.linalg.norm(bxyz[:, None]-txyz, axis=-1)<2).sum())
+        metrics.update(sequence_metrics(sequence))
+        metrics["official.ipsae"] = None
+        destination = out / "poses" / (name+"_design.pdb")
+        writer.set_structure(canonical)
+        writer.save(str(destination))
+        for f in (cif, cif.with_suffix(".npz")):
+            shutil.copyfile(f, out / "generation" / f.name)
+        row = dict(id=name, sequence=sequence, target_id="TL1A", design_type="minibinder",
+                   source_model="BoltzGen" if stage == "atom14" else "BoltzGen + BoltzGen-IF",
+                   source_version="0.3.2", run_id=run.name,
+                   structural_group=f"{args.label}_backbone_{backbone_index}",
+                   epitope_residues=epitope, metrics=metrics,
+                   structures=[dict(path=destination.relative_to(ROOT).as_posix(), chain_id="D",
+                                    role="generated_backbone_complex_not_refolded")],
+                   metadata=dict(generation=source, status="generated_not_independently_validated",
+                                 target_trimer_CA_rmsd=float(fit.rms),
+                                 coordinates="native target + generated binder BACKBONE only; no inverse-folded sidechains invented"))
+        rows.append(row)
+        seen[sequence] = row
+    data = dict(schema_version=1, synthetic=False, metric_definitions=defs, candidates=rows)
+    save_candidates(data, out / "candidates.json")
+    save_csv(data, out / "candidates.csv")
+    (out / "candidates.fasta").write_text("".join(f">{r['id']} {r['source_model']} unvalidated\n{r['sequence']}\n" for r in rows))
+    generation_path = out / "generation.json"
+    if existing:
+        history = json.loads(generation_path.read_text())
+        if "runs" not in history:
+            history = {"runs": {existing["candidates"][0]["run_id"]: history}}
+        history["runs"][run.name] = meta
+    else:
+        history = meta
+    generation_path.write_text(json.dumps(history, indent=2)+"\n")
+    print(json.dumps(dict(actual_output_files=len(files), distinct_sequences=len(rows),
+                         backbones=len(raw_files), ids=[r["id"] for r in rows]), indent=2))
+
+
+if __name__ == "__main__":
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("run")
+    p.add_argument("--label", default="tl1a_bg_a")
+    p.add_argument("--out", default="results/tl1a_boltzgen_20261101")
+    p.add_argument("--raw-only", action="store_true", help="inspect real generation outputs before inverse folding finishes")
+    p.add_argument("--append", action="store_true", help="preserve existing sequences and independent evaluations while adding a new real run")
+    main(p.parse_args())

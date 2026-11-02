@@ -1485,7 +1485,9 @@
       ],
       "beta_core_basis": "union of chain A SHEET records in original 2RE9; not fitted to predictions",
       "oligomer": "native homotrimer, A/B/C already present in asymmetric unit",
-      "glycan_warning": "N133 and N229; unglycosylated reference is not evidence of glycan absence in assay"
+      "glycan_warning": "N133 and N229; unglycosylated reference is not evidence of glycan absence in assay",
+      "mmcif_label_to_uniprot_offset": 70,
+      "mmcif_index_note": "2RE9 label_seq_id = author residue number +1; observed labels18-181 map to UniProt88-251"
     },
     {
       "target_id": "TNFR1",

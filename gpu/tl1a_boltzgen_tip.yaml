@@ -1,0 +1,21 @@
+# Native trimer; a narrower distal-tip hypothesis after junction designs entered
+# the glycan envelope. UniProt R166/Q167/A168 have exposed native side chains;
+# their nearest glycan-anchor distances are 31.5/37.4/38.4 A in surface.csv.
+# Only A160-173 may contact the binder. These are binding-type conditions,
+# NOT a hard glycan mask; measure every generated pose before prediction.
+entities:
+  - protein: {id: D, sequence: 60..80}
+  - file:
+      path: ../build/sources/2RE9.cif
+      include:
+        - chain: {id: A, res_index: 18..181}
+        - chain: {id: B, res_index: 18..181}
+        - chain: {id: C, res_index: 18..181}
+      binding_types:
+        # Canonical label_seq_id = UniProt - 70.
+        - chain:
+            id: A
+            binding: 96..98
+            not_binding: 18..89,104..181
+        - chain: {id: B, not_binding: all}
+        - chain: {id: C, not_binding: all}

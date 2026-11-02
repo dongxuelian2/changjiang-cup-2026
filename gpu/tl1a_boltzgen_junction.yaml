@@ -1,0 +1,24 @@
+# Inter-protomer hypothesis: UniProt A:D175 and C:F209 (CA distance 10.58 A).
+# Both are exposed experimental SHEET residues. A175 also lies in the mapped
+# natural receptor footprint; NO receptor/binder chain or sequence is supplied.
+# Full observed native trimer; adjacent protomer contacts are allowed.
+entities:
+  - protein: {id: D, sequence: 60..80}
+  - file:
+      path: ../build/sources/2RE9.cif
+      include:
+        - chain: {id: A, res_index: 18..181}
+        - chain: {id: B, res_index: 18..181}
+        - chain: {id: C, res_index: 18..181}
+      binding_types:
+        - chain:
+            id: A
+            binding: 105
+            not_binding: 61..67,155..163
+        - chain:
+            id: B
+            not_binding: 61..67,155..163
+        - chain:
+            id: C
+            binding: 139
+            not_binding: 61..67,155..163

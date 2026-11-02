@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "synthetic": false,
+  "description": "UNCALIBRATED rank-coverage triage, not KD utility or success probability. Equal total weight per source family, divided across its measured proxy viewpoints: geometry.CA_contact_pairs8, sequence.hydrophobic8_max. Correlation persists across families; inspect leave-one-family-out sensitivity.",
+  "candidate_ids": [
+    "tl1a_bg_tip_0_gen",
+    "tl1a_bg_tip_2_gen",
+    "tl1a_bg_tip_0_if0",
+    "tl1a_bg_tip_0_if1",
+    "tl1a_bg_tip_2_if0",
+    "tl1a_bg_tip_2_if1"
+  ],
+  "utilities": [
+    [
+      0.2,
+      0.3
+    ],
+    [
+      0.8,
+      0.3
+    ],
+    [
+      0.2,
+      0.9
+    ],
+    [
+      0.2,
+      0.9
+    ],
+    [
+      0.8,
+      0.3
+    ],
+    [
+      0.8,
+      0.3
+    ]
+  ],
+  "weights": [
+    0.5,
+    0.5
+  ]
+}

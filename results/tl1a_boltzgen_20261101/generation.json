@@ -1,0 +1,1339 @@
+{
+  "runs": {
+    "tl1a_bg_distal_adherence_v2": {
+      "synthetic": false,
+      "model": "BoltzGen",
+      "package_version": "0.3.2",
+      "target": "O95150:72-251",
+      "observed_target": "88-251",
+      "target_stoichiometry": "trimer",
+      "target_input_sha256": "8c8b9a48cf32d0350327a8c74ecb18bec0ebacb4bdea6f484460fd7b1d5dd89b",
+      "spec_sha256": "2702f9a7e1bbcfe6a693f762a45084cff48e076602348882fa68f29f34ba3ce9",
+      "spec": "gpu/tl1a_boltzgen.yaml",
+      "requested_backbones": 8,
+      "sequences_per_backbone": 2,
+      "seed": 20261101,
+      "checkpoint": "adherence",
+      "use_kernels": false,
+      "source_code_changes": [],
+      "official_equivalence": false,
+      "configure_command": [
+        "E:\\bio\\changjiang-cup-2026\\build\\env-boltzgen\\Scripts\\boltzgen.exe",
+        "configure",
+        "E:\\bio\\changjiang-cup-2026\\gpu\\tl1a_boltzgen.yaml",
+        "--output",
+        "E:/bio/changjiang-cup-2026/build/tl1a_bg_distal_adherence_v2",
+        "--protocol",
+        "protein-anything",
+        "--num_designs",
+        "8",
+        "--diffusion_batch_size",
+        "1",
+        "--devices",
+        "1",
+        "--num_workers",
+        "0",
+        "--use_kernels",
+        "false",
+        "--cache",
+        "E:/bio/changjiang-cup-2026/build/models/boltzgen",
+        "--design_checkpoints",
+        "huggingface:boltzgen/boltzgen-1:boltzgen1_adherence.ckpt",
+        "--inverse_fold_num_sequences",
+        "2",
+        "--folding_checkpoint",
+        "E:/bio/changjiang-cup-2026/build/models/boltz2/boltz2_conf.ckpt",
+        "--affinity_checkpoint",
+        "E:/bio/changjiang-cup-2026/build/models/boltz2/boltz2_aff.ckpt",
+        "--steps",
+        "design",
+        "inverse_folding",
+        "--config",
+        "design",
+        "sampling_steps=500"
+      ],
+      "seed_scope": "stage-local global RNG; inverse folding uses seed+1; CUDA reproducibility not guaranteed",
+      "environment": {
+        "torch": "2.5.1+cu121",
+        "numpy": "2.0.2",
+        "numba": "0.61.0",
+        "pytorch-lightning": "2.5.0",
+        "biotite": "1.6.0",
+        "rdkit": "2026.9.1"
+      },
+      "status": "generated_not_independently_validated",
+      "stages": [
+        {
+          "stage": "design",
+          "seed": 20261101,
+          "config": {
+            "_target_": "boltzgen.task.predict.predict.Predict",
+            "data": {
+              "_target_": "boltzgen.task.predict.data_from_yaml.FromYamlDataModule",
+              "cfg": {
+                "_target_": "boltzgen.task.predict.data_from_yaml.DataConfig",
+                "tokenizer": {
+                  "_target_": "boltzgen.data.tokenize.tokenizer.Tokenizer",
+                  "atomize_modified_residues": false
+                },
+                "featurizer": {
+                  "_target_": "boltzgen.data.feature.featurizer.Featurizer"
+                },
+                "moldir": "E:\\bio\\changjiang-cup-2026\\build\\models\\boltzgen\\datasets--boltzgen--inference-data\\snapshots\\c3d36fd276e9caf098c75d4113c6d5eb320b1a4c\\mols.zip",
+                "yaml_path": [
+                  "E:\\bio\\changjiang-cup-2026\\gpu\\tl1a_boltzgen.yaml"
+                ],
+                "output_dir": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_bg_distal_adherence_v2\\intermediate_designs",
+                "diffusion_samples": 1,
+                "backbone_only": false,
+                "atom14": true,
+                "atom37": false,
+                "disulfide_prob": 1.0,
+                "disulfide_on": true,
+                "skip_existing": false,
+                "multiplicity": 8
+              },
+              "batch_size": 1,
+              "num_workers": 0,
+              "pin_memory": true
+            },
+            "writer": {
+              "_target_": "boltzgen.task.predict.writer.DesignWriter",
+              "output_dir": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_bg_distal_adherence_v2\\intermediate_designs",
+              "res_atoms_only": false,
+              "atom14": true,
+              "atom37": false,
+              "backbone_only": false,
+              "write_native": false
+            },
+            "trainer": {
+              "accelerator": "gpu",
+              "devices": 1,
+              "precision": "bf16-mixed"
+            },
+            "name": null,
+            "output": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_bg_distal_adherence_v2\\intermediate_designs",
+            "checkpoint": "E:\\bio\\changjiang-cup-2026\\build\\models\\boltzgen\\models--boltzgen--boltzgen-1\\snapshots\\c1be29e1f82ffcc72264f64b993c43fb4e0d17f0\\boltzgen1_adherence.ckpt",
+            "matmul_precision": "high",
+            "recycling_steps": 3,
+            "sampling_steps": 500,
+            "diffusion_samples": 1,
+            "compile_pairformer": false,
+            "compile_structure": false,
+            "override": {
+              "masker_args": {
+                "mask": true,
+                "mask_backbone": false
+              },
+              "validators": null,
+              "step_scale_schedule": [
+                {
+                  "step_scale": 1.8,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 2.0,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 1.8,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 2.0,
+                  "period": 0.25
+                }
+              ],
+              "noise_scale_schedule": [
+                {
+                  "noise_scale": 0.95,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.88,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.95,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.88,
+                  "period": 0.25
+                }
+              ],
+              "diffusion_process_args": {
+                "sigma_min": 0.0004,
+                "sigma_max": 160.0,
+                "sigma_data": 16.0,
+                "rho": 7,
+                "P_mean": -1.2,
+                "P_std": 1.5,
+                "gamma_0": 0.8,
+                "gamma_min": 1.0,
+                "noise_scale": null,
+                "step_scale": null,
+                "mse_rotational_alignment": true,
+                "coordinate_augmentation": true,
+                "alignment_reverse_diff": true,
+                "synchronize_sigmas": false,
+                "sampling_schedule": "dilated",
+                "time_dilation": 2.667,
+                "time_dilation_start": 0.6,
+                "time_dilation_end": 0.8
+              },
+              "use_kernels": false
+            }
+          },
+          "checkpoint_sha256": "ac7078b3dc13064c68e0c3fd542e5bc538c33558bf6607f65e499eb336ca5e5d",
+          "status": "interrupted_after_completed_outputs"
+        },
+        {
+          "stage": "inverse_folding",
+          "seed": 20261102,
+          "config": {
+            "_target_": "boltzgen.task.predict.predict.Predict",
+            "data": {
+              "_target_": "boltzgen.task.predict.data_from_generated.FromGeneratedDataModule",
+              "cfg": {
+                "_target_": "boltzgen.task.predict.data_from_generated.DataConfig",
+                "tokenizer": {
+                  "_target_": "boltzgen.data.tokenize.tokenizer.Tokenizer",
+                  "atomize_modified_residues": false
+                },
+                "featurizer": {
+                  "_target_": "boltzgen.data.feature.featurizer.Featurizer"
+                },
+                "suffix": ".cif",
+                "suffix_metadata": ".npz",
+                "suffix_native": "_native.cif",
+                "moldir": "E:\\bio\\changjiang-cup-2026\\build\\models\\boltzgen\\datasets--boltzgen--inference-data\\snapshots\\c3d36fd276e9caf098c75d4113c6d5eb320b1a4c\\mols.zip",
+                "samples_per_target": 1000000000,
+                "design": true,
+                "backbone_only": true,
+                "atom14": false,
+                "max_seqs": 1,
+                "inverse_fold": true,
+                "batch_size": 1,
+                "num_workers": 0,
+                "pin_memory": true,
+                "num_targets": 1000000000,
+                "design_mask_override": null,
+                "multiplicity": 2
+              },
+              "fail_if_no_designs": true,
+              "design_dir": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_bg_distal_adherence_v2\\intermediate_designs",
+              "output_dir": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_bg_distal_adherence_v2\\intermediate_designs_inverse_folded",
+              "skip_existing": false,
+              "skip_existing_kind": "inverse_fold"
+            },
+            "writer": {
+              "_target_": "boltzgen.task.predict.writer.DesignWriter",
+              "output_dir": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_bg_distal_adherence_v2\\intermediate_designs_inverse_folded",
+              "res_atoms_only": false,
+              "atom14": false,
+              "inverse_fold": true,
+              "write_native": false
+            },
+            "trainer": {
+              "accelerator": "gpu",
+              "devices": 1,
+              "precision": 32
+            },
+            "name": "if_full",
+            "output": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_bg_distal_adherence_v2\\intermediate_designs_inverse_folded",
+            "checkpoint": "E:\\bio\\changjiang-cup-2026\\build\\models\\boltzgen\\models--boltzgen--boltzgen-1\\snapshots\\c1be29e1f82ffcc72264f64b993c43fb4e0d17f0\\boltzgen1_ifold.ckpt",
+            "matmul_precision": null,
+            "recycling_steps": 3,
+            "sampling_steps": 200,
+            "diffusion_samples": 1,
+            "override": {
+              "masker_args": {
+                "mask": true,
+                "mask_backbone": false
+              },
+              "validators": null,
+              "diffusion_process_args": {
+                "sigma_min": 0.0004,
+                "sigma_max": 160.0,
+                "sigma_data": 16.0,
+                "rho": 7,
+                "P_mean": -1.2,
+                "P_std": 1.5,
+                "gamma_0": 0.8,
+                "gamma_min": 1.0,
+                "noise_scale": 1.0,
+                "step_scale": 1.0,
+                "mse_rotational_alignment": true,
+                "coordinate_augmentation": true,
+                "alignment_reverse_diff": true,
+                "synchronize_sigmas": false
+              },
+              "inverse_fold_args": {
+                "atom_s": 128,
+                "atom_z": 16,
+                "token_s": 384,
+                "token_z": 128,
+                "node_dim": 128,
+                "pair_dim": 128,
+                "hidden_dim": 128,
+                "dropout": 0.1,
+                "softmax_dropout": 0.2,
+                "num_encoder_layers": 6,
+                "transformation_scale_factor": 1.0,
+                "inverse_fold_noise": 0.2,
+                "topk": 30,
+                "num_heads": 4,
+                "num_decoder_layers": 3,
+                "autoregressive": true,
+                "enable_input_embedder": true,
+                "inverse_fold_restriction": []
+              },
+              "use_kernels": false
+            }
+          },
+          "checkpoint_sha256": "dd4cf108c94471bdc3a326b7b180fa3854dc019110fae780208c30b50bd56578",
+          "status": "finished",
+          "command": [
+            "E:\\bio\\changjiang-cup-2026\\build\\env-boltzgen\\Scripts\\python.exe",
+            "E:\\bio\\changjiang-cup-2026\\scripts\\run_boltzgen.py",
+            "--stage",
+            "inverse_folding",
+            "--config-file",
+            "E:\\bio\\changjiang-cup-2026\\build\\tl1a_bg_distal_adherence_v2\\config\\inverse_folding.yaml",
+            "--seed",
+            "20261102"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 21.406000000002678
+        }
+      ],
+      "preflight_target_lengths": [
+        164,
+        164,
+        164
+      ],
+      "pilot_stopping_reason": "sampling intentionally stopped to validate completed backbones before expanding this site",
+      "actual_backbones": 3,
+      "sequence_structure_count": 6,
+      "elapsed_seconds": 21.921000000002095,
+      "elapsed_seconds_scope": "finish-generated invocation only; interrupted sampler walltime not recorded",
+      "completed_backbone_cumulative_sampling_seconds": [
+        366,
+        854,
+        1345
+      ]
+    },
+    "tl1a_bg_beta_linux_v3": {
+      "synthetic": false,
+      "model": "BoltzGen",
+      "package_version": "0.3.2",
+      "target": "O95150:72-251",
+      "observed_target": "88-251",
+      "target_stoichiometry": "trimer",
+      "target_input_sha256": "8c8b9a48cf32d0350327a8c74ecb18bec0ebacb4bdea6f484460fd7b1d5dd89b",
+      "spec_sha256": "eeb0f0afe27f10e492ba63e2f5ad65835d40577b9cd36a19100b6c07471d3842",
+      "spec": "gpu/tl1a_boltzgen_beta.yaml",
+      "requested_backbones": 4,
+      "sequences_per_backbone": 2,
+      "seed": 20261102,
+      "checkpoint": "diverse",
+      "use_kernels": true,
+      "started_unix_seconds": 1793582138.9730237,
+      "source_code_changes": [],
+      "official_equivalence": false,
+      "configure_command": [
+        "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/boltzgen",
+        "configure",
+        "/mnt/e/bio/changjiang-cup-2026/gpu/tl1a_boltzgen_beta.yaml",
+        "--output",
+        "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_beta_linux_v3",
+        "--protocol",
+        "protein-anything",
+        "--num_designs",
+        "4",
+        "--diffusion_batch_size",
+        "1",
+        "--devices",
+        "1",
+        "--num_workers",
+        "0",
+        "--use_kernels",
+        "true",
+        "--cache",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen",
+        "--design_checkpoints",
+        "huggingface:boltzgen/boltzgen-1:boltzgen1_diverse.ckpt",
+        "--inverse_fold_num_sequences",
+        "2",
+        "--folding_checkpoint",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/boltz2/boltz2_conf.ckpt",
+        "--affinity_checkpoint",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/boltz2/boltz2_aff.ckpt",
+        "--steps",
+        "design",
+        "inverse_folding",
+        "--config",
+        "design",
+        "sampling_steps=200",
+        "override.inference_logging=true"
+      ],
+      "seed_scope": "stage-local global RNG; inverse folding uses seed+1; CUDA reproducibility not guaranteed",
+      "environment": {
+        "torch": "2.7.1+cu128",
+        "numpy": "2.0.2",
+        "numba": "0.61.0",
+        "pytorch-lightning": "2.5.5",
+        "biotite": "1.6.0",
+        "rdkit": "2026.9.1"
+      },
+      "status": "generated_not_independently_validated",
+      "stages": [
+        {
+          "stage": "design",
+          "seed": 20261102,
+          "config": {
+            "_target_": "boltzgen.task.predict.predict.Predict",
+            "data": {
+              "_target_": "boltzgen.task.predict.data_from_yaml.FromYamlDataModule",
+              "cfg": {
+                "_target_": "boltzgen.task.predict.data_from_yaml.DataConfig",
+                "tokenizer": {
+                  "_target_": "boltzgen.data.tokenize.tokenizer.Tokenizer",
+                  "atomize_modified_residues": false
+                },
+                "featurizer": {
+                  "_target_": "boltzgen.data.feature.featurizer.Featurizer"
+                },
+                "moldir": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/datasets--boltzgen--inference-data/snapshots/c3d36fd276e9caf098c75d4113c6d5eb320b1a4c/mols.zip",
+                "yaml_path": [
+                  "/mnt/e/bio/changjiang-cup-2026/gpu/tl1a_boltzgen_beta.yaml"
+                ],
+                "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_beta_linux_v3/intermediate_designs",
+                "diffusion_samples": 1,
+                "backbone_only": false,
+                "atom14": true,
+                "atom37": false,
+                "disulfide_prob": 1.0,
+                "disulfide_on": true,
+                "skip_existing": false,
+                "multiplicity": 4
+              },
+              "batch_size": 1,
+              "num_workers": 0,
+              "pin_memory": true
+            },
+            "writer": {
+              "_target_": "boltzgen.task.predict.writer.DesignWriter",
+              "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_beta_linux_v3/intermediate_designs",
+              "res_atoms_only": false,
+              "atom14": true,
+              "atom37": false,
+              "backbone_only": false,
+              "write_native": false
+            },
+            "trainer": {
+              "accelerator": "gpu",
+              "devices": 1,
+              "precision": "bf16-mixed"
+            },
+            "name": null,
+            "output": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_beta_linux_v3/intermediate_designs",
+            "checkpoint": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/models--boltzgen--boltzgen-1/snapshots/c1be29e1f82ffcc72264f64b993c43fb4e0d17f0/boltzgen1_diverse.ckpt",
+            "matmul_precision": "high",
+            "recycling_steps": 3,
+            "sampling_steps": 200,
+            "diffusion_samples": 1,
+            "compile_pairformer": false,
+            "compile_structure": false,
+            "override": {
+              "masker_args": {
+                "mask": true,
+                "mask_backbone": false
+              },
+              "validators": null,
+              "step_scale_schedule": [
+                {
+                  "step_scale": 1.8,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 2.0,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 1.8,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 2.0,
+                  "period": 0.25
+                }
+              ],
+              "noise_scale_schedule": [
+                {
+                  "noise_scale": 0.95,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.88,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.95,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.88,
+                  "period": 0.25
+                }
+              ],
+              "diffusion_process_args": {
+                "sigma_min": 0.0004,
+                "sigma_max": 160.0,
+                "sigma_data": 16.0,
+                "rho": 7,
+                "P_mean": -1.2,
+                "P_std": 1.5,
+                "gamma_0": 0.8,
+                "gamma_min": 1.0,
+                "noise_scale": null,
+                "step_scale": null,
+                "mse_rotational_alignment": true,
+                "coordinate_augmentation": true,
+                "alignment_reverse_diff": true,
+                "synchronize_sigmas": false,
+                "sampling_schedule": "dilated",
+                "time_dilation": 2.667,
+                "time_dilation_start": 0.6,
+                "time_dilation_end": 0.8
+              },
+              "use_kernels": true,
+              "inference_logging": true
+            }
+          },
+          "checkpoint_sha256": "360af8bd6e59527ff6ec25dd81253967f3bd3567d200053b10680634751f8e3c",
+          "status": "finished",
+          "command": [
+            "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/python",
+            "/mnt/e/bio/changjiang-cup-2026/scripts/run_boltzgen.py",
+            "--stage",
+            "design",
+            "--config-file",
+            "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_beta_linux_v3/config/design.yaml",
+            "--seed",
+            "20261102"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 692.688817793
+        },
+        {
+          "stage": "inverse_folding",
+          "seed": 20261103,
+          "config": {
+            "_target_": "boltzgen.task.predict.predict.Predict",
+            "data": {
+              "_target_": "boltzgen.task.predict.data_from_generated.FromGeneratedDataModule",
+              "cfg": {
+                "_target_": "boltzgen.task.predict.data_from_generated.DataConfig",
+                "tokenizer": {
+                  "_target_": "boltzgen.data.tokenize.tokenizer.Tokenizer",
+                  "atomize_modified_residues": false
+                },
+                "featurizer": {
+                  "_target_": "boltzgen.data.feature.featurizer.Featurizer"
+                },
+                "suffix": ".cif",
+                "suffix_metadata": ".npz",
+                "suffix_native": "_native.cif",
+                "moldir": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/datasets--boltzgen--inference-data/snapshots/c3d36fd276e9caf098c75d4113c6d5eb320b1a4c/mols.zip",
+                "samples_per_target": 1000000000,
+                "design": true,
+                "backbone_only": true,
+                "atom14": false,
+                "max_seqs": 1,
+                "inverse_fold": true,
+                "batch_size": 1,
+                "num_workers": 0,
+                "pin_memory": true,
+                "num_targets": 1000000000,
+                "design_mask_override": null,
+                "multiplicity": 2
+              },
+              "fail_if_no_designs": true,
+              "design_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_beta_linux_v3/intermediate_designs",
+              "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_beta_linux_v3/intermediate_designs_inverse_folded",
+              "skip_existing": false,
+              "skip_existing_kind": "inverse_fold"
+            },
+            "writer": {
+              "_target_": "boltzgen.task.predict.writer.DesignWriter",
+              "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_beta_linux_v3/intermediate_designs_inverse_folded",
+              "res_atoms_only": false,
+              "atom14": false,
+              "inverse_fold": true,
+              "write_native": false
+            },
+            "trainer": {
+              "accelerator": "gpu",
+              "devices": 1,
+              "precision": 32
+            },
+            "name": "if_full",
+            "output": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_beta_linux_v3/intermediate_designs_inverse_folded",
+            "checkpoint": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/models--boltzgen--boltzgen-1/snapshots/c1be29e1f82ffcc72264f64b993c43fb4e0d17f0/boltzgen1_ifold.ckpt",
+            "matmul_precision": null,
+            "recycling_steps": 3,
+            "sampling_steps": 200,
+            "diffusion_samples": 1,
+            "override": {
+              "masker_args": {
+                "mask": true,
+                "mask_backbone": false
+              },
+              "validators": null,
+              "diffusion_process_args": {
+                "sigma_min": 0.0004,
+                "sigma_max": 160.0,
+                "sigma_data": 16.0,
+                "rho": 7,
+                "P_mean": -1.2,
+                "P_std": 1.5,
+                "gamma_0": 0.8,
+                "gamma_min": 1.0,
+                "noise_scale": 1.0,
+                "step_scale": 1.0,
+                "mse_rotational_alignment": true,
+                "coordinate_augmentation": true,
+                "alignment_reverse_diff": true,
+                "synchronize_sigmas": false
+              },
+              "inverse_fold_args": {
+                "atom_s": 128,
+                "atom_z": 16,
+                "token_s": 384,
+                "token_z": 128,
+                "node_dim": 128,
+                "pair_dim": 128,
+                "hidden_dim": 128,
+                "dropout": 0.1,
+                "softmax_dropout": 0.2,
+                "num_encoder_layers": 6,
+                "transformation_scale_factor": 1.0,
+                "inverse_fold_noise": 0.2,
+                "topk": 30,
+                "num_heads": 4,
+                "num_decoder_layers": 3,
+                "autoregressive": true,
+                "enable_input_embedder": true,
+                "inverse_fold_restriction": []
+              },
+              "use_kernels": true
+            }
+          },
+          "checkpoint_sha256": "dd4cf108c94471bdc3a326b7b180fa3854dc019110fae780208c30b50bd56578",
+          "status": "finished",
+          "command": [
+            "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/python",
+            "/mnt/e/bio/changjiang-cup-2026/scripts/run_boltzgen.py",
+            "--stage",
+            "inverse_folding",
+            "--config-file",
+            "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_beta_linux_v3/config/inverse_folding.yaml",
+            "--seed",
+            "20261103"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 103.82861564400002
+        }
+      ],
+      "compatibility_adapters": {
+        "cuequivariance_ops_0.5.1": "WSL unsupported NVML power/clock are unknown; use real Torch device properties and skip telemetry-based tuning cache; requires CUEQ_WSL_METADATA=1 and default configs",
+        "colabfold_1.6.3": "load only requested parameter sets plus compilation model; forward arithmetic unchanged"
+      },
+      "preflight_target_lengths": [
+        164,
+        164,
+        164
+      ],
+      "sequence_structure_count": 8,
+      "actual_backbones": 4,
+      "last_invocation_elapsed_seconds": 849.848339925,
+      "elapsed_seconds": 849.9444563388824
+    },
+    "tl1a_bg_junction_linux": {
+      "synthetic": false,
+      "model": "BoltzGen",
+      "package_version": "0.3.2",
+      "target": "O95150:72-251",
+      "observed_target": "88-251",
+      "target_stoichiometry": "trimer",
+      "target_input_sha256": "8c8b9a48cf32d0350327a8c74ecb18bec0ebacb4bdea6f484460fd7b1d5dd89b",
+      "spec_sha256": "da74fe95b4e2684f5531a2b95e6b88fd107e215f60d611666ccd7eafdc10a001",
+      "spec": "gpu/tl1a_boltzgen_junction.yaml",
+      "requested_backbones": 8,
+      "sequences_per_backbone": 2,
+      "seed": 20261103,
+      "checkpoint": "adherence",
+      "use_kernels": true,
+      "started_unix_seconds": 1793584256.6853611,
+      "source_code_changes": [],
+      "official_equivalence": false,
+      "configure_command": [
+        "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/boltzgen",
+        "configure",
+        "/mnt/e/bio/changjiang-cup-2026/gpu/tl1a_boltzgen_junction.yaml",
+        "--output",
+        "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_junction_linux",
+        "--protocol",
+        "protein-anything",
+        "--num_designs",
+        "8",
+        "--diffusion_batch_size",
+        "1",
+        "--devices",
+        "1",
+        "--num_workers",
+        "0",
+        "--use_kernels",
+        "true",
+        "--cache",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen",
+        "--design_checkpoints",
+        "huggingface:boltzgen/boltzgen-1:boltzgen1_adherence.ckpt",
+        "--inverse_fold_num_sequences",
+        "2",
+        "--folding_checkpoint",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/boltz2/boltz2_conf.ckpt",
+        "--affinity_checkpoint",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/boltz2/boltz2_aff.ckpt",
+        "--steps",
+        "design",
+        "inverse_folding",
+        "--config",
+        "design",
+        "sampling_steps=200",
+        "override.inference_logging=true"
+      ],
+      "seed_scope": "stage-local global RNG; inverse folding uses seed+1; CUDA reproducibility not guaranteed",
+      "environment": {
+        "torch": "2.7.1+cu128",
+        "numpy": "2.0.2",
+        "numba": "0.61.0",
+        "pytorch-lightning": "2.5.5",
+        "biotite": "1.6.0",
+        "rdkit": "2026.9.1"
+      },
+      "status": "generated_not_independently_validated",
+      "stages": [
+        {
+          "stage": "design",
+          "seed": 20261103,
+          "config": {
+            "_target_": "boltzgen.task.predict.predict.Predict",
+            "data": {
+              "_target_": "boltzgen.task.predict.data_from_yaml.FromYamlDataModule",
+              "cfg": {
+                "_target_": "boltzgen.task.predict.data_from_yaml.DataConfig",
+                "tokenizer": {
+                  "_target_": "boltzgen.data.tokenize.tokenizer.Tokenizer",
+                  "atomize_modified_residues": false
+                },
+                "featurizer": {
+                  "_target_": "boltzgen.data.feature.featurizer.Featurizer"
+                },
+                "moldir": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/datasets--boltzgen--inference-data/snapshots/c3d36fd276e9caf098c75d4113c6d5eb320b1a4c/mols.zip",
+                "yaml_path": [
+                  "/mnt/e/bio/changjiang-cup-2026/gpu/tl1a_boltzgen_junction.yaml"
+                ],
+                "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_junction_linux/intermediate_designs",
+                "diffusion_samples": 1,
+                "backbone_only": false,
+                "atom14": true,
+                "atom37": false,
+                "disulfide_prob": 1.0,
+                "disulfide_on": true,
+                "skip_existing": false,
+                "multiplicity": 8
+              },
+              "batch_size": 1,
+              "num_workers": 0,
+              "pin_memory": true
+            },
+            "writer": {
+              "_target_": "boltzgen.task.predict.writer.DesignWriter",
+              "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_junction_linux/intermediate_designs",
+              "res_atoms_only": false,
+              "atom14": true,
+              "atom37": false,
+              "backbone_only": false,
+              "write_native": false
+            },
+            "trainer": {
+              "accelerator": "gpu",
+              "devices": 1,
+              "precision": "bf16-mixed"
+            },
+            "name": null,
+            "output": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_junction_linux/intermediate_designs",
+            "checkpoint": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/models--boltzgen--boltzgen-1/snapshots/c1be29e1f82ffcc72264f64b993c43fb4e0d17f0/boltzgen1_adherence.ckpt",
+            "matmul_precision": "high",
+            "recycling_steps": 3,
+            "sampling_steps": 200,
+            "diffusion_samples": 1,
+            "compile_pairformer": false,
+            "compile_structure": false,
+            "override": {
+              "masker_args": {
+                "mask": true,
+                "mask_backbone": false
+              },
+              "validators": null,
+              "step_scale_schedule": [
+                {
+                  "step_scale": 1.8,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 2.0,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 1.8,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 2.0,
+                  "period": 0.25
+                }
+              ],
+              "noise_scale_schedule": [
+                {
+                  "noise_scale": 0.95,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.88,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.95,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.88,
+                  "period": 0.25
+                }
+              ],
+              "diffusion_process_args": {
+                "sigma_min": 0.0004,
+                "sigma_max": 160.0,
+                "sigma_data": 16.0,
+                "rho": 7,
+                "P_mean": -1.2,
+                "P_std": 1.5,
+                "gamma_0": 0.8,
+                "gamma_min": 1.0,
+                "noise_scale": null,
+                "step_scale": null,
+                "mse_rotational_alignment": true,
+                "coordinate_augmentation": true,
+                "alignment_reverse_diff": true,
+                "synchronize_sigmas": false,
+                "sampling_schedule": "dilated",
+                "time_dilation": 2.667,
+                "time_dilation_start": 0.6,
+                "time_dilation_end": 0.8
+              },
+              "use_kernels": true,
+              "inference_logging": true
+            }
+          },
+          "checkpoint_sha256": "ac7078b3dc13064c68e0c3fd542e5bc538c33558bf6607f65e499eb336ca5e5d",
+          "status": "finished",
+          "command": [
+            "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/python",
+            "/mnt/e/bio/changjiang-cup-2026/scripts/run_boltzgen.py",
+            "--stage",
+            "design",
+            "--config-file",
+            "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_junction_linux/config/design.yaml",
+            "--seed",
+            "20261103"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 1135.664947708
+        },
+        {
+          "stage": "inverse_folding",
+          "seed": 20261104,
+          "config": {
+            "_target_": "boltzgen.task.predict.predict.Predict",
+            "data": {
+              "_target_": "boltzgen.task.predict.data_from_generated.FromGeneratedDataModule",
+              "cfg": {
+                "_target_": "boltzgen.task.predict.data_from_generated.DataConfig",
+                "tokenizer": {
+                  "_target_": "boltzgen.data.tokenize.tokenizer.Tokenizer",
+                  "atomize_modified_residues": false
+                },
+                "featurizer": {
+                  "_target_": "boltzgen.data.feature.featurizer.Featurizer"
+                },
+                "suffix": ".cif",
+                "suffix_metadata": ".npz",
+                "suffix_native": "_native.cif",
+                "moldir": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/datasets--boltzgen--inference-data/snapshots/c3d36fd276e9caf098c75d4113c6d5eb320b1a4c/mols.zip",
+                "samples_per_target": 1000000000,
+                "design": true,
+                "backbone_only": true,
+                "atom14": false,
+                "max_seqs": 1,
+                "inverse_fold": true,
+                "batch_size": 1,
+                "num_workers": 0,
+                "pin_memory": true,
+                "num_targets": 1000000000,
+                "design_mask_override": null,
+                "multiplicity": 2
+              },
+              "fail_if_no_designs": true,
+              "design_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_junction_linux/intermediate_designs",
+              "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_junction_linux/intermediate_designs_inverse_folded",
+              "skip_existing": false,
+              "skip_existing_kind": "inverse_fold"
+            },
+            "writer": {
+              "_target_": "boltzgen.task.predict.writer.DesignWriter",
+              "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_junction_linux/intermediate_designs_inverse_folded",
+              "res_atoms_only": false,
+              "atom14": false,
+              "inverse_fold": true,
+              "write_native": false
+            },
+            "trainer": {
+              "accelerator": "gpu",
+              "devices": 1,
+              "precision": 32
+            },
+            "name": "if_full",
+            "output": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_junction_linux/intermediate_designs_inverse_folded",
+            "checkpoint": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/models--boltzgen--boltzgen-1/snapshots/c1be29e1f82ffcc72264f64b993c43fb4e0d17f0/boltzgen1_ifold.ckpt",
+            "matmul_precision": null,
+            "recycling_steps": 3,
+            "sampling_steps": 200,
+            "diffusion_samples": 1,
+            "override": {
+              "masker_args": {
+                "mask": true,
+                "mask_backbone": false
+              },
+              "validators": null,
+              "diffusion_process_args": {
+                "sigma_min": 0.0004,
+                "sigma_max": 160.0,
+                "sigma_data": 16.0,
+                "rho": 7,
+                "P_mean": -1.2,
+                "P_std": 1.5,
+                "gamma_0": 0.8,
+                "gamma_min": 1.0,
+                "noise_scale": 1.0,
+                "step_scale": 1.0,
+                "mse_rotational_alignment": true,
+                "coordinate_augmentation": true,
+                "alignment_reverse_diff": true,
+                "synchronize_sigmas": false
+              },
+              "inverse_fold_args": {
+                "atom_s": 128,
+                "atom_z": 16,
+                "token_s": 384,
+                "token_z": 128,
+                "node_dim": 128,
+                "pair_dim": 128,
+                "hidden_dim": 128,
+                "dropout": 0.1,
+                "softmax_dropout": 0.2,
+                "num_encoder_layers": 6,
+                "transformation_scale_factor": 1.0,
+                "inverse_fold_noise": 0.2,
+                "topk": 30,
+                "num_heads": 4,
+                "num_decoder_layers": 3,
+                "autoregressive": true,
+                "enable_input_embedder": true,
+                "inverse_fold_restriction": []
+              },
+              "use_kernels": true
+            }
+          },
+          "checkpoint_sha256": "dd4cf108c94471bdc3a326b7b180fa3854dc019110fae780208c30b50bd56578",
+          "status": "finished",
+          "command": [
+            "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/python",
+            "/mnt/e/bio/changjiang-cup-2026/scripts/run_boltzgen.py",
+            "--stage",
+            "inverse_folding",
+            "--config-file",
+            "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_junction_linux/config/inverse_folding.yaml",
+            "--seed",
+            "20261104"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 111.93102594700008
+        }
+      ],
+      "compatibility_adapters": {
+        "cuequivariance_ops_0.5.1": "WSL unsupported NVML power/clock are unknown; use real Torch device properties and skip telemetry-based tuning cache; requires CUEQ_WSL_METADATA=1 and default configs",
+        "colabfold_1.6.3": "load only requested parameter sets plus compilation model; forward arithmetic unchanged"
+      },
+      "preflight_target_lengths": [
+        164,
+        164,
+        164
+      ],
+      "sequence_structure_count": 16,
+      "actual_backbones": 8,
+      "last_invocation_elapsed_seconds": 1306.210531326,
+      "elapsed_seconds": 1306.30539727211
+    },
+    "tl1a_bg_tip_linux": {
+      "synthetic": false,
+      "model": "BoltzGen",
+      "package_version": "0.3.2",
+      "target": "O95150:72-251",
+      "observed_target": "88-251",
+      "target_stoichiometry": "trimer",
+      "target_input_sha256": "8c8b9a48cf32d0350327a8c74ecb18bec0ebacb4bdea6f484460fd7b1d5dd89b",
+      "spec_sha256": "5c84a2bec3f4c888b8e5eb0cc90658ccd8513cbede83810229f0eb5856859975",
+      "spec": "gpu/tl1a_boltzgen_tip.yaml",
+      "requested_backbones": 4,
+      "sequences_per_backbone": 2,
+      "seed": 20261104,
+      "checkpoint": "adherence",
+      "use_kernels": true,
+      "started_unix_seconds": 1793585617.438456,
+      "source_code_changes": [],
+      "official_equivalence": false,
+      "configure_command": [
+        "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/boltzgen",
+        "configure",
+        "/mnt/e/bio/changjiang-cup-2026/gpu/tl1a_boltzgen_tip.yaml",
+        "--output",
+        "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_tip_linux",
+        "--protocol",
+        "protein-anything",
+        "--num_designs",
+        "4",
+        "--diffusion_batch_size",
+        "1",
+        "--devices",
+        "1",
+        "--num_workers",
+        "0",
+        "--use_kernels",
+        "true",
+        "--cache",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen",
+        "--design_checkpoints",
+        "huggingface:boltzgen/boltzgen-1:boltzgen1_adherence.ckpt",
+        "--inverse_fold_num_sequences",
+        "2",
+        "--folding_checkpoint",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/boltz2/boltz2_conf.ckpt",
+        "--affinity_checkpoint",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/boltz2/boltz2_aff.ckpt",
+        "--steps",
+        "design",
+        "inverse_folding",
+        "--config",
+        "design",
+        "sampling_steps=500",
+        "override.inference_logging=true"
+      ],
+      "seed_scope": "stage-local global RNG; inverse folding uses seed+1; CUDA reproducibility not guaranteed",
+      "environment": {
+        "torch": "2.7.1+cu128",
+        "numpy": "2.0.2",
+        "numba": "0.61.0",
+        "pytorch-lightning": "2.5.5",
+        "biotite": "1.6.0",
+        "rdkit": "2026.9.1"
+      },
+      "status": "generated_not_independently_validated",
+      "stages": [
+        {
+          "stage": "design",
+          "seed": 20261104,
+          "config": {
+            "_target_": "boltzgen.task.predict.predict.Predict",
+            "data": {
+              "_target_": "boltzgen.task.predict.data_from_yaml.FromYamlDataModule",
+              "cfg": {
+                "_target_": "boltzgen.task.predict.data_from_yaml.DataConfig",
+                "tokenizer": {
+                  "_target_": "boltzgen.data.tokenize.tokenizer.Tokenizer",
+                  "atomize_modified_residues": false
+                },
+                "featurizer": {
+                  "_target_": "boltzgen.data.feature.featurizer.Featurizer"
+                },
+                "moldir": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/datasets--boltzgen--inference-data/snapshots/c3d36fd276e9caf098c75d4113c6d5eb320b1a4c/mols.zip",
+                "yaml_path": [
+                  "/mnt/e/bio/changjiang-cup-2026/gpu/tl1a_boltzgen_tip.yaml"
+                ],
+                "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_tip_linux/intermediate_designs",
+                "diffusion_samples": 1,
+                "backbone_only": false,
+                "atom14": true,
+                "atom37": false,
+                "disulfide_prob": 1.0,
+                "disulfide_on": true,
+                "skip_existing": false,
+                "multiplicity": 4
+              },
+              "batch_size": 1,
+              "num_workers": 0,
+              "pin_memory": true
+            },
+            "writer": {
+              "_target_": "boltzgen.task.predict.writer.DesignWriter",
+              "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_tip_linux/intermediate_designs",
+              "res_atoms_only": false,
+              "atom14": true,
+              "atom37": false,
+              "backbone_only": false,
+              "write_native": false
+            },
+            "trainer": {
+              "accelerator": "gpu",
+              "devices": 1,
+              "precision": "bf16-mixed"
+            },
+            "name": null,
+            "output": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_tip_linux/intermediate_designs",
+            "checkpoint": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/models--boltzgen--boltzgen-1/snapshots/c1be29e1f82ffcc72264f64b993c43fb4e0d17f0/boltzgen1_adherence.ckpt",
+            "matmul_precision": "high",
+            "recycling_steps": 3,
+            "sampling_steps": 500,
+            "diffusion_samples": 1,
+            "compile_pairformer": false,
+            "compile_structure": false,
+            "override": {
+              "masker_args": {
+                "mask": true,
+                "mask_backbone": false
+              },
+              "validators": null,
+              "step_scale_schedule": [
+                {
+                  "step_scale": 1.8,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 2.0,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 1.8,
+                  "period": 0.25
+                },
+                {
+                  "step_scale": 2.0,
+                  "period": 0.25
+                }
+              ],
+              "noise_scale_schedule": [
+                {
+                  "noise_scale": 0.95,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.88,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.95,
+                  "period": 0.25
+                },
+                {
+                  "noise_scale": 0.88,
+                  "period": 0.25
+                }
+              ],
+              "diffusion_process_args": {
+                "sigma_min": 0.0004,
+                "sigma_max": 160.0,
+                "sigma_data": 16.0,
+                "rho": 7,
+                "P_mean": -1.2,
+                "P_std": 1.5,
+                "gamma_0": 0.8,
+                "gamma_min": 1.0,
+                "noise_scale": null,
+                "step_scale": null,
+                "mse_rotational_alignment": true,
+                "coordinate_augmentation": true,
+                "alignment_reverse_diff": true,
+                "synchronize_sigmas": false,
+                "sampling_schedule": "dilated",
+                "time_dilation": 2.667,
+                "time_dilation_start": 0.6,
+                "time_dilation_end": 0.8
+              },
+              "use_kernels": true,
+              "inference_logging": true
+            }
+          },
+          "checkpoint_sha256": "ac7078b3dc13064c68e0c3fd542e5bc538c33558bf6607f65e499eb336ca5e5d",
+          "status": "finished",
+          "command": [
+            "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/python",
+            "/mnt/e/bio/changjiang-cup-2026/scripts/run_boltzgen.py",
+            "--stage",
+            "design",
+            "--config-file",
+            "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_tip_linux/config/design.yaml",
+            "--seed",
+            "20261104"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 1022.5393653750002
+        },
+        {
+          "stage": "inverse_folding",
+          "seed": 20261105,
+          "config": {
+            "_target_": "boltzgen.task.predict.predict.Predict",
+            "data": {
+              "_target_": "boltzgen.task.predict.data_from_generated.FromGeneratedDataModule",
+              "cfg": {
+                "_target_": "boltzgen.task.predict.data_from_generated.DataConfig",
+                "tokenizer": {
+                  "_target_": "boltzgen.data.tokenize.tokenizer.Tokenizer",
+                  "atomize_modified_residues": false
+                },
+                "featurizer": {
+                  "_target_": "boltzgen.data.feature.featurizer.Featurizer"
+                },
+                "suffix": ".cif",
+                "suffix_metadata": ".npz",
+                "suffix_native": "_native.cif",
+                "moldir": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/datasets--boltzgen--inference-data/snapshots/c3d36fd276e9caf098c75d4113c6d5eb320b1a4c/mols.zip",
+                "samples_per_target": 1000000000,
+                "design": true,
+                "backbone_only": true,
+                "atom14": false,
+                "max_seqs": 1,
+                "inverse_fold": true,
+                "batch_size": 1,
+                "num_workers": 0,
+                "pin_memory": true,
+                "num_targets": 1000000000,
+                "design_mask_override": null,
+                "multiplicity": 2
+              },
+              "fail_if_no_designs": true,
+              "design_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_tip_linux/intermediate_designs",
+              "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_tip_linux/intermediate_designs_inverse_folded",
+              "skip_existing": false,
+              "skip_existing_kind": "inverse_fold"
+            },
+            "writer": {
+              "_target_": "boltzgen.task.predict.writer.DesignWriter",
+              "output_dir": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_tip_linux/intermediate_designs_inverse_folded",
+              "res_atoms_only": false,
+              "atom14": false,
+              "inverse_fold": true,
+              "write_native": false
+            },
+            "trainer": {
+              "accelerator": "gpu",
+              "devices": 1,
+              "precision": 32
+            },
+            "name": "if_full",
+            "output": "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_tip_linux/intermediate_designs_inverse_folded",
+            "checkpoint": "/mnt/e/bio/changjiang-cup-2026/build/models/boltzgen/models--boltzgen--boltzgen-1/snapshots/c1be29e1f82ffcc72264f64b993c43fb4e0d17f0/boltzgen1_ifold.ckpt",
+            "matmul_precision": null,
+            "recycling_steps": 3,
+            "sampling_steps": 200,
+            "diffusion_samples": 1,
+            "override": {
+              "masker_args": {
+                "mask": true,
+                "mask_backbone": false
+              },
+              "validators": null,
+              "diffusion_process_args": {
+                "sigma_min": 0.0004,
+                "sigma_max": 160.0,
+                "sigma_data": 16.0,
+                "rho": 7,
+                "P_mean": -1.2,
+                "P_std": 1.5,
+                "gamma_0": 0.8,
+                "gamma_min": 1.0,
+                "noise_scale": 1.0,
+                "step_scale": 1.0,
+                "mse_rotational_alignment": true,
+                "coordinate_augmentation": true,
+                "alignment_reverse_diff": true,
+                "synchronize_sigmas": false
+              },
+              "inverse_fold_args": {
+                "atom_s": 128,
+                "atom_z": 16,
+                "token_s": 384,
+                "token_z": 128,
+                "node_dim": 128,
+                "pair_dim": 128,
+                "hidden_dim": 128,
+                "dropout": 0.1,
+                "softmax_dropout": 0.2,
+                "num_encoder_layers": 6,
+                "transformation_scale_factor": 1.0,
+                "inverse_fold_noise": 0.2,
+                "topk": 30,
+                "num_heads": 4,
+                "num_decoder_layers": 3,
+                "autoregressive": true,
+                "enable_input_embedder": true,
+                "inverse_fold_restriction": []
+              },
+              "use_kernels": true
+            }
+          },
+          "checkpoint_sha256": "dd4cf108c94471bdc3a326b7b180fa3854dc019110fae780208c30b50bd56578",
+          "status": "finished",
+          "command": [
+            "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/python",
+            "/mnt/e/bio/changjiang-cup-2026/scripts/run_boltzgen.py",
+            "--stage",
+            "inverse_folding",
+            "--config-file",
+            "/mnt/e/bio/changjiang-cup-2026/build/tl1a_bg_tip_linux/config/inverse_folding.yaml",
+            "--seed",
+            "20261105"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 101.89558230900002
+        }
+      ],
+      "compatibility_adapters": {
+        "cuequivariance_ops_0.5.1": "WSL unsupported NVML power/clock are unknown; use real Torch device properties and skip telemetry-based tuning cache; requires CUEQ_WSL_METADATA=1 and default configs",
+        "colabfold_1.6.3": "load only requested parameter sets plus compilation model; forward arithmetic unchanged"
+      },
+      "preflight_target_lengths": [
+        164,
+        164,
+        164
+      ],
+      "sequence_structure_count": 8,
+      "actual_backbones": 4,
+      "last_invocation_elapsed_seconds": 1178.088863325,
+      "elapsed_seconds": 1178.1878173351288
+    }
+  }
+}

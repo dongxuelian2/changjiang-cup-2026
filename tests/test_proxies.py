@@ -7,6 +7,18 @@ from changjiang_select.optimize import exhaustive, portfolio
 
 
 class ProxyTests(unittest.TestCase):
+    def test_duplicate_boltz_context_does_not_add_an_independent_vote(self):
+        d = {"synthetic": False, "metric_definitions": {
+            key: {"direction": "higher"} for key in
+            ("boltz.ipsae_10", "boltz.plddt", "boltz_trimer_deepmsa.ipsae_10", "geometry.contacts")},
+            "candidates": [{"id": str(i), "metrics": {
+                "boltz.ipsae_10": a, "boltz_trimer_deepmsa.ipsae_10": a,
+                "boltz.plddt": b, "geometry.contacts": c}} for i, (a, b, c) in enumerate([(3, 1, 1), (2, 3, 2), (1, 2, 4)])]}
+        first, _, _ = rank_objective(d, ["boltz.ipsae_10", "boltz.plddt", "geometry.contacts"])
+        repeated, _, _ = rank_objective(d, list(d["metric_definitions"]))
+        for subset in ([0], [1], [2], [0, 2], [0, 1, 2]):
+            self.assertAlmostEqual(first.value(subset), repeated.value(subset))
+
     def test_ties_and_reversed_metric_units_do_not_change_objective(self):
         np.testing.assert_equal(midranks([3, 1, 1]), [2, .5, .5])
         d = {"synthetic": False, "metric_definitions": {

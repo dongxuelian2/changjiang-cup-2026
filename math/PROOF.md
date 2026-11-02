@@ -442,11 +442,175 @@ quality improvement**. Better biological constraints mattered more than solver
 precision. The final complete-case report deliberately contains no accepted set,
 and stale nonempty shortlists are cleared when later evidence rejects them.
 
-The current route has produced foldable hypotheses but no credible binder hit.
-We stopped expanding these families. Native Windows resolution of BoltzGen 0.3.2
-fails on mandatory Linux-only cuEquivariance CUDA wheels; WSL has no installed
-distribution. Full current ESMFold2/Fast checkpoints include ESMC-6B, exceeding
-8 GB in the native GPU path before activations. The prepared Linux BoltzGen
-full-trimer job is unexecuted. Official checkpoint/MSA/ipSAE configuration and
+That RFdiffusion route produced foldable hypotheses but no credible binder hit.
+We stopped expanding those families. Standard dependency resolution of BoltzGen
+0.3.2 fails on Linux-only cuEquivariance wheels. Subsequent source inspection
+found the public `use_kernels=false` PyTorch path: the native Windows model now
+runs with those acceleration dependencies omitted, without changes to upstream
+model code. The installation failure did not establish native execution was
+impossible. Full current ESMFold2/Fast checkpoints include ESMC-6B, exceeding
+8 GB in the native GPU path before activations. Subsequently Ubuntu under WSL
+became available: BoltzGen generation and AF2-Multimer cross-checks now actually
+run on the same local GPU. See the following sections and README for those
+executed experiments; the earlier Linux installation boundary is resolved.
+Official checkpoint/MSA/ipSAE configuration and
 experimental KD calibration remain unavailable. No paid compute, competition
 account, or existing Colab session was used.
+
+## 10. Symmetry and duplicated score views
+
+For an exactly symmetric target, equivalent homomer chain labels must not make
+the same physical binder pose appear different. Let a finite isometry group
+\(G\) act on coordinate configurations and let \(d\) be the Euclidean RMSD
+metric in a fixed target frame. Then
+\[
+d_G([x],[y])=\min_{g\in G} d(x,gy)
+\]
+is a metric on the orbits. Nonnegativity and the zero condition follow from the
+finite minimum; symmetry follows by taking inverses. If \(g,h\) realize the two
+minima, the triangle inequality and isometry property give
+\(d(x,ghz)\le d(x,gy)+d(gy,ghz)=d(x,gy)+d(y,hz)\).
+Taking the minimum proves the quotient triangle inequality. This is a
+mathematical fact about exact symmetry, not a validation of a binder.
+
+Experimental 2RE9 is only approximately C3-symmetric. The implemented diagnostic
+enumerates all six target-chain permutations, fits experimental beta-core CAs,
+and chooses the smallest binder-pose RMSD among fits within 0.5 A of the best
+target-only core fit. All alternatives and the best target-only fit are saved.
+The 0.5 A tolerance is a research convention; this approximate procedure is not
+claimed to satisfy the metric axioms. Confidence, PAE and ipSAE are never
+changed by this alignment. Regression checks preserve a relabelled/rigidly
+transformed true pose and reject a binder translated 100 A away.
+
+Alternative Boltz contexts and seeds belong to one predictor family when
+weighting rank scenarios. Within a family, identical oriented rank columns are
+collapsed before assigning its fixed total weight. Consequently, duplicating a
+rank-equivalent view cannot alter any set's objective value: it changes neither
+the distinct columns nor their weights. This invariance is checked even when
+the family also contains another, different score view. Nonidentical but
+correlated heads can still share systematic errors; family balancing does not
+turn them into independent biological evidence. The original submodularity
+and greedy/exact results apply to the fixed deduplicated matrix, with no new
+claim about experimental success.
+
+## 11. Backbone groups as an exploratory compute budget
+
+Three sequence variants of the first BoltzGen backbone all had high binder-alone
+fold confidence but zero Boltz ipSAE(10). This limited observation motivates
+testing more backbone families before spending the next budget on their variants.
+It does not establish a probability of shared experimental failure. The optional
+`--one-per-backbone` restriction applies to exploratory computation, not to the
+competition's final sequence rules.
+
+For a fixed candidate table, partition candidates by generated backbone and allow
+at most one sequence from each group, with total size at most k. These feasible
+sets form a partition matroid truncated to rank k. The existing marginal-gain
+greedy, singleton baseline, portfolio fallback and exact enumerator now accept
+this optional feasibility mask; the original cardinality behavior is unchanged.
+
+**Proposition.** For normalized monotone submodular F, feasible greedy G satisfies
+F(G) >= F(O)/2, where O is optimal under the SAME group and cardinality constraints.
+The portfolio is at least as good as greedy, so retains this bound.
+
+**Proof.** By monotonicity extend O to the feasible rank r=min(k,number of groups).
+Match each greedy step i to an unassigned optimal element o_i. If the newly chosen
+group still has an optimal element, assign it; otherwise assign any remaining
+optimal element. Inductively every unassigned optimal group is absent from the
+previous greedy set G_(i-1), so o_i was feasible at step i. Greedy therefore has
+Delta(g_i | G_(i-1)) >= Delta(o_i | G_(i-1)). Submodularity and monotonicity give
+F(O) <= F(G union O) <= F(G) + sum_i Delta(o_i | G)
+<= F(G) + sum_i Delta(g_i | G_(i-1)) = 2 F(G).
+
+The factor is tight for greedy even for coverage: two equal-weight views and
+three synthetic utilities a1=(1,0), a2=(0,1), b1=(1,0), with a1/a2 in one group
+and b1 in another, k=2. Input-order tie breaking chooses a1 then b1, value 1/2;
+the feasible optimum a2+b1 has value 1. This also shows that selecting just the
+highest-singleton representative of each backbone before optimization can lose
+a useful variant. These are synthetic mathematical examples, not protein data.
+
+Finite regression checks compare exact enumeration with an independent feasible
+subset oracle for 128 small random matrices and budgets 0..3, check group
+feasibility and the half bound, and retain the original cardinality checks.
+The exact enumerator still refuses searches beyond its stated combination cap;
+such results are recorded as uncomputed, rather than asserted optimal. All
+guarantees concern the fixed rank surrogate, with no guarantee about KD or binder
+success. Group restrictions can omit an experimentally useful sequence variant.
+
+## 12. Local BoltzGen experiments and independent-model disagreement (2026-11-02)
+
+These are empirical observations, not mathematical guarantees or experimental
+binding results. BoltzGen 0.3.2 generated **57 distinct sequences from 19
+backbones**, retaining both raw atom14 sequences and two actual inverse-folded
+variants per backbone. Three backbones ran on native Windows with kernels off;
+the other sixteen ran with CUDA kernels in Ubuntu under WSL on the same 8 GB
+RTX 4060. The earlier RFdiffusion dataset remains separate. Provenance and raw
+outputs are in `results/tl1a_boltzgen_20261101/`.
+
+The first distal-site pilot used 500 diffusion steps/adherence weights; the next
+beta-site run used 200 steps/diverse weights. These change several factors at
+once and do not establish a causal checkpoint/step-count comparison. Of four
+independently Boltz-refolded distal sequences, binder-alone pLDDT was
+0.961–0.969 and fold RMSD 0.30–0.49 A. None preserved the intended binding pose.
+For `tl1a_bg_a_1_if1`, Boltz binder-target ipTM is 0.838 and ipSAE(10) is 0.436,
+but native-frame binder pose RMSD is 35.55 A. AF2-Multimer model 3 gives
+ipSAE(10)=0, pose RMSD 25.00 A and 212 binder/native-target heavy-atom pairs
+below 2 A. The two predictors agree on a compact fold but disagree on association.
+This is direct evidence against accepting that design on Boltz confidence alone;
+it is not proof that the sequence cannot bind in an experiment.
+
+AF2's global ipTM of about 0.74 in the first two checks includes the already
+associated native target trimer. Only binder-target ipSAE pairs enter our
+interface analysis. For the same `1_if1` sequence, computed buried binder SASA
+is 1,066 A^2 despite severe native overlap and zero ipSAE(10). Large buried area
+alone therefore selects an unphysical prediction here. Steric/context checks
+must precede a rank surrogate; a more exact optimizer cannot repair bad inputs.
+The next four beta-site AF2 checks have maximum ipSAE(10) only 0.01350. Shared
+backbones, preselected inputs and the tiny overlapping predictor cohort preclude
+calibration, inferential p-values or a claimed KD correlation.
+
+Failure-directed sampling next targeted the exposed A:D175/C:F209 junction,
+allowing adjacent-protomer contacts. All eight real backbones were only
+4.8–9.1 A from a glycan anchor and failed the declared 12 A envelope. Learned
+`not_binding` conditions are not hard glycan exclusion. No expensive refold was
+allocated to that batch. The subsequent R166/Q167/A168 tip run restored 500
+steps and restricted allowed contacts to A160–173. Its four backbones are
+21.3–27.7 A from glycan anchors; two nevertheless have native backbone/target
+heavy-atom clashes. This supports correction of one geometric failure mode,
+not binding success. Emitted design/binding masks are audited directly against
+the CIF residue order and canonical UniProt positions; original masks are saved.
+
+Before tip refolding, the six geometrically eligible sequences from two backbones
+were frozen in `compute_priority/eligible_candidates.json`. With one-per-backbone
+and k=2, portfolio, singleton and exact solvers all give fitted rank coverage
+**0.85**, selecting `tl1a_bg_tip_2_gen` and `tl1a_bg_tip_0_if0`. The saved scenario
+matrix reproduces this computation even after later predictor metrics are added
+to the main table. Omitting geometry keeps both sequence IDs; omitting sequence
+metrics substitutes the raw sequence of backbone 0, giving sequence-set Jaccard
+1/3 but the same two backbone families. Variant choice is therefore less stable
+than backbone coverage in this small example. Two additional near-clash raw
+sequences are separate diagnostic predictions, not gate-approved selections.
+
+All four actual tip AF2 predictions subsequently failed interface checks:
+ipSAE(10) is 0–0.011005, binder pose RMSD 22.9–26.3 A, with 177–213 native-target
+heavy-atom overlaps below 2 A. The ten AF2 predictions across all three evaluated
+sites have global ipTM 0.74–0.79 despite weak binder-specific interfaces. The
+allocation surrogate successfully spread computation across backbones; these
+observations do not show improvement in binding quality.
+
+Boltz-2 then independently rechecked both priority sequences and their
+binder-alone controls. For tip `0_if0` / `2_gen`, ipSAE(10) is 0.012 / 0, pose
+RMSD 33.90 / 77.50 A and binder-alone pLDDT 0.946 / 0.924. Their generated
+glycan-safe positions did not survive independent complex prediction. Across
+four sequences evaluated by both Boltz and AF2 (four backbone families),
+pairwise-complete Spearman rho is **-0.544** for ipSAE(10) but **0.80** for binder
+pLDDT. These are descriptive ranks on a small, selected, mostly zero-interface
+cohort, not evidence of a general negative correlation or predictive KD accuracy.
+Both architectures can support folding without supporting association. BoltzGen
+and Boltz-2 are related, so their agreement is also not independent validation.
+The complete-case research gate accepts zero sequences; its coverage and
+individual rejection reasons are retained in `evaluated_triage.json`.
+
+All gates are research conventions, not official admission thresholds. In
+particular, native rotamers, a rigid reference and a spherical glycan envelope
+can reject a physically possible binder. Predictor failure is not measured
+nonbinding. Conversely, passing these checks would still not demonstrate KD.

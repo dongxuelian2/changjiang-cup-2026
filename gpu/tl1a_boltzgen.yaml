@@ -1,4 +1,4 @@
-# Prepared job, NOT executed in this checkout. Requires a supported Linux GPU.
+# Full observed trimer, distal surface hypothesis selected from native SASA.
 # Full observed trimer; unresolved 72-87 and glycans are absent (see manifest).
 # No known same-target binder, framework or sequence motif is provided.
 entities:
@@ -6,12 +6,28 @@ entities:
       id: D
       sequence: 60..90
   - file:
-      # Original RCSB mmCIF includes required polymer metadata. Author +71 is UniProt.
+      # Original RCSB mmCIF includes polymer metadata: author+71, label+70 = UniProt.
       path: ../build/sources/2RE9.cif
       include:
         - chain:
             id: A
+            res_index: 18..181
         - chain:
             id: B
+            res_index: 18..181
         - chain:
             id: C
+            res_index: 18..181
+      # Canonical 2RE9 label_seq_id = UniProt - 70, BEFORE unresolved-tail removal.
+      # M158/E161/R166/Q167 are exposed and away from N133/N229 anchors.
+      binding_types:
+        - chain:
+            id: A
+            binding: 88,91,96,97
+            not_binding: 61..67,155..163
+        - chain:
+            id: B
+            not_binding: all
+        - chain:
+            id: C
+            not_binding: all

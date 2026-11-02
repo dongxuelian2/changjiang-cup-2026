@@ -1,166 +1,192 @@
 # Changjiang Cup 2026: TL1A minibinder research
 
-This research project works on the competition's **real TL1A target**,
-using de novo RFdiffusion backbones and ProteinMPNN sequences. The original
-candidate-portfolio mathematics and solvers are reused for prediction triage.
-There are **28 real sequences from seven backbones**, and **18 all-atom Boltz
-complex predictions covering 12 distinct sequences**, plus two target-only
-controls. **Zero evaluated candidates currently pass the complete research
-screen.** No experimental binder, measured KD, or official admission score has
-been obtained.
+Real de novo design against **TL1A**, with RFdiffusion/ProteinMPNN and BoltzGen,
+independent Boltz-2/AF2-Multimer predictions, and the existing candidate-portfolio
+optimizers. **No candidate currently passes the complete research screen.**
+No measured KD, experimental binder or official admission score has been obtained.
 
-[RULES.md](RULES.md) records the verified November 1 targets/rules and the missing
-official ESMFold2/ipSAE configuration. [math/PROOF.md](math/PROOF.md) separates proofs,
-synthetic benchmarks, actual model observations and biological hypotheses.
+[RULES.md](RULES.md) records the successfully retrieved November 1 rules and the
+unpublished official ESMFold2/ipSAE configuration. [math/PROOF.md](math/PROOF.md)
+separates mathematical proofs, synthetic examples, actual model observations and
+biological hypotheses. Simulated data remain under `examples/synthetic/`.
 
-## Why TL1A
+## Target and evidence
 
-| Priority target | Coordinate/sequence audit | Research implication |
+| Priority target | Audited reference | Research implication |
 |---|---|---|
-| **TL1A**, minibinder | 2RE9: 2.1 Å, native homotrimer; all three chains match current UniProt; observed 88–251, missing 72–87; author numbering +71 | Compact rigid protomer, accessible external patches, compatible with backbone/sequence design; explicitly check trimer and N133/N229 glycans |
-| IL-7Rα, minibinder | 3DI3 B: 2.9 Å, observed UniProt 37–229, I66T relative to current canonical sequence; receptor in IL7:IL7RA heterodimer | Two-domain geometry, six annotated N-glycosylation sites and target-state uncertainty add difficulty |
-| TNF-α, VHH | 1TNF: 2.6 Å trimer, observed 82–233; L219 versus native D219 | Compact target, but the permitted format needs a complete VHH; a generic 60 aa minibinder would be ineligible |
+| **TL1A**, minibinder | 2RE9, 2.1 Å homotrimer; observed UniProt 88–251; official construct 72–251 | Compact target; explicitly retain three protomers and check N133/N229 glycan anchors on each |
+| IL-7Rα, minibinder | 3DI3 B, 2.9 Å; observed 37–229; I66T versus current UniProt | Domain arrangement, six annotated N-glycosylation sites and target-state uncertainty add difficulty |
+| TNF-α, VHH | 1TNF, 2.6 Å trimer; observed 82–233; L219 versus native D219 | Compact, but this track needs a complete 100–150 aa VHH |
 
-This is a resource/scientific choice, not a demonstrated superiority ranking.
-The subsequent predictions show substantial loop/state sensitivity; the native
-beta scaffold must be distinguished from flexible regions when aligning models.
-EGFR/TfR1 add larger glycosylated ectodomains and VHH design; EGFR also adds a pH
-endpoint. GLP-1R adds agonism, which binding the supplied ectodomain alone cannot
-establish. TNFR1 also requires VHH. We concentrate on TL1A before opening another track.
-
-Primary evidence: [TL1A structure](https://www.rcsb.org/structure/2RE9),
-[UniProt TL1A](https://www.uniprot.org/uniprotkb/O95150/entry),
+TL1A is a tractable initial choice, not a demonstrated superiority ranking.
+Primary sources: [2RE9](https://www.rcsb.org/structure/2RE9),
+[UniProt O95150](https://www.uniprot.org/uniprotkb/O95150/entry),
 [TL1A biochemistry](https://pubmed.ncbi.nlm.nih.gov/19522538/),
-[DcR3 complex for target-site context](https://www.rcsb.org/structure/3K51),
-[IL7 receptor structural study](https://pmc.ncbi.nlm.nih.gov/articles/PMC2654238/),
+[DcR3 target-site context](https://www.rcsb.org/structure/3K51),
+[IL7 receptor study](https://pmc.ncbi.nlm.nih.gov/articles/PMC2654238/),
 [1TNF](https://www.rcsb.org/structure/1TNF).
-The IL7 study found strong glycosylation effects for **natural IL7 binding**;
-we do not transfer its quantitative effect to a designed binder.
+No known same-target positive binder sequence/scaffold was supplied to generation
+or used as an affinity-optimization starting point. This is not an exhaustive
+novelty search or a claim about model training data.
 
-## Actual data and limitations
+`targets/` contains all seven official construct FASTAs and priority-target audits.
+For 2RE9, **author residue +71 = UniProt**, whereas **mmCIF label_seq_id +70 =
+UniProt**: the observed canonical interval is **18–181**, not 17–180. Generation
+preflight verifies three exact 164 aa target chains. Independent predictions use
+the full official 180 aa sequence in all three protomers. Missing experimental
+72–87 coordinates are not invented. `targets/TL1A/surface.csv` records native
+SASA, neighboring-subunit burial, glycan-anchor distance and receptor context.
 
-`targets/` contains the seven exact official construct FASTAs, source hashes,
-priority-target sequence/coordinate audits, residue mapping, and observed native
-coordinates. `targets/TL1A/surface.csv` reports trimer SASA, burial by adjacent
-subunits, glycan-anchor distances and receptor-context contacts. No missing region
-has been filled with invented coordinates. Official full sequences remain intact.
+## Executed experiments
 
-Real generations, sequence/geometry measurements, FASTA/CSV and backbone poses are
-in [results/tl1a_20261101](results/tl1a_20261101). `synthetic: false` means an actual
-model produced the design; it does not mean binding has been demonstrated.
-Generation provenance records upstream commits, checkpoint hashes, seeds, masks,
-temperature, resolved settings and input coordinates. No same-target known-positive
-binder sequence/scaffold was supplied. This is not an exhaustive novelty search.
+| Curated data | Real generation | Independent sequence-to-structure evaluation |
+|---|---|---|
+| [RFdiffusion round](results/tl1a_20261101) | 28 sequences / 7 backbones | 18 Boltz-2 complexes / 12 sequences, plus 2 target-only controls |
+| [BoltzGen round](results/tl1a_boltzgen_20261101) | 57 sequences / 19 backbones | 6 Boltz-2 complexes + 6 binder-alone controls; 10 AF2-Multimer complexes |
 
-The first two monomer-conditioned backbones produced eight distinct 60 aa sequences.
-One family had 122 backbone clashes below 2 Å against adjacent native subunits,
-despite RFdiffusion confidence 0.99089. The other had no such severe clashes but
-only 23 CA contact pairs within 8 Å. A full-trimer design added four sequences;
-two outer-site backbones added eight, but were long rods with no nonlocal CA
-contacts. Radius-of-gyration guidance then produced eight 80 aa sequences with
-75–78 nonlocal contacts. All 28 sequences and failed families are retained. Design poses
-have binder backbone atoms only; they are **not independent sequence refolds**.
+BoltzGen counts include actual atom14-generated sequences and two inverse-folded
+variants per backbone. They are distinct sequences, not independent backbones.
+Original CIF/NPZ outputs, normalized backbone complexes, FASTA/CSV, metrics and
+resolved generation/prediction provenance are retained. `synthetic: false` means
+real model execution, not validated binding. Weights, environments and logs stay
+in ignored `build/`.
 
-The actually executed independent evaluation uses Boltz-2 2.2.1, full official target 72–251,
-target-only MSA, no templates/pocket constraints, seed 2026 and one sample. The
-public target MSA has 2,286 records; both 64- and 512-depth configurations were
-run. Batch runs seed the global RNG once, so file order affects subsequent draws;
-the final single-candidate trimer run has its own seed 2026. A monomer prediction
-is checked against the observed native trimer. These are
-explicit approximation, not a recreation of official ESMFold2 screening. The
-Boltz protein–small-molecule affinity head is not used to claim protein–protein KD.
+The RFdiffusion round exposed adjacent-subunit clashes, noncompact rods and
+target-state prediction errors. Increasing target MSA depth from 64 to 512
+improved a target-only beta-core RMSD from 6.63 to 0.45 Å. This is a diagnostic
+observation, not a controlled causal estimate. Those binder families were not
+expanded further.
 
-| Actual diagnostic | Finding |
-|---|---|
-| Highest 64-depth monomer ipSAE | 0.7313 for `tl1a_outer_3_s4`, but its target beta-core RMSD is 6.89 Å and its backbone is a long rod; rejected |
-| Target-only control, MSA 64 → 512 | Beta-core RMSD 6.63 → 0.45 Å; all-observed-residue RMSD 11.23 → 5.33 Å; remaining loop motion makes whole-target alignment misleading |
-| Native-target-templated checks | Two binder folds match design within 0.70 / 0.93 Å, but association/native trimer or glycan context fails; these scores have a separate namespace |
-| Full trimer, MSA 512, **no template** | `tl1a_receptor_0_s1`: target beta-core RMSD 0.326 Å, binder-only RMSD 0.702 Å, binder-target ipTM 0.387, ipSAE(10) 0.000, ipSAE(15) 0.005; no supported interface |
+BoltzGen has now actually run both natively on Windows and in **Ubuntu via WSL**
+on the same **RTX 4060 Laptop 8 GB**. The first distal-site and beta-site batches
+produced 21 sequences / 7 backbones. Binder-alone Boltz predictions for four
+tested sequences have pLDDT 0.961–0.969 and fold RMSD 0.30–0.49 Å; this supports
+folding, not binding. `tl1a_bg_a_1_if1` has Boltz binder-target ipTM 0.838 and
+ipSAE(10) 0.436, but pose RMSD 35.55 Å. AF2 gives ipSAE(10) 0 and a different,
+clashing pose. It is rejected. The other beta-site AF2 checks also lack reliable
+interfaces. AF2's global ipTM around 0.74 in the first checks includes the native
+target trimer and must not be treated as binder confidence.
 
-Native-context geometry is computed after aligning experimental **SHEET beta-core
-residues**, while whole-target RMSD is preserved separately. The final trimer
-result supports folding of the candidate, not binding. We stopped expanding these
-families. `compute_priority.csv`/FASTA contain two **unvalidated variants for
-another predictor**, selected from four still-unmeasured geometry survivors;
-`evaluated_triage.json` contains no accepted evaluated candidate. These are not a
-20-sequence competition submission.
+An inter-protomer D175/F209 hypothesis generated 8 further backbones / 24 sequences.
+All eight backbones lie 4.8–9.1 Å from a native glycan anchor, inside the declared
+12 Å research envelope, and were rejected before expensive prediction. Binding-
+type flags are not hard steric masks. A narrower R166/Q167/A168 distal-tip test
+then actually ran 500 diffusion steps: 4 backbones / 12 sequences. Glycan-anchor
+distances improved to 21.3–27.7 Å, but only two backbones had zero native-atom
+overlaps. The optimizer selected `tl1a_bg_tip_2_gen` and `tl1a_bg_tip_0_if0` for
+independent prediction. Both, plus two near-clash diagnostic sequences, failed
+AF2 interface checks: ipSAE(10) 0–0.011, pose RMSD 22.9–26.3 Å and severe overlap
+with native target atoms. These are failed research hypotheses, not binder hits.
+Boltz independently rechecked both priority sequences with binder-alone controls:
+ipSAE(10) is 0.012 / 0, with pose RMSD 33.90 / 77.50 Å, respectively for
+`tl1a_bg_tip_0_if0` / `tl1a_bg_tip_2_gen`. The revised glycan-safe generation site
+did not solve association. Further expansion of these families is unsupported.
 
-## Run the real pipeline
+All-atom clashes, beta-core alignment, symmetry-equivalent target-chain labels,
+fold/pose RMSD, buried binder SASA, glycan-anchor distance, sequence composition
+and hydrophobic-window proxies are evaluated separately. Glycan envelopes and
+sequence heuristics are approximations, not explicit glycan conformer sampling,
+measured solubility or aggregation assays. No completed 20-sequence experimental
+shortlist is claimed. The [complete-case research screen](results/tl1a_boltzgen_20261101/evaluated_triage.json)
+records zero accepted sequences and coverage separately from missing evaluations.
 
-The tested native Windows environment uses Python 3.10.16, torch 2.0.1+cu117,
-DGL 1.1.2+cu117 and e3nn 0.3.3 for generation. An isolated Boltz environment uses
-torch 2.5.1+cu121 and boltz 2.2.1. Both use the existing RTX 4060 8 GB; generation
-and independent GPU evaluation run sequentially. Weights, environments, caches
-and logs stay in ignored `build/`. No paid resource or existing Colab session is used.
+## Continue the configured local pipeline
 
-```powershell
-# Requires uv and network access; all downloads stay under this checkout's build/.
-./scripts/setup_gpu.ps1 -WithBoltz
+Generation and prediction run **sequentially** on the 8 GB GPU. No paid compute,
+existing Colab session, competition account or formal submission is used.
 
-build/env-rfd/Scripts/python.exe scripts/run_rfdiffusion.py --out build/tl1a_receptor --backbones 2 --sequences 4
-build/env-rfd/Scripts/python.exe scripts/run_rfdiffusion.py --context trimer --out build/tl1a_trimer --start 2 --backbones 1 --sequences 4
-build/env-rfd/Scripts/python.exe scripts/run_rfdiffusion.py --site outer --out build/tl1a_outer --start 3 --backbones 2 --sequences 4
-build/env-rfd/Scripts/python.exe scripts/run_rfdiffusion.py --site outer --compact --length 80 --out build/tl1a_compact --start 5 --backbones 2 --sequences 4
-build/env-rfd/Scripts/python.exe scripts/evaluate_designs.py build/tl1a_receptor build/tl1a_trimer build/tl1a_outer build/tl1a_compact
+The tested BoltzGen 0.3.2 Linux environment uses torch 2.7.1+cu128, Triton 3.3.1,
+cuEquivariance 0.5.1, Lightning 2.5.5 and a C compiler. Native Windows uses the
+public `use_kernels=false` path with torch 2.5.1+cu121; Linux-only acceleration
+dependencies are omitted there. WSL's unsupported NVML power telemetry is bypassed
+by `gpu/patch_linux_compat.py` using actual Torch device properties and default
+kernel settings. Model weights, architecture and arithmetic are unchanged.
 
-# Choose an explicit prediction cohort, inspect its native trimer/glycan context.
-build/env-boltz/Scripts/python.exe scripts/run_boltz.py results/tl1a_20261101/candidates.json --ids tl1a_receptor_0_s1 --out build/boltz_eval
-build/env-boltz/Scripts/python.exe scripts/import_boltz.py results/tl1a_20261101/candidates.json build/boltz_eval
-build/env-boltz/Scripts/python.exe scripts/run_boltz.py results/tl1a_20261101/candidates.json --ids tl1a_receptor_0_s1 --trimer --msa-depth 512 --out build/boltz_trimer_deepmsa
-build/env-boltz/Scripts/python.exe scripts/import_boltz.py results/tl1a_20261101/candidates.json build/boltz_trimer_deepmsa
-python.exe scripts/triage_candidates.py results/tl1a_20261101/candidates.json --k 2
+From PowerShell, enter the existing Ubuntu distribution with `wsl.exe -d Ubuntu`.
+The following commands are Linux commands inside this checkout. The setup expects
+`uv` at `UV_BIN` or the already installed `build/linux-tools/.../uv` path; network
+proxy variables, if needed, belong to the caller and are not committed.
+
+```bash
+cd /mnt/e/bio/changjiang-cup-2026
+bash gpu/setup_boltzgen_linux.sh
+bash gpu/run_boltzgen.sh --spec gpu/tl1a_boltzgen_tip.yaml \
+  --checkpoint adherence --sampling-steps 500 --seed 20261104 \
+  --num-designs 4 --out build/next_tip
+build/env-boltzgen-linux/bin/python scripts/import_boltzgen.py \
+  build/next_tip --label tl1a_tip_next --append
+build/env-boltzgen-linux/bin/python scripts/triage_candidates.py \
+  results/tl1a_boltzgen_20261101/candidates.json --k 4 --one-per-backbone
+
+bash gpu/setup_colabfold_linux.sh
+build/env-colabfold-linux/bin/python scripts/fetch_af2_model.py --model 3
+# Use IDs selected for actual independent evaluation, not an assumed binder hit.
+build/env-colabfold-linux/bin/python scripts/run_af2.py \
+  results/tl1a_boltzgen_20261101/candidates.json --ids tl1a_bg_a_1_if1 \
+  --out build/next_af2
+build/env-colabfold-linux/bin/python scripts/import_af2.py \
+  results/tl1a_boltzgen_20261101/candidates.json build/next_af2
 ```
 
-The runner applies one recorded Windows compatibility patch: converting NumPy's
-int32 sequence tensor to torch int64 in RFdiffusion. ProteinMPNN paths use forward
-slashes and an explicit checkpoint directory. It verifies the actual generated
-chain before sequence design. ProteinMPNN designs only that chain, omitting Cys,
-with `v_48_020`, T=0.1, seed 2026; targets are fixed. This can be adjusted for later
-experiments. Minibinder length is checked at 40–100 aa.
+ColabFold 1.6.3 runs AF2-Multimer-v3 model 3, JAX 0.6.2, one seed/sample, three
+recycles, target-only MSA 128/256, no template/initial guess/relaxation. It runs
+locally, not on hosted Colab. The requested legacy kernel has no sm89 binary and
+the actual successful backend is **XLA fallback**, recorded in provenance. Only
+the genuine model-3 parameter file is fetched from the public archive by ranges;
+ZIP CRC is checked. Loading unused model parameter sets is bypassed separately.
 
-Generation imports rebuild the dataset; run independent prediction imports
-afterward. Complete executed evaluation configurations and hashes are retained
-in `results/tl1a_20261101/*evaluation.json`, with per-candidate context references.
-Templated, monomer/trimer and MSA-depth experiments never share a score namespace.
+The configured native Boltz-2 2.2.1 environment uses torch 2.5.1+cu121. In PowerShell:
 
-**Current compute boundary:** native Windows dependency resolution for BoltzGen
-0.3.2 fails because its required `cuequivariance-ops-cu12` has Linux wheels only;
-there is no installed WSL distribution. The full public ESMFold2/ESMFold2-Fast
-models include a 6B language-model backbone; their native GPU weights exceed
-this 8 GB card before activations. Neither was run or substituted for official
-screening. The next generator is prepared in [gpu/run_boltzgen.sh](gpu/run_boltzgen.sh)
-and [its full-trimer specification](gpu/tl1a_boltzgen.yaml), for a supported free
-Linux GPU allocation. That job is **unexecuted** and uses the original RCSB mmCIF
-with polymer metadata. No sponsor account, credential or paid allocation was used.
+```powershell
+build/env-boltz/Scripts/python.exe scripts/run_boltz.py results/tl1a_boltzgen_20261101/candidates.json --ids tl1a_bg_a_1_if1 --trimer --msa-depth 512 --with-binder-controls --per-record --out build/next_boltz
+build/env-boltz/Scripts/python.exe scripts/import_boltz.py results/tl1a_boltzgen_20261101/candidates.json build/next_boltz
+build/env-rfd/Scripts/python.exe scripts/triage_candidates.py results/tl1a_boltzgen_20261101/candidates.json --complete --require-boltz --require-af2
+```
 
-## Reuse the mathematical tools
+Both predictors use the cached public target MSA (2,286 records); regenerate it
+with `scripts/target_msa.py` if missing. The generation wrapper also expects the
+existing `build/models/boltz2/boltz2_conf.ckpt` to resolve an upstream **unused**
+folding-step configuration; only design/inverse-folding tasks execute there.
+Boltz evaluation uses fresh seed 2026 per input with `--per-record`, 200 sampling
+steps and three recycles. Original scores and per-pair ipSAE at PAE cutoffs 10/15 Å
+remain separate by predictor/configuration. **Neither predictor reproduces the
+unpublished official ESMFold2 pipeline**, and no protein–protein KD is inferred
+from Boltz's small-molecule affinity head. The full public ESMFold2 weights exceed
+this GPU's native 8 GB capacity before activations; it was not run.
 
-```sh
+## Mathematics used on real data
+
+The existing NumPy-only CLI retains raw/singleton Top-K, submodular greedy,
+safeguarded portfolio, exact enumeration, diversity and CSV/FASTA export:
+
+```bash
 python -m pip install -e .
-python scripts/triage_candidates.py results/tl1a_20261101/candidates.json --k 2
-python -m changjiang_select select build/real_triage/eligible_candidates.json --scenarios build/real_triage/proxy_scenarios.json --k 2 --out build/real_selection
-python -m changjiang_select select build/real_triage/eligible_candidates.json --scenarios build/real_triage/proxy_scenarios.json --method exact --k 2 --out build/real_exact
+python -m changjiang_select benchmark
 python -m unittest discover -s tests -v
 ```
 
-The triage gate uses observed trimer clashes and an explicitly heuristic glycan
-envelope. Oriented metric midranks define source-balanced coverage viewpoints;
-missing official scores are not imputed. It reports Spearman correlations,
-backbone dependence, leave-one-source-out sensitivity, and portfolio versus exact
-optima. A documented exact-objective tie can prefer more backbone families for
-exploration, preserving the fitted objective. These uncalibrated utilities allocate compute; they are not success
-probabilities, official scores, KD estimates or a final experimental shortlist.
-The selected two-column CSV/FASTA are research drafts, not an official upload.
+Actual metrics define uncalibrated, source-balanced rank-coverage views; missing
+and constant metrics are omitted, and rank-identical views within one predictor
+family are collapsed. Reports retain pairwise-complete Spearman sample counts,
+shared-backbone warnings and leave-one-source-out sensitivity. Cross-model
+correlations are descriptive on the small, deliberately selected overlap cohort;
+they do not establish general model agreement or a relationship to KD.
+On four overlapping sequences, interface ipSAE(10) ranks have Spearman rho -0.544,
+while binder pLDDT ranks have rho 0.80. The sample is tiny and interface scores
+have many zeros. BoltzGen and Boltz-2 are related models; independent execution
+is not an assumption of statistically independent errors.
 
-The original NumPy-only import/validation, raw Top-K, singleton Top-K, greedy,
-safeguarded portfolio, exact optimization, diversity and export CLI remain intact.
-The fixed-scenario best-of-set objective is monotone submodular and greedy has
-the classical `1-1/e` bound. Synthetic examples remain under `examples/synthetic/`:
-
-```sh
-python -m changjiang_select select examples/synthetic/candidates.csv --scenarios examples/synthetic/scenarios.json --k 3 --out build/toy
-python -m changjiang_select benchmark
-```
-
-See math/PROOF.md for the original 90-instance synthetic benchmark and its limitations.
-No synthetic scores or sequences are mixed with the real TL1A results.
+The cardinality greedy guarantee remains `1-1/e`. Optional one-per-backbone
+exploration forms a truncated partition matroid, with a proved greedy `1/2`
+bound and a matching synthetic example. This is a compute-allocation option,
+not a competition constraint or a biological-success guarantee. On the interim
+45-sequence table, 9 passed preliminary gates; at k=4 with that constraint,
+portfolio/singleton/exact all give fitted rank coverage **0.890625**. None of this
+turns the failed independent interfaces into a credible binder or a calibrated
+success probability. The later six-sequence tip allocation is frozen in
+[compute_priority](results/tl1a_boltzgen_20261101/compute_priority): at k=2,
+portfolio/singleton/exact all give **0.85**, choosing one sequence per eligible
+backbone. Its saved inputs reproduce the allocation before prediction feedback.
+Ranks are cohort-relative; these two fitted objective values cannot be compared
+as measures of binder quality.
+Research-priority CSV/FASTA are not official submissions.

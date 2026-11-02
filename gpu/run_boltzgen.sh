@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
-# Unexecuted Linux entry point, prepared after native Windows resolution failed.
-# Use a free/new allocation, never a paid resource or an occupied Colab session.
+# Local Linux/WSL entry point. GPU jobs must run sequentially on the 8 GB device.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 export HF_HOME="$PWD/build/huggingface"
 export XDG_CACHE_HOME="$PWD/build/cache"
-python3.11 scripts/fetch_research_inputs.py
-python3.11 -m venv build/env-boltzgen-linux
-build/env-boltzgen-linux/bin/python -m pip install 'boltzgen==0.3.2'
-# Keep the initial job small. These explicit steps generate actual structures and
-# sequences, without claiming the unrun ESMFold2 evaluation is official screening.
-build/env-boltzgen-linux/bin/boltzgen run gpu/tl1a_boltzgen.yaml \
-  --output build/tl1a_boltzgen --protocol protein-anything \
-  --num_designs 32 --steps design inverse_folding
+if [[ ! -x build/env-boltzgen-linux/bin/python ]]; then
+  bash gpu/setup_boltzgen_linux.sh
+fi
+if [[ ! -f build/sources/2RE9.cif ]]; then
+  build/env-boltzgen-linux/bin/python scripts/fetch_research_inputs.py
+fi
+if grep -qi microsoft /proc/version; then
+  build/env-boltzgen-linux/bin/python gpu/patch_linux_compat.py
+  export CUEQ_WSL_METADATA=1
+fi
+build/env-boltzgen-linux/bin/python scripts/run_boltzgen.py \
+  --spec gpu/tl1a_boltzgen_beta.yaml --num-designs 4 --sequences-per-backbone 2 \
+  --checkpoint diverse --sampling-steps 200 --seed 20261102 --use-kernels --log-sampling "$@"

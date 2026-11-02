@@ -104,6 +104,8 @@ def prepare():
         writer.set_structure(prepared)
         writer.save(str(directory / "observed.pdb"), ProteinOnly(chains))
         if name == "TL1A":
+            record["mmcif_label_to_uniprot_offset"] = 70
+            record["mmcif_index_note"] = "2RE9 label_seq_id = author residue number +1; observed labels18-181 map to UniProt88-251"
             beta_core = set()
             for line in (SOURCES / "2RE9.pdb").read_text().splitlines():
                 if line.startswith("SHEET ") and line[21] == "A":

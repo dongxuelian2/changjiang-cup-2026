@@ -7,6 +7,12 @@ import numpy as np
 from .objective import ScenarioObjective
 
 
+def source_family(key):
+    # Alternative contexts/seeds of one predictor are not independent models.
+    prefix = key.split(".")[0]
+    return "boltz" if prefix == "boltz" or prefix.startswith("boltz_") else prefix
+
+
 def midranks(values):
     """Average zero-based ranks; exact ties receive equal ranks."""
     values = np.asarray(values, dtype=float)
@@ -64,13 +70,19 @@ def rank_objective(dataset, keys):
             skipped[key] = "constant scores"
             continue
         oriented = values if spec["direction"] == "higher" else -values
-        columns.append(midranks(oriented)/(len(values)-1))
+        column = midranks(oriented)/(len(values)-1)
+        aliases = [prev for prev, existing in zip(used, columns)
+                   if source_family(prev) == source_family(key) and np.array_equal(existing, column)]
+        if aliases:
+            skipped[key] = "rank-equivalent within source family to "+aliases[0]
+            continue
+        columns.append(column)
         used.append(key)
     if not columns:
         raise ValueError("no complete, nonconstant metrics; cannot invent a decision objective")
     # Give each source family (prefix) equal total weight, so reporting several
     # related Boltz confidence heads does not give that model extra votes.
-    groups = [key.split(".")[0] for key in used]
+    groups = [source_family(key) for key in used]
     weights = np.array([1/(len(set(groups))*groups.count(group)) for group in groups])
     description = ("UNCALIBRATED rank-coverage triage, not KD utility or success probability. "
                    "Equal total weight per source family, divided across its measured proxy viewpoints: " + ", ".join(used) +
