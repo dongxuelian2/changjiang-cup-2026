@@ -1487,7 +1487,22 @@
       "oligomer": "native homotrimer, A/B/C already present in asymmetric unit",
       "glycan_warning": "N133 and N229; unglycosylated reference is not evidence of glycan absence in assay",
       "mmcif_label_to_uniprot_offset": 70,
-      "mmcif_index_note": "2RE9 label_seq_id = author residue number +1; observed labels18-181 map to UniProt88-251"
+      "mmcif_index_note": "2RE9 label_seq_id = author residue number +1; observed labels18-181 map to UniProt88-251",
+      "unobserved_heavy_atoms": [
+        {
+          "chain": "B",
+          "uniprot_residue": 110,
+          "residue": "PHE",
+          "atoms": [
+            "CG",
+            "CD1",
+            "CD2",
+            "CE1",
+            "CE2",
+            "CZ"
+          ]
+        }
+      ]
     },
     {
       "target_id": "TNFR1",

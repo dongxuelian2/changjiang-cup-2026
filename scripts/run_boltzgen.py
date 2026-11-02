@@ -89,7 +89,7 @@ def main():
                 source_code_changes=[], official_equivalence=False, configure_command=command,
                 seed_scope="stage-local global RNG; inverse folding uses seed+1; CUDA reproducibility not guaranteed",
                 environment={name: importlib.metadata.version(name) for name in
-                             ("torch", "numpy", "numba", "pytorch-lightning", "biotite", "rdkit")},
+                             ("torch", "numpy", "numba", "pytorch-lightning", "biotite", "biopython", "rdkit")},
                 status="configuring", stages=[])
     if os.environ.get("CUEQ_WSL_METADATA") == "1":
         meta["compatibility_adapters"] = json.loads((ROOT / "build/linux_compatibility.json").read_text())

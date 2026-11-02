@@ -101,8 +101,8 @@ def main(args):
         ("binder_nonlocal_CA_pairs8", "binder CA pairs within 8 A separated by at least 8 sequence positions", "count", "higher"),
         ("CA_contact_pairs8", "full observed trimer / binder CA pairs within 8 A", "count", "higher"),
         ("epitope_residues5", "target residues with any heavy atom within 5 A of binder BACKBONE", "count", "higher"),
-        ("other_chain_min_BB_distance", "binder backbone to unconditioned trimer B/C heavy atoms", "angstrom", "higher"),
-        ("other_chain_BB_clash_pairs2", "binder backbone / trimer B/C atom pairs below 2 A", "count", "lower"),
+        ("other_chain_min_BB_distance", "binder backbone to adjacent native trimer B/C heavy atoms", "angstrom", "higher"),
+        ("other_chain_BB_clash_pairs2", "binder backbone / adjacent native trimer B/C atom pairs below 2 A", "count", "lower"),
         ("glycan_ND2_min_BB_distance", "minimum binder backbone distance to six N133/N229 ND2 anchors; not a glycan simulation", "angstrom", "higher"),
         ("missing_tail_anchor_distance", "binder backbone distance to resolved A88 N; proximity flag only", "angstrom", "higher")]:
         define("geometry."+key, "observed 2RE9 + generated backbone", "local-v1", meaning, units, direction)

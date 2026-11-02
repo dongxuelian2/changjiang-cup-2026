@@ -1,5 +1,6 @@
-# Preserve the exact structural inputs/outputs recorded in model provenance.
+# Preserve the exact model inputs/outputs recorded in provenance.
 *.pdb -text -whitespace
 *.cif -text -whitespace
 *.sh text eol=lf
-gpu/*.yaml text eol=lf
+gpu/*.yaml -text -whitespace
+results/**/predictions/**/*.json -text -whitespace

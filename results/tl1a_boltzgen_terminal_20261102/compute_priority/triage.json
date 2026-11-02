@@ -1,0 +1,196 @@
+{
+  "synthetic": false,
+  "purpose": "compute-allocation triage; not an experimental shortlist or final competition submission",
+  "evaluation_coverage": {
+    "generated_sequences": 24,
+    "generated_backbones": 8,
+    "boltz_evaluated_sequences": 0,
+    "af2_evaluated_sequences": 0,
+    "both_predictors_evaluated_sequences": 0
+  },
+  "complete_checks_required": false,
+  "af2_required": false,
+  "one_per_backbone": true,
+  "candidate_count": 24,
+  "unique_backbones": 8,
+  "not_in_evaluated_cohort": [],
+  "gate": "research-only sequence/compactness, native trimer and 12 A glycan-envelope gates; independent target beta-core/PAE checks when available; not official admission thresholds",
+  "gate_survivors": 7,
+  "rejections": {
+    "tl1a_bg_terminal_0_gen": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_4_gen": [
+      "generated binder backbone clashes with adjacent native protomers below 2 A",
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_5_gen": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_6_gen": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_7_gen": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_0_if0": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_0_if1": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_2_if0": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_2_if1": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_4_if0": [
+      "generated binder backbone clashes with adjacent native protomers below 2 A",
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_4_if1": [
+      "generated binder backbone clashes with adjacent native protomers below 2 A",
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_5_if0": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_5_if1": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_6_if0": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_6_if1": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_7_if0": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ],
+    "tl1a_bg_terminal_7_if1": [
+      "generated binder backbone clashes with an observed native target atom below 2 A"
+    ]
+  },
+  "correlations_all_sequences": [
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "geometry.glycan_ND2_min_BB_distance",
+      "n": 24,
+      "spearman_rho": -0.05972289161663697,
+      "oriented_spearman_rho": -0.05972289161663697
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "sequence.hydrophobic8_max",
+      "n": 24,
+      "spearman_rho": 0.39260224263053795,
+      "oriented_spearman_rho": -0.39260224263053795
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "sequence.hydrophobic8_max",
+      "n": 24,
+      "spearman_rho": -0.434289420349795,
+      "oriented_spearman_rho": 0.434289420349795
+    }
+  ],
+  "dependence_warning": "sequence variants share backbone-level scores; no inferential p-values, calibration or success probabilities",
+  "budget": 3,
+  "used_metrics": [
+    "geometry.CA_contact_pairs8",
+    "geometry.glycan_ND2_min_BB_distance",
+    "sequence.hydrophobic8_max"
+  ],
+  "skipped_metrics": {},
+  "objective": "UNCALIBRATED rank-coverage triage, not KD utility or success probability. Equal total weight per source family, divided across its measured proxy viewpoints: geometry.CA_contact_pairs8, geometry.glycan_ND2_min_BB_distance, sequence.hydrophobic8_max. Correlation persists across families; inspect leave-one-family-out sensitivity.",
+  "selected_ids": [
+    "tl1a_bg_terminal_2_gen",
+    "tl1a_bg_terminal_3_gen",
+    "tl1a_bg_terminal_1_gen"
+  ],
+  "fitted_proxy_objectives": {
+    "portfolio": 0.7916666666666667,
+    "singleton_topk": 0.7916666666666667,
+    "exact": 0.7916666666666667
+  },
+  "exact_search_note": null,
+  "portfolio_selected_ids_before_tie_break": [
+    "tl1a_bg_terminal_2_gen",
+    "tl1a_bg_terminal_3_gen",
+    "tl1a_bg_terminal_1_gen"
+  ],
+  "exact_selected_ids": [
+    "tl1a_bg_terminal_1_gen",
+    "tl1a_bg_terminal_2_gen",
+    "tl1a_bg_terminal_3_gen"
+  ],
+  "tie_break": null,
+  "source_balanced_weights": {
+    "geometry.CA_contact_pairs8": 0.25,
+    "geometry.glycan_ND2_min_BB_distance": 0.25,
+    "sequence.hydrophobic8_max": 0.5
+  },
+  "selected_backbones": [
+    "tl1a_bg_terminal_backbone_1",
+    "tl1a_bg_terminal_backbone_2",
+    "tl1a_bg_terminal_backbone_3"
+  ],
+  "leave_one_metric_out": [
+    {
+      "omitted": "geometry.CA_contact_pairs8",
+      "selected_ids": [
+        "tl1a_bg_terminal_3_gen",
+        "tl1a_bg_terminal_2_gen",
+        "tl1a_bg_terminal_1_gen"
+      ],
+      "jaccard": 1.0
+    },
+    {
+      "omitted": "geometry.glycan_ND2_min_BB_distance",
+      "selected_ids": [
+        "tl1a_bg_terminal_2_gen",
+        "tl1a_bg_terminal_1_gen",
+        "tl1a_bg_terminal_3_gen"
+      ],
+      "jaccard": 1.0
+    },
+    {
+      "omitted": "sequence.hydrophobic8_max",
+      "selected_ids": [
+        "tl1a_bg_terminal_2_gen",
+        "tl1a_bg_terminal_3_gen",
+        "tl1a_bg_terminal_1_gen"
+      ],
+      "jaccard": 1.0
+    }
+  ],
+  "leave_one_family_out": [
+    {
+      "omitted": "geometry",
+      "selected_ids": [
+        "tl1a_bg_terminal_1_gen",
+        "tl1a_bg_terminal_2_gen",
+        "tl1a_bg_terminal_3_gen"
+      ],
+      "jaccard": 1.0
+    },
+    {
+      "omitted": "sequence",
+      "selected_ids": [
+        "tl1a_bg_terminal_2_gen",
+        "tl1a_bg_terminal_3_gen",
+        "tl1a_bg_terminal_1_gen"
+      ],
+      "jaccard": 1.0
+    }
+  ],
+  "pre_refinement_selected_ids": [
+    "tl1a_bg_terminal_3_gen",
+    "tl1a_bg_terminal_1_gen"
+  ],
+  "predeclared_local_repair_diagnostic_ids": [
+    "tl1a_bg_terminal_2_gen"
+  ],
+  "allocation_note": "AF2 sequence-only prediction started on the two original gate survivors plus one predeclared local-repair diagnostic while CPU minimization was pending. This final generation-only allocation includes the successfully repaired backbone; no independent scores enter its inputs."
+}

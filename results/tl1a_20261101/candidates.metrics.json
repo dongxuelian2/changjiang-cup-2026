@@ -97,14 +97,14 @@
     "geometry.other_chain_min_BB_distance": {
       "model": "observed 2RE9 + generated backbone",
       "version": "local-v1",
-      "meaning": "binder backbone to unconditioned trimer B/C heavy atoms",
+      "meaning": "binder backbone to adjacent native trimer B/C heavy atoms",
       "units": "angstrom",
       "direction": "higher"
     },
     "geometry.other_chain_BB_clash_pairs2": {
       "model": "observed 2RE9 + generated backbone",
       "version": "local-v1",
-      "meaning": "binder backbone / trimer B/C atom pairs below 2 A",
+      "meaning": "binder backbone / adjacent native trimer B/C atom pairs below 2 A",
       "units": "count",
       "direction": "lower"
     },

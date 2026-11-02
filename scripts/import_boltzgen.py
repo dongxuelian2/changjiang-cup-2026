@@ -11,8 +11,9 @@ import shutil
 import sys
 
 import numpy as np
+import Bio
 from Bio.PDB import MMCIFParser, PDBParser, PDBIO, Superimposer
-from Bio.SeqUtils import seq1
+from Bio.SeqUtils import seq1, seq3
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -34,6 +35,13 @@ def main(args):
     previous = json.loads((ROOT / "results/tl1a_20261101/candidates.json").read_text())
     defs = {k: v for k, v in previous["metric_definitions"].items()
             if k.startswith(("sequence.", "geometry.")) or k == "official.ipsae"}
+    seq_version=Bio.__version__+' / local-v1'
+    if existing and any(v['version']!=seq_version for k,v in existing['metric_definitions'].items()
+                        if k.startswith('sequence.')):
+        raise ValueError('append using the original sequence-metric BioPython environment, or import into a separate dataset')
+    for key,spec in defs.items():
+        if key.startswith('sequence.'):spec['version']=seq_version
+    meta['import_environment']=dict(biopython=Bio.__version__,numpy=np.__version__)
     defs["geometry.native_all_chain_BB_clash_pairs2"] = dict(
         model="observed 2RE9 + BoltzGen backbone", version="local-v1",
         meaning="designed binder BACKBONE vs ALL observed native trimer heavy atoms, distance <2 A",
@@ -91,7 +99,9 @@ def main(args):
             for (c,i),kind in zip(token_residues,masks["binding_type"])
             if kind == 1 and c in original_targets]
         if sequence in seen:
-            seen[sequence]["metadata"].setdefault("duplicate_outputs", []).append(source)
+            metadata=seen[sequence]["metadata"]
+            if source != metadata["generation"] and source not in metadata.get("duplicate_outputs", []):
+                metadata.setdefault("duplicate_outputs", []).append(source)
             continue
         # Upstream writer renames chains A/B/C/D by order. Restore canonical
         # target ABC and designed D by verified sequence, not presumed labels.
@@ -125,6 +135,32 @@ def main(args):
         writer.save(str(temporary))
         canonical, metrics, epitope = geometry(temporary, reference, "D")
         temporary.unlink()
+        inherited=None
+        group=f"{args.label}_backbone_{backbone_index}"
+        if args.inherit_refined_backbones and stage=='inverse_folding':
+            siblings=[r for r in rows if r['structural_group']==group]
+            parents=[r for r in siblings if 'refinement' in r['metadata']]
+            if parents:
+                if len(parents)!=1 or any(k.startswith(('af2.','boltz')) and v is not None
+                        for r in siblings for k,v in r['metrics'].items()):
+                    raise ValueError('inherit local repair only within a new, independently unscreened family')
+                parent=parents[0];parser_pdb=PDBParser(QUIET=True)
+                original=next(s for s in parent['structures'] if s['role']=='unrefined_generated_backbone_complex')
+                before=parser_pdb.get_structure('original',ROOT/original['path'])
+                bx=np.array([r['CA'].coord for r in canonical[0]['D']])
+                px=np.array([r['CA'].coord for r in before[0]['D']])
+                if bx.shape!=px.shape:raise ValueError('IF backbone length changed')
+                rms=float(np.sqrt(np.mean(np.sum((bx-px)**2,axis=-1))))
+                if rms>.02:raise ValueError('IF backbone differs from its atom14 source; cannot inherit repair')
+                canonical=parser_pdb.get_structure('refined',ROOT/parent['structures'][0]['path'])
+                for residue,aa in zip(canonical[0]['D'],sequence):
+                    if any(a.name not in ('N','CA','C','O') for a in residue):
+                        raise ValueError('thread only backbone coordinates, never another sequence sidechains')
+                    residue.resname=seq3(aa).upper()
+                writer.set_structure(canonical);writer.save(str(temporary))
+                canonical,metrics,epitope=geometry(temporary,reference,'D');temporary.unlink()
+                inherited=dict(parent_id=parent['id'],original_backbone_CA_rmsd=rms,
+                               refinement=parent['metadata']['refinement'])
         bxyz = np.array([a.coord for a in canonical[0]["D"].get_atoms()])
         txyz = np.array([a.coord for c in "ABC" for a in reference[0][c].get_atoms()])
         metrics["geometry.native_all_chain_BB_clash_pairs2"] = int((np.linalg.norm(bxyz[:, None]-txyz, axis=-1)<2).sum())
@@ -138,13 +174,16 @@ def main(args):
         row = dict(id=name, sequence=sequence, target_id="TL1A", design_type="minibinder",
                    source_model="BoltzGen" if stage == "atom14" else "BoltzGen + BoltzGen-IF",
                    source_version="0.3.2", run_id=run.name,
-                   structural_group=f"{args.label}_backbone_{backbone_index}",
+                   structural_group=group,
                    epitope_residues=epitope, metrics=metrics,
                    structures=[dict(path=destination.relative_to(ROOT).as_posix(), chain_id="D",
                                     role="generated_backbone_complex_not_refolded")],
                    metadata=dict(generation=source, status="generated_not_independently_validated",
                                  target_trimer_CA_rmsd=float(fit.rms),
                                  coordinates="native target + generated binder BACKBONE only; no inverse-folded sidechains invented"))
+        if inherited:
+            row['metadata']['backbone_refinement']=inherited
+            row['metadata']['coordinates']='native ABC + locally repaired shared BACKBONE, threaded with actual IF sequence; NOT a refold; original CIF retained'
         rows.append(row)
         seen[sequence] = row
     data = dict(schema_version=1, synthetic=False, metric_definitions=defs, candidates=rows)
@@ -171,4 +210,6 @@ if __name__ == "__main__":
     p.add_argument("--out", default="results/tl1a_boltzgen_20261101")
     p.add_argument("--raw-only", action="store_true", help="inspect real generation outputs before inverse folding finishes")
     p.add_argument("--append", action="store_true", help="preserve existing sequences and independent evaluations while adding a new real run")
+    p.add_argument('--inherit-refined-backbones',action='store_true',
+                   help='thread new IF outputs onto an existing small local repair only if their original backbone is unchanged and the family has no independent evaluations')
     main(p.parse_args())

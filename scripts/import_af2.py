@@ -42,7 +42,7 @@ def main(args):
         ("binder_buried_sasa", "binder SASA lost upon binding, Shrake-Rupley 100 points, 1.4 A probe", "angstrom^2", "higher"),
         ("boltz_pose_CA_rmsd", "AF2 vs Boltz-2 interface pose RMSD, allowing homotrimer relabelling", "angstrom", "lower")]:
         dataset["metric_definitions"]["af2."+key] = dict(model="AF2-Multimer-v3 / ipSAE or geometry",
-            version="ColabFold 1.6.3; model 3 multimer v3; ipSAE 6174cf9",
+            version=f"ColabFold {meta['package_version']}; model {meta['model_order'][0]} multimer v3; ipSAE 6174cf9",
             meaning=meaning+"; NOT official ESMFold2 score", units=units, direction=direction)
     processed,missing = [],[]
     for row in dataset["candidates"]:

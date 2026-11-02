@@ -8,7 +8,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from changjiang_select.data import load_candidates
+from changjiang_select.data import load_candidates, save_candidates
 from changjiang_select.objective import save_scenarios
 from changjiang_select.optimize import exhaustive, portfolio, singleton_top_k
 from changjiang_select.proxies import rank_objective, score_correlations, source_family
@@ -28,6 +28,12 @@ def main(args):
         generated_backbones=len({r["structural_group"] for r in all_rows}),
         boltz_evaluated_sequences=len(boltz_ids), af2_evaluated_sequences=len(af2_ids),
         both_predictors_evaluated_sequences=len(boltz_ids & af2_ids))
+    stage_excluded=[]
+    if args.generation_stage:
+        stage_excluded=[r['id'] for r in all_rows
+                        if r.get('metadata',{}).get('generation',{}).get('stage')!=args.generation_stage]
+        excluded_ids=set(stage_excluded)
+        all_rows=[r for r in all_rows if r['id'] not in excluded_ids]
     if args.require_boltz:
         has_prediction = lambda r: any(r["metrics"].get(c+"ipsae_10") is not None for c in contexts)
         missing_evaluation = [r["id"] for r in all_rows if not has_prediction(r)]
@@ -49,7 +55,7 @@ def main(args):
         if row["design_type"] != "minibinder" or not 40 <= len(row["sequence"]) <= 100:
             reasons.append("wrong sequence format")
         if m["geometry.other_chain_BB_clash_pairs2"]:
-            reasons.append("unconditioned trimer backbone clash below 2 A")
+            reasons.append("generated binder backbone clashes with adjacent native protomers below 2 A")
         if m.get("geometry.native_all_chain_BB_clash_pairs2", 0):
             reasons.append("generated binder backbone clashes with an observed native target atom below 2 A")
         if m["geometry.glycan_ND2_min_BB_distance"] < 12:
@@ -124,6 +130,8 @@ def main(args):
               "candidate_count": len(all_rows), "unique_backbones": len({r['structural_group'] for r in all_rows}),
               "not_in_evaluated_cohort": missing_evaluation,
               "gate": "research-only sequence/compactness, native trimer and 12 A glycan-envelope gates; independent target beta-core/PAE checks when available; not official admission thresholds",
+              "generation_stage_filter": args.generation_stage,
+              "excluded_by_generation_stage": stage_excluded,
               "gate_survivors": len(rows), "rejections": rejected,
               "correlations_all_sequences": score_correlations(all_rows, keys),
               "dependence_warning": "sequence variants share backbone-level scores; no inferential p-values, calibration or success probabilities"}
@@ -139,7 +147,21 @@ def main(args):
     elif rows:
         working = copy.deepcopy(dataset)
         working["candidates"] = rows
-        obj, used, skipped = rank_objective(working, keys)
+        try:
+            obj, used, skipped = rank_objective(working, keys)
+        except ValueError as exc:
+            if not str(exc).startswith("no complete, nonconstant metrics"):
+                raise
+            # Real variants can share every geometric value, while a generator
+            # NLL is missing for the raw sequence. Do not invent an ordering.
+            report.update(selected_ids=[],fitted_proxy_objectives=None,
+                selection_note="no complete nonconstant decision views; initial batch remains unranked",
+                used_metrics=[])
+            (out / "proxy_scenarios.json").unlink(missing_ok=True)
+            save_candidates(working,out/"eligible_candidates.json")
+            (out/"triage.json").write_text(json.dumps(report,indent=2,allow_nan=False)+"\n")
+            print(json.dumps({k:report.get(k) for k in ("candidate_count","gate_survivors","selected_ids","selection_note")},indent=2))
+            return
         k = min(args.k, len(rows), 20)
         groups = [r["structural_group"] for r in rows] if args.one_per_backbone else None
         if groups is not None:
@@ -189,7 +211,6 @@ def main(args):
         report["selected_ids"] = []
     if rows:
         # Existing optimizer exports remain directly reproducible from this table.
-        from changjiang_select.data import save_candidates
         working = copy.deepcopy(dataset)
         working["candidates"] = rows
         save_candidates(working, out / "eligible_candidates.json")
@@ -210,5 +231,7 @@ if __name__ == "__main__":
     p.add_argument("--require-af2", action="store_true", help="require an actual AF2 cross-check; in complete mode require both models' interface consistency")
     p.add_argument("--complete", action="store_true", help="require full-trimer deep-MSA fold/pose/interface and all-chain steric consistency; research criteria only")
     p.add_argument("--one-per-backbone", action="store_true", help="exploratory compute allocation: at most one sequence per generated backbone")
+    p.add_argument('--generation-stage',choices=['atom14','inverse_folding'],
+                   help='optional BoltzGen allocation cohort; generation coverage still reports the entire input dataset')
     p.add_argument("--out", default="build/real_triage")
     main(p.parse_args())

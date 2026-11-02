@@ -614,3 +614,209 @@ All gates are research conventions, not official admission thresholds. In
 particular, native rotamers, a rigid reference and a spherical glycan envelope
 can reject a physically possible binder. Predictor failure is not measured
 nonbinding. Conversely, passing these checks would still not demonstrate KD.
+
+## 13. Failure-informed native context in actual gradient design (2026-11-02)
+
+These measurements use real outputs, not a synthetic benchmark.
+`interface_audit.csv` measures all-atom burial only for 19 raw BoltzGen atom14
+outputs; inverse-folded placeholder sidechains are excluded. The four tip
+backbones bury only 283–372 A^2, with no aromatic burial. Across 16 previously
+evaluated complexes (48 protomer predictions, not IID samples), Q167/A168 CA
+displacement medians in the native beta-core frame are 9.41/11.23 A. L235/Y238
+instead have medians 0.26/0.54 A and p90 values 0.44/0.75 A. This is model
+disagreement, not experimental dynamics. It motivates a new hydrophobic patch,
+not a guarantee of bindability.
+
+ColabDesign 1.1.3 at `8fd167defd1b0f98e29f00584ff4f3987e6935dc` actually ran
+AF2-Multimer-v3 model 3 gradient hallucination on the local GPU. A full native
+protomer is templated; all observed trimer heavy atoms and six glycan anchors
+also enter geometric losses. No old binder sequence/backbone initializes it.
+Imposing all strict contact/steric losses from the start did not converge well.
+A new random trajectory used folding/approach before stricter geometry. Its
+early soft-state confidence was high, but the final discrete sequence still
+overlapped neighboring protomers. Simultaneous changes to weights, recycling,
+initialization and discretization prevent causal attribution to a single change.
+Soft-sequence coordinates are not exported as an independently refolded sequence.
+
+### Existing coverage solvers allocate native feature fragments
+
+On the first discrete trajectory, all **429** severe backbone/native-atom pairs
+were against B/C, with zero against A. Geometric penalties alone did not give
+the predictor enough explicit neighboring context. These two new failed poses
+were used only as **negative clash probes**, not as starting binders.
+
+For a neighboring protomer, let P contain observed failed-binder backbone points
+within 2.5 A of its native atoms. Partition its sequence into nonoverlapping
+five-residue motifs (the last has four). Define
+
+\[
+u_{rp}=\mathbf1\{\min_{a\in r}\|a-p\|<4\ \text{A}\},\qquad
+F(S)=|P|^{-1}\sum_{p\in P}\max_{r\in S}u_{rp}.
+\]
+
+This is the existing fixed coverage objective. Four motifs use at most 20
+residues per neighbor. The existing cardinality guarantee applies to the fixed
+matrix; 33 choose 4 = 40,920 subsets permit exact enumeration. No new solver
+is introduced.
+
+| Neighbor | Actual clash probe points | Singleton Top-K | Portfolio | Exact, actually used |
+|---|---:|---:|---:|---:|
+| B | 350 | .657143 | .731429 | .782857 |
+| C | 199 | .718593 | .798995 | .824121 |
+
+The selected motifs use **19 residues per neighbor**, alongside the complete
+164-residue A protomer: 202 target feature tokens plus an 80-residue binder.
+Original chain/residue identities and gaps are retained in the input map. All
+observed ABC atoms remain in geometric checks. Coverage concerns the selected
+historical clash probes only; it does not establish full context equivalence,
+neural fidelity, binding probability or better KD.
+
+The new random backbone had zero B/C backbone clashes but two local A clashes.
+Restrained OpenMM/Amber14+OBC2 minimization held target particles fixed, removed
+both and moved binder CAs by RMS 0.27 A (maximum 1.09 A). No missing residues
+were added. PDBFixer rebuilt the unresolved B:F110 ring and binder terminal OXT
+only for force-field preparation, not as experimental coordinates. Energies are
+not affinity estimates. This is an empirical geometric improvement, not an
+isolated ablation proving that exact motif selection alone caused it.
+
+### Independent sequence checks still reject the family
+
+The refined backbone's raw sequence and two soluble ProteinMPNN core variants
+were frozen before prediction. MPNN kept the designed interface fixed. Generator
+confidence is not copied onto new variants. Existing complete decision views
+were constant or missing, so no comparative rank objective or success
+probabilities were invented.
+
+AF2 model **1**, not used for design, predicted the full official trimer without
+templates or an initial guess. All three ipSAE(10) values are zero; binder fold
+RMSDs are 3.94/2.56/2.78 A. Independent Boltz-2 gives ipSAE(10) 0/.096/.106 and
+pose RMSD 37.54/42.35/27.96 A. Its binder-alone fold RMSDs are 3.15/3.29/2.42 A.
+The template-conditioned generator ipSAE(10)=.486 and ipTM=.715 did not
+generalize. Geometric repair alone did not produce a supported fold/association.
+No further variants of these failed backbones are generated. The complete-case
+screen accepts zero of this frozen three-sequence batch, without an experimental
+nonbinding conclusion.
+
+## 14. New-backbone tests at the stable patch
+
+BoltzGen adherence actually generated eight new full-trimer backbones at
+L235/Y238, with 500 diffusion steps, 90–100 aa and two inverse-folded sequences
+per backbone. All 24 emitted sequences are distinct. Learned exclusions cover
+native residues within the heuristic glycan envelope and residues with large
+historical prediction disagreement; they are not hard collision constraints.
+Two backbones initially have zero severe native-atom overlaps. A third has
+three local overlaps; fixed-target restrained minimization removes them with
+CA RMS movement 0.214 A and maximum movement 1.061 A. This was predeclared
+before its independent prediction, not tuned to prediction feedback.
+
+Seven sequences across three families then pass generation-only gates. Existing
+one-per-backbone portfolio, singleton and exact allocation at k=3 all give
+**0.791667** fitted rank coverage. This is allocation on that cohort, not a
+quantity comparable to previous rounds' objective values or experimental KD.
+The initial two-family allocation and the additional local-repair diagnostic
+are recorded in the frozen report; prediction metrics do not enter its inputs.
+
+All three selected raw co-design sequences have AF2 model-1 ipSAE(10)=0.
+Boltz-2 distinguishes their failure modes:
+
+| Backbone | Boltz ipSAE(10) | Fold RMSD A | Pose RMSD A | Binder-alone fold RMSD A |
+|---|---:|---:|---:|---:|
+| terminal 1 | .318 | 2.16 | 9.06 | 2.55 |
+| terminal 2, locally repaired | 0 | .86 | 2.10 | .90 |
+| terminal 3 | 0 | .46 | 20.53 | .45 |
+
+A close predicted pose can coexist with poor interchain confidence. Conversely,
+a highly reproducible binder fold need not reproduce association. Model-1's
+binder pLDDT is .279/.375/.473, whereas Boltz's complex binder pLDDT is
+.847/.794/.852. Target beta-core RMSDs remain below 1 A. These observations
+do not support blaming target-state error alone or treating either predictor
+as experimental truth. BoltzGen and Boltz-2 share ancestry.
+
+The proxy ranks also exposed a selection limitation: minimizing hydrophobic
+windows preferred raw atom14 co-design sequences to inverse-folded variants,
+without an independent sequence-fold likelihood. This is a hypothesis about
+an uncalibrated ranking bias, not proof that inverse folding will rescue binding.
+Two selected raw outputs show immunoglobulin-like sequence patterns and only
+.13/.15 alpha-torsion fractions; the third is predominantly helical. The torsion
+proxy uses phi [-100,-30], psi [-80,-5] degrees; it is not DSSP or a novelty test.
+The complete screen accepts zero sequences. Further experiments change the
+backbone/topology constraints and prioritize completed inverse-folding outputs;
+they do not generate additional variants of these screened families.
+
+## 15. Topology constraints, inverse folding and a sequence-rank reversal
+
+Another actual BoltzGen **diverse** run generated four new 80-aa backbones and
+eight IF sequences. No previous binder initializes them. Three-helix conditioning
+requests residues 7–25, 32–50 and 57–75; all actual emitted NPZ masks contain
+57 HELIX and 23 LOOP positions. Per-residue AA masks contain 194 blocked entries.
+Every actual IF output has no C, and no P/G at the requested helix positions.
+This verifies model inputs and emitted restrictions, not perfect physical SS.
+Raw alpha-torsion fractions are .731–.795 using the declared angular proxy.
+
+Local fixed-target repairs remove four overlaps on backbone 1 and one on
+backbone 2, with CA RMS movement .236/.153 A and maximum 1.073/.435 A. IF
+variants of backbone 1 use the repaired shared backbone only after checking
+their original backbone against its unrefined atom14 parent (<.02 A RMS).
+These are explicitly threaded design poses; no new sidechains or independent
+refold scores are invented. Original CIF/NPZ files remain available.
+
+The existing generation-stage filter operates on the eight IF sequences while
+retaining twelve-sequence generation coverage. Six across three families pass
+initial geometry. At k=3, one per family, portfolio/singleton/exact give .75
+fitted rank coverage. Missing likelihoods are not fabricated. This is an
+uncalibrated allocation experiment; checkpoint, length, topology constraints
+and sequence-stage choice change together, preventing causal attribution.
+
+| IF backbone | AF2 fold RMSD A | Boltz fold RMSD A | AF2 pose RMSD A | Boltz pose RMSD A | AF2 / Boltz ipSAE(10) |
+|---|---:|---:|---:|---:|---:|
+| 0 | 3.11 | 2.57 | 18.07 | 10.91 | 0 / 0 |
+| 1, local repair | .92 | .71 | 21.11 | 29.64 | 0 / 0 |
+| 3 | 1.31 | .85 | 30.79 | 35.53 | .013 / .178 |
+
+Two folds are consistent across architectures while association remains
+unsupported. The ipSAE rank correlation is 1 on these three selected sequences,
+mostly because two pairs are zero; the highest pair still has incompatible
+poses. This is not a calibrated relationship to KD or evidence of general model
+agreement. BoltzGen/Boltz share ancestry; there are no inferential p-values.
+
+### Full-sequence design on an independently unscreened backbone
+
+Before any family-2 member is independently evaluated, soluble ProteinMPNN
+designs two complete binder sequences in fixed native ABC context. No interface
+positions are fixed. The CPU batch really executes the cached soluble
+`v_48_020` model; recorded sequence-generation time is 5.10 s, excluding model
+loading. Emitted binder FASTAs are exactly 80 aa. The log's
+572-residue length includes the 492 fixed target residues. The first failed
+CPU startup, before any sequence output, is excluded from candidate counts.
+
+On this single shared backbone, samples 1/2 have MPNN NLL .9321/.9918, but
+independent AF2 ipSAE(10) 0/.278 and pose RMSD 14.85/6.85 A. Fold RMSDs are
+1.38/1.41 A; pLDDT .772/.844. The lower-likelihood sequence has the stronger
+predicted interface. This finite observed rank reversal refutes a monotone
+NLL-to-AF2-interface ordering for this pair, not a general statistical claim
+or a result about experimental affinity. Both initial samples were frozen and
+evaluated; there is no post-failure sequence expansion. A one-sequence NLL-only
+allocation would have missed this limited interface signal.
+
+Sample 2 still has 39 overlaps with native target atoms, 11 in its predicted
+complex and 11.83 A glycan clearance. It fails the complete research criteria.
+A predeclared lenient compute-allocation gate (.1 ipSAE, .7 pLDDT, <=2 A fold,
+<=10 A pose) allocates Boltz follow-up to sample 2 only; this gate is neither
+an official threshold nor a binding probability.
+
+Boltz follow-up gives sample 2 ipSAE(10/15)=.166/.215, pair ipTM .700,
+binder pLDDT .846 and fold/pose RMSD 1.12/3.40 A. Binder-alone pLDDT is .934,
+fold RMSD 1.31 A. The target beta-core remains close to native (.35 A).
+However, cross-model pose RMSD is 4.95 A, native-atom overlaps remain (23 pairs),
+and glycan-anchor clearance falls to 10.69 A. The binder is folded in both
+predictors, without a sufficiently consistent, glycan-safe, confident interface.
+This is a diagnostic sequence, not a completed candidate or measured nonbinder.
+No further sequence generation uses the screened family.
+
+The final fourteen-sequence table has five actual AF2 predictions and four
+Boltz complexes with four binder-alone controls. Four sequences, on four
+backbones, have both predictors; none pass the declared complete criteria.
+MPNN sample 1 is separately labeled an early AF2 rejection with no Boltz run,
+rather than silently treated as a complete-case result. Missing measurements
+and failed measurements remain distinct. There is no calibrated success
+probability, official admission score or experimental KD.

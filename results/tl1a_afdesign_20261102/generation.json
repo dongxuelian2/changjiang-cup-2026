@@ -1,0 +1,1561 @@
+{
+  "runs": {
+    "tl1a_afdesign_terminal_v2": {
+      "synthetic": false,
+      "model": "ColabDesign AF2-Multimer gradient hallucination",
+      "upstream_revision": "8fd167defd1b0f98e29f00584ff4f3987e6935dc",
+      "package_version": "1.1.3",
+      "jax_version": "0.6.2",
+      "python_version": "3.11.18 (main, Oct 26 2026, 14:05:07) [Clang 23.1.3 ]",
+      "checkpoint": {
+        "url": "https://storage.googleapis.com/alphafold/alphafold_params_colab_2022-12-06.tar",
+        "archive_member": "params_model_3_multimer_v3.npz",
+        "byte_offset": 2980471808,
+        "size": 373043148,
+        "sha256": "46d9bcad288edc7ad5a6362ee8e5f84307a69712e00e6c36b1ef9daf96ebc9ce",
+        "validation": "complete NPZ ZIP CRC; original parameter bytes"
+      },
+      "design_model": "model_3_multimer_v3",
+      "target": "O95150:72-251",
+      "observed_target": "88-251",
+      "template": true,
+      "predictor_stoichiometry": "one native target protomer + one de novo binder",
+      "geometric_context": "all native ABC heavy atoms; six N133/N229 ND2 anchors",
+      "binder_template": false,
+      "initial_binder_sequence": null,
+      "conditioning": "native target only; random sequence logits; no prior binder/scaffold",
+      "target_sha256": "071c9955d9d204fa3f6c3bb1c2cefb12f3180e58b1b8d7340195989e807f134f",
+      "target_context_sha256": "76332b05499193e6083fba3a453a5453ac7cd9e860dc5906b5b48e3ef722a49a",
+      "site": "terminal",
+      "hotspots_uniprot": [
+        235,
+        238
+      ],
+      "patch_uniprot": [
+        102,
+        103,
+        104,
+        105,
+        118,
+        120,
+        156,
+        158,
+        159,
+        176,
+        207,
+        209,
+        210,
+        231,
+        232,
+        233,
+        234,
+        235,
+        238,
+        239,
+        240,
+        241,
+        243
+      ],
+      "binder_length": 80,
+      "stages": [
+        75,
+        45,
+        5
+      ],
+      "design_recycles": 0,
+      "final_hard_recycles": 1,
+      "loss_weights": {
+        "plddt": 0.1,
+        "pae": 0.4,
+        "con": 0.5,
+        "i_con": 1.0,
+        "i_pae": 0.5,
+        "interface_cover": 1.0,
+        "native_target": 0.1,
+        "context_steric": 3.0,
+        "glycan": 1.0
+      },
+      "interface_cover": {
+        "num": 2,
+        "cutoff": 8.0,
+        "binary": true,
+        "num_pos": 12
+      },
+      "native_BB_distance_penalty_A": 2.5,
+      "glycan_BB_penalty_A": 15.0,
+      "omitted_AAs": "C",
+      "official_equivalence": false,
+      "status": "generated_not_independently_validated",
+      "trajectories": [
+        {
+          "seed": 20261105,
+          "status": "generated_not_independently_validated",
+          "sequence_count": 1,
+          "applied_loss_weights": {
+            "con": 0.5,
+            "exp_res": 0.0,
+            "helix": 0.0,
+            "i_con": 1.0,
+            "i_pae": 0.5,
+            "pae": 0.4,
+            "plddt": 0.1,
+            "seq_ent": 0.0,
+            "interface_cover": 1.0,
+            "native_target": 0.1,
+            "context_steric": 3.0,
+            "glycan": 1.0
+          },
+          "progress": {
+            "iteration": 120,
+            "loss": 31.850845336914062,
+            "binder_plddt": 0.3567531406879425,
+            "iptm": 0.1765681505203247,
+            "losses": {
+              "con": 5.021227836608887,
+              "context_steric": 3.8237693309783936,
+              "exp_res": 0.2518439292907715,
+              "glycan": 6.10836124420166,
+              "i_con": 7.320279121398926,
+              "i_pae": 0.7794507145881653,
+              "interface_cover": 3.594083309173584,
+              "native_target": 1.0436428785324097,
+              "pae": 0.7194592356681824,
+              "plddt": 0.6432468295097351,
+              "seq_ent": 0.00860974658280611
+            }
+          },
+          "sequence": "TIEIILVRKELPKHDEDYKEAAKVMDWWMKWVMGTDPQQFVHSLKRIMRSLMDVVKQVKKPIGSMKDGDKDPGSPGDDIV",
+          "elapsed_seconds": 702.0049667369999,
+          "final_generator_log": {
+            "con": 5.1237359046936035,
+            "context_steric": 3.699824094772339,
+            "exp_res": 0.2879853844642639,
+            "glycan": 5.210796356201172,
+            "i_con": 7.39804744720459,
+            "i_pae": 0.7564339637756348,
+            "interface_cover": 3.50042724609375,
+            "native_target": 0.9595336318016052,
+            "pae": 0.7036226987838745,
+            "plddt": 0.3462843894958496,
+            "seq_ent": 2.712939977645874,
+            "loss": 30.591602325439453,
+            "i_ptm": 0.1874634474515915,
+            "ptm": 0.630699634552002,
+            "hard": 1.0,
+            "soft": 0.0,
+            "temp": 1.0,
+            "recycles": 1,
+            "models": [
+              0
+            ]
+          }
+        }
+      ],
+      "elapsed_seconds": 705.0479843190001,
+      "import_environment": {
+        "biopython": "1.84",
+        "numpy": "1.26.4"
+      }
+    },
+    "tl1a_afdesign_terminal_curriculum": {
+      "synthetic": false,
+      "model": "ColabDesign AF2-Multimer gradient hallucination",
+      "upstream_revision": "8fd167defd1b0f98e29f00584ff4f3987e6935dc",
+      "package_version": "1.1.3",
+      "jax_version": "0.6.2",
+      "python_version": "3.11.18 (main, Oct 26 2026, 14:05:07) [Clang 23.1.3 ]",
+      "checkpoint": {
+        "url": "https://storage.googleapis.com/alphafold/alphafold_params_colab_2022-12-06.tar",
+        "archive_member": "params_model_3_multimer_v3.npz",
+        "byte_offset": 2980471808,
+        "size": 373043148,
+        "sha256": "46d9bcad288edc7ad5a6362ee8e5f84307a69712e00e6c36b1ef9daf96ebc9ce",
+        "validation": "complete NPZ ZIP CRC; original parameter bytes"
+      },
+      "design_model": "model_3_multimer_v3",
+      "target": "O95150:72-251",
+      "observed_target": "88-251",
+      "template": true,
+      "predictor_stoichiometry": "one native target protomer + one de novo binder",
+      "geometric_context": "all native ABC heavy atoms; six N133/N229 ND2 anchors",
+      "binder_template": false,
+      "initial_binder_sequence": null,
+      "conditioning": "native target only; random sequence logits; no prior binder/scaffold",
+      "target_sha256": "071c9955d9d204fa3f6c3bb1c2cefb12f3180e58b1b8d7340195989e807f134f",
+      "target_context_sha256": "76332b05499193e6083fba3a453a5453ac7cd9e860dc5906b5b48e3ef722a49a",
+      "site": "terminal",
+      "hotspots_uniprot": [
+        235,
+        238
+      ],
+      "patch_uniprot": [
+        102,
+        103,
+        104,
+        105,
+        118,
+        120,
+        156,
+        158,
+        159,
+        176,
+        207,
+        209,
+        210,
+        231,
+        232,
+        233,
+        234,
+        235,
+        238,
+        239,
+        240,
+        241,
+        243
+      ],
+      "binder_length": 80,
+      "stages": [
+        75,
+        45,
+        5
+      ],
+      "design_recycles": 1,
+      "final_hard_recycles": 1,
+      "loss_weights": {
+        "plddt": 0.1,
+        "pae": 0.4,
+        "con": 0.5,
+        "i_con": 1.0,
+        "i_pae": 0.5,
+        "interface_cover": 1.0,
+        "native_target": 0.1,
+        "context_steric": 3.0,
+        "glycan": 1.0,
+        "placement": 0.5,
+        "rg": 0.3
+      },
+      "interface_cover": {
+        "num": 2,
+        "cutoff": 8.0,
+        "binary": true,
+        "num_pos": 12
+      },
+      "schedule": "curriculum",
+      "target_derived_binder_center_A": [
+        31.690326690673828,
+        29.645427703857422,
+        -20.332698822021484
+      ],
+      "center_native_clearance_A": 11.145339946686896,
+      "center_glycan_clearance_A": 30.54385964237983,
+      "native_BB_distance_penalty_A": 2.5,
+      "glycan_BB_penalty_A": 15.0,
+      "omitted_AAs": "C",
+      "official_equivalence": false,
+      "status": "generated_not_independently_validated",
+      "trajectories": [
+        {
+          "seed": 20261106,
+          "status": "generated_not_independently_validated",
+          "sequence_count": 1,
+          "applied_loss_weights": {
+            "con": 0.5,
+            "exp_res": 0.0,
+            "helix": 0.0,
+            "i_con": 1.0,
+            "i_pae": 0.5,
+            "pae": 0.4,
+            "plddt": 0.1,
+            "seq_ent": 0.0,
+            "interface_cover": 1.0,
+            "native_target": 0.1,
+            "context_steric": 3.0,
+            "glycan": 1.0,
+            "placement": 0.5,
+            "rg": 0.3
+          },
+          "phases": [
+            {
+              "name": "fold_and_approach",
+              "iteration": 0,
+              "weights": {
+                "con": 1.0,
+                "exp_res": 0.0,
+                "helix": 0.0,
+                "i_con": 1.0,
+                "i_pae": 0.1,
+                "pae": 0.4,
+                "plddt": 0.1,
+                "seq_ent": 0.0,
+                "interface_cover": 0.25,
+                "native_target": 0.1,
+                "context_steric": 0.1,
+                "glycan": 0.05,
+                "placement": 0.2,
+                "rg": 0.3
+              },
+              "intra_cutoff": 14.0,
+              "inter_cutoff": 20.0,
+              "cover_cutoff": 14.0
+            },
+            {
+              "name": "geometric_transition",
+              "iteration": 75,
+              "weights": {
+                "con": 0.5,
+                "exp_res": 0.0,
+                "helix": 0.0,
+                "i_con": 1.0,
+                "i_pae": 0.5,
+                "pae": 0.4,
+                "plddt": 0.1,
+                "seq_ent": 0.0,
+                "interface_cover": 1.0,
+                "native_target": 0.1,
+                "context_steric": 1.0,
+                "glycan": 0.3,
+                "placement": 0.5,
+                "rg": 0.3
+              },
+              "intra_cutoff": 10.0,
+              "inter_cutoff": 14.0,
+              "cover_cutoff": 12.0
+            },
+            {
+              "name": "strict_interface",
+              "iteration": 90,
+              "weights": {
+                "con": 0.5,
+                "exp_res": 0.0,
+                "helix": 0.0,
+                "i_con": 1.0,
+                "i_pae": 0.5,
+                "pae": 0.4,
+                "plddt": 0.1,
+                "seq_ent": 0.0,
+                "interface_cover": 1.0,
+                "native_target": 0.1,
+                "context_steric": 3.0,
+                "glycan": 1.0,
+                "placement": 0.5,
+                "rg": 0.3
+              },
+              "intra_cutoff": 8.0,
+              "inter_cutoff": 8.0,
+              "cover_cutoff": 8.0
+            }
+          ],
+          "progress": {
+            "iteration": 120,
+            "loss": 37.84144592285156,
+            "binder_plddt": 0.5365530252456665,
+            "iptm": 0.15355348587036133,
+            "losses": {
+              "con": 4.126197338104248,
+              "context_steric": 4.655227184295654,
+              "exp_res": 0.03870415315032005,
+              "glycan": 2.6574480533599854,
+              "i_con": 7.364728927612305,
+              "i_pae": 0.7791723012924194,
+              "interface_cover": 3.9261178970336914,
+              "native_target": 0.9779632091522217,
+              "pae": 0.6393057703971863,
+              "placement": 14.128868103027344,
+              "plddt": 0.4634470045566559,
+              "rg": 0.03495911508798599,
+              "seq_ent": 0.025251662358641624
+            }
+          },
+          "sequence": "SMMRRISAIFTEWIREDPKKMVGILGQMRYMYRDEAMHLKRHFPDTPRVKFFEDRARRMRVRLPGAGVPDMEDMMRYMFM",
+          "elapsed_seconds": 883.600400131,
+          "final_generator_log": {
+            "con": 3.9692001342773438,
+            "context_steric": 4.110681056976318,
+            "exp_res": 0.024451013654470444,
+            "glycan": 4.317343235015869,
+            "i_con": 7.698076248168945,
+            "i_pae": 0.5224660038948059,
+            "interface_cover": 3.087658405303955,
+            "native_target": 0.954377293586731,
+            "pae": 0.46030908823013306,
+            "placement": 13.389906883239746,
+            "plddt": 0.5860183238983154,
+            "rg": 0.055026181042194366,
+            "seq_ent": 2.712939977645874,
+            "loss": 36.71337127685547,
+            "i_ptm": 0.3962658941745758,
+            "ptm": 0.7034205794334412,
+            "hard": 1.0,
+            "soft": 0.0,
+            "temp": 1.0,
+            "recycles": 1,
+            "models": [
+              0
+            ]
+          }
+        }
+      ],
+      "elapsed_seconds": 886.5354926099999,
+      "import_environment": {
+        "biopython": "1.84",
+        "numpy": "1.26.4"
+      }
+    },
+    "tl1a_afdesign_terminal_motif": {
+      "synthetic": false,
+      "model": "ColabDesign AF2-Multimer gradient hallucination",
+      "upstream_revision": "8fd167defd1b0f98e29f00584ff4f3987e6935dc",
+      "package_version": "1.1.3",
+      "jax_version": "0.6.2",
+      "python_version": "3.11.18 (main, Oct 26 2026, 14:05:07) [Clang 23.1.3 ]",
+      "checkpoint": {
+        "url": "https://storage.googleapis.com/alphafold/alphafold_params_colab_2022-12-06.tar",
+        "archive_member": "params_model_3_multimer_v3.npz",
+        "byte_offset": 2980471808,
+        "size": 373043148,
+        "sha256": "46d9bcad288edc7ad5a6362ee8e5f84307a69712e00e6c36b1ef9daf96ebc9ce",
+        "validation": "complete NPZ ZIP CRC; original parameter bytes"
+      },
+      "design_model": "model_3_multimer_v3",
+      "target": "O95150:72-251",
+      "observed_target": "88-251",
+      "template": true,
+      "predictor_stoichiometry": "one complete native protomer plus explicitly mapped neighbor fragments + one de novo binder",
+      "context_neighbor_residues_per_protomer": 20,
+      "target_residue_map": [
+        {
+          "chain": "A",
+          "uniprot": 88
+        },
+        {
+          "chain": "A",
+          "uniprot": 89
+        },
+        {
+          "chain": "A",
+          "uniprot": 90
+        },
+        {
+          "chain": "A",
+          "uniprot": 91
+        },
+        {
+          "chain": "A",
+          "uniprot": 92
+        },
+        {
+          "chain": "A",
+          "uniprot": 93
+        },
+        {
+          "chain": "A",
+          "uniprot": 94
+        },
+        {
+          "chain": "A",
+          "uniprot": 95
+        },
+        {
+          "chain": "A",
+          "uniprot": 96
+        },
+        {
+          "chain": "A",
+          "uniprot": 97
+        },
+        {
+          "chain": "A",
+          "uniprot": 98
+        },
+        {
+          "chain": "A",
+          "uniprot": 99
+        },
+        {
+          "chain": "A",
+          "uniprot": 100
+        },
+        {
+          "chain": "A",
+          "uniprot": 101
+        },
+        {
+          "chain": "A",
+          "uniprot": 102
+        },
+        {
+          "chain": "A",
+          "uniprot": 103
+        },
+        {
+          "chain": "A",
+          "uniprot": 104
+        },
+        {
+          "chain": "A",
+          "uniprot": 105
+        },
+        {
+          "chain": "A",
+          "uniprot": 106
+        },
+        {
+          "chain": "A",
+          "uniprot": 107
+        },
+        {
+          "chain": "A",
+          "uniprot": 108
+        },
+        {
+          "chain": "A",
+          "uniprot": 109
+        },
+        {
+          "chain": "A",
+          "uniprot": 110
+        },
+        {
+          "chain": "A",
+          "uniprot": 111
+        },
+        {
+          "chain": "A",
+          "uniprot": 112
+        },
+        {
+          "chain": "A",
+          "uniprot": 113
+        },
+        {
+          "chain": "A",
+          "uniprot": 114
+        },
+        {
+          "chain": "A",
+          "uniprot": 115
+        },
+        {
+          "chain": "A",
+          "uniprot": 116
+        },
+        {
+          "chain": "A",
+          "uniprot": 117
+        },
+        {
+          "chain": "A",
+          "uniprot": 118
+        },
+        {
+          "chain": "A",
+          "uniprot": 119
+        },
+        {
+          "chain": "A",
+          "uniprot": 120
+        },
+        {
+          "chain": "A",
+          "uniprot": 121
+        },
+        {
+          "chain": "A",
+          "uniprot": 122
+        },
+        {
+          "chain": "A",
+          "uniprot": 123
+        },
+        {
+          "chain": "A",
+          "uniprot": 124
+        },
+        {
+          "chain": "A",
+          "uniprot": 125
+        },
+        {
+          "chain": "A",
+          "uniprot": 126
+        },
+        {
+          "chain": "A",
+          "uniprot": 127
+        },
+        {
+          "chain": "A",
+          "uniprot": 128
+        },
+        {
+          "chain": "A",
+          "uniprot": 129
+        },
+        {
+          "chain": "A",
+          "uniprot": 130
+        },
+        {
+          "chain": "A",
+          "uniprot": 131
+        },
+        {
+          "chain": "A",
+          "uniprot": 132
+        },
+        {
+          "chain": "A",
+          "uniprot": 133
+        },
+        {
+          "chain": "A",
+          "uniprot": 134
+        },
+        {
+          "chain": "A",
+          "uniprot": 135
+        },
+        {
+          "chain": "A",
+          "uniprot": 136
+        },
+        {
+          "chain": "A",
+          "uniprot": 137
+        },
+        {
+          "chain": "A",
+          "uniprot": 138
+        },
+        {
+          "chain": "A",
+          "uniprot": 139
+        },
+        {
+          "chain": "A",
+          "uniprot": 140
+        },
+        {
+          "chain": "A",
+          "uniprot": 141
+        },
+        {
+          "chain": "A",
+          "uniprot": 142
+        },
+        {
+          "chain": "A",
+          "uniprot": 143
+        },
+        {
+          "chain": "A",
+          "uniprot": 144
+        },
+        {
+          "chain": "A",
+          "uniprot": 145
+        },
+        {
+          "chain": "A",
+          "uniprot": 146
+        },
+        {
+          "chain": "A",
+          "uniprot": 147
+        },
+        {
+          "chain": "A",
+          "uniprot": 148
+        },
+        {
+          "chain": "A",
+          "uniprot": 149
+        },
+        {
+          "chain": "A",
+          "uniprot": 150
+        },
+        {
+          "chain": "A",
+          "uniprot": 151
+        },
+        {
+          "chain": "A",
+          "uniprot": 152
+        },
+        {
+          "chain": "A",
+          "uniprot": 153
+        },
+        {
+          "chain": "A",
+          "uniprot": 154
+        },
+        {
+          "chain": "A",
+          "uniprot": 155
+        },
+        {
+          "chain": "A",
+          "uniprot": 156
+        },
+        {
+          "chain": "A",
+          "uniprot": 157
+        },
+        {
+          "chain": "A",
+          "uniprot": 158
+        },
+        {
+          "chain": "A",
+          "uniprot": 159
+        },
+        {
+          "chain": "A",
+          "uniprot": 160
+        },
+        {
+          "chain": "A",
+          "uniprot": 161
+        },
+        {
+          "chain": "A",
+          "uniprot": 162
+        },
+        {
+          "chain": "A",
+          "uniprot": 163
+        },
+        {
+          "chain": "A",
+          "uniprot": 164
+        },
+        {
+          "chain": "A",
+          "uniprot": 165
+        },
+        {
+          "chain": "A",
+          "uniprot": 166
+        },
+        {
+          "chain": "A",
+          "uniprot": 167
+        },
+        {
+          "chain": "A",
+          "uniprot": 168
+        },
+        {
+          "chain": "A",
+          "uniprot": 169
+        },
+        {
+          "chain": "A",
+          "uniprot": 170
+        },
+        {
+          "chain": "A",
+          "uniprot": 171
+        },
+        {
+          "chain": "A",
+          "uniprot": 172
+        },
+        {
+          "chain": "A",
+          "uniprot": 173
+        },
+        {
+          "chain": "A",
+          "uniprot": 174
+        },
+        {
+          "chain": "A",
+          "uniprot": 175
+        },
+        {
+          "chain": "A",
+          "uniprot": 176
+        },
+        {
+          "chain": "A",
+          "uniprot": 177
+        },
+        {
+          "chain": "A",
+          "uniprot": 178
+        },
+        {
+          "chain": "A",
+          "uniprot": 179
+        },
+        {
+          "chain": "A",
+          "uniprot": 180
+        },
+        {
+          "chain": "A",
+          "uniprot": 181
+        },
+        {
+          "chain": "A",
+          "uniprot": 182
+        },
+        {
+          "chain": "A",
+          "uniprot": 183
+        },
+        {
+          "chain": "A",
+          "uniprot": 184
+        },
+        {
+          "chain": "A",
+          "uniprot": 185
+        },
+        {
+          "chain": "A",
+          "uniprot": 186
+        },
+        {
+          "chain": "A",
+          "uniprot": 187
+        },
+        {
+          "chain": "A",
+          "uniprot": 188
+        },
+        {
+          "chain": "A",
+          "uniprot": 189
+        },
+        {
+          "chain": "A",
+          "uniprot": 190
+        },
+        {
+          "chain": "A",
+          "uniprot": 191
+        },
+        {
+          "chain": "A",
+          "uniprot": 192
+        },
+        {
+          "chain": "A",
+          "uniprot": 193
+        },
+        {
+          "chain": "A",
+          "uniprot": 194
+        },
+        {
+          "chain": "A",
+          "uniprot": 195
+        },
+        {
+          "chain": "A",
+          "uniprot": 196
+        },
+        {
+          "chain": "A",
+          "uniprot": 197
+        },
+        {
+          "chain": "A",
+          "uniprot": 198
+        },
+        {
+          "chain": "A",
+          "uniprot": 199
+        },
+        {
+          "chain": "A",
+          "uniprot": 200
+        },
+        {
+          "chain": "A",
+          "uniprot": 201
+        },
+        {
+          "chain": "A",
+          "uniprot": 202
+        },
+        {
+          "chain": "A",
+          "uniprot": 203
+        },
+        {
+          "chain": "A",
+          "uniprot": 204
+        },
+        {
+          "chain": "A",
+          "uniprot": 205
+        },
+        {
+          "chain": "A",
+          "uniprot": 206
+        },
+        {
+          "chain": "A",
+          "uniprot": 207
+        },
+        {
+          "chain": "A",
+          "uniprot": 208
+        },
+        {
+          "chain": "A",
+          "uniprot": 209
+        },
+        {
+          "chain": "A",
+          "uniprot": 210
+        },
+        {
+          "chain": "A",
+          "uniprot": 211
+        },
+        {
+          "chain": "A",
+          "uniprot": 212
+        },
+        {
+          "chain": "A",
+          "uniprot": 213
+        },
+        {
+          "chain": "A",
+          "uniprot": 214
+        },
+        {
+          "chain": "A",
+          "uniprot": 215
+        },
+        {
+          "chain": "A",
+          "uniprot": 216
+        },
+        {
+          "chain": "A",
+          "uniprot": 217
+        },
+        {
+          "chain": "A",
+          "uniprot": 218
+        },
+        {
+          "chain": "A",
+          "uniprot": 219
+        },
+        {
+          "chain": "A",
+          "uniprot": 220
+        },
+        {
+          "chain": "A",
+          "uniprot": 221
+        },
+        {
+          "chain": "A",
+          "uniprot": 222
+        },
+        {
+          "chain": "A",
+          "uniprot": 223
+        },
+        {
+          "chain": "A",
+          "uniprot": 224
+        },
+        {
+          "chain": "A",
+          "uniprot": 225
+        },
+        {
+          "chain": "A",
+          "uniprot": 226
+        },
+        {
+          "chain": "A",
+          "uniprot": 227
+        },
+        {
+          "chain": "A",
+          "uniprot": 228
+        },
+        {
+          "chain": "A",
+          "uniprot": 229
+        },
+        {
+          "chain": "A",
+          "uniprot": 230
+        },
+        {
+          "chain": "A",
+          "uniprot": 231
+        },
+        {
+          "chain": "A",
+          "uniprot": 232
+        },
+        {
+          "chain": "A",
+          "uniprot": 233
+        },
+        {
+          "chain": "A",
+          "uniprot": 234
+        },
+        {
+          "chain": "A",
+          "uniprot": 235
+        },
+        {
+          "chain": "A",
+          "uniprot": 236
+        },
+        {
+          "chain": "A",
+          "uniprot": 237
+        },
+        {
+          "chain": "A",
+          "uniprot": 238
+        },
+        {
+          "chain": "A",
+          "uniprot": 239
+        },
+        {
+          "chain": "A",
+          "uniprot": 240
+        },
+        {
+          "chain": "A",
+          "uniprot": 241
+        },
+        {
+          "chain": "A",
+          "uniprot": 242
+        },
+        {
+          "chain": "A",
+          "uniprot": 243
+        },
+        {
+          "chain": "A",
+          "uniprot": 244
+        },
+        {
+          "chain": "A",
+          "uniprot": 245
+        },
+        {
+          "chain": "A",
+          "uniprot": 246
+        },
+        {
+          "chain": "A",
+          "uniprot": 247
+        },
+        {
+          "chain": "A",
+          "uniprot": 248
+        },
+        {
+          "chain": "A",
+          "uniprot": 249
+        },
+        {
+          "chain": "A",
+          "uniprot": 250
+        },
+        {
+          "chain": "A",
+          "uniprot": 251
+        },
+        {
+          "chain": "B",
+          "uniprot": 208
+        },
+        {
+          "chain": "B",
+          "uniprot": 209
+        },
+        {
+          "chain": "B",
+          "uniprot": 210
+        },
+        {
+          "chain": "B",
+          "uniprot": 211
+        },
+        {
+          "chain": "B",
+          "uniprot": 212
+        },
+        {
+          "chain": "B",
+          "uniprot": 218
+        },
+        {
+          "chain": "B",
+          "uniprot": 219
+        },
+        {
+          "chain": "B",
+          "uniprot": 220
+        },
+        {
+          "chain": "B",
+          "uniprot": 221
+        },
+        {
+          "chain": "B",
+          "uniprot": 222
+        },
+        {
+          "chain": "B",
+          "uniprot": 243
+        },
+        {
+          "chain": "B",
+          "uniprot": 244
+        },
+        {
+          "chain": "B",
+          "uniprot": 245
+        },
+        {
+          "chain": "B",
+          "uniprot": 246
+        },
+        {
+          "chain": "B",
+          "uniprot": 247
+        },
+        {
+          "chain": "B",
+          "uniprot": 248
+        },
+        {
+          "chain": "B",
+          "uniprot": 249
+        },
+        {
+          "chain": "B",
+          "uniprot": 250
+        },
+        {
+          "chain": "B",
+          "uniprot": 251
+        },
+        {
+          "chain": "C",
+          "uniprot": 138
+        },
+        {
+          "chain": "C",
+          "uniprot": 139
+        },
+        {
+          "chain": "C",
+          "uniprot": 140
+        },
+        {
+          "chain": "C",
+          "uniprot": 141
+        },
+        {
+          "chain": "C",
+          "uniprot": 142
+        },
+        {
+          "chain": "C",
+          "uniprot": 213
+        },
+        {
+          "chain": "C",
+          "uniprot": 214
+        },
+        {
+          "chain": "C",
+          "uniprot": 215
+        },
+        {
+          "chain": "C",
+          "uniprot": 216
+        },
+        {
+          "chain": "C",
+          "uniprot": 217
+        },
+        {
+          "chain": "C",
+          "uniprot": 243
+        },
+        {
+          "chain": "C",
+          "uniprot": 244
+        },
+        {
+          "chain": "C",
+          "uniprot": 245
+        },
+        {
+          "chain": "C",
+          "uniprot": 246
+        },
+        {
+          "chain": "C",
+          "uniprot": 247
+        },
+        {
+          "chain": "C",
+          "uniprot": 248
+        },
+        {
+          "chain": "C",
+          "uniprot": 249
+        },
+        {
+          "chain": "C",
+          "uniprot": 250
+        },
+        {
+          "chain": "C",
+          "uniprot": 251
+        }
+      ],
+      "context_allocation": {
+        "purpose": "feature-context coverage of actual clash probes, NOT binding utility",
+        "source_poses": [
+          "results/tl1a_afdesign_20261102/poses/tl1a_af_terminal_20261105_gen_design.pdb",
+          "results/tl1a_afdesign_20261102/poses/tl1a_af_terminal_20261106_gen_design.pdb"
+        ],
+        "motif_length": 5,
+        "residue_budget_per_neighbor": 20,
+        "probe_clash_cutoff_A": 2.5,
+        "feature_coverage_cutoff_A": 4.0,
+        "protomers": {
+          "B": {
+            "clashing_backbone_points": 350,
+            "motifs": 33,
+            "selected_motifs": [
+              "B:208-212",
+              "B:218-222",
+              "B:243-247",
+              "B:248-251"
+            ],
+            "selected_residues": [
+              208,
+              209,
+              210,
+              211,
+              212,
+              218,
+              219,
+              220,
+              221,
+              222,
+              243,
+              244,
+              245,
+              246,
+              247,
+              248,
+              249,
+              250,
+              251
+            ],
+            "selection_method": "exact",
+            "objective": {
+              "portfolio": 0.7314285714285718,
+              "singleton_topk": 0.6571428571428575,
+              "exact": 0.7828571428571431
+            },
+            "exact_motifs": [
+              "B:208-212",
+              "B:218-222",
+              "B:243-247",
+              "B:248-251"
+            ],
+            "caveat": "fixed selected false poses; no guarantee for new poses or neural prediction fidelity"
+          },
+          "C": {
+            "clashing_backbone_points": 199,
+            "motifs": 33,
+            "selected_motifs": [
+              "C:138-142",
+              "C:213-217",
+              "C:243-247",
+              "C:248-251"
+            ],
+            "selected_residues": [
+              138,
+              139,
+              140,
+              141,
+              142,
+              213,
+              214,
+              215,
+              216,
+              217,
+              243,
+              244,
+              245,
+              246,
+              247,
+              248,
+              249,
+              250,
+              251
+            ],
+            "selection_method": "exact",
+            "objective": {
+              "portfolio": 0.798994974874372,
+              "singleton_topk": 0.7185929648241208,
+              "exact": 0.8241206030150756
+            },
+            "exact_motifs": [
+              "C:138-142",
+              "C:213-217",
+              "C:243-247",
+              "C:248-251"
+            ],
+            "caveat": "fixed selected false poses; no guarantee for new poses or neural prediction fidelity"
+          }
+        }
+      },
+      "geometric_context": "all native ABC heavy atoms; six N133/N229 ND2 anchors",
+      "binder_template": false,
+      "initial_binder_sequence": null,
+      "conditioning": "native target only; random sequence logits; no prior binder/scaffold",
+      "target_sha256": "6edc191adc06227bb443b1f3a5e26c3b40009bd688277ab59b951a2b4f0953e7",
+      "target_context_sha256": "76332b05499193e6083fba3a453a5453ac7cd9e860dc5906b5b48e3ef722a49a",
+      "site": "terminal",
+      "hotspots_uniprot": [
+        235,
+        238
+      ],
+      "patch_uniprot": [
+        102,
+        103,
+        104,
+        105,
+        118,
+        120,
+        156,
+        158,
+        159,
+        176,
+        207,
+        209,
+        210,
+        231,
+        232,
+        233,
+        234,
+        235,
+        238,
+        239,
+        240,
+        241,
+        243
+      ],
+      "binder_length": 80,
+      "stages": [
+        75,
+        45,
+        5
+      ],
+      "design_recycles": 1,
+      "final_hard_recycles": 1,
+      "loss_weights": {
+        "plddt": 0.1,
+        "pae": 0.4,
+        "con": 0.5,
+        "i_con": 1.0,
+        "i_pae": 0.5,
+        "interface_cover": 1.0,
+        "native_target": 0.1,
+        "context_steric": 3.0,
+        "glycan": 1.0,
+        "placement": 0.5,
+        "rg": 0.3
+      },
+      "interface_cover": {
+        "num": 2,
+        "cutoff": 8.0,
+        "binary": true,
+        "num_pos": 12
+      },
+      "schedule": "curriculum",
+      "target_derived_binder_center_A": [
+        31.690326690673828,
+        29.645427703857422,
+        -20.332698822021484
+      ],
+      "center_native_clearance_A": 11.145339946686896,
+      "center_glycan_clearance_A": 30.54385964237983,
+      "native_BB_distance_penalty_A": 2.5,
+      "glycan_BB_penalty_A": 15.0,
+      "omitted_AAs": "C",
+      "official_equivalence": false,
+      "status": "generated_not_independently_validated",
+      "trajectories": [
+        {
+          "seed": 20261107,
+          "status": "generated_not_independently_validated",
+          "sequence_count": 1,
+          "applied_loss_weights": {
+            "con": 0.5,
+            "exp_res": 0.0,
+            "helix": 0.0,
+            "i_con": 1.0,
+            "i_pae": 0.5,
+            "pae": 0.4,
+            "plddt": 0.1,
+            "seq_ent": 0.0,
+            "interface_cover": 1.0,
+            "native_target": 0.1,
+            "context_steric": 3.0,
+            "glycan": 1.0,
+            "placement": 0.5,
+            "rg": 0.3
+          },
+          "phases": [
+            {
+              "name": "fold_and_approach",
+              "iteration": 0,
+              "weights": {
+                "con": 1.0,
+                "exp_res": 0.0,
+                "helix": 0.0,
+                "i_con": 1.0,
+                "i_pae": 0.1,
+                "pae": 0.4,
+                "plddt": 0.1,
+                "seq_ent": 0.0,
+                "interface_cover": 0.25,
+                "native_target": 0.1,
+                "context_steric": 0.1,
+                "glycan": 0.05,
+                "placement": 0.2,
+                "rg": 0.3
+              },
+              "intra_cutoff": 14.0,
+              "inter_cutoff": 20.0,
+              "cover_cutoff": 14.0
+            },
+            {
+              "name": "geometric_transition",
+              "iteration": 75,
+              "weights": {
+                "con": 0.5,
+                "exp_res": 0.0,
+                "helix": 0.0,
+                "i_con": 1.0,
+                "i_pae": 0.5,
+                "pae": 0.4,
+                "plddt": 0.1,
+                "seq_ent": 0.0,
+                "interface_cover": 1.0,
+                "native_target": 0.1,
+                "context_steric": 1.0,
+                "glycan": 0.3,
+                "placement": 0.5,
+                "rg": 0.3
+              },
+              "intra_cutoff": 10.0,
+              "inter_cutoff": 14.0,
+              "cover_cutoff": 12.0
+            },
+            {
+              "name": "strict_interface",
+              "iteration": 90,
+              "weights": {
+                "con": 0.5,
+                "exp_res": 0.0,
+                "helix": 0.0,
+                "i_con": 1.0,
+                "i_pae": 0.5,
+                "pae": 0.4,
+                "plddt": 0.1,
+                "seq_ent": 0.0,
+                "interface_cover": 1.0,
+                "native_target": 0.1,
+                "context_steric": 3.0,
+                "glycan": 1.0,
+                "placement": 0.5,
+                "rg": 0.3
+              },
+              "intra_cutoff": 8.0,
+              "inter_cutoff": 8.0,
+              "cover_cutoff": 8.0
+            }
+          ],
+          "progress": {
+            "iteration": 120,
+            "loss": 7.218695163726807,
+            "binder_plddt": 0.8210268020629883,
+            "iptm": 0.6815059781074524,
+            "losses": {
+              "con": 3.908088445663452,
+              "context_steric": 0.11917417496442795,
+              "exp_res": 0.03400690481066704,
+              "glycan": 0.0,
+              "i_con": 3.779519557952881,
+              "i_pae": 0.2279440015554428,
+              "interface_cover": 0.5762733221054077,
+              "native_target": 0.7491831183433533,
+              "pae": 0.35217446088790894,
+              "placement": 0.3392185866832733,
+              "plddt": 0.17897316813468933,
+              "rg": 0.11356185376644135,
+              "seq_ent": 0.0725800096988678
+            }
+          },
+          "sequence": "LEVLSEEDQEMETFVRMRIEDMRKYMNPFSTLIVSVYRIIMKWLIRAGRMSQRKRLRQMWFLVRPMYRWDHKNPWWSLKM",
+          "elapsed_seconds": 1265.162129459,
+          "final_generator_log": {
+            "con": 3.913184404373169,
+            "context_steric": 0.14080224931240082,
+            "exp_res": 0.048292987048625946,
+            "glycan": 0.0,
+            "i_con": 3.5806479454040527,
+            "i_pae": 0.21874096989631653,
+            "interface_cover": 0.49018943309783936,
+            "native_target": 0.776429295539856,
+            "pae": 0.35160866379737854,
+            "placement": 0.23699884116649628,
+            "plddt": 0.7932615876197815,
+            "rg": 0.14715483784675598,
+            "seq_ent": 2.712939977645874,
+            "loss": 6.960813045501709,
+            "i_ptm": 0.7145319581031799,
+            "ptm": 0.7183970212936401,
+            "hard": 1.0,
+            "soft": 0.0,
+            "temp": 1.0,
+            "recycles": 1,
+            "models": [
+              0
+            ]
+          }
+        }
+      ],
+      "elapsed_seconds": 1268.044173893,
+      "import_environment": {
+        "biopython": "1.84",
+        "numpy": "1.26.4"
+      }
+    }
+  }
+}

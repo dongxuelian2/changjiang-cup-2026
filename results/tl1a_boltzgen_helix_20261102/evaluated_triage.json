@@ -1,0 +1,488 @@
+{
+  "synthetic": false,
+  "purpose": "research consistency screen; not official screening or experimental validation",
+  "evaluation_coverage": {
+    "generated_sequences": 14,
+    "generated_backbones": 4,
+    "boltz_evaluated_sequences": 4,
+    "af2_evaluated_sequences": 5,
+    "both_predictors_evaluated_sequences": 4
+  },
+  "complete_checks_required": true,
+  "af2_required": true,
+  "one_per_backbone": false,
+  "candidate_count": 4,
+  "unique_backbones": 4,
+  "not_in_evaluated_cohort": [
+    "tl1a_bg_helix_0_gen",
+    "tl1a_bg_helix_1_gen",
+    "tl1a_bg_helix_2_gen",
+    "tl1a_bg_helix_3_gen",
+    "tl1a_bg_helix_0_if1",
+    "tl1a_bg_helix_1_if1",
+    "tl1a_bg_helix_2_if0",
+    "tl1a_bg_helix_2_if1",
+    "tl1a_bg_helix_3_if1",
+    "tl1a_bg_helix_2_mpnn1"
+  ],
+  "gate": "research-only sequence/compactness, native trimer and 12 A glycan-envelope gates; independent target beta-core/PAE checks when available; not official admission thresholds",
+  "generation_stage_filter": null,
+  "excluded_by_generation_stage": [],
+  "gate_survivors": 0,
+  "rejections": {
+    "tl1a_bg_helix_0_if0": [
+      "no interface support at the local 10 A PAE cutoff; not an official admission threshold",
+      "AF2 has no interface support at the local 10 A PAE cutoff; not an experimental binding conclusion",
+      "complete check: binder_fold_CA_rmsd must be <=2.0; got 2.57278356164629",
+      "complete check: binder_CA_rmsd must be <=3.0; got 10.906861305236816",
+      "complete check: binder_plddt must be >=0.8; got 0.7925504446029663",
+      "complete check: iptm must be >=0.6; got 0.27010050415992737",
+      "complete check: ipsae_10 must be >=0.5; got 0.0",
+      "complete check: binder_alone_CA_rmsd must be <=2.0; got 2.8852007350407174",
+      "complete check: native_all_chain_clash_pairs2 must be <=0; got 14",
+      "AF2 cross-check: ipsae_10 must be >=0.5; got 0.0",
+      "AF2 cross-check: binder_plddt must be >=0.8; got 0.6075712499999999",
+      "AF2 cross-check: binder_fold_CA_rmsd must be <=2; got 3.111876740437513",
+      "AF2 cross-check: binder_CA_rmsd must be <=3; got 18.06622886657715",
+      "AF2 cross-check: boltz_pose_CA_rmsd must be <=3; got 20.531665802001953",
+      "AF2 cross-check: native_all_chain_clash_pairs2 must be <=0; got 37",
+      "AF2 cross-check: predicted_clash_pairs2 must be <=0; got 30"
+    ],
+    "tl1a_bg_helix_1_if0": [
+      "independent all-atom prediction inside heuristic glycan envelope",
+      "no interface support at the local 10 A PAE cutoff; not an official admission threshold",
+      "AF2 has no interface support at the local 10 A PAE cutoff; not an experimental binding conclusion",
+      "complete check: binder_CA_rmsd must be <=3.0; got 29.642091751098633",
+      "complete check: binder_plddt must be >=0.8; got 0.7957136631011963",
+      "complete check: iptm must be >=0.6; got 0.27359211444854736",
+      "complete check: ipsae_10 must be >=0.5; got 0.0",
+      "complete check: native_all_chain_clash_pairs2 must be <=0; got 5",
+      "complete check: predicted_clash_pairs2 must be <=0; got 1",
+      "AF2 cross-check: ipsae_10 must be >=0.5; got 0.0",
+      "AF2 cross-check: binder_plddt must be >=0.8; got 0.68250125",
+      "AF2 cross-check: binder_CA_rmsd must be <=3; got 21.10943603515625",
+      "AF2 cross-check: boltz_pose_CA_rmsd must be <=3; got 13.450529098510742",
+      "AF2 cross-check: native_all_chain_clash_pairs2 must be <=0; got 58",
+      "AF2 cross-check: predicted_clash_pairs2 must be <=0; got 22",
+      "AF2 cross-check: glycan_ND2_min_distance must be >=12; got 8.7115478515625"
+    ],
+    "tl1a_bg_helix_3_if0": [
+      "independent all-atom prediction clashes with native trimer below 2 A",
+      "independent all-atom prediction inside heuristic glycan envelope",
+      "complete check: binder_CA_rmsd must be <=3.0; got 35.534820556640625",
+      "complete check: ipsae_10 must be >=0.5; got 0.178392",
+      "complete check: native_all_chain_clash_pairs2 must be <=0; got 1",
+      "AF2 cross-check: ipsae_10 must be >=0.5; got 0.013159",
+      "AF2 cross-check: binder_plddt must be >=0.8; got 0.6827875",
+      "AF2 cross-check: binder_CA_rmsd must be <=3; got 30.78668212890625",
+      "AF2 cross-check: boltz_pose_CA_rmsd must be <=3; got 8.517926216125488",
+      "AF2 cross-check: native_all_chain_clash_pairs2 must be <=0; got 25",
+      "AF2 cross-check: predicted_clash_pairs2 must be <=0; got 9"
+    ],
+    "tl1a_bg_helix_2_mpnn2": [
+      "independent all-atom prediction clashes with native trimer below 2 A",
+      "independent all-atom prediction inside heuristic glycan envelope",
+      "complete check: binder_CA_rmsd must be <=3.0; got 3.4045889377593994",
+      "complete check: ipsae_10 must be >=0.5; got 0.165627",
+      "complete check: native_all_chain_clash_pairs2 must be <=0; got 23",
+      "AF2 cross-check: ipsae_10 must be >=0.5; got 0.278336",
+      "AF2 cross-check: binder_CA_rmsd must be <=3; got 6.851782321929932",
+      "AF2 cross-check: boltz_pose_CA_rmsd must be <=3; got 4.947542190551758",
+      "AF2 cross-check: native_all_chain_clash_pairs2 must be <=0; got 39",
+      "AF2 cross-check: predicted_clash_pairs2 must be <=0; got 11",
+      "AF2 cross-check: glycan_ND2_min_distance must be >=12; got 11.833321571350098"
+    ]
+  },
+  "correlations_all_sequences": [
+    {
+      "first": "mpnn.score",
+      "second": "geometry.CA_contact_pairs8",
+      "n": 1,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "geometry.glycan_ND2_min_BB_distance",
+      "n": 1,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "sequence.hydrophobic8_max",
+      "n": 1,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "boltz_trimer_deepmsa.iptm",
+      "n": 1,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "boltz_trimer_deepmsa.binder_plddt",
+      "n": 1,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 1,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 1,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "af2.ipsae_10",
+      "n": 1,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "af2.binder_plddt",
+      "n": 1,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "af2.binder_CA_rmsd",
+      "n": 1,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "geometry.glycan_ND2_min_BB_distance",
+      "n": 4,
+      "spearman_rho": -1.0,
+      "oriented_spearman_rho": -1.0
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "sequence.hydrophobic8_max",
+      "n": 4,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "boltz_trimer_deepmsa.iptm",
+      "n": 4,
+      "spearman_rho": -0.19999999999999998,
+      "oriented_spearman_rho": -0.19999999999999998
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "boltz_trimer_deepmsa.binder_plddt",
+      "n": 4,
+      "spearman_rho": -0.19999999999999998,
+      "oriented_spearman_rho": -0.19999999999999998
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 4,
+      "spearman_rho": -0.316227766016838,
+      "oriented_spearman_rho": -0.316227766016838
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": -0.7999999999999999,
+      "oriented_spearman_rho": 0.7999999999999999
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "af2.ipsae_10",
+      "n": 4,
+      "spearman_rho": 0.316227766016838,
+      "oriented_spearman_rho": 0.316227766016838
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "af2.binder_plddt",
+      "n": 4,
+      "spearman_rho": 0.39999999999999997,
+      "oriented_spearman_rho": 0.39999999999999997
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "af2.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": -0.7999999999999999,
+      "oriented_spearman_rho": 0.7999999999999999
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "sequence.hydrophobic8_max",
+      "n": 4,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "boltz_trimer_deepmsa.iptm",
+      "n": 4,
+      "spearman_rho": 0.19999999999999998,
+      "oriented_spearman_rho": 0.19999999999999998
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "boltz_trimer_deepmsa.binder_plddt",
+      "n": 4,
+      "spearman_rho": 0.19999999999999998,
+      "oriented_spearman_rho": 0.19999999999999998
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 4,
+      "spearman_rho": 0.316227766016838,
+      "oriented_spearman_rho": 0.316227766016838
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": 0.7999999999999999,
+      "oriented_spearman_rho": -0.7999999999999999
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "af2.ipsae_10",
+      "n": 4,
+      "spearman_rho": -0.316227766016838,
+      "oriented_spearman_rho": -0.316227766016838
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "af2.binder_plddt",
+      "n": 4,
+      "spearman_rho": -0.39999999999999997,
+      "oriented_spearman_rho": -0.39999999999999997
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "af2.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": 0.7999999999999999,
+      "oriented_spearman_rho": -0.7999999999999999
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "boltz_trimer_deepmsa.iptm",
+      "n": 4,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "boltz_trimer_deepmsa.binder_plddt",
+      "n": 4,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 4,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "af2.ipsae_10",
+      "n": 4,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "af2.binder_plddt",
+      "n": 4,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "af2.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "boltz_trimer_deepmsa.binder_plddt",
+      "n": 4,
+      "spearman_rho": 1.0,
+      "oriented_spearman_rho": 1.0
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 4,
+      "spearman_rho": 0.9486832980505139,
+      "oriented_spearman_rho": 0.9486832980505139
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": 0.39999999999999997,
+      "oriented_spearman_rho": -0.39999999999999997
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "af2.ipsae_10",
+      "n": 4,
+      "spearman_rho": 0.7378647873726218,
+      "oriented_spearman_rho": 0.7378647873726218
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "af2.binder_plddt",
+      "n": 4,
+      "spearman_rho": 0.7999999999999999,
+      "oriented_spearman_rho": 0.7999999999999999
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "af2.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": 0.39999999999999997,
+      "oriented_spearman_rho": -0.39999999999999997
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_plddt",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 4,
+      "spearman_rho": 0.9486832980505139,
+      "oriented_spearman_rho": 0.9486832980505139
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_plddt",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": 0.39999999999999997,
+      "oriented_spearman_rho": -0.39999999999999997
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_plddt",
+      "second": "af2.ipsae_10",
+      "n": 4,
+      "spearman_rho": 0.7378647873726218,
+      "oriented_spearman_rho": 0.7378647873726218
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_plddt",
+      "second": "af2.binder_plddt",
+      "n": 4,
+      "spearman_rho": 0.7999999999999999,
+      "oriented_spearman_rho": 0.7999999999999999
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_plddt",
+      "second": "af2.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": 0.39999999999999997,
+      "oriented_spearman_rho": -0.39999999999999997
+    },
+    {
+      "first": "boltz_trimer_deepmsa.ipsae_10",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": 0.316227766016838,
+      "oriented_spearman_rho": -0.316227766016838
+    },
+    {
+      "first": "boltz_trimer_deepmsa.ipsae_10",
+      "second": "af2.ipsae_10",
+      "n": 4,
+      "spearman_rho": 0.7777777777777779,
+      "oriented_spearman_rho": 0.7777777777777779
+    },
+    {
+      "first": "boltz_trimer_deepmsa.ipsae_10",
+      "second": "af2.binder_plddt",
+      "n": 4,
+      "spearman_rho": 0.7378647873726218,
+      "oriented_spearman_rho": 0.7378647873726218
+    },
+    {
+      "first": "boltz_trimer_deepmsa.ipsae_10",
+      "second": "af2.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": 0.316227766016838,
+      "oriented_spearman_rho": -0.316227766016838
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "second": "af2.ipsae_10",
+      "n": 4,
+      "spearman_rho": -0.316227766016838,
+      "oriented_spearman_rho": 0.316227766016838
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "second": "af2.binder_plddt",
+      "n": 4,
+      "spearman_rho": -0.19999999999999998,
+      "oriented_spearman_rho": 0.19999999999999998
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "second": "af2.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": 1.0,
+      "oriented_spearman_rho": 1.0
+    },
+    {
+      "first": "af2.ipsae_10",
+      "second": "af2.binder_plddt",
+      "n": 4,
+      "spearman_rho": 0.9486832980505139,
+      "oriented_spearman_rho": 0.9486832980505139
+    },
+    {
+      "first": "af2.ipsae_10",
+      "second": "af2.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": -0.316227766016838,
+      "oriented_spearman_rho": 0.316227766016838
+    },
+    {
+      "first": "af2.binder_plddt",
+      "second": "af2.binder_CA_rmsd",
+      "n": 4,
+      "spearman_rho": -0.19999999999999998,
+      "oriented_spearman_rho": 0.19999999999999998
+    }
+  ],
+  "dependence_warning": "sequence variants share backbone-level scores; no inferential p-values, calibration or success probabilities",
+  "selected_ids": [],
+  "AF2_only_early_rejections": {
+    "tl1a_bg_helix_2_mpnn1": "failed the predeclared AF2 follow-up allocation gate; no Boltz prediction was run; not a complete-case result"
+  }
+}

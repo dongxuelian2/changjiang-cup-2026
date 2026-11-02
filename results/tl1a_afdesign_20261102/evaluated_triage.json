@@ -1,0 +1,472 @@
+{
+  "synthetic": false,
+  "purpose": "research consistency screen; not official screening or experimental validation",
+  "evaluation_coverage": {
+    "generated_sequences": 5,
+    "generated_backbones": 3,
+    "boltz_evaluated_sequences": 3,
+    "af2_evaluated_sequences": 3,
+    "both_predictors_evaluated_sequences": 3
+  },
+  "complete_checks_required": true,
+  "af2_required": true,
+  "one_per_backbone": false,
+  "candidate_count": 3,
+  "unique_backbones": 1,
+  "not_in_evaluated_cohort": [
+    "tl1a_af_terminal_20261105_gen",
+    "tl1a_af_terminal_20261106_gen"
+  ],
+  "gate": "research-only sequence/compactness, native trimer and 12 A glycan-envelope gates; independent target beta-core/PAE checks when available; not official admission thresholds",
+  "gate_survivors": 0,
+  "rejections": {
+    "tl1a_af_terminal_20261107_gen": [
+      "independent all-atom prediction clashes with native trimer below 2 A",
+      "independent all-atom prediction inside heuristic glycan envelope",
+      "no interface support at the local 10 A PAE cutoff; not an official admission threshold",
+      "AF2 has no interface support at the local 10 A PAE cutoff; not an experimental binding conclusion",
+      "complete check: binder_fold_CA_rmsd must be <=2.0; got 7.536332380479897",
+      "complete check: binder_CA_rmsd must be <=3.0; got 37.542083740234375",
+      "complete check: binder_plddt must be >=0.8; got 0.6404985785484314",
+      "complete check: iptm must be >=0.6; got 0.470611035823822",
+      "complete check: ipsae_10 must be >=0.5; got 0.0",
+      "complete check: binder_alone_CA_rmsd must be <=2.0; got 3.149301554636991",
+      "complete check: native_all_chain_clash_pairs2 must be <=0; got 24",
+      "AF2 cross-check: ipsae_10 must be >=0.5; got 0.0",
+      "AF2 cross-check: binder_plddt must be >=0.8; got 0.403575",
+      "AF2 cross-check: binder_fold_CA_rmsd must be <=2; got 3.9419817969252477",
+      "AF2 cross-check: binder_CA_rmsd must be <=3; got 32.8330078125",
+      "AF2 cross-check: boltz_pose_CA_rmsd must be <=3; got 17.900707244873047",
+      "AF2 cross-check: native_all_chain_clash_pairs2 must be <=0; got 41",
+      "AF2 cross-check: predicted_clash_pairs2 must be <=0; got 16",
+      "AF2 cross-check: glycan_ND2_min_distance must be >=12; got 9.609106063842773"
+    ],
+    "tl1a_af_terminal_20261107_mpnn1": [
+      "independent all-atom prediction clashes with native trimer below 2 A",
+      "independent all-atom prediction inside heuristic glycan envelope",
+      "AF2 has no interface support at the local 10 A PAE cutoff; not an experimental binding conclusion",
+      "complete check: binder_fold_CA_rmsd must be <=2.0; got 4.356485491483866",
+      "complete check: binder_CA_rmsd must be <=3.0; got 42.35383605957031",
+      "complete check: binder_plddt must be >=0.8; got 0.674277663230896",
+      "complete check: ipsae_10 must be >=0.5; got 0.095942",
+      "complete check: binder_alone_CA_rmsd must be <=2.0; got 3.289692514210017",
+      "complete check: binder_alone_plddt must be >=0.8; got 0.7624151110649109",
+      "complete check: native_all_chain_clash_pairs2 must be <=0; got 12",
+      "complete check: predicted_clash_pairs2 must be <=0; got 3",
+      "AF2 cross-check: ipsae_10 must be >=0.5; got 0.0",
+      "AF2 cross-check: binder_plddt must be >=0.8; got 0.5104424999999999",
+      "AF2 cross-check: binder_fold_CA_rmsd must be <=2; got 2.562327046576315",
+      "AF2 cross-check: binder_CA_rmsd must be <=3; got 33.3232307434082",
+      "AF2 cross-check: boltz_pose_CA_rmsd must be <=3; got 18.88874053955078",
+      "AF2 cross-check: native_all_chain_clash_pairs2 must be <=0; got 51",
+      "AF2 cross-check: predicted_clash_pairs2 must be <=0; got 26"
+    ],
+    "tl1a_af_terminal_20261107_mpnn2": [
+      "independent all-atom prediction clashes with native trimer below 2 A",
+      "independent all-atom prediction inside heuristic glycan envelope",
+      "AF2 has no interface support at the local 10 A PAE cutoff; not an experimental binding conclusion",
+      "complete check: binder_fold_CA_rmsd must be <=2.0; got 6.182215223349313",
+      "complete check: binder_CA_rmsd must be <=3.0; got 27.960372924804688",
+      "complete check: binder_plddt must be >=0.8; got 0.6823813319206238",
+      "complete check: ipsae_10 must be >=0.5; got 0.105732",
+      "complete check: binder_alone_CA_rmsd must be <=2.0; got 2.4178069664649606",
+      "complete check: native_all_chain_clash_pairs2 must be <=0; got 8",
+      "AF2 cross-check: ipsae_10 must be >=0.5; got 0.0",
+      "AF2 cross-check: binder_plddt must be >=0.8; got 0.5857712500000001",
+      "AF2 cross-check: binder_fold_CA_rmsd must be <=2; got 2.780907160005679",
+      "AF2 cross-check: binder_CA_rmsd must be <=3; got 30.361934661865234",
+      "AF2 cross-check: boltz_pose_CA_rmsd must be <=3; got 17.335966110229492",
+      "AF2 cross-check: native_all_chain_clash_pairs2 must be <=0; got 30",
+      "AF2 cross-check: predicted_clash_pairs2 must be <=0; got 32"
+    ]
+  },
+  "correlations_all_sequences": [
+    {
+      "first": "mpnn.score",
+      "second": "geometry.CA_contact_pairs8",
+      "n": 2,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "geometry.glycan_ND2_min_BB_distance",
+      "n": 2,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "sequence.hydrophobic8_max",
+      "n": 2,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "boltz_trimer_deepmsa.iptm",
+      "n": 2,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "boltz_trimer_deepmsa.binder_plddt",
+      "n": 2,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 2,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 2,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "af2.ipsae_10",
+      "n": 2,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "af2.binder_plddt",
+      "n": 2,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "mpnn.score",
+      "second": "af2.binder_CA_rmsd",
+      "n": 2,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "geometry.glycan_ND2_min_BB_distance",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "sequence.hydrophobic8_max",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "boltz_trimer_deepmsa.iptm",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "boltz_trimer_deepmsa.binder_plddt",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "af2.ipsae_10",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "af2.binder_plddt",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.CA_contact_pairs8",
+      "second": "af2.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "sequence.hydrophobic8_max",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "boltz_trimer_deepmsa.iptm",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "boltz_trimer_deepmsa.binder_plddt",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "af2.ipsae_10",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "af2.binder_plddt",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "geometry.glycan_ND2_min_BB_distance",
+      "second": "af2.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "boltz_trimer_deepmsa.iptm",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "boltz_trimer_deepmsa.binder_plddt",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "af2.ipsae_10",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "af2.binder_plddt",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "sequence.hydrophobic8_max",
+      "second": "af2.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "boltz_trimer_deepmsa.binder_plddt",
+      "n": 3,
+      "spearman_rho": 0.5,
+      "oriented_spearman_rho": 0.5
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 3,
+      "spearman_rho": 0.5,
+      "oriented_spearman_rho": 0.5
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": 0.5,
+      "oriented_spearman_rho": -0.5
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "af2.ipsae_10",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "af2.binder_plddt",
+      "n": 3,
+      "spearman_rho": 0.5,
+      "oriented_spearman_rho": 0.5
+    },
+    {
+      "first": "boltz_trimer_deepmsa.iptm",
+      "second": "af2.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": 0.5,
+      "oriented_spearman_rho": -0.5
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_plddt",
+      "second": "boltz_trimer_deepmsa.ipsae_10",
+      "n": 3,
+      "spearman_rho": 1.0,
+      "oriented_spearman_rho": 1.0
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_plddt",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": -0.5,
+      "oriented_spearman_rho": 0.5
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_plddt",
+      "second": "af2.ipsae_10",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_plddt",
+      "second": "af2.binder_plddt",
+      "n": 3,
+      "spearman_rho": 1.0,
+      "oriented_spearman_rho": 1.0
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_plddt",
+      "second": "af2.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": -0.5,
+      "oriented_spearman_rho": 0.5
+    },
+    {
+      "first": "boltz_trimer_deepmsa.ipsae_10",
+      "second": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": -0.5,
+      "oriented_spearman_rho": 0.5
+    },
+    {
+      "first": "boltz_trimer_deepmsa.ipsae_10",
+      "second": "af2.ipsae_10",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "boltz_trimer_deepmsa.ipsae_10",
+      "second": "af2.binder_plddt",
+      "n": 3,
+      "spearman_rho": 1.0,
+      "oriented_spearman_rho": 1.0
+    },
+    {
+      "first": "boltz_trimer_deepmsa.ipsae_10",
+      "second": "af2.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": -0.5,
+      "oriented_spearman_rho": 0.5
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "second": "af2.ipsae_10",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "second": "af2.binder_plddt",
+      "n": 3,
+      "spearman_rho": -0.5,
+      "oriented_spearman_rho": 0.5
+    },
+    {
+      "first": "boltz_trimer_deepmsa.binder_CA_rmsd",
+      "second": "af2.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": 1.0,
+      "oriented_spearman_rho": 1.0
+    },
+    {
+      "first": "af2.ipsae_10",
+      "second": "af2.binder_plddt",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "af2.ipsae_10",
+      "second": "af2.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": null,
+      "oriented_spearman_rho": null
+    },
+    {
+      "first": "af2.binder_plddt",
+      "second": "af2.binder_CA_rmsd",
+      "n": 3,
+      "spearman_rho": -0.5,
+      "oriented_spearman_rho": 0.5
+    }
+  ],
+  "dependence_warning": "sequence variants share backbone-level scores; no inferential p-values, calibration or success probabilities",
+  "selected_ids": []
+}

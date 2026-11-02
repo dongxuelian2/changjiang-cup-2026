@@ -1,0 +1,643 @@
+{
+  "schema_version": 1,
+  "synthetic": false,
+  "metric_definitions": {
+    "sequence.length": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "mature designed chain length",
+      "units": "aa",
+      "direction": "unspecified"
+    },
+    "sequence.gravy": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "Kyte-Doolittle mean hydropathy; not solubility",
+      "units": "hydropathy",
+      "direction": "unspecified"
+    },
+    "sequence.pI": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "sequence-only estimated isoelectric point",
+      "units": "pH",
+      "direction": "unspecified"
+    },
+    "sequence.charged_fraction": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "D/E/K/R fraction; extreme charge may explain a score artifact",
+      "units": "fraction",
+      "direction": "unspecified"
+    },
+    "sequence.hydrophobic_fraction": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "A/F/I/L/M/V/W/Y fraction; not all exposed hydrophobicity",
+      "units": "fraction",
+      "direction": "unspecified"
+    },
+    "sequence.entropy": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "single-residue Shannon entropy; not a novelty test",
+      "units": "bits",
+      "direction": "unspecified"
+    },
+    "sequence.instability_index": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "Guruprasad sequence heuristic; not measured stability",
+      "units": "index",
+      "direction": "lower"
+    },
+    "sequence.hydrophobic8_max": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "maximum hydrophobic fraction in eight-residue window; aggregation-risk proxy",
+      "units": "fraction",
+      "direction": "lower"
+    },
+    "geometry.target_CA_rmsd": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "generated target CA versus reference A88-251 after alignment",
+      "units": "angstrom",
+      "direction": "lower"
+    },
+    "geometry.binder_Rg": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder CA radius of gyration; rod/compactness diagnostic, not an affinity score",
+      "units": "angstrom",
+      "direction": "unspecified"
+    },
+    "geometry.binder_nonlocal_CA_pairs8": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder CA pairs within 8 A separated by at least 8 sequence positions",
+      "units": "count",
+      "direction": "higher"
+    },
+    "geometry.CA_contact_pairs8": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "full observed trimer / binder CA pairs within 8 A",
+      "units": "count",
+      "direction": "higher"
+    },
+    "geometry.epitope_residues5": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "target residues with any heavy atom within 5 A of binder BACKBONE",
+      "units": "count",
+      "direction": "higher"
+    },
+    "geometry.other_chain_min_BB_distance": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder backbone to unconditioned trimer B/C heavy atoms",
+      "units": "angstrom",
+      "direction": "higher"
+    },
+    "geometry.other_chain_BB_clash_pairs2": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder backbone / trimer B/C atom pairs below 2 A",
+      "units": "count",
+      "direction": "lower"
+    },
+    "geometry.glycan_ND2_min_BB_distance": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "minimum binder backbone distance to six N133/N229 ND2 anchors; not a glycan simulation",
+      "units": "angstrom",
+      "direction": "higher"
+    },
+    "geometry.missing_tail_anchor_distance": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder backbone distance to resolved A88 N; proximity flag only",
+      "units": "angstrom",
+      "direction": "higher"
+    },
+    "official.ipsae": {
+      "model": "official ESMFold2 + ipSAE",
+      "version": "unpublished",
+      "meaning": "official admission score; no substitute imputed",
+      "units": "score",
+      "direction": "higher"
+    },
+    "geometry.native_all_chain_BB_clash_pairs2": {
+      "model": "observed 2RE9 + BoltzGen backbone",
+      "version": "local-v1",
+      "meaning": "designed binder BACKBONE vs ALL observed native trimer heavy atoms, distance <2 A",
+      "units": "count",
+      "direction": "lower"
+    }
+  },
+  "candidates": [
+    {
+      "id": "tl1a_bg_helix_0_if0",
+      "sequence": "AAGGLTYEQVQELREKIDELREKVLNAPSLSEEEKAELLAELDRLEERVDRGLDLTEEEYEEIEKELKEIEEKVNSVPGV",
+      "target_id": "TL1A",
+      "design_type": "minibinder",
+      "source_model": "BoltzGen + BoltzGen-IF",
+      "source_version": "0.3.2",
+      "run_id": "tl1a_bg_helix_linux",
+      "structural_group": "tl1a_bg_helix_backbone_0",
+      "epitope_residues": [
+        "A:103",
+        "A:122",
+        "A:123",
+        "A:156",
+        "A:158",
+        "A:239",
+        "A:240",
+        "B:166"
+      ],
+      "metrics": {
+        "geometry.target_CA_rmsd": 0.06577049291656663,
+        "geometry.binder_Rg": 13.391611099243164,
+        "geometry.binder_nonlocal_CA_pairs8": 59,
+        "geometry.CA_contact_pairs8": 21,
+        "geometry.epitope_residues5": 8,
+        "geometry.other_chain_min_BB_distance": 4.642320156097412,
+        "geometry.other_chain_BB_clash_pairs2": 0,
+        "geometry.glycan_ND2_min_BB_distance": 16.775976181030273,
+        "geometry.missing_tail_anchor_distance": 27.271841049194336,
+        "geometry.native_all_chain_BB_clash_pairs2": 0,
+        "sequence.length": 80,
+        "sequence.gravy": -0.86,
+        "sequence.pI": 4.263913536071779,
+        "sequence.instability_index": 65.5125,
+        "sequence.charged_fraction": 0.4625,
+        "sequence.hydrophobic_fraction": 0.35,
+        "sequence.entropy": 3.435982450130752,
+        "sequence.hydrophobic8_max": 0.625,
+        "official.ipsae": null
+      },
+      "structures": [
+        {
+          "path": "results/tl1a_boltzgen_helix_20261102/poses/tl1a_bg_helix_0_if0_design.pdb",
+          "chain_id": "D",
+          "role": "generated_backbone_complex_not_refolded"
+        }
+      ],
+      "metadata": {
+        "generation": {
+          "file": "build/tl1a_bg_helix_linux/intermediate_designs_inverse_folded/tl1a_boltzgen_helix_0_0.cif",
+          "sha256": "682b283da8744b1912a8ad0fb26ff613001fe2f8f669f50945831510814ca3e5",
+          "stage": "inverse_folding",
+          "backbone": "tl1a_boltzgen_helix_0",
+          "original_binder_chain": "A",
+          "original_target_chains": [
+            "B",
+            "C",
+            "D"
+          ],
+          "binding_sites_uniprot": [
+            "A:235",
+            "A:238"
+          ]
+        },
+        "status": "generated_not_independently_validated",
+        "target_trimer_CA_rmsd": 0.09547917434830548,
+        "coordinates": "native target + generated binder BACKBONE only; no inverse-folded sidechains invented"
+      }
+    },
+    {
+      "id": "tl1a_bg_helix_0_if1",
+      "sequence": "AAGGLTLEQVQELREKVDELREKVLNAPNLSEEEKNEILAELDKLREKLDNALNLTKEEYEEIEKELEKIREKIDSVPGV",
+      "target_id": "TL1A",
+      "design_type": "minibinder",
+      "source_model": "BoltzGen + BoltzGen-IF",
+      "source_version": "0.3.2",
+      "run_id": "tl1a_bg_helix_linux",
+      "structural_group": "tl1a_bg_helix_backbone_0",
+      "epitope_residues": [
+        "A:103",
+        "A:122",
+        "A:123",
+        "A:156",
+        "A:158",
+        "A:239",
+        "A:240",
+        "B:166"
+      ],
+      "metrics": {
+        "geometry.target_CA_rmsd": 0.06577049291656663,
+        "geometry.binder_Rg": 13.391611099243164,
+        "geometry.binder_nonlocal_CA_pairs8": 59,
+        "geometry.CA_contact_pairs8": 21,
+        "geometry.epitope_residues5": 8,
+        "geometry.other_chain_min_BB_distance": 4.642320156097412,
+        "geometry.other_chain_BB_clash_pairs2": 0,
+        "geometry.glycan_ND2_min_BB_distance": 16.775976181030273,
+        "geometry.missing_tail_anchor_distance": 27.271841049194336,
+        "geometry.native_all_chain_BB_clash_pairs2": 0,
+        "sequence.length": 80,
+        "sequence.gravy": -0.8675,
+        "sequence.pI": 4.507866477966309,
+        "sequence.instability_index": 50.90749999999999,
+        "sequence.charged_fraction": 0.45,
+        "sequence.hydrophobic_fraction": 0.35,
+        "sequence.entropy": 3.460309682015899,
+        "sequence.hydrophobic8_max": 0.625,
+        "official.ipsae": null
+      },
+      "structures": [
+        {
+          "path": "results/tl1a_boltzgen_helix_20261102/poses/tl1a_bg_helix_0_if1_design.pdb",
+          "chain_id": "D",
+          "role": "generated_backbone_complex_not_refolded"
+        }
+      ],
+      "metadata": {
+        "generation": {
+          "file": "build/tl1a_bg_helix_linux/intermediate_designs_inverse_folded/tl1a_boltzgen_helix_0_1.cif",
+          "sha256": "5784c02e9e9202f2a9879cb5f8a92f406f4b3ab563c06bc383639eb13a61ac79",
+          "stage": "inverse_folding",
+          "backbone": "tl1a_boltzgen_helix_0",
+          "original_binder_chain": "A",
+          "original_target_chains": [
+            "B",
+            "C",
+            "D"
+          ],
+          "binding_sites_uniprot": [
+            "A:235",
+            "A:238"
+          ]
+        },
+        "status": "generated_not_independently_validated",
+        "target_trimer_CA_rmsd": 0.09547917434830548,
+        "coordinates": "native target + generated binder BACKBONE only; no inverse-folded sidechains invented"
+      }
+    },
+    {
+      "id": "tl1a_bg_helix_1_if0",
+      "sequence": "MRVELTDEEIEELKELVEKIEKLLEHKDKLSAEEVLRLERIKEFYLELLEHPGPVTEATLRRVKEDKEYVDELIKKIPEL",
+      "target_id": "TL1A",
+      "design_type": "minibinder",
+      "source_model": "BoltzGen + BoltzGen-IF",
+      "source_version": "0.3.2",
+      "run_id": "tl1a_bg_helix_linux",
+      "structural_group": "tl1a_bg_helix_backbone_1",
+      "epitope_residues": [
+        "A:103",
+        "A:123",
+        "A:124",
+        "A:156",
+        "A:158",
+        "A:239",
+        "A:240",
+        "A:241",
+        "B:188",
+        "B:190"
+      ],
+      "metrics": {
+        "geometry.target_CA_rmsd": 9.308017992721935e-15,
+        "geometry.binder_Rg": 12.957208633422852,
+        "geometry.binder_nonlocal_CA_pairs8": 41,
+        "geometry.CA_contact_pairs8": 35,
+        "geometry.epitope_residues5": 10,
+        "geometry.other_chain_min_BB_distance": 2.4805166721343994,
+        "geometry.other_chain_BB_clash_pairs2": 0,
+        "geometry.glycan_ND2_min_BB_distance": 14.899075508117676,
+        "geometry.missing_tail_anchor_distance": 20.16444969177246,
+        "geometry.native_all_chain_BB_clash_pairs2": 0,
+        "sequence.length": 80,
+        "sequence.gravy": -0.6674999999999998,
+        "sequence.pI": 4.774157142639161,
+        "sequence.instability_index": 47.498874999999984,
+        "sequence.charged_fraction": 0.4875,
+        "sequence.hydrophobic_fraction": 0.3875,
+        "sequence.entropy": 3.3819325609754265,
+        "sequence.hydrophobic8_max": 0.625,
+        "official.ipsae": null
+      },
+      "structures": [
+        {
+          "path": "results/tl1a_boltzgen_helix_20261102/poses/tl1a_bg_helix_1_if0_design.pdb",
+          "chain_id": "D",
+          "role": "generated_backbone_complex_not_refolded"
+        }
+      ],
+      "metadata": {
+        "generation": {
+          "file": "build/tl1a_bg_helix_linux/intermediate_designs_inverse_folded/tl1a_boltzgen_helix_1_0.cif",
+          "sha256": "368ac9c64e3dc2224bcf891530821d4f0284a3e51898ef16cc739165a295b376",
+          "stage": "inverse_folding",
+          "backbone": "tl1a_boltzgen_helix_1",
+          "original_binder_chain": "A",
+          "original_target_chains": [
+            "B",
+            "C",
+            "D"
+          ],
+          "binding_sites_uniprot": [
+            "A:235",
+            "A:238"
+          ]
+        },
+        "status": "generated_not_independently_validated",
+        "target_trimer_CA_rmsd": 0.1287667817679532,
+        "coordinates": "native ABC + locally repaired shared BACKBONE, threaded with actual IF sequence; NOT a refold; original CIF retained",
+        "backbone_refinement": {
+          "parent_id": "tl1a_bg_helix_1_gen",
+          "original_backbone_CA_rmsd": 0.0005108116311021149,
+          "refinement": {
+            "synthetic": false,
+            "purpose": "local steric repair; NOT binding energy or KD",
+            "source_allatom_structure": "results/tl1a_boltzgen_helix_20261102/generation/tl1a_boltzgen_helix_1.cif",
+            "source_target_beta_CA_rmsd": 0.11658644750066124,
+            "openmm": "8.3.1.dev-6e13f13",
+            "pdbfixer_revision": "5e658a4fb8d2b90d65ca8408c845cbf104ce7099",
+            "forcefield": [
+              "amber14-all.xml",
+              "implicit/obc2.xml"
+            ],
+            "platform": "CPU",
+            "threads": 4,
+            "iterations_limit": 500,
+            "tolerance_kJ_mol_nm": 10.0,
+            "binder_BB_restraint_kJ_mol_nm2": 5000.0,
+            "target_all_particles_zero_mass": true,
+            "unresolved_residues_added": false,
+            "added_heavy_atoms": [
+              "B:110:CG",
+              "B:110:CD1",
+              "B:110:CE1",
+              "B:110:CZ",
+              "B:110:CE2",
+              "B:110:CD2",
+              "D:80:OXT"
+            ],
+            "glycan_heavy_penalty_radius_A": 13.0,
+            "source_backbone_overlaps": 4,
+            "target_max_movement_A": 0.0,
+            "binder_CA_rms_movement_A": 0.2362745302011411,
+            "binder_CA_max_movement_A": 1.0728428883980892,
+            "elapsed_seconds": 391.09400000000096,
+            "timing_scope": "LocalEnergyMinimizer call only; topology and hydrogen preparation excluded",
+            "forcefield_energy_kJ_mol_before": 1298907.5313223202,
+            "forcefield_energy_kJ_mol_after": 157308.6769333528,
+            "retained_allatom_complex": "results/tl1a_boltzgen_helix_20261102/generation/refined_tl1a_bg_helix_1_gen/refined.pdb"
+          }
+        }
+      }
+    },
+    {
+      "id": "tl1a_bg_helix_1_if1",
+      "sequence": "MRVKLTEEQLERLKKLLEKIDELLKHKDKLSAEEVLELERYKEFIEELLKHPGYITEAELRRLEEFEEYVDELIAKIPEL",
+      "target_id": "TL1A",
+      "design_type": "minibinder",
+      "source_model": "BoltzGen + BoltzGen-IF",
+      "source_version": "0.3.2",
+      "run_id": "tl1a_bg_helix_linux",
+      "structural_group": "tl1a_bg_helix_backbone_1",
+      "epitope_residues": [
+        "A:103",
+        "A:123",
+        "A:124",
+        "A:156",
+        "A:158",
+        "A:239",
+        "A:240",
+        "A:241",
+        "B:188",
+        "B:190"
+      ],
+      "metrics": {
+        "geometry.target_CA_rmsd": 9.308017992721935e-15,
+        "geometry.binder_Rg": 12.957208633422852,
+        "geometry.binder_nonlocal_CA_pairs8": 41,
+        "geometry.CA_contact_pairs8": 35,
+        "geometry.epitope_residues5": 10,
+        "geometry.other_chain_min_BB_distance": 2.4805166721343994,
+        "geometry.other_chain_BB_clash_pairs2": 0,
+        "geometry.glycan_ND2_min_BB_distance": 14.899075508117676,
+        "geometry.missing_tail_anchor_distance": 20.16444969177246,
+        "geometry.native_all_chain_BB_clash_pairs2": 0,
+        "sequence.length": 80,
+        "sequence.gravy": -0.6600000000000001,
+        "sequence.pI": 4.85077610015869,
+        "sequence.instability_index": 42.20875,
+        "sequence.charged_fraction": 0.475,
+        "sequence.hydrophobic_fraction": 0.4125,
+        "sequence.entropy": 3.398219672335507,
+        "sequence.hydrophobic8_max": 0.625,
+        "official.ipsae": null
+      },
+      "structures": [
+        {
+          "path": "results/tl1a_boltzgen_helix_20261102/poses/tl1a_bg_helix_1_if1_design.pdb",
+          "chain_id": "D",
+          "role": "generated_backbone_complex_not_refolded"
+        }
+      ],
+      "metadata": {
+        "generation": {
+          "file": "build/tl1a_bg_helix_linux/intermediate_designs_inverse_folded/tl1a_boltzgen_helix_1_1.cif",
+          "sha256": "3144b4f2e0b103a0e89ffb01a68a114458c5b4440787ea7df1b94b2707814adb",
+          "stage": "inverse_folding",
+          "backbone": "tl1a_boltzgen_helix_1",
+          "original_binder_chain": "A",
+          "original_target_chains": [
+            "B",
+            "C",
+            "D"
+          ],
+          "binding_sites_uniprot": [
+            "A:235",
+            "A:238"
+          ]
+        },
+        "status": "generated_not_independently_validated",
+        "target_trimer_CA_rmsd": 0.1287667817679532,
+        "coordinates": "native ABC + locally repaired shared BACKBONE, threaded with actual IF sequence; NOT a refold; original CIF retained",
+        "backbone_refinement": {
+          "parent_id": "tl1a_bg_helix_1_gen",
+          "original_backbone_CA_rmsd": 0.0005108116311021149,
+          "refinement": {
+            "synthetic": false,
+            "purpose": "local steric repair; NOT binding energy or KD",
+            "source_allatom_structure": "results/tl1a_boltzgen_helix_20261102/generation/tl1a_boltzgen_helix_1.cif",
+            "source_target_beta_CA_rmsd": 0.11658644750066124,
+            "openmm": "8.3.1.dev-6e13f13",
+            "pdbfixer_revision": "5e658a4fb8d2b90d65ca8408c845cbf104ce7099",
+            "forcefield": [
+              "amber14-all.xml",
+              "implicit/obc2.xml"
+            ],
+            "platform": "CPU",
+            "threads": 4,
+            "iterations_limit": 500,
+            "tolerance_kJ_mol_nm": 10.0,
+            "binder_BB_restraint_kJ_mol_nm2": 5000.0,
+            "target_all_particles_zero_mass": true,
+            "unresolved_residues_added": false,
+            "added_heavy_atoms": [
+              "B:110:CG",
+              "B:110:CD1",
+              "B:110:CE1",
+              "B:110:CZ",
+              "B:110:CE2",
+              "B:110:CD2",
+              "D:80:OXT"
+            ],
+            "glycan_heavy_penalty_radius_A": 13.0,
+            "source_backbone_overlaps": 4,
+            "target_max_movement_A": 0.0,
+            "binder_CA_rms_movement_A": 0.2362745302011411,
+            "binder_CA_max_movement_A": 1.0728428883980892,
+            "elapsed_seconds": 391.09400000000096,
+            "timing_scope": "LocalEnergyMinimizer call only; topology and hydrogen preparation excluded",
+            "forcefield_energy_kJ_mol_before": 1298907.5313223202,
+            "forcefield_energy_kJ_mol_after": 157308.6769333528,
+            "retained_allatom_complex": "results/tl1a_boltzgen_helix_20261102/generation/refined_tl1a_bg_helix_1_gen/refined.pdb"
+          }
+        }
+      }
+    },
+    {
+      "id": "tl1a_bg_helix_3_if0",
+      "sequence": "SSRLPTEEQIAELRAELAELEERIRNLKGISEEERARLERELAELREKLARIRDMTLDEFRELKEELNELEEEIEEAQNA",
+      "target_id": "TL1A",
+      "design_type": "minibinder",
+      "source_model": "BoltzGen + BoltzGen-IF",
+      "source_version": "0.3.2",
+      "run_id": "tl1a_bg_helix_linux",
+      "structural_group": "tl1a_bg_helix_backbone_3",
+      "epitope_residues": [
+        "A:103",
+        "A:123",
+        "A:124",
+        "A:156",
+        "A:158",
+        "A:238",
+        "A:239",
+        "A:240"
+      ],
+      "metrics": {
+        "geometry.target_CA_rmsd": 0.06764919975358863,
+        "geometry.binder_Rg": 13.524171829223633,
+        "geometry.binder_nonlocal_CA_pairs8": 40,
+        "geometry.CA_contact_pairs8": 17,
+        "geometry.epitope_residues5": 8,
+        "geometry.other_chain_min_BB_distance": 6.91392183303833,
+        "geometry.other_chain_BB_clash_pairs2": 0,
+        "geometry.glycan_ND2_min_BB_distance": 18.179018020629883,
+        "geometry.missing_tail_anchor_distance": 20.379493713378906,
+        "geometry.native_all_chain_BB_clash_pairs2": 0,
+        "sequence.length": 80,
+        "sequence.gravy": -1.0562500000000004,
+        "sequence.pI": 4.49536190032959,
+        "sequence.instability_index": 65.51125,
+        "sequence.charged_fraction": 0.5,
+        "sequence.hydrophobic_fraction": 0.35,
+        "sequence.entropy": 3.171017255648869,
+        "sequence.hydrophobic8_max": 0.625,
+        "official.ipsae": null
+      },
+      "structures": [
+        {
+          "path": "results/tl1a_boltzgen_helix_20261102/poses/tl1a_bg_helix_3_if0_design.pdb",
+          "chain_id": "D",
+          "role": "generated_backbone_complex_not_refolded"
+        }
+      ],
+      "metadata": {
+        "generation": {
+          "file": "build/tl1a_bg_helix_linux/intermediate_designs_inverse_folded/tl1a_boltzgen_helix_3_0.cif",
+          "sha256": "c24fa34393139008fb9a0898ba4dc8e01e89f4caf142fcd7167924694c1ca92b",
+          "stage": "inverse_folding",
+          "backbone": "tl1a_boltzgen_helix_3",
+          "original_binder_chain": "A",
+          "original_target_chains": [
+            "B",
+            "C",
+            "D"
+          ],
+          "binding_sites_uniprot": [
+            "A:235",
+            "A:238"
+          ]
+        },
+        "status": "generated_not_independently_validated",
+        "target_trimer_CA_rmsd": 0.12224898720680358,
+        "coordinates": "native target + generated binder BACKBONE only; no inverse-folded sidechains invented"
+      }
+    },
+    {
+      "id": "tl1a_bg_helix_3_if1",
+      "sequence": "SSRRPTAAQIAELRARLAELEAALAAAKGLSEEELARLKEELAELKERLARIDEMTLDEFRELEEELEELEERLREAQNA",
+      "target_id": "TL1A",
+      "design_type": "minibinder",
+      "source_model": "BoltzGen + BoltzGen-IF",
+      "source_version": "0.3.2",
+      "run_id": "tl1a_bg_helix_linux",
+      "structural_group": "tl1a_bg_helix_backbone_3",
+      "epitope_residues": [
+        "A:103",
+        "A:123",
+        "A:124",
+        "A:156",
+        "A:158",
+        "A:238",
+        "A:239",
+        "A:240"
+      ],
+      "metrics": {
+        "geometry.target_CA_rmsd": 0.06764919975358863,
+        "geometry.binder_Rg": 13.524171829223633,
+        "geometry.binder_nonlocal_CA_pairs8": 40,
+        "geometry.CA_contact_pairs8": 17,
+        "geometry.epitope_residues5": 8,
+        "geometry.other_chain_min_BB_distance": 6.91392183303833,
+        "geometry.other_chain_BB_clash_pairs2": 0,
+        "geometry.glycan_ND2_min_BB_distance": 18.179018020629883,
+        "geometry.missing_tail_anchor_distance": 20.379493713378906,
+        "geometry.native_all_chain_BB_clash_pairs2": 0,
+        "sequence.length": 80,
+        "sequence.gravy": -0.6975,
+        "sequence.pI": 4.53952579498291,
+        "sequence.instability_index": 56.46125000000001,
+        "sequence.charged_fraction": 0.45,
+        "sequence.hydrophobic_fraction": 0.425,
+        "sequence.entropy": 3.069747598639736,
+        "sequence.hydrophobic8_max": 0.875,
+        "official.ipsae": null
+      },
+      "structures": [
+        {
+          "path": "results/tl1a_boltzgen_helix_20261102/poses/tl1a_bg_helix_3_if1_design.pdb",
+          "chain_id": "D",
+          "role": "generated_backbone_complex_not_refolded"
+        }
+      ],
+      "metadata": {
+        "generation": {
+          "file": "build/tl1a_bg_helix_linux/intermediate_designs_inverse_folded/tl1a_boltzgen_helix_3_1.cif",
+          "sha256": "dcafe666777f48796bed9cee588eac474d316eeb71dd272f18823ad28e059b1b",
+          "stage": "inverse_folding",
+          "backbone": "tl1a_boltzgen_helix_3",
+          "original_binder_chain": "A",
+          "original_target_chains": [
+            "B",
+            "C",
+            "D"
+          ],
+          "binding_sites_uniprot": [
+            "A:235",
+            "A:238"
+          ]
+        },
+        "status": "generated_not_independently_validated",
+        "target_trimer_CA_rmsd": 0.12224898720680358,
+        "coordinates": "native target + generated binder BACKBONE only; no inverse-folded sidechains invented"
+      }
+    }
+  ]
+}

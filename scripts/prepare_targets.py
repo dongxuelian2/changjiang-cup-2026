@@ -69,6 +69,14 @@ def prepare():
         record.update({"structure_prepared": True, "author_to_uniprot_offset": offset,
                        "resolution_angstrom": entry["rcsb_entry_info"]["resolution_combined"],
                        "method": [x["method"] for x in entry["exptl"]], "chains": {}})
+        record["unobserved_heavy_atoms"] = []
+        for line in (SOURCES / (pdb+".pdb")).read_text().splitlines():
+            fields=line.split()
+            if (line.startswith("REMARK 470") and len(fields)>5 and
+                    len(fields[2])==3 and seq1(fields[2]) in "ACDEFGHIKLMNPQRSTVWY" and
+                    fields[3] in chains and fields[4].lstrip('-').isdigit()):
+                record["unobserved_heavy_atoms"].append(dict(chain=fields[3],
+                    uniprot_residue=int(fields[4])+offset,residue=fields[2],atoms=fields[5:]))
         for chain_id in chains:
             chain = structure[0][chain_id]
             residues = [r for r in chain if r.id[0] == " "]

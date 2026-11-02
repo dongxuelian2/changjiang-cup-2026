@@ -1,6 +1,7 @@
 # Changjiang Cup 2026: TL1A minibinder research
 
-Real de novo design against **TL1A**, with RFdiffusion/ProteinMPNN and BoltzGen,
+Real de novo design against **TL1A**, with RFdiffusion/ProteinMPNN, BoltzGen and
+local ColabDesign/AF2 gradient experiments,
 independent Boltz-2/AF2-Multimer predictions, and the existing candidate-portfolio
 optimizers. **No candidate currently passes the complete research screen.**
 No measured KD, experimental binder or official admission score has been obtained.
@@ -43,6 +44,9 @@ SASA, neighboring-subunit burial, glycan-anchor distance and receptor context.
 |---|---|---|
 | [RFdiffusion round](results/tl1a_20261101) | 28 sequences / 7 backbones | 18 Boltz-2 complexes / 12 sequences, plus 2 target-only controls |
 | [BoltzGen round](results/tl1a_boltzgen_20261101) | 57 sequences / 19 backbones | 6 Boltz-2 complexes + 6 binder-alone controls; 10 AF2-Multimer complexes |
+| [AF2 gradient experiments](results/tl1a_afdesign_20261102) | 5 sequences / 3 new backbones, including 2 soluble-MPNN core variants | 3 held-out AF2 model-1 complexes; 3 Boltz-2 complexes + 3 binder-alone controls |
+| [L235/Y238 BoltzGen round](results/tl1a_boltzgen_terminal_20261102) | 24 sequences / 8 new backbones, 90–100 aa, full native trimer | 3 AF2 model-1 complexes; 3 Boltz-2 complexes + 3 binder-alone controls |
+| [Three-helix BoltzGen/MPNN round](results/tl1a_boltzgen_helix_20261102) | 14 sequences / 4 new 80 aa backbones, including 2 full-binder soluble-MPNN designs | 5 AF2 model-1 complexes; 4 Boltz-2 complexes + 4 binder-alone controls |
 
 BoltzGen counts include actual atom14-generated sequences and two inverse-folded
 variants per backbone. They are distinct sequences, not independent backbones.
@@ -57,30 +61,14 @@ improved a target-only beta-core RMSD from 6.63 to 0.45 Å. This is a diagnostic
 observation, not a controlled causal estimate. Those binder families were not
 expanded further.
 
-BoltzGen has now actually run both natively on Windows and in **Ubuntu via WSL**
-on the same **RTX 4060 Laptop 8 GB**. The first distal-site and beta-site batches
-produced 21 sequences / 7 backbones. Binder-alone Boltz predictions for four
-tested sequences have pLDDT 0.961–0.969 and fold RMSD 0.30–0.49 Å; this supports
-folding, not binding. `tl1a_bg_a_1_if1` has Boltz binder-target ipTM 0.838 and
-ipSAE(10) 0.436, but pose RMSD 35.55 Å. AF2 gives ipSAE(10) 0 and a different,
-clashing pose. It is rejected. The other beta-site AF2 checks also lack reliable
-interfaces. AF2's global ipTM around 0.74 in the first checks includes the native
-target trimer and must not be treated as binder confidence.
-
-An inter-protomer D175/F209 hypothesis generated 8 further backbones / 24 sequences.
-All eight backbones lie 4.8–9.1 Å from a native glycan anchor, inside the declared
-12 Å research envelope, and were rejected before expensive prediction. Binding-
-type flags are not hard steric masks. A narrower R166/Q167/A168 distal-tip test
-then actually ran 500 diffusion steps: 4 backbones / 12 sequences. Glycan-anchor
-distances improved to 21.3–27.7 Å, but only two backbones had zero native-atom
-overlaps. The optimizer selected `tl1a_bg_tip_2_gen` and `tl1a_bg_tip_0_if0` for
-independent prediction. Both, plus two near-clash diagnostic sequences, failed
-AF2 interface checks: ipSAE(10) 0–0.011, pose RMSD 22.9–26.3 Å and severe overlap
-with native target atoms. These are failed research hypotheses, not binder hits.
-Boltz independently rechecked both priority sequences with binder-alone controls:
-ipSAE(10) is 0.012 / 0, with pose RMSD 33.90 / 77.50 Å, respectively for
-`tl1a_bg_tip_0_if0` / `tl1a_bg_tip_2_gen`. The revised glycan-safe generation site
-did not solve association. Further expansion of these families is unsupported.
+BoltzGen runs both natively on Windows and in **Ubuntu via WSL**, using the same
+**RTX 4060 Laptop 8 GB**. Earlier distal/beta binders could refold confidently
+in Boltz alone, while their complex poses disagreed with design and AF2. The
+D175/F209 junction batch failed native glycan clearance; the R166/Q167/A168 tip
+batch improved clearance but still failed association. Learned binding flags
+are not hard steric constraints. These families are frozen. Detailed original
+scores and observations remain in the result tables and `math/PROOF.md`.
+AF2 global ipTM includes target-target contacts and is not binder confidence.
 
 All-atom clashes, beta-core alignment, symmetry-equivalent target-chain labels,
 fold/pose RMSD, buried binder SASA, glycan-anchor distance, sequence composition
@@ -89,6 +77,71 @@ sequence heuristics are approximations, not explicit glycan conformer sampling,
 measured solubility or aggregation assays. No completed 20-sequence experimental
 shortlist is claimed. The [complete-case research screen](results/tl1a_boltzgen_20261101/evaluated_triage.json)
 records zero accepted sequences and coverage separately from missing evaluations.
+
+The November 2 diagnosis found strong prediction disagreement at the old
+Q167/A168 loop (median CA displacement 9.4/11.2 Å), versus 0.26/0.54 Å for the
+new L235/Y238 hydrophobic patch. This measures prediction disagreement, not
+experimental flexibility. The old tip designs also bury only 283–372 Å².
+
+A new local ColabDesign/AF2 gradient experiment used random initial sequences,
+without old binder scaffolds. Two trajectories docked inside neighboring native
+protomers. The existing exact coverage solver then chose **38 native B/C
+residues in five-residue fragments**, improving coverage of those actual clash
+points over singleton Top-K. Including these fragments with complete protomer A
+gave 202 native feature residues; all observed trimer atoms remained in the
+geometric loss. This is cropped feature context, not a full-trimer AF2 generation
+claim. A third new backbone avoided B/C clashes. Restrained OpenMM refinement
+removed two remaining local A clashes, with target atoms immobile and binder
+CA RMS movement 0.27 Å. Original outputs and the refinement are both retained.
+
+The raw sequence and two interface-fixed soluble-MPNN core variants passed
+generation geometry, but **all three failed independent validation**. Held-out
+AF2 model 1 gives ipSAE(10)=0; Boltz-2 gives 0/.096/.106, with incompatible poses
+and folds. No more variants of these families are generated. The initial
+unranked cohort and the complete-case rejection report are retained. This shows
+why repairing geometry and optimizing a template-conditioned generator score
+does not establish a generalizable binder.
+
+The new 500-step BoltzGen L235/Y238 round yielded two initially clash-free
+backbones. One additional local repair removed three overlaps with CA RMS
+movement 0.21 Å and an immobile target. The generation-only optimizer selected
+one sequence from each of these three families; all failed the complete check.
+`tl1a_bg_terminal_2_gen` retains its fold/pose in Boltz-2 (0.86/2.10 Å RMSD),
+but ipSAE(10)=0 and AF2 disagrees strongly. `1_gen` reaches Boltz ipSAE .318,
+but pose RMSD is 9.06 Å. These are diagnostics, not hits. See the frozen
+allocation inputs and individual rejection reasons in that result directory.
+The initial risk-rank objective preferred raw co-design sequences to inverse-
+folded ones; this is an uncalibrated selection bias, not evidence of better
+folding. Further tests must distinguish sequence refinement from association.
+
+A subsequent **diverse** checkpoint run used 80 aa, three-helix conditioning
+and per-position inverse-folding restrictions. Actual masks contain 57 helix
+and 23 loop positions on every backbone; all eight IF sequences exclude C and
+P/G at requested helix positions. Two small fixed-target repairs remove four
+and one native overlaps, with CA RMS movements 0.24/0.15 Å. Inherited IF poses
+are explicitly threaded backbones, with original CIFs and an original-backbone
+identity check retained. They are not presented as sequence refolds.
+
+The generation-stage filter allocated one IF sequence per eligible backbone.
+Two maintain their folds across AF2/Boltz, but all three tested IF sequences
+change association pose. Full-sequence soluble ProteinMPNN then designed two
+sequences on the fourth backbone **before any member of that family was
+independently screened**. Its CPU sequence-sampling loop took about five seconds; the
+heavy prediction jobs run sequentially on the GPU. All measured scores,
+source sequences and structures are retained in the table above.
+
+`tl1a_bg_helix_2_mpnn2` has the strongest new independent AF2 interface signal
+(ipSAE .278, pLDDT .844), but Boltz gives ipSAE .166; cross-model pose RMSD is
+4.95 Å, with native-target overlaps and 10.69 Å glycan clearance. It is rejected,
+despite reproducible folding. The initial two-sequence MPNN batch was frozen;
+no more variants of these screened families are generated. The final
+[complete-case report](results/tl1a_boltzgen_helix_20261102/evaluated_triage.json)
+records four jointly evaluated sequences, one additional AF2-only rejection,
+and zero accepted candidates.
+
+2RE9 also lacks the **B:F110 aromatic ring**. It remains absent in experimental
+native inputs; PDBFixer rebuilt it only in the explicitly labeled force-field
+preparation, without adding missing residues. See the updated target manifest.
 
 ## Continue the configured local pipeline
 
@@ -101,6 +154,10 @@ public `use_kernels=false` path with torch 2.5.1+cu121; Linux-only acceleration
 dependencies are omitted there. WSL's unsupported NVML power telemetry is bypassed
 by `gpu/patch_linux_compat.py` using actual Torch device properties and default
 kernel settings. Model weights, architecture and arithmetic are unchanged.
+Curated BoltzGen sequence metrics use Windows `env-rfd` (BioPython 1.85,
+NumPy 1.26.4); the Linux generator's parser is BioPython 1.88. AF gradient
+outputs were imported with BioPython 1.84. Importers record the actual analysis
+version and reject mixed-version appends; fresh Linux datasets record theirs.
 
 From PowerShell, enter the existing Ubuntu distribution with `wsl.exe -d Ubuntu`.
 The following commands are Linux commands inside this checkout. The setup expects
@@ -110,37 +167,59 @@ proxy variables, if needed, belong to the caller and are not committed.
 ```bash
 cd /mnt/e/bio/changjiang-cup-2026
 bash gpu/setup_boltzgen_linux.sh
-bash gpu/run_boltzgen.sh --spec gpu/tl1a_boltzgen_tip.yaml \
-  --checkpoint adherence --sampling-steps 500 --seed 20261104 \
-  --num-designs 4 --out build/next_tip
+bash gpu/run_boltzgen.sh --spec gpu/tl1a_boltzgen_helix.yaml \
+  --checkpoint diverse --sampling-steps 500 --seed 20261109 \
+  --num-designs 4 --out build/next_terminal
 build/env-boltzgen-linux/bin/python scripts/import_boltzgen.py \
-  build/next_tip --label tl1a_tip_next --append
+  build/next_terminal --label tl1a_terminal_next --out build/next_terminal_data
 build/env-boltzgen-linux/bin/python scripts/triage_candidates.py \
-  results/tl1a_boltzgen_20261101/candidates.json --k 4 --one-per-backbone
+  build/next_terminal_data/candidates.json --generation-stage inverse_folding \
+  --k 4 --one-per-backbone
 
 bash gpu/setup_colabfold_linux.sh
-build/env-colabfold-linux/bin/python scripts/fetch_af2_model.py --model 3
+build/env-colabfold-linux/bin/python scripts/fetch_af2_model.py --model 1
 # Use IDs selected for actual independent evaluation, not an assumed binder hit.
 build/env-colabfold-linux/bin/python scripts/run_af2.py \
-  results/tl1a_boltzgen_20261101/candidates.json --ids tl1a_bg_a_1_if1 \
+  build/next_terminal_data/candidates.json --ids SELECTED_ID --model 1 \
   --out build/next_af2
 build/env-colabfold-linux/bin/python scripts/import_af2.py \
-  results/tl1a_boltzgen_20261101/candidates.json build/next_af2
+  build/next_terminal_data/candidates.json build/next_af2
 ```
 
-ColabFold 1.6.3 runs AF2-Multimer-v3 model 3, JAX 0.6.2, one seed/sample, three
+ColabFold 1.6.3 runs AF2-Multimer-v3 models 3 (previous round) and 1 (new holdout),
+JAX 0.6.2, one seed/sample, three
 recycles, target-only MSA 128/256, no template/initial guess/relaxation. It runs
 locally, not on hosted Colab. The requested legacy kernel has no sm89 binary and
 the actual successful backend is **XLA fallback**, recorded in provenance. Only
-the genuine model-3 parameter file is fetched from the public archive by ranges;
+the requested genuine parameter files are fetched from the public archive by ranges;
 ZIP CRC is checked. Loading unused model parameter sets is bypassed separately.
+
+The executed gradient-design entry point is `scripts/run_afdesign.py`;
+`gpu/setup_afdesign_linux.sh` pins ColabDesign and its JAX dependencies and obtains
+models 3/1. The third trajectory can be reproduced with `--site terminal
+--length 80 --seeds 20261107 --schedule curriculum --recycles 1
+--context-neighbors 20 --clash-probes results/tl1a_afdesign_20261102/candidates.json
+--out build/new_afdesign`. Its original negative probes are retained there.
+`scripts/import_afdesign.py` imports only completed discrete-sequence predictions.
+Optional local steric repair used OpenMM 8.3.1 and PDBFixer at
+`5e658a4fb8d2b90d65ca8408c845cbf104ce7099`, checked out at
+`build/models/PDBFixer` and installed in `build/env-boltz`, with
+`scripts/refine_backbone.py`.
+`scripts/redesign_mpnn.py` uses the cached soluble `v_48_020` weights and refuses
+to extend any family already evaluated independently. `--redesign-interface`
+also designs interface positions; `--cpu` runs small batches without taking GPU
+memory. Local repairs can precede the IF import: import raw outputs, run
+`refine_backbone.py`, then append with `--inherit-refined-backbones`, before
+any independent evaluation of that family. The importer verifies that the
+original IF backbone matches its atom14 source within 0.02 Å.
 
 The configured native Boltz-2 2.2.1 environment uses torch 2.5.1+cu121. In PowerShell:
 
 ```powershell
-build/env-boltz/Scripts/python.exe scripts/run_boltz.py results/tl1a_boltzgen_20261101/candidates.json --ids tl1a_bg_a_1_if1 --trimer --msa-depth 512 --with-binder-controls --per-record --out build/next_boltz
-build/env-boltz/Scripts/python.exe scripts/import_boltz.py results/tl1a_boltzgen_20261101/candidates.json build/next_boltz
-build/env-rfd/Scripts/python.exe scripts/triage_candidates.py results/tl1a_boltzgen_20261101/candidates.json --complete --require-boltz --require-af2
+build/env-boltz/Scripts/python.exe scripts/run_boltz.py build/next_terminal_data/candidates.json --ids SELECTED_ID --trimer --msa-depth 512 --with-binder-controls --per-record --out build/next_boltz
+build/env-boltz/Scripts/python.exe scripts/import_boltz.py build/next_terminal_data/candidates.json build/next_boltz
+build/env-boltz/Scripts/python.exe scripts/import_af2.py build/next_terminal_data/candidates.json build/next_af2
+build/env-rfd/Scripts/python.exe scripts/triage_candidates.py build/next_terminal_data/candidates.json --complete --require-boltz --require-af2
 ```
 
 Both predictors use the cached public target MSA (2,286 records); regenerate it

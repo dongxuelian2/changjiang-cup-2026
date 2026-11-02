@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "synthetic": false,
+  "description": "UNCALIBRATED rank-coverage triage, not KD utility or success probability. Equal total weight per source family, divided across its measured proxy viewpoints: geometry.CA_contact_pairs8, geometry.glycan_ND2_min_BB_distance, sequence.hydrophobic8_max. Correlation persists across families; inspect leave-one-family-out sensitivity.",
+  "candidate_ids": [
+    "tl1a_bg_helix_0_if0",
+    "tl1a_bg_helix_0_if1",
+    "tl1a_bg_helix_1_if0",
+    "tl1a_bg_helix_1_if1",
+    "tl1a_bg_helix_3_if0",
+    "tl1a_bg_helix_3_if1"
+  ],
+  "utilities": [
+    [
+      0.5,
+      0.5,
+      0.6
+    ],
+    [
+      0.5,
+      0.5,
+      0.6
+    ],
+    [
+      0.9,
+      0.1,
+      0.6
+    ],
+    [
+      0.9,
+      0.1,
+      0.6
+    ],
+    [
+      0.1,
+      0.9,
+      0.6
+    ],
+    [
+      0.1,
+      0.9,
+      0.0
+    ]
+  ],
+  "weights": [
+    0.25,
+    0.25,
+    0.5
+  ]
+}
