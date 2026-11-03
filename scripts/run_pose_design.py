@@ -40,6 +40,11 @@ def main(args):
     family = [r for r in data['candidates'] if r['structural_group'] == parent['structural_group']]
     if any(k.startswith(('af2.', 'boltz')) and v is not None for r in family for k, v in r['metrics'].items()):
         raise ValueError('never extend an independently screened family')
+    fixed_input=parent['metadata']['generation'].get('fixed_binder_AAs',[]) if args.preserve_input_identities else []
+    if args.preserve_input_identities and not fixed_input:
+        raise ValueError('no audited fixed input identities on parent')
+    if any(parent['sequence'][p['position']-1]!=p['aa'] for p in fixed_input):
+        raise ValueError('parent changed a fixed input residue')
     out = (ROOT/args.out).resolve()
     if out.exists():
         raise ValueError('choose a fresh output directory')
@@ -141,6 +146,7 @@ def main(args):
         site='terminal_pose', binder_length=B, context_neighbor_residues_per_protomer=args.context_neighbors,
         native_primary_chain=primary, target_chain_order=order,
         conditioning='new scaffold only as supervised loss; no binder template, initial guess, or known binder',
+        fixed_input_identities=fixed_input,
         pose_anchor_residues=[target_map[i] for i in anchors], pose_anchor_allocation=allocation,
         pose_anchor_frame=args.anchor_frame,
         target_disagreement_source=args.target_disagreement,
@@ -170,6 +176,8 @@ def main(args):
         pred_target_atom_indices = jnp.array(np.flatnonzero(
             np.asarray(model._inputs['batch']['all_atom_mask'][:T]).reshape(-1)))
         model.restart(seed=seed,seq=parent['sequence'],rm_aa='C')
+        if fixed_input:
+            model.opt['fix_pos']=np.array([p['position']-1 for p in fixed_input],dtype=np.int32)
         model.opt['weights'].update(weights)
         model.set_opt(con=dict(num=2,cutoff=8.,seqsep=9),i_con=dict(num=3,cutoff=8.))
         meta['status']='designing'; trial['status']='running'; save()
@@ -202,6 +210,8 @@ def main(args):
             model.design_soft(args.temp_iters-transition,temp=.3,e_temp=.01,verbose=10,callback=progress)
             model.design_hard(args.hard_iters,temp=.01,dropout=False,verbose=10,callback=progress)
         sequence=model.get_seqs(get_best=False)[0]
+        if any(sequence[p['position']-1]!=p['aa'] for p in fixed_input):
+            raise ValueError('final discrete sequence changed fixed scaffold identities')
         model.predict(seq=sequence,hard=True,soft=False,dropout=False,num_recycles=1,verbose=True)
         folder=out/f'seed_{seed}'; folder.mkdir()
         model.save_pdb(str(folder/'generated.pdb'),get_best=False)
@@ -234,4 +244,5 @@ if __name__ == '__main__':
     p.add_argument('--anchor-frame',choices=['predicted','native'],default='predicted',
                    help='native anchors prevent reducing distance loss by deforming predicted target landmarks')
     p.add_argument('--target-disagreement',default='results/tl1a_boltzgen_terminal_20261102/target_disagreement.csv')
+    p.add_argument('--preserve-input-identities',action='store_true',help='hold audited input scaffold identities one-hot throughout optimization')
     main(p.parse_args())

@@ -1,0 +1,510 @@
+{
+  "synthetic": false,
+  "specified_pairs": [
+    [
+      6,
+      35
+    ],
+    [
+      14,
+      44
+    ],
+    [
+      23,
+      51
+    ]
+  ],
+  "interpretation": "measured coordinates only; proximity does not verify a covalent bond, cystine knot, or binding",
+  "structures": [
+    {
+      "id": "tl1a_bg_cys6_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_cys6_20261103/generation/tl1a_boltzgen_cys6_terminal_0.cif",
+      "sequence_Cys_positions": [
+        2,
+        6,
+        14,
+        23,
+        27,
+        35,
+        40,
+        44,
+        46,
+        51,
+        55
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.6868451833724976,
+          "CB_SG_SG_CB_dihedral_deg": -38.57349372791934
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.717211365699768,
+          "CB_SG_SG_CB_dihedral_deg": -177.52123355324164
+        },
+        {
+          "positions": [
+            23,
+            51
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 2.2330899238586426,
+          "CB_SG_SG_CB_dihedral_deg": 104.16919145923603
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "distance_A": 1.6868451833724976
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "distance_A": 1.717211365699768
+        },
+        {
+          "positions": [
+            23,
+            51
+          ],
+          "distance_A": 2.2330899238586426
+        },
+        {
+          "positions": [
+            27,
+            40
+          ],
+          "distance_A": 2.220512628555298
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cys6_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_cys6_20261103/predictions/af2/tl1a_bg_cys6_0_gen/tl1a_bg_cys6_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "sequence_Cys_positions": [
+        2,
+        6,
+        14,
+        23,
+        27,
+        35,
+        40,
+        44,
+        46,
+        51,
+        55
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 11.03585433959961,
+          "CB_SG_SG_CB_dihedral_deg": -123.4677910878034
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 21.606584548950195,
+          "CB_SG_SG_CB_dihedral_deg": -98.12629931098647
+        },
+        {
+          "positions": [
+            23,
+            51
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 12.512042999267578,
+          "CB_SG_SG_CB_dihedral_deg": 169.76565794241043
+        }
+      ],
+      "SG_pairs_below_2_3_A": [],
+      "maximum_SG_proximity_degree": 0
+    },
+    {
+      "id": "tl1a_bg_cys6_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_cys6_20261103/generation/tl1a_boltzgen_cys6_terminal_1.cif",
+      "sequence_Cys_positions": [
+        2,
+        6,
+        14,
+        23,
+        27,
+        35,
+        39,
+        44,
+        45,
+        51,
+        55
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 2.191843271255493,
+          "CB_SG_SG_CB_dihedral_deg": 147.41183853431536
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.4546409845352173,
+          "CB_SG_SG_CB_dihedral_deg": 6.12386031662315
+        },
+        {
+          "positions": [
+            23,
+            51
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 3.1781182289123535,
+          "CB_SG_SG_CB_dihedral_deg": 96.62765025785966
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "distance_A": 2.191843271255493
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "distance_A": 1.4546409845352173
+        },
+        {
+          "positions": [
+            23,
+            55
+          ],
+          "distance_A": 2.0102732181549072
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cys6_1_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_cys6_20261103/predictions/af2/tl1a_bg_cys6_1_gen/tl1a_bg_cys6_1_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "sequence_Cys_positions": [
+        2,
+        6,
+        14,
+        23,
+        27,
+        35,
+        39,
+        44,
+        45,
+        51,
+        55
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.8347809314727783,
+          "CB_SG_SG_CB_dihedral_deg": -98.43524542107019
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.2237330675125122,
+          "CB_SG_SG_CB_dihedral_deg": -110.47384339547054
+        },
+        {
+          "positions": [
+            23,
+            51
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.5530359745025635,
+          "CB_SG_SG_CB_dihedral_deg": 92.31623822719718
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "distance_A": 1.8347809314727783
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "distance_A": 1.2237330675125122
+        },
+        {
+          "positions": [
+            23,
+            51
+          ],
+          "distance_A": 1.5530359745025635
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cys6_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_cys6_20261103/predictions/af2/tl1a_bg_cys6_0_if/tl1a_bg_cys6_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "sequence_Cys_positions": [
+        6,
+        14,
+        23,
+        35,
+        44,
+        51
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 38.568214416503906,
+          "CB_SG_SG_CB_dihedral_deg": 129.83522490888163
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 35.54456329345703,
+          "CB_SG_SG_CB_dihedral_deg": 100.18252346830224
+        },
+        {
+          "positions": [
+            23,
+            51
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 28.90662956237793,
+          "CB_SG_SG_CB_dihedral_deg": 126.83579830998569
+        }
+      ],
+      "SG_pairs_below_2_3_A": [],
+      "maximum_SG_proximity_degree": 0
+    },
+    {
+      "id": "tl1a_bg_cys6_1_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_cys6_20261103/predictions/af2/tl1a_bg_cys6_1_if/tl1a_bg_cys6_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "sequence_Cys_positions": [
+        6,
+        14,
+        23,
+        35,
+        44,
+        51
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 18.586719512939453,
+          "CB_SG_SG_CB_dihedral_deg": 129.0415005239987
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 17.827991485595703,
+          "CB_SG_SG_CB_dihedral_deg": 60.50749101297557
+        },
+        {
+          "positions": [
+            23,
+            51
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 22.15445327758789,
+          "CB_SG_SG_CB_dihedral_deg": -44.86749989363084
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            14,
+            35
+          ],
+          "distance_A": 1.725662112236023
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cys6_1_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_cys6_20261103/predictions/trimer_deepmsa/tl1a_bg_cys6_1_if_model_0.cif",
+      "sequence_Cys_positions": [
+        6,
+        14,
+        23,
+        35,
+        44,
+        51
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.9492988586425781,
+          "CB_SG_SG_CB_dihedral_deg": -61.20034479233131
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.8828963041305542,
+          "CB_SG_SG_CB_dihedral_deg": -87.16944072986851
+        },
+        {
+          "positions": [
+            23,
+            51
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 3.006800651550293,
+          "CB_SG_SG_CB_dihedral_deg": 10.890747771051965
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "distance_A": 1.9492988586425781
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "distance_A": 1.8828963041305542
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cys6_1_if",
+      "role": "boltz_trimer_deepmsa_predicted_binder_alone",
+      "path": "results/tl1a_cys6_20261103/predictions/boltz_trimer_deepmsa/tl1a_bg_cys6_1_if_binder_only_model_0.cif",
+      "sequence_Cys_positions": [
+        6,
+        14,
+        23,
+        35,
+        44,
+        51
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 2.1874501705169678,
+          "CB_SG_SG_CB_dihedral_deg": 147.3230062281232
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.9605740308761597,
+          "CB_SG_SG_CB_dihedral_deg": -87.03110022479628
+        },
+        {
+          "positions": [
+            23,
+            51
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.9452677965164185,
+          "CB_SG_SG_CB_dihedral_deg": 105.57712947458018
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            6,
+            35
+          ],
+          "distance_A": 2.1874501705169678
+        },
+        {
+          "positions": [
+            14,
+            44
+          ],
+          "distance_A": 1.9605740308761597
+        },
+        {
+          "positions": [
+            23,
+            51
+          ],
+          "distance_A": 1.9452677965164185
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    }
+  ]
+}

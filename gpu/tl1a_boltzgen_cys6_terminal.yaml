@@ -1,0 +1,67 @@
+# New 56-aa, three-SS, beta-rich de novo design at L235/Y238.
+# No old binder backbone/sequence; six Cys and two terminal Pro caps are specified.
+# Covalent graph does not by itself prove a cystine knot. Full native ABC target.
+entities:
+- protein:
+    id: D
+    sequence: P4C7C8C11C8C6C4P
+    cyclic: false
+    secondary_structure:
+      sheet: 12..13,15..18,24..29,45..50
+      loop: 2..5,7..11,19..22,30..34,36..43,52..55
+    residue_constraints:
+    - position: 2..5,7..13,15..22,24..34,36..43,45..50,52..55
+      disallowed: C
+    - position: 12..13,15..18,24..29,45..50
+      disallowed: P
+- file:
+    path: ../build/sources/2RE9.cif
+    include:
+    - chain:
+        id: A
+        res_index: 18..181
+    - chain:
+        id: B
+        res_index: 18..181
+    - chain:
+        id: C
+        res_index: 18..181
+    binding_types:
+    - chain:
+        id: A
+        binding: 165,168
+        not_binding: 18..19,24..29,34..52,55,57..74,76..77,79..83,85,89..104,107..116,119..128,137,142,144..145,147..148,150..163,166,171..178
+    - chain:
+        id: B
+        not_binding: all
+    - chain:
+        id: C
+        not_binding: all
+constraints:
+- bond:
+    atom1:
+    - D
+    - 6
+    - SG
+    atom2:
+    - D
+    - 35
+    - SG
+- bond:
+    atom1:
+    - D
+    - 14
+    - SG
+    atom2:
+    - D
+    - 44
+    - SG
+- bond:
+    atom1:
+    - D
+    - 23
+    - SG
+    atom2:
+    - D
+    - 51
+    - SG

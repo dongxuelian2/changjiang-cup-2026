@@ -1,0 +1,60 @@
+{
+  "synthetic": false,
+  "source": "actual upstream data module / featurizer; no model execution",
+  "config": "build/tl1a_bg_top7_face_v3/config/design.yaml",
+  "chains": {
+    "D": 92,
+    "A": 164,
+    "B": 164,
+    "C": 164
+  },
+  "binder": "D",
+  "binder_tokens": 92,
+  "sequence_design_tokens": 22,
+  "coordinate_design_tokens": 92,
+  "sequence_design_positions": [
+    5,
+    9,
+    10,
+    13,
+    14,
+    16,
+    17,
+    18,
+    28,
+    29,
+    32,
+    33,
+    35,
+    36,
+    37,
+    39,
+    40,
+    41,
+    44,
+    47,
+    70,
+    71
+  ],
+  "fixed_Cys_positions": [],
+  "binder_bond_features": [],
+  "binder_cyclic_feature_values": [
+    0.0
+  ],
+  "binder_structure_groups": [
+    2
+  ],
+  "binder_structure_group_counts": {
+    "2": 92
+  },
+  "distance_conditioning": {
+    "binder_internal_fraction": 1.0,
+    "binder_target_fraction": 0.0,
+    "interpretation": "nonzero binder-target visibility reveals an input relative pose"
+  },
+  "after_actual_input_masker": {
+    "binary_bond_values_at_specified_pairs": [],
+    "typed_bond_values_at_specified_pairs": [],
+    "interpretation": "upstream masker zeros binary bonds but retains typed bonds; typed use depends on checkpoint bond_type_feature"
+  }
+}

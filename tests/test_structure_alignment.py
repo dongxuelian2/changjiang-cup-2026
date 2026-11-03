@@ -61,21 +61,41 @@ class TrimerAlignmentTests(unittest.TestCase):
 
 @unittest.skipUnless(importlib.util.find_spec("Bio"), "requires BioPython research environment")
 class PoseAnchorTests(unittest.TestCase):
+    def test_scaffold_fixed_identities_come_from_the_prepared_input(self):
+        import yaml
+        from scripts.import_boltzgen import fixed_binder_residues
+        specification=ROOT/'gpu/tl1a_boltzgen_top7_face.yaml'
+        fixed=fixed_binder_residues(yaml.safe_load(specification.read_text()),92,specification.parent)
+        self.assertEqual(len(fixed),70)
+        self.assertEqual(fixed[1],'D')
+        self.assertEqual(fixed[92],'L')
+        self.assertNotIn(37,fixed)
+
+    def test_fixed_cysteines_are_not_counted_as_sequence_design_tokens(self):
+        from scripts.import_boltzgen import fixed_binder_residues
+        specification={'entities':[{'protein':{'sequence':'10C3C30C20C5'}}]}
+        fixed=fixed_binder_residues(specification,72)
+        self.assertEqual(fixed,{11:'C',15:'C',46:'C',67:'C'})
+        self.assertEqual(72-len(fixed),68)
+        with self.assertRaises(ValueError): fixed_binder_residues(specification,71)
+        self.assertEqual(fixed_binder_residues({'entities':[{'protein':{'sequence':'60..90'}}]},80),{})
+
     def test_retained_new_atom14_and_if_files_match_actual_sequences(self):
         from Bio.PDB import MMCIFParser, PDBParser
         from Bio.SeqUtils import seq1
-        folder = ROOT/'results/tl1a_pose_design_20261102'
-        data = json.loads((folder/'candidates.json').read_text())
-        for row in data['candidates']:
-            design = PDBParser(QUIET=True).get_structure('design', ROOT/row['structures'][0]['path'])
-            self.assertEqual(row['sequence'], ''.join(seq1(r.resname) for r in design[0]['D']))
-            generation = row['metadata']['generation']
-            if generation.get('stage') not in ('atom14', 'inverse_folding'):
-                continue
-            file = ROOT/generation['retained_file'] if 'retained_file' in generation else folder/'generation'/Path(generation['file']).name
-            self.assertEqual(hashlib.sha256(file.read_bytes()).hexdigest(), generation['sha256'])
-            pose = MMCIFParser(QUIET=True).get_structure('real', file)
-            self.assertIn(row['sequence'], [''.join(seq1(r.resname) for r in c) for c in pose[0]])
+        for name in ('tl1a_pose_design_20261102','tl1a_cystine_20261102','tl1a_cys6_20261103','tl1a_top7_20261103'):
+            folder = ROOT/'results'/name
+            data = json.loads((folder/'candidates.json').read_text())
+            for row in data['candidates']:
+                design = PDBParser(QUIET=True).get_structure('design', ROOT/row['structures'][0]['path'])
+                self.assertEqual(row['sequence'], ''.join(seq1(r.resname) for r in design[0]['D']))
+                generation = row['metadata']['generation']
+                if generation.get('stage') not in ('atom14', 'inverse_folding'):
+                    continue
+                file = ROOT/generation['retained_file'] if 'retained_file' in generation else folder/'generation'/Path(generation['file']).name
+                self.assertEqual(hashlib.sha256(file.read_bytes()).hexdigest(), generation['sha256'])
+                pose = MMCIFParser(QUIET=True).get_structure('real', file)
+                self.assertIn(row['sequence'], [''.join(seq1(r.resname) for r in c) for c in pose[0]])
 
     def test_single_if_output_cannot_overwrite_original_atom14_file(self):
         from scripts.import_boltzgen import retained_filename

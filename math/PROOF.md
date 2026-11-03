@@ -952,3 +952,137 @@ validity, predictor calibration or experimental binding. Five initial AF2
 rejections have no Boltz run and are explicitly outside the two-sequence
 complete-case cohort. Additional checkpoints/seeds retain separate namespaces;
 no best-over-seed score is substituted into the original screen.
+
+## 17. Cutoff sensitivity and actual reciprocal PAE support (2026-11-03)
+
+An empty set of interchain pairs below a hard PAE cutoff gives zero ipSAE,
+but zero alone does not distinguish a boundary crossing from a broad loss of
+support. The indicator `1[a < tau]` changes under arbitrarily small perturbations
+at `tau`. This is a property of thresholding, not evidence that any particular
+zero score is an artifact. Inspect the original PAE before interpreting it.
+
+For a **fixed** pair set, fixed nonnegative weights summing to one and a fixed
+scale `s > 0`, define `a_ij = max(PAE_ij, PAE_ji)` and
+
+\[
+ C_s(P)=\sum_{ij} w_{ij}\frac{1}{1+(a_{ij}/s)^2}.
+\]
+
+**Proposition.** If two nonnegative PAE matrices differ by at most `epsilon`
+entrywise, their summaries differ by at most
+`9 epsilon / (8 sqrt(3) s)`.
+
+**Proof.** Taking the maximum of two entries is 1-Lipschitz in the sup norm.
+For `g_s(a)=1/(1+(a/s)^2)`, the maximum absolute derivative on `a >= 0` is
+`9/(8 sqrt(3) s)`, attained at `a=s/sqrt(3)`. Apply the mean-value theorem
+to each pair, then the triangle inequality and `sum w=1`. This proves stability
+of this descriptive summary only. It does not calibrate predicted errors,
+binding probabilities or affinity. Changing the pair set or weights invalidates
+this fixed-mask comparison bound; predicted-contact masks can themselves change
+discontinuously with coordinates.
+
+`scripts/analyze_pae_support.py` measures real stored Boltz PAE at predicted
+CA contacts below 10 A, with `s=10 A`. The
+[retained report](../results/tl1a_pose_design_20261102/pae_support.json) gives:
+
+| Sequence | Seed | ipSAE(10) | Median reciprocal-max contact PAE (A) | Smooth summary |
+|---|---:|---:|---:|---:|
+| raw 72-aa alpha/beta parent | 2026 | .486 | 4.67 | .764 |
+| same parent | 2027 | .333 | 6.76 | .636 |
+| actual 65-aa truncation | 2026 | 0 | 16.28 | .273 |
+| same truncation | 2027 | .025 | 11.59 | .418 |
+
+For truncation seed 2026, even the **minimum over all interchain pairs** is
+12.99 A target-to-binder and 10.16 A binder-to-target. The collapse is therefore
+not merely a few contact pairs falling just across the cutoff. The changing
+contact masks mean the proposition is not an error bound between these four
+predictions; the actual distributions provide the evidence. Truncation changes
+sequence, positional context and diffusion random draws, so these runs do not
+isolate which factor causes the loss. No additional variants of this frozen
+family were generated for this analysis.
+
+## 18. What a backbone-only sequence model cannot identify (2026-11-03)
+
+Let `Phi_BB(S)` contain all residue identities, chain/residue indices, fixed and
+design masks, and N/CA/C/O coordinates supplied to a backbone-only conditional
+sequence model. Derived pseudo-CB coordinates are functions of this same input.
+Hold all these quantities fixed, while changing only target sidechain coordinates.
+
+**Observation.** Such two states have identical conditional output laws under
+ProteinMPNN. In a deterministic implementation, equal decoder random draws also
+give the same sampled sequence.
+
+**Proof.** Both states map to the identical `Phi_BB`. The model's conditional
+probabilities and sampling map depend only on this feature vector and decoder
+randomness. Composition with the same inputs gives identical probabilities and
+outputs. No choice of optimizer or sampling budget can recover the omitted
+sidechain state from that projection alone.
+
+This is an input-identifiability limitation, not a theorem that backbone-only
+design cannot bind, or that exposing more atoms improves affinity. A sequence
+can tolerate several sidechain states. Conversely, a genuinely state-dependent
+chemical preference cannot be selected *because of* coordinates the model never
+receives. Target sequence context can convey the identity of Arg, but cannot
+specify which of its rotamers is presented in a particular design pose.
+
+The real Top7-scaffold pilot makes this distinction concrete. Across two new
+generated poses and their three native TL1A protomers, R156 CA deviation has
+median **.090 A**, yet its heavy-sidechain RMSD after local N/CA/C fitting has
+median **2.96 A**, allowing equivalent NH1/NH2 labels. In the first pose, chain
+A's Arg CZ alone moves **4.07 A** after that local fit. L235 and Y238 sidechain
+RMSD medians are .137/.598 A. These are correlated generated structures, not
+experimental flexibility measurements. The complete generated and native
+backbones differ slightly; the observation above does not assert their feature
+vectors are exactly identical. It identifies the sidechain component that a
+backbone-only input omits.
+
+`scripts/audit_target_sidechains.py` retains atom-level measurements and label
+symmetry choices. The new LigandMPNN test exposes observed fixed target
+sidechains as atom context, with an on/off control using the same checkpoint,
+seed, backbone and designable positions. This tests a different conditioning
+mechanism; only subsequent independent predictions can assess association.
+
+## 19. Conditional sequence preference is not a pose posterior (2026-11-03)
+
+Even an exact normalized conditional sequence model does not identify binding
+pose probabilities without a pose prior. For two poses with positive likelihood,
+Bayes' rule gives
+
+\[
+\frac{p(x_1\mid s)}{p(x_2\mid s)}
+=\frac{p(s\mid x_1)}{p(s\mid x_2)}\frac{p(x_1)}{p(x_2)}.
+\]
+
+**Observation and proof.** Holding both conditional sequence likelihoods fixed,
+any positive prior odds define a valid joint distribution and can reverse the
+posterior ranking. Thus conditional likelihood alone does not determine that
+ranking. Here fixed scaffold/target identities can be conditioned on throughout.
+The neural conditional model is not established to be exact in the first place;
+this argument grants it an assumption stronger than the available evidence.
+It is not a thermodynamic model or a derivation of binding free energy.
+
+An actual LigandMPNN autoregressive audit scores the **frozen**
+`tl1a_bg_top7_0_if_lmpnn_ctx1` sequence with observed native target sidechains.
+Only the binder's rigid pose changes: reference internal coordinates remain
+identical, and each decoy pose is fitted to a real AF2 or Boltz prediction.
+All three jobs have the same seed, 22 designable positions, fixed identities
+and verified identical decoding order. No sequence is generated in this audit.
+
+| Pose context | Conditional NLL (nats/designed residue) | Native BB overlaps <2 A | Glycan-anchor BB distance (A) |
+|---|---:|---:|---:|
+| repaired design pose | 1.4143 | 0 | 16.38 |
+| AF2-derived rigid pose | 2.4902 | 94 | 16.27 |
+| Boltz-derived rigid pose | 1.7129 | 0 | 27.72 |
+
+The AF2-derived decoy is physically occluded and is explicitly not a feasible
+binding alternative. LigandMPNN nevertheless **does favor** the prescribed
+pose over both tested decoys. This is not an observed binding preference:
+unconditioned AF2 and Boltz interface ipSAE are both zero, and Boltz's pose
+RMSD to design is 84.56 A despite fold RMSD .917 A. Its binder-alone fold RMSD
+is .872 A with pLDDT .919. These finite tests show conditional sequence fit,
+intrinsic folding and cross-model association can give different conclusions.
+They do not distinguish predictor failure from physical nonbinding.
+
+`scripts/audit_pose_likelihood.py` retains real input structures, raw model
+statistics, per-position NLL, seed and commands. This score is never substituted
+for independent interface validation or an official competition score.

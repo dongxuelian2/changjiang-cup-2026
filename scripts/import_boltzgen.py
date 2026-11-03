@@ -6,6 +6,7 @@ for the existing independent prediction and portfolio entry points.
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 import shutil
 import sys
@@ -28,9 +29,54 @@ def retained_filename(cif, raw, stage):
     return 'inverse_folding_'+cif.name if stage == 'inverse_folding' and cif.name == raw.name else cif.name
 
 
+def fixed_binder_residues(specification, length, spec_directory=None):
+    """Audit a fixed-length mixed design/AA specification, not inferred output AAs."""
+    proteins=[e['protein'] for e in specification['entities'] if 'protein' in e
+              and any(c.isdigit() for c in str(e['protein']['sequence']))]
+    if not proteins and spec_directory is not None:
+        files=[e['file'] for e in specification['entities'] if 'file' in e and e['file'].get('design')]
+        if len(files)!=1:raise ValueError('require one explicitly designed scaffold file')
+        entry=files[0]
+        if entry.get('design_insertions') or entry.get('not_design'):
+            raise ValueError('scaffold audit currently requires fixed length and explicit design positions')
+        source=(Path(spec_directory)/entry['path']).resolve()
+        parser=MMCIFParser(QUIET=True) if source.suffix=='.cif' else PDBParser(QUIET=True)
+        chains=list(parser.get_structure('scaffold',source)[0])
+        if len(chains)!=1 or len(chains[0])!=length:
+            raise ValueError('scaffold audit requires a prepared single-chain input of exact binder length')
+        chain=chains[0];variable=set()
+        for item in entry['design']:
+            definition=item['chain']
+            if definition['id']!=chain.id:raise ValueError('scaffold design-chain mismatch')
+            if 'res_index' not in definition:variable.update(range(1,length+1))
+            else:
+                for token in str(definition['res_index']).split(','):
+                    ends=token.split('..')
+                    variable.update(range(int(ends[0]),int(ends[-1])+1))
+        if not variable or min(variable)<1 or max(variable)>length:raise ValueError('invalid scaffold design positions')
+        return {i+1:seq1(r.resname) for i,r in enumerate(chain) if i+1 not in variable}
+    if len(proteins)!=1:
+        raise ValueError('require one designed protein entity')
+    sequence=str(proteins[0]['sequence']).upper()
+    if not any(c.isalpha() for c in sequence):
+        return {}
+    if '..' in sequence:
+        raise ValueError('mixed fixed-AA audit requires fixed design lengths')
+    fixed={}; position=0
+    for token in re.findall(r'\d+|[A-Z]',sequence):
+        if token.isdigit(): position+=int(token)
+        else:
+            position+=1;fixed[position]=token
+    if position!=length:
+        raise ValueError('mixed design specification length does not match actual binder')
+    return fixed
+
+
 def main(args):
     run = (ROOT / args.run).resolve()
     meta = json.loads((run / "run.json").read_text())
+    import yaml
+    specification=yaml.safe_load((ROOT/meta['spec']).read_text())
     if meta["synthetic"] or meta["model"] != "BoltzGen":
         raise ValueError("requires genuine BoltzGen provenance")
     out = (ROOT / args.out).resolve()
@@ -86,13 +132,19 @@ def main(args):
         if not 40 <= len(sequence) <= 100 or not set(sequence) <= set("ACDEFGHIKLMNPQRSTVWY"):
             raise ValueError(f"invalid generated sequence: {cif}")
         masks = np.load(cif.with_suffix(".npz"))
-        if int(masks["design_mask"].sum()) != len(sequence):
+        fixed=fixed_binder_residues(specification,len(sequence),(ROOT/meta['spec']).parent)
+        if any(sequence[p-1]!=aa for p,aa in fixed.items()):
+            raise ValueError('emitted sequence changed a specified fixed binder residue')
+        if int(masks["design_mask"].sum()) != len(sequence)-len(fixed):
             raise ValueError("source design mask disagrees with designed chain")
         original_binder, original_targets = binder.id, [c.id for c in targets]
         source = dict(file=cif.relative_to(ROOT).as_posix(),
                       sha256=hashlib.sha256(cif.read_bytes()).hexdigest(), stage=stage,
                       backbone=raw.stem, original_binder_chain=original_binder,
                       original_target_chains=original_targets)
+        if fixed:
+            source['fixed_binder_AAs']=[dict(position=p,aa=aa) for p,aa in fixed.items()]
+            source['designable_binder_residues']=len(sequence)-len(fixed)
         retained = retained_filename(cif, raw, stage)
         if retained != cif.name:
             source['retained_file'] = (out/'generation'/retained).relative_to(ROOT).as_posix()
@@ -102,7 +154,7 @@ def main(args):
         if len(token_residues) != len(masks["binding_type"]):
             raise ValueError("conditioning-mask residue order mismatch")
         if not np.array_equal(masks["design_mask"].astype(bool),
-                              np.array([c == original_binder for c,_ in token_residues])):
+                              np.array([c == original_binder and i+1 not in fixed for c,i in token_residues])):
             raise ValueError("emitted design mask does not match the verified binder chain")
         source["binding_sites_uniprot"] = [
             f"{'ABC'[original_targets.index(c)]}:{i+88}"

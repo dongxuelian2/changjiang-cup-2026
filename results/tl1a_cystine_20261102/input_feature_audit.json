@@ -1,0 +1,127 @@
+{
+  "synthetic": false,
+  "source": "actual upstream data module / featurizer; no model execution",
+  "config": "build/tl1a_bg_cystine_beta_v2/config/design.yaml",
+  "chains": {
+    "D": 72,
+    "A": 164,
+    "B": 164,
+    "C": 164
+  },
+  "binder": "D",
+  "binder_tokens": 72,
+  "sequence_design_tokens": 68,
+  "coordinate_design_tokens": 72,
+  "sequence_design_positions": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    68,
+    69,
+    70,
+    71,
+    72
+  ],
+  "fixed_Cys_positions": [
+    11,
+    15,
+    46,
+    67
+  ],
+  "binder_bond_features": [
+    [
+      11,
+      67
+    ],
+    [
+      15,
+      46
+    ]
+  ],
+  "binder_cyclic_feature_values": [
+    0.0
+  ],
+  "binder_structure_groups": [
+    0
+  ],
+  "binder_structure_group_counts": {
+    "0": 72
+  },
+  "distance_conditioning": {
+    "binder_internal_fraction": 0.0,
+    "binder_target_fraction": 0.0,
+    "interpretation": "nonzero binder-target visibility reveals an input relative pose"
+  },
+  "after_actual_input_masker": {
+    "binary_bond_values_at_specified_pairs": [
+      0.0,
+      0.0
+    ],
+    "typed_bond_values_at_specified_pairs": [
+      6,
+      6
+    ],
+    "interpretation": "upstream masker zeros binary bonds but retains typed bonds; typed use depends on checkpoint bond_type_feature"
+  },
+  "checkpoint_bond_type_feature": true
+}

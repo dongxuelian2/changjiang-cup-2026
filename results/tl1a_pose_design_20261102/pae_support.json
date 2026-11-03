@@ -1,0 +1,190 @@
+{
+  "synthetic": false,
+  "purpose": "diagnose actual PAE distributions; NOT official scoring or measured binding",
+  "contact_definition": "predicted CA distance <10 A, all three target protomers",
+  "quantiles": [
+    0,
+    0.1,
+    0.5,
+    0.9
+  ],
+  "smooth_scale_A": 10.0,
+  "predictions": [
+    {
+      "id": "tl1a_bg_ab72_0_gen",
+      "namespace": "boltz_trimer_deepmsa",
+      "pae": "results/tl1a_pose_design_20261102/predictions/trimer_deepmsa/pae_tl1a_bg_ab72_0_gen_model_0.npz",
+      "ipsae_10": 0.485731,
+      "ipsae_15": 0.48289,
+      "contact_pairs": 121,
+      "all_pair_min_PAE_A": {
+        "target_to_binder": 3.343942165374756,
+        "binder_to_target": 3.01047420501709
+      },
+      "contact_PAE_quantiles_A": {
+        "target_to_binder": [
+          3.4478423595428467,
+          3.8598170280456543,
+          4.436250686645508,
+          7.946959495544434
+        ],
+        "binder_to_target": [
+          3.01047420501709,
+          3.601285457611084,
+          4.554261207580566,
+          7.013110160827637
+        ],
+        "reciprocal_max": [
+          3.591245174407959,
+          4.045876979827881,
+          4.671648979187012,
+          9.124892234802246
+        ]
+      },
+      "contact_reciprocal_fraction_below": {
+        "8": 0.859504132231405,
+        "10": 0.9173553719008265,
+        "12": 0.9834710743801653,
+        "15": 1.0,
+        "20": 1.0
+      },
+      "all_pair_directional_counts_below_10": {
+        "target_to_binder": 27178,
+        "binder_to_target": 24927
+      },
+      "fixed_scale_smooth_contact_support": 0.7637128829956055
+    },
+    {
+      "id": "tl1a_bg_ab72_0_gen",
+      "namespace": "boltz_trimer_deepmsa_seed2027",
+      "pae": "results/tl1a_pose_design_20261102/predictions/trimer_deepmsa_seed2027/pae_tl1a_bg_ab72_0_gen_model_0.npz",
+      "ipsae_10": 0.332608,
+      "ipsae_15": 0.335161,
+      "contact_pairs": 123,
+      "all_pair_min_PAE_A": {
+        "target_to_binder": 5.122411727905273,
+        "binder_to_target": 4.526672840118408
+      },
+      "contact_PAE_quantiles_A": {
+        "target_to_binder": [
+          5.471679210662842,
+          5.7669037818908695,
+          6.4146881103515625,
+          10.282509422302246
+        ],
+        "binder_to_target": [
+          4.526672840118408,
+          5.3983172416687015,
+          6.52479887008667,
+          8.974918556213378
+        ],
+        "reciprocal_max": [
+          5.478585243225098,
+          5.980856227874756,
+          6.7622480392456055,
+          12.170558166503906
+        ]
+      },
+      "contact_reciprocal_fraction_below": {
+        "8": 0.7642276422764228,
+        "10": 0.8211382113821138,
+        "12": 0.8943089430894309,
+        "15": 0.983739837398374,
+        "20": 1.0
+      },
+      "all_pair_directional_counts_below_10": {
+        "target_to_binder": 24518,
+        "binder_to_target": 14697
+      },
+      "fixed_scale_smooth_contact_support": 0.6358851194381714
+    },
+    {
+      "id": "tl1a_bg_ab72_0_trim65",
+      "namespace": "boltz_trimer_deepmsa",
+      "pae": "results/tl1a_pose_design_20261102/predictions/trimer_deepmsa/pae_tl1a_bg_ab72_0_trim65_model_0.npz",
+      "ipsae_10": 0.0,
+      "ipsae_15": 0.046588,
+      "contact_pairs": 96,
+      "all_pair_min_PAE_A": {
+        "target_to_binder": 12.986189842224121,
+        "binder_to_target": 10.15804672241211
+      },
+      "contact_PAE_quantiles_A": {
+        "target_to_binder": [
+          13.613037109375,
+          14.391202449798584,
+          15.860429286956787,
+          18.55848217010498
+        ],
+        "binder_to_target": [
+          12.71492862701416,
+          13.637706756591797,
+          15.781116962432861,
+          17.837775230407715
+        ],
+        "reciprocal_max": [
+          13.759669303894043,
+          14.624797344207764,
+          16.277737617492676,
+          18.6997013092041
+        ]
+      },
+      "contact_reciprocal_fraction_below": {
+        "8": 0.0,
+        "10": 0.0,
+        "12": 0.0,
+        "15": 0.17708333333333334,
+        "20": 0.9791666666666666
+      },
+      "all_pair_directional_counts_below_10": {
+        "target_to_binder": 0,
+        "binder_to_target": 0
+      },
+      "fixed_scale_smooth_contact_support": 0.2728971242904663
+    },
+    {
+      "id": "tl1a_bg_ab72_0_trim65",
+      "namespace": "boltz_trimer_deepmsa_seed2027",
+      "pae": "results/tl1a_pose_design_20261102/predictions/trimer_deepmsa_seed2027/pae_tl1a_bg_ab72_0_trim65_model_0.npz",
+      "ipsae_10": 0.025218,
+      "ipsae_15": 0.156918,
+      "contact_pairs": 106,
+      "all_pair_min_PAE_A": {
+        "target_to_binder": 8.883222579956055,
+        "binder_to_target": 7.724546432495117
+      },
+      "contact_PAE_quantiles_A": {
+        "target_to_binder": [
+          9.285419464111328,
+          9.894169807434082,
+          10.745432376861572,
+          13.322004318237305
+        ],
+        "binder_to_target": [
+          8.880817413330078,
+          9.789936065673828,
+          11.338349342346191,
+          13.4730806350708
+        ],
+        "reciprocal_max": [
+          9.833250999450684,
+          10.228228092193604,
+          11.592738628387451,
+          14.414970874786377
+        ]
+      },
+      "contact_reciprocal_fraction_below": {
+        "8": 0.0,
+        "10": 0.018867924528301886,
+        "12": 0.5660377358490566,
+        "15": 0.9150943396226415,
+        "20": 1.0
+      },
+      "all_pair_directional_counts_below_10": {
+        "target_to_binder": 384,
+        "binder_to_target": 724
+      },
+      "fixed_scale_smooth_contact_support": 0.41819295287132263
+    }
+  ]
+}

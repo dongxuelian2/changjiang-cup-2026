@@ -1,0 +1,3 @@
+id,binding_sites,buried_binder_SASA_A2,contacting_binder_residues45,hydrophobic_burial_fraction,aromatic_burial_fraction,alpha_torsion_fraction,min_nonlocal_CA_distance_A,cysteine_min_SG_distance_A,cysteine_SG_pairs22,cysteine_SG_max_degree22,AELK_fraction,native_BB_clashes,glycan_BB_distance_A
+tl1a_bg_cysbeta_0_gen,"A:156,A:158",416.89949875882195,9,0.3332414089206207,0.0,0.32857142857142857,4.088110446929932,1.9390721321105957,1,1,0.2777777777777778,0,14.09196949005127
+tl1a_bg_cysbeta_1_gen,"A:156,A:158",326.02612895309016,9,0.34407515166605734,0.0,0.32857142857142857,4.465356826782227,1.062807321548462,3,1,0.2638888888888889,0,14.730539321899414

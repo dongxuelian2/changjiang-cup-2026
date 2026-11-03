@@ -1,0 +1,549 @@
+{
+  "synthetic": false,
+  "specified_pairs": [
+    [
+      11,
+      67
+    ],
+    [
+      15,
+      46
+    ]
+  ],
+  "interpretation": "measured coordinates only; proximity does not verify a covalent bond, cystine knot, or binding",
+  "structures": [
+    {
+      "id": "tl1a_bg_cysbeta_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_cystine_20261102/generation/tl1a_boltzgen_cystine_beta_0.cif",
+      "sequence_Cys_positions": [
+        11,
+        15,
+        23,
+        28,
+        33,
+        46,
+        52,
+        67
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.9390721321105957,
+          "CB_SG_SG_CB_dihedral_deg": 83.77548059569646
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 2.2482669353485107,
+          "CB_SG_SG_CB_dihedral_deg": -140.72649157685186
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "distance_A": 1.9390721321105957
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "distance_A": 2.2482669353485107
+        },
+        {
+          "positions": [
+            23,
+            33
+          ],
+          "distance_A": 2.2592108249664307
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cysbeta_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_cystine_20261102/predictions/af2/tl1a_bg_cysbeta_0_gen/tl1a_bg_cysbeta_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "sequence_Cys_positions": [
+        11,
+        15,
+        23,
+        28,
+        33,
+        46,
+        52,
+        67
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 4.965378284454346,
+          "CB_SG_SG_CB_dihedral_deg": 108.98672012869434
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 4.817192077636719,
+          "CB_SG_SG_CB_dihedral_deg": 120.06833965299218
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            11,
+            46
+          ],
+          "distance_A": 1.9555963277816772
+        },
+        {
+          "positions": [
+            15,
+            67
+          ],
+          "distance_A": 1.3097026348114014
+        },
+        {
+          "positions": [
+            23,
+            33
+          ],
+          "distance_A": 1.369346261024475
+        },
+        {
+          "positions": [
+            28,
+            52
+          ],
+          "distance_A": 2.17284893989563
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cysbeta_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_cystine_20261102/generation/tl1a_boltzgen_cystine_beta_1.cif",
+      "sequence_Cys_positions": [
+        11,
+        15,
+        19,
+        23,
+        28,
+        46,
+        50,
+        52,
+        67
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.6247715950012207,
+          "CB_SG_SG_CB_dihedral_deg": -14.087936293832247
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 2.1336112022399902,
+          "CB_SG_SG_CB_dihedral_deg": -91.38268085775438
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "distance_A": 1.6247715950012207
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "distance_A": 2.1336112022399902
+        },
+        {
+          "positions": [
+            19,
+            50
+          ],
+          "distance_A": 1.062807321548462
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cysbeta_1_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_cystine_20261102/predictions/af2/tl1a_bg_cysbeta_1_gen/tl1a_bg_cysbeta_1_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "sequence_Cys_positions": [
+        11,
+        15,
+        19,
+        23,
+        28,
+        46,
+        50,
+        52,
+        67
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.102142572402954,
+          "CB_SG_SG_CB_dihedral_deg": 105.37543896010527
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 2.2043721675872803,
+          "CB_SG_SG_CB_dihedral_deg": -95.0401132058697
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "distance_A": 1.102142572402954
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "distance_A": 2.2043721675872803
+        },
+        {
+          "positions": [
+            19,
+            50
+          ],
+          "distance_A": 2.202432870864868
+        },
+        {
+          "positions": [
+            23,
+            50
+          ],
+          "distance_A": 2.110383987426758
+        },
+        {
+          "positions": [
+            28,
+            52
+          ],
+          "distance_A": 1.2008626461029053
+        }
+      ],
+      "maximum_SG_proximity_degree": 2
+    },
+    {
+      "id": "tl1a_bg_cysbeta_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_cystine_20261102/predictions/af2/tl1a_bg_cysbeta_0_if/tl1a_bg_cysbeta_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "sequence_Cys_positions": [
+        11,
+        15,
+        46,
+        67
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.3641984462738037,
+          "CB_SG_SG_CB_dihedral_deg": -98.12700832627254
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 2.7369298934936523,
+          "CB_SG_SG_CB_dihedral_deg": -126.25499003057278
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "distance_A": 1.3641984462738037
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cysbeta_1_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_cystine_20261102/predictions/af2/tl1a_bg_cysbeta_1_if/tl1a_bg_cysbeta_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "sequence_Cys_positions": [
+        11,
+        15,
+        46,
+        67
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.0305498838424683,
+          "CB_SG_SG_CB_dihedral_deg": 66.32719996308052
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.0200910568237305,
+          "CB_SG_SG_CB_dihedral_deg": 109.47220109410239
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "distance_A": 1.0305498838424683
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "distance_A": 1.0200910568237305
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cysbeta_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_cystine_20261102/predictions/af2/tl1a_bg_cysbeta_0_if_mpnn1/tl1a_bg_cysbeta_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "sequence_Cys_positions": [
+        11,
+        15,
+        46,
+        67
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 4.080849647521973,
+          "CB_SG_SG_CB_dihedral_deg": -175.17495382258224
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 4.391194820404053,
+          "CB_SG_SG_CB_dihedral_deg": -139.16441779809463
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            15,
+            67
+          ],
+          "distance_A": 1.1822417974472046
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cysbeta_1_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_cystine_20261102/predictions/af2/tl1a_bg_cysbeta_1_if_mpnn1/tl1a_bg_cysbeta_1_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "sequence_Cys_positions": [
+        11,
+        15,
+        46,
+        67
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.6295154094696045,
+          "CB_SG_SG_CB_dihedral_deg": -22.964503848757413
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 1.7353440523147583,
+          "CB_SG_SG_CB_dihedral_deg": 108.79919891308724
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "distance_A": 1.6295154094696045
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "distance_A": 1.7353440523147583
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cysbeta_1_if_mpnn1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_cystine_20261102/predictions/trimer_deepmsa/tl1a_bg_cysbeta_1_if_mpnn1_model_0.cif",
+      "sequence_Cys_positions": [
+        11,
+        15,
+        46,
+        67
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 2.012620210647583,
+          "CB_SG_SG_CB_dihedral_deg": -17.291957346995947
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 2.1008801460266113,
+          "CB_SG_SG_CB_dihedral_deg": -107.6123919512311
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "distance_A": 2.012620210647583
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "distance_A": 2.1008801460266113
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    },
+    {
+      "id": "tl1a_bg_cysbeta_1_if_mpnn1",
+      "role": "boltz_trimer_deepmsa_predicted_binder_alone",
+      "path": "results/tl1a_cystine_20261102/predictions/boltz_trimer_deepmsa/tl1a_bg_cysbeta_1_if_mpnn1_binder_only_model_0.cif",
+      "sequence_Cys_positions": [
+        11,
+        15,
+        46,
+        67
+      ],
+      "specified_pairs": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 2.026026964187622,
+          "CB_SG_SG_CB_dihedral_deg": -27.354200822511533
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "both_Cys_SG_present": true,
+          "SG_distance_A": 2.248237133026123,
+          "CB_SG_SG_CB_dihedral_deg": -101.47923758448319
+        }
+      ],
+      "SG_pairs_below_2_3_A": [
+        {
+          "positions": [
+            11,
+            67
+          ],
+          "distance_A": 2.026026964187622
+        },
+        {
+          "positions": [
+            15,
+            46
+          ],
+          "distance_A": 2.248237133026123
+        }
+      ],
+      "maximum_SG_proximity_degree": 1
+    }
+  ]
+}

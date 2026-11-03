@@ -1,0 +1,61 @@
+# New random backbones at R156/M158, full native trimer. No binder coordinates or sequence beyond four Cys.
+# Exclude A residues with native glycan-anchor distance <17 A or historical CA p90 >3 A.
+# Internal SG bonds avoid the known terminal-disulfide/cyclic-mask ambiguity.
+entities:
+- protein:
+    id: D
+    sequence: 10C3C30C20C5
+    cyclic: false
+    secondary_structure:
+      helix: 8..10,12..14,16..25
+      sheet: 33..40,45,47..52,59..66
+      loop: 1..7,26..32,41..44,53..58,68..72
+    residue_constraints:
+    - position: 1..10,12..14,16..45,47..66,68..72
+      disallowed: C
+    - position: 8..25
+      disallowed: PG
+    - position: 33..40,45..52,59..66
+      disallowed: P
+- file:
+    path: ../build/sources/2RE9.cif
+    include:
+    - chain:
+        id: A
+        res_index: 18..181
+    - chain:
+        id: B
+        res_index: 18..181
+    - chain:
+        id: C
+        res_index: 18..181
+    binding_types:
+    - chain:
+        id: A
+        binding: 86,88
+        not_binding: 18..19,23..53,55..85,89..104,106..129,137,139,141..168,170..181
+    - chain:
+        id: B
+        not_binding: all
+    - chain:
+        id: C
+        not_binding: all
+constraints:
+- bond:
+    atom1:
+    - D
+    - 11
+    - SG
+    atom2:
+    - D
+    - 67
+    - SG
+- bond:
+    atom1:
+    - D
+    - 15
+    - SG
+    atom2:
+    - D
+    - 46
+    - SG

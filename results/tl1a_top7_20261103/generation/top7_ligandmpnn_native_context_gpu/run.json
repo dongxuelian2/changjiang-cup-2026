@@ -1,0 +1,419 @@
+{
+  "synthetic": false,
+  "model": "LigandMPNN",
+  "source_url": "https://github.com/dauparas/LigandMPNN",
+  "revision": "26ec57ac976ade5379920dbd43c7f97a91cf82de",
+  "checkpoint": "build/models/LigandMPNN-main/model_params/ligandmpnn_v_32_010_25.pt",
+  "checkpoint_url": "https://files.ipd.uw.edu/pub/ligandmpnn/ligandmpnn_v_32_010_25.pt",
+  "checkpoint_sha256": "161cd264061fda9680cbb940255522ae42f2966c552d045d87913d9452a80970",
+  "parent_candidates": "results/tl1a_top7_20261103/candidates.json",
+  "parent_id": "tl1a_bg_top7_0_if",
+  "seed": 20261107,
+  "temperature": 0.1,
+  "fixed_input_identities": [
+    {
+      "position": 1,
+      "aa": "D"
+    },
+    {
+      "position": 2,
+      "aa": "I"
+    },
+    {
+      "position": 3,
+      "aa": "Q"
+    },
+    {
+      "position": 4,
+      "aa": "V"
+    },
+    {
+      "position": 6,
+      "aa": "V"
+    },
+    {
+      "position": 7,
+      "aa": "N"
+    },
+    {
+      "position": 8,
+      "aa": "I"
+    },
+    {
+      "position": 11,
+      "aa": "N"
+    },
+    {
+      "position": 12,
+      "aa": "G"
+    },
+    {
+      "position": 15,
+      "aa": "F"
+    },
+    {
+      "position": 19,
+      "aa": "Y"
+    },
+    {
+      "position": 20,
+      "aa": "T"
+    },
+    {
+      "position": 21,
+      "aa": "V"
+    },
+    {
+      "position": 22,
+      "aa": "T"
+    },
+    {
+      "position": 23,
+      "aa": "T"
+    },
+    {
+      "position": 24,
+      "aa": "E"
+    },
+    {
+      "position": 25,
+      "aa": "S"
+    },
+    {
+      "position": 26,
+      "aa": "E"
+    },
+    {
+      "position": 27,
+      "aa": "L"
+    },
+    {
+      "position": 30,
+      "aa": "V"
+    },
+    {
+      "position": 31,
+      "aa": "L"
+    },
+    {
+      "position": 34,
+      "aa": "L"
+    },
+    {
+      "position": 38,
+      "aa": "I"
+    },
+    {
+      "position": 42,
+      "aa": "G"
+    },
+    {
+      "position": 43,
+      "aa": "A"
+    },
+    {
+      "position": 45,
+      "aa": "R"
+    },
+    {
+      "position": 46,
+      "aa": "V"
+    },
+    {
+      "position": 48,
+      "aa": "I"
+    },
+    {
+      "position": 49,
+      "aa": "S"
+    },
+    {
+      "position": 50,
+      "aa": "I"
+    },
+    {
+      "position": 51,
+      "aa": "T"
+    },
+    {
+      "position": 52,
+      "aa": "A"
+    },
+    {
+      "position": 53,
+      "aa": "R"
+    },
+    {
+      "position": 54,
+      "aa": "T"
+    },
+    {
+      "position": 55,
+      "aa": "K"
+    },
+    {
+      "position": 56,
+      "aa": "K"
+    },
+    {
+      "position": 57,
+      "aa": "E"
+    },
+    {
+      "position": 58,
+      "aa": "A"
+    },
+    {
+      "position": 59,
+      "aa": "E"
+    },
+    {
+      "position": 60,
+      "aa": "K"
+    },
+    {
+      "position": 61,
+      "aa": "F"
+    },
+    {
+      "position": 62,
+      "aa": "A"
+    },
+    {
+      "position": 63,
+      "aa": "A"
+    },
+    {
+      "position": 64,
+      "aa": "I"
+    },
+    {
+      "position": 65,
+      "aa": "L"
+    },
+    {
+      "position": 66,
+      "aa": "I"
+    },
+    {
+      "position": 67,
+      "aa": "K"
+    },
+    {
+      "position": 68,
+      "aa": "V"
+    },
+    {
+      "position": 69,
+      "aa": "F"
+    },
+    {
+      "position": 72,
+      "aa": "L"
+    },
+    {
+      "position": 73,
+      "aa": "G"
+    },
+    {
+      "position": 74,
+      "aa": "Y"
+    },
+    {
+      "position": 75,
+      "aa": "N"
+    },
+    {
+      "position": 76,
+      "aa": "D"
+    },
+    {
+      "position": 77,
+      "aa": "I"
+    },
+    {
+      "position": 78,
+      "aa": "N"
+    },
+    {
+      "position": 79,
+      "aa": "V"
+    },
+    {
+      "position": 80,
+      "aa": "T"
+    },
+    {
+      "position": 81,
+      "aa": "F"
+    },
+    {
+      "position": 82,
+      "aa": "D"
+    },
+    {
+      "position": 83,
+      "aa": "G"
+    },
+    {
+      "position": 84,
+      "aa": "D"
+    },
+    {
+      "position": 85,
+      "aa": "T"
+    },
+    {
+      "position": 86,
+      "aa": "V"
+    },
+    {
+      "position": 87,
+      "aa": "T"
+    },
+    {
+      "position": 88,
+      "aa": "V"
+    },
+    {
+      "position": 89,
+      "aa": "E"
+    },
+    {
+      "position": 90,
+      "aa": "G"
+    },
+    {
+      "position": 91,
+      "aa": "Q"
+    },
+    {
+      "position": 92,
+      "aa": "L"
+    }
+  ],
+  "design_positions": [
+    5,
+    9,
+    10,
+    13,
+    14,
+    16,
+    17,
+    18,
+    28,
+    29,
+    32,
+    33,
+    35,
+    36,
+    37,
+    39,
+    40,
+    41,
+    44,
+    47,
+    70,
+    71
+  ],
+  "device": "cuda",
+  "input_pose": "results/tl1a_top7_20261103/poses/tl1a_bg_top7_0_if_design.pdb",
+  "context": "observed native ABC sidechain atoms; designed binder has backbone only",
+  "atom_context_ablation": "same checkpoint/seed/backbone/fixed identities; toggle fixed-sidechain context only",
+  "compatibility_changes": [
+    "bundled openfold/np/residue_constants.py: exact np.int alias replaced by builtin int for NumPy >=1.24; weights/arithmetic unchanged"
+  ],
+  "environment": {
+    "torch": "2.7.1+cu128",
+    "numpy": "1.26.4",
+    "prody": "2.6.1",
+    "ml-collections": "0.1.1",
+    "dm-tree": "0.1.9"
+  },
+  "official_equivalence": false,
+  "status": "generated_not_independently_validated",
+  "trials": [
+    {
+      "native_sidechain_context": 0,
+      "command": [
+        "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/python",
+        "-u",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/LigandMPNN-main/run.py",
+        "--model_type",
+        "ligand_mpnn",
+        "--checkpoint_ligand_mpnn",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/LigandMPNN-main/model_params/ligandmpnn_v_32_010_25.pt",
+        "--pdb_path",
+        "/mnt/e/bio/changjiang-cup-2026/results/tl1a_top7_20261103/poses/tl1a_bg_top7_0_if_design.pdb",
+        "--chains_to_design",
+        "D",
+        "--redesigned_residues",
+        "D5 D9 D10 D13 D14 D16 D17 D18 D28 D29 D32 D33 D35 D36 D37 D39 D40 D41 D44 D47 D70 D71",
+        "--seed",
+        "20261107",
+        "--batch_size",
+        "1",
+        "--number_of_batches",
+        "1",
+        "--temperature",
+        ".1",
+        "--omit_AA",
+        "C",
+        "--fasta_seq_separation",
+        ":",
+        "--save_stats",
+        "1",
+        "--ligand_mpnn_use_side_chain_context",
+        "0",
+        "--out_folder",
+        "/mnt/e/bio/changjiang-cup-2026/build/top7_ligandmpnn_native_context_gpu/context_0"
+      ],
+      "status": "generated_not_independently_validated",
+      "exit_code": 0,
+      "elapsed_seconds": 29.683319338,
+      "score": 1.5122202634811401,
+      "actual_design_positions": 22
+    },
+    {
+      "native_sidechain_context": 1,
+      "command": [
+        "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/python",
+        "-u",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/LigandMPNN-main/run.py",
+        "--model_type",
+        "ligand_mpnn",
+        "--checkpoint_ligand_mpnn",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/LigandMPNN-main/model_params/ligandmpnn_v_32_010_25.pt",
+        "--pdb_path",
+        "/mnt/e/bio/changjiang-cup-2026/results/tl1a_top7_20261103/poses/tl1a_bg_top7_0_if_design.pdb",
+        "--chains_to_design",
+        "D",
+        "--redesigned_residues",
+        "D5 D9 D10 D13 D14 D16 D17 D18 D28 D29 D32 D33 D35 D36 D37 D39 D40 D41 D44 D47 D70 D71",
+        "--seed",
+        "20261107",
+        "--batch_size",
+        "1",
+        "--number_of_batches",
+        "1",
+        "--temperature",
+        ".1",
+        "--omit_AA",
+        "C",
+        "--fasta_seq_separation",
+        ":",
+        "--save_stats",
+        "1",
+        "--ligand_mpnn_use_side_chain_context",
+        "1",
+        "--out_folder",
+        "/mnt/e/bio/changjiang-cup-2026/build/top7_ligandmpnn_native_context_gpu/context_1"
+      ],
+      "status": "generated_not_independently_validated",
+      "exit_code": 0,
+      "elapsed_seconds": 27.857539111,
+      "score": 1.4060111045837402,
+      "actual_design_positions": 22
+    }
+  ]
+}

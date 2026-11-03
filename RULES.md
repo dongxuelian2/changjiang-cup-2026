@@ -10,6 +10,8 @@ source and hashes into ignored `build/sources/downloads.json`. A fresh check on
 2026-11-02 was unsuccessful (web retrieval failed; Windows and Ubuntu clients
 received TLS EOF errors); the last successfully retrieved rule text remains
 the November 1 version. This is not evidence that the rules have stayed unchanged.
+A further Windows retrieval on November 3 again returned TLS EOF; no newer rule
+text was obtained.
 
 ## Confirmed tracks
 

@@ -43,13 +43,23 @@ def main(args):
     out=(ROOT/args.out).resolve()
     if out.exists():raise ValueError('choose fresh generation output')
     out.mkdir(parents=True)
-    full=ROOT/parent['metadata']['refinement']['retained_allatom_complex']
-    structure=PDBParser(QUIET=True).get_structure('interface',full)
-    native=PDBParser(QUIET=True).get_structure('native',ROOT/'targets/TL1A/observed.pdb')
-    tx=np.array([a.coord for a in native.get_atoms() if a.element!='H'])
-    fixed=[i+1 for i,r in enumerate(structure[0]['D']) if np.linalg.norm(
-        np.array([a.coord for a in r if a.element!='H'])[:,None]-tx,axis=-1).min()<4.5]
-    if args.redesign_interface:fixed=[]
+    if args.redesign_interface:
+        fixed=[]
+    else:
+        full=ROOT/parent['metadata']['refinement']['retained_allatom_complex']
+        structure=PDBParser(QUIET=True).get_structure('interface',full)
+        native=PDBParser(QUIET=True).get_structure('native',ROOT/'targets/TL1A/observed.pdb')
+        tx=np.array([a.coord for a in native.get_atoms() if a.element!='H'])
+        fixed=[i+1 for i,r in enumerate(structure[0]['D']) if np.linalg.norm(
+            np.array([a.coord for a in r if a.element!='H'])[:,None]-tx,axis=-1).min()<4.5]
+    fixed_cysteines=[i+1 for i,aa in enumerate(parent['sequence']) if aa=='C'] if args.preserve_cysteines else []
+    fixed_input=[]
+    if args.preserve_input_identities:
+        specified=parent['metadata']['generation'].get('fixed_binder_AAs',[])
+        if not specified:raise ValueError('no audited fixed input identities on this parent')
+        if any(parent['sequence'][r['position']-1]!=r['aa'] for r in specified):raise ValueError('parent changed fixed input identity')
+        fixed_input=[r['position'] for r in specified]
+    fixed=sorted(set(fixed)|set(fixed_cysteines)|set(fixed_input))
     if len(fixed)>=len(parent['sequence']):raise ValueError('no core positions left to redesign')
     input_pose=ROOT/parent['structures'][0]['path']
     fixed_file=out/'fixed_positions.json'
@@ -64,6 +74,8 @@ def main(args):
     meta=dict(synthetic=False,model='ProteinMPNN soluble full-binder design' if args.redesign_interface else 'ProteinMPNN soluble core design',parent_id=parent['id'],
         source=json.loads((source/'UPSTREAM.json').read_text()),checkpoint_sha256=hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
         fixed_interface_positions=fixed,redesigned_interface=args.redesign_interface,
+        fixed_cysteine_positions=fixed_cysteines,
+        fixed_input_positions=fixed_input,
         interface_distance_A=4.5,seed=args.seed,temperature=.1,
         requested_sequences=args.sequences,torch=torch.__version__,biopython=Bio.__version__,device='CPU' if args.cpu else 'CUDA',command=command,
         status='running',official_equivalence=False)
@@ -104,10 +116,11 @@ def main(args):
         row['structures']=[dict(path=output_pose.relative_to(ROOT).as_posix(),chain_id='D',role='generated_backbone_complex_not_refolded')]
         row['metadata']=dict(status='generated_not_independently_validated',
             backbone_generation=copy.deepcopy(parent['metadata']['generation']),
-            backbone_refinement=copy.deepcopy(parent['metadata']['refinement']),
+            backbone_refinement=copy.deepcopy(parent['metadata'].get('refinement',parent['metadata'].get('backbone_refinement'))),
             generation=dict(model='ProteinMPNN soluble',source_fasta=(destination/fasta.name).relative_to(ROOT).as_posix(),
-                sample=i,mpnn_score=float(score),parent_backbone_id=parent['id'],fixed_interface_positions=fixed),
-            coordinates='shared refined BACKBONE only, relabelled with actual MPNN sequence; NOT a sequence refold')
+                sample=i,mpnn_score=float(score),parent_backbone_id=parent['id'],fixed_interface_positions=fixed,
+                fixed_cysteine_positions=fixed_cysteines,fixed_input_positions=fixed_input),
+            coordinates='shared recorded BACKBONE only, relabelled with actual MPNN sequence; NOT a sequence refold')
         data['candidates'].append(row);seen.add(sequence);added.append(row['id'])
     meta.update(status='generated_not_independently_validated',actual_sequences=len(records),distinct_added=added)
     (out/'run.json').write_text(json.dumps(meta,indent=2)+'\n');shutil.copyfile(out/'run.json',destination/'run.json')
@@ -122,4 +135,6 @@ if __name__=='__main__':
     p.add_argument('--sequences',type=int,default=2);p.add_argument('--seed',type=int,default=20261107)
     p.add_argument('--redesign-interface',action='store_true',help='design the full binder sequence in native target context, instead of holding the generated interface fixed')
     p.add_argument('--cpu',action='store_true',help='small MPNN batch on CPU while the GPU runs independent predictions')
+    p.add_argument('--preserve-cysteines',action='store_true',help='keep every parent Cys fixed, including during full-interface sequence design')
+    p.add_argument('--preserve-input-identities',action='store_true',help='keep the scaffold identities audited from the actual generation specification')
     main(p.parse_args())

@@ -1,0 +1,58 @@
+{
+  "synthetic": false,
+  "purpose": "diagnose actual PAE distributions; NOT official scoring or measured binding",
+  "contact_definition": "predicted CA distance <10 A, all three target protomers",
+  "quantiles": [
+    0,
+    0.1,
+    0.5,
+    0.9
+  ],
+  "smooth_scale_A": 10.0,
+  "predictions": [
+    {
+      "id": "tl1a_bg_cysbeta_1_if_mpnn1",
+      "namespace": "boltz_trimer_deepmsa",
+      "pae": "results/tl1a_cystine_20261102/predictions/trimer_deepmsa/pae_tl1a_bg_cysbeta_1_if_mpnn1_model_0.npz",
+      "ipsae_10": 0.0,
+      "ipsae_15": 0.005056,
+      "contact_pairs": 34,
+      "all_pair_min_PAE_A": {
+        "target_to_binder": 16.150110244750977,
+        "binder_to_target": 13.617639541625977
+      },
+      "contact_PAE_quantiles_A": {
+        "target_to_binder": [
+          18.038856506347656,
+          19.03555507659912,
+          20.10075569152832,
+          21.496094131469725
+        ],
+        "binder_to_target": [
+          17.116491317749023,
+          18.325947761535645,
+          19.27705955505371,
+          20.432477760314942
+        ],
+        "reciprocal_max": [
+          18.060436248779297,
+          19.14533805847168,
+          20.11479091644287,
+          21.5410888671875
+        ]
+      },
+      "contact_reciprocal_fraction_below": {
+        "8": 0.0,
+        "10": 0.0,
+        "12": 0.0,
+        "15": 0.0,
+        "20": 0.4117647058823529
+      },
+      "all_pair_directional_counts_below_10": {
+        "target_to_binder": 0,
+        "binder_to_target": 0
+      },
+      "fixed_scale_smooth_contact_support": 0.19575805962085724
+    }
+  ]
+}

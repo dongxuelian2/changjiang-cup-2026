@@ -1,0 +1,39 @@
+# Generic Top7 core, 22 exposed sequence/backbone positions redesigned.
+# Native TL1A ABC context; no TL1A-positive binder input.
+entities:
+- file:
+    path: ../targets/scaffolds/top7_core92.pdb
+    include:
+    - chain:
+        id: D
+    structure_groups:
+    - group:
+        id: D
+        visibility: 2
+    design:
+    - chain:
+        id: D
+        res_index: 5,9,10,13,14,16,17,18,28,29,32,33,35,36,37,39,40,41,44,47,70,71
+- file:
+    path: ../build/sources/2RE9.cif
+    include:
+    - chain:
+        id: A
+        res_index: 18..181
+    - chain:
+        id: B
+        res_index: 18..181
+    - chain:
+        id: C
+        res_index: 18..181
+    binding_types:
+    - chain:
+        id: A
+        binding: 165,168
+        not_binding: 18..19,24..29,34..52,55,57..74,76..77,79..83,85,89..104,107..116,119..128,137,142,144..145,147..148,150..163,166,171..178
+    - chain:
+        id: B
+        not_binding: all
+    - chain:
+        id: C
+        not_binding: all

@@ -1,0 +1,3281 @@
+{
+  "synthetic": false,
+  "interpretation": "coordinate disagreement only; related models/three protomers are not IID replicates or measured flexibility",
+  "summary": {
+    "133": {
+      "chain_predictions": 27,
+      "CA_deviation_global_p50_p90_A": [
+        0.5558022856712341,
+        0.6733318448066712
+      ],
+      "local_sidechain_RMSD_p50_p90_A": [
+        0.6151809449474182,
+        2.6994630311738015
+      ],
+      "stable_CA_but_sidechain_RMSD_above_2_A": 10
+    },
+    "156": {
+      "chain_predictions": 27,
+      "CA_deviation_global_p50_p90_A": [
+        0.85426265001297,
+        1.108618712425232
+      ],
+      "local_sidechain_RMSD_p50_p90_A": [
+        0.8155354997305393,
+        2.909459301688559
+      ],
+      "stable_CA_but_sidechain_RMSD_above_2_A": 4
+    },
+    "158": {
+      "chain_predictions": 27,
+      "CA_deviation_global_p50_p90_A": [
+        2.5057194232940674,
+        2.8976886749267576
+      ],
+      "local_sidechain_RMSD_p50_p90_A": [
+        1.7996459218355336,
+        2.4516323327208562
+      ],
+      "stable_CA_but_sidechain_RMSD_above_2_A": 4
+    },
+    "229": {
+      "chain_predictions": 27,
+      "CA_deviation_global_p50_p90_A": [
+        0.2764441967010498,
+        0.3450494706630707
+      ],
+      "local_sidechain_RMSD_p50_p90_A": [
+        1.5772750978071803,
+        1.5870899852459064
+      ],
+      "stable_CA_but_sidechain_RMSD_above_2_A": 0
+    },
+    "235": {
+      "chain_predictions": 27,
+      "CA_deviation_global_p50_p90_A": [
+        0.3458332419395447,
+        0.5344815850257874
+      ],
+      "local_sidechain_RMSD_p50_p90_A": [
+        0.1317612045291593,
+        0.20477224390494644
+      ],
+      "stable_CA_but_sidechain_RMSD_above_2_A": 0
+    },
+    "238": {
+      "chain_predictions": 27,
+      "CA_deviation_global_p50_p90_A": [
+        0.49129655957221985,
+        0.6694705367088318
+      ],
+      "local_sidechain_RMSD_p50_p90_A": [
+        0.6175445864072413,
+        0.72562187359917
+      ],
+      "stable_CA_but_sidechain_RMSD_above_2_A": 0
+    }
+  },
+  "observations": [
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "A",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.1106003001332283,
+      "local_N_CA_C_fit_RMSD_A": 0.0020976075445718998,
+      "sidechain_RMSD_after_local_fit_A": 0.23682234078471845,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.038048751988626256,
+        "CG": 0.20118337797629415,
+        "ND2": 0.3628520459225469,
+        "OD1": 0.22528918759450217
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "A",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.12383288145065308,
+      "local_N_CA_C_fit_RMSD_A": 0.0033157940118971256,
+      "sidechain_RMSD_after_local_fit_A": 3.2901243337286186,
+      "equivalent_label_swap": {
+        "NH1": "NH2",
+        "NH2": "NH1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.028297689325243743,
+        "CD": 0.2296951017193125,
+        "CG": 0.08958503721404237,
+        "CZ": 4.065221764725645,
+        "NE": 2.5401443440768596,
+        "NH1": 4.246309716450883,
+        "NH2": 5.890953517785958
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "A",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.1667114645242691,
+      "local_N_CA_C_fit_RMSD_A": 0.0010107681072326971,
+      "sidechain_RMSD_after_local_fit_A": 0.33685033453431573,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.007632598152283509,
+        "CE": 0.5722205213834202,
+        "CG": 0.12658363749692475,
+        "SD": 0.3321966173438576
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "A",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.09580053389072418,
+      "local_N_CA_C_fit_RMSD_A": 0.009767744719551033,
+      "sidechain_RMSD_after_local_fit_A": 0.16697994613662004,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.027579587628087196,
+        "CG": 0.1429992777898476,
+        "ND2": 0.18980148237168248,
+        "OD1": 0.23301326107007875
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "A",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.13451339304447174,
+      "local_N_CA_C_fit_RMSD_A": 0.012384989991387148,
+      "sidechain_RMSD_after_local_fit_A": 0.18552285629576734,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.025321613343499316,
+        "CD1": 0.33563462975964264,
+        "CD2": 0.11961719875157556,
+        "CG": 0.10037359114416368
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "A",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.17066563665866852,
+      "local_N_CA_C_fit_RMSD_A": 0.003076167653148078,
+      "sidechain_RMSD_after_local_fit_A": 0.6175445864072413,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06003964552475374,
+        "CD1": 0.28136155932609674,
+        "CD2": 0.5672870719415122,
+        "CE1": 0.49484209539210217,
+        "CE2": 0.8273196702374396,
+        "CG": 0.22955410260463985,
+        "CZ": 0.754893767029737,
+        "OH": 1.0461455920937581
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "B",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.1545214056968689,
+      "local_N_CA_C_fit_RMSD_A": 0.018192566886913612,
+      "sidechain_RMSD_after_local_fit_A": 0.2947721138806945,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.05129892976586835,
+        "CG": 0.25761674926780825,
+        "ND2": 0.4631908383886574,
+        "OD1": 0.25301911789655146
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "B",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.134110689163208,
+      "local_N_CA_C_fit_RMSD_A": 0.0028105183273054238,
+      "sidechain_RMSD_after_local_fit_A": 0.42678026849132356,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0327643489250654,
+        "CD": 0.17234259625721918,
+        "CG": 0.10932935758954211,
+        "CZ": 0.5402227051721309,
+        "NE": 0.362606435511267,
+        "NH1": 0.5235727599930303,
+        "NH2": 0.7313063436578261
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "B",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.14255672693252563,
+      "local_N_CA_C_fit_RMSD_A": 0.004695760435179576,
+      "sidechain_RMSD_after_local_fit_A": 0.630580193209064,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.017511913311497714,
+        "CE": 1.0045448406083621,
+        "CG": 0.23727667235075672,
+        "SD": 0.7244365376813655
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "B",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.09827568382024765,
+      "local_N_CA_C_fit_RMSD_A": 0.006989278650390723,
+      "sidechain_RMSD_after_local_fit_A": 0.08251301382597988,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.020481228368171647,
+        "CG": 0.07053863777609515,
+        "ND2": 0.11237738408382887,
+        "OD1": 0.09596735494054545
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "B",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.10918581485748291,
+      "local_N_CA_C_fit_RMSD_A": 0.006961088080369378,
+      "sidechain_RMSD_after_local_fit_A": 0.1317612045291593,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.028427100745017513,
+        "CD1": 0.20800491743362073,
+        "CD2": 0.13222369116884047,
+        "CG": 0.08880771270701732
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "B",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.12799303233623505,
+      "local_N_CA_C_fit_RMSD_A": 0.0052572051921831245,
+      "sidechain_RMSD_after_local_fit_A": 0.6433462187354994,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07436230475333358,
+        "CD1": 0.21210939201803433,
+        "CD2": 0.6774558117329004,
+        "CE1": 0.3849261239832945,
+        "CE2": 0.9432093204840364,
+        "CG": 0.22617445117358123,
+        "CZ": 0.7635412264482706,
+        "OH": 1.0628858376450356
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "C",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.18008725345134735,
+      "local_N_CA_C_fit_RMSD_A": 0.014176444194231377,
+      "sidechain_RMSD_after_local_fit_A": 2.906087977357259,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.02772053891520456,
+        "CG": 2.1858424835298647,
+        "ND2": 3.840490001319356,
+        "OD1": 3.775360921454519
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "C",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.10501749813556671,
+      "local_N_CA_C_fit_RMSD_A": 0.002019158670023284,
+      "sidechain_RMSD_after_local_fit_A": 0.21816423392006706,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03598937519943962,
+        "CD": 0.11648385431174241,
+        "CG": 0.08707968028567607,
+        "CZ": 0.2586249832894054,
+        "NE": 0.22654298369123996,
+        "NH1": 0.16184088438930977,
+        "NH2": 0.40782564812821515
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "C",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.11438551545143127,
+      "local_N_CA_C_fit_RMSD_A": 0.01334303086921752,
+      "sidechain_RMSD_after_local_fit_A": 0.23913039259893024,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.024511341208068253,
+        "CE": 0.43986074812695203,
+        "CG": 0.09477758502090869,
+        "SD": 0.16022579207187024
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "C",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.0948014035820961,
+      "local_N_CA_C_fit_RMSD_A": 0.007466253510786527,
+      "sidechain_RMSD_after_local_fit_A": 0.13772830837651062,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.02094551466468888,
+        "CG": 0.11711477898320483,
+        "ND2": 0.1431394986565276,
+        "OD1": 0.20305872450235957
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "C",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.15412013232707977,
+      "local_N_CA_C_fit_RMSD_A": 0.005235091701855651,
+      "sidechain_RMSD_after_local_fit_A": 0.07113738679008663,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.04077507760895538,
+        "CD1": 0.04861214495362468,
+        "CD2": 0.12041473941386313,
+        "CG": 0.04143252512426019
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_0.cif",
+      "native_chain": "C",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.1155736967921257,
+      "local_N_CA_C_fit_RMSD_A": 0.011462668042480906,
+      "sidechain_RMSD_after_local_fit_A": 0.5522821869797936,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0619009265286527,
+        "CD1": 0.13748188343473447,
+        "CD2": 0.5321883501114845,
+        "CE1": 0.3741680635534038,
+        "CE2": 0.7776490602598004,
+        "CG": 0.20295791222807397,
+        "CZ": 0.688077309401415,
+        "OH": 0.9352996209311186
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.6235271692276001,
+      "local_N_CA_C_fit_RMSD_A": 0.018100236048048488,
+      "sidechain_RMSD_after_local_fit_A": 0.6151809449474182,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08422940268445821,
+        "CG": 0.4984605498906837,
+        "ND2": 0.2617911979772349,
+        "OD1": 1.0907328897091781
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.962257444858551,
+      "local_N_CA_C_fit_RMSD_A": 0.017334032253005588,
+      "sidechain_RMSD_after_local_fit_A": 0.7927145774824932,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.056470804050254876,
+        "CD": 0.23738279872845774,
+        "CG": 0.11817904687195359,
+        "CZ": 0.9555363108197865,
+        "NE": 0.42403936919810487,
+        "NH1": 1.4464234477267637,
+        "NH2": 1.067833863225989
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 3.002393960952759,
+      "local_N_CA_C_fit_RMSD_A": 0.03911062082936753,
+      "sidechain_RMSD_after_local_fit_A": 1.8067471989922723,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.02514491082325426,
+        "CE": 2.2307606980215837,
+        "CG": 0.17540507918892495,
+        "SD": 2.837190382065039
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.30844825506210327,
+      "local_N_CA_C_fit_RMSD_A": 0.01621045525380769,
+      "sidechain_RMSD_after_local_fit_A": 1.5895688929947671,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07146931539424815,
+        "CG": 0.12416487655964634,
+        "ND2": 2.5047306050152547,
+        "OD1": 1.9526179552058713
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.3458332419395447,
+      "local_N_CA_C_fit_RMSD_A": 0.01938107618942996,
+      "sidechain_RMSD_after_local_fit_A": 0.20448778614153992,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03559869499768097,
+        "CD1": 0.36191762748790635,
+        "CD2": 0.1678328554595754,
+        "CG": 0.08271345223447658
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.4427770674228668,
+      "local_N_CA_C_fit_RMSD_A": 0.0020881363594972835,
+      "sidechain_RMSD_after_local_fit_A": 0.7183990387571919,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08839565910696583,
+        "CD1": 0.4324584129923086,
+        "CD2": 0.5018899796084173,
+        "CE1": 0.7470333110523646,
+        "CE2": 0.788001183461591,
+        "CG": 0.281986713297368,
+        "CZ": 0.9110348096674703,
+        "OH": 1.262356623181071
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.5558022856712341,
+      "local_N_CA_C_fit_RMSD_A": 0.027609816737739348,
+      "sidechain_RMSD_after_local_fit_A": 0.603772964895833,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08993769568882164,
+        "CG": 0.5152509632000499,
+        "ND2": 0.34539193284171343,
+        "OD1": 1.0321333446313465
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 1.1892242431640625,
+      "local_N_CA_C_fit_RMSD_A": 0.0035856412284227474,
+      "sidechain_RMSD_after_local_fit_A": 0.594785249503245,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03532684388497078,
+        "CD": 0.13656759646273503,
+        "CG": 0.07930450329006387,
+        "CZ": 0.6980562614944875,
+        "NE": 0.21995984479162217,
+        "NH1": 1.177866261029434,
+        "NH2": 0.7260611174260899
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 3.075645685195923,
+      "local_N_CA_C_fit_RMSD_A": 0.04416278895435471,
+      "sidechain_RMSD_after_local_fit_A": 1.8625287622322348,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.05059204102851358,
+        "CE": 2.4732066089508753,
+        "CG": 0.3804208080073295,
+        "SD": 2.7589895041900205
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.30619189143180847,
+      "local_N_CA_C_fit_RMSD_A": 0.027876339522146514,
+      "sidechain_RMSD_after_local_fit_A": 1.5789535087929836,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07244987155117082,
+        "CG": 0.08392905902924633,
+        "ND2": 2.342714881468044,
+        "OD1": 2.1146561529075005
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.545698881149292,
+      "local_N_CA_C_fit_RMSD_A": 0.004769485342469616,
+      "sidechain_RMSD_after_local_fit_A": 0.12654954817424924,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.02275357460378795,
+        "CD1": 0.2110654971236672,
+        "CD2": 0.09702162597291132,
+        "CG": 0.09787536683296817
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.6644863486289978,
+      "local_N_CA_C_fit_RMSD_A": 0.00693951973896358,
+      "sidechain_RMSD_after_local_fit_A": 0.7233460289739033,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.09110355369649505,
+        "CD1": 0.3698823444166154,
+        "CD2": 0.5626050714372236,
+        "CE1": 0.6781066195737508,
+        "CE2": 0.863865718550389,
+        "CG": 0.2821381033967803,
+        "CZ": 0.9157283964488344,
+        "OH": 1.2648895508292293
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.44261398911476135,
+      "local_N_CA_C_fit_RMSD_A": 0.0284341911352377,
+      "sidechain_RMSD_after_local_fit_A": 2.6517964036484325,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.02272254201657145,
+        "CG": 1.9389594236446164,
+        "ND2": 3.303399373432465,
+        "OD1": 3.6681833766540466
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.8932352066040039,
+      "local_N_CA_C_fit_RMSD_A": 0.009929429457467104,
+      "sidechain_RMSD_after_local_fit_A": 0.9931394409676604,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03932575641755028,
+        "CD": 0.2605301267415975,
+        "CG": 0.11870780099938187,
+        "CZ": 1.16257692115853,
+        "NE": 0.3863064241361324,
+        "NH1": 1.9781295385901996,
+        "NH2": 1.1861506725457003
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.8962883949279785,
+      "local_N_CA_C_fit_RMSD_A": 0.01953510572546643,
+      "sidechain_RMSD_after_local_fit_A": 1.7059601051652926,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.028350685261100097,
+        "CE": 1.9699716176838225,
+        "CG": 0.1193773024349881,
+        "SD": 2.7830480853716955
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.24938364326953888,
+      "local_N_CA_C_fit_RMSD_A": 0.026621259576687796,
+      "sidechain_RMSD_after_local_fit_A": 1.5772750978071803,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.05577379139274802,
+        "CG": 0.061996951010917664,
+        "ND2": 2.40856944522902,
+        "OD1": 2.0354424154023127
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.34906789660453796,
+      "local_N_CA_C_fit_RMSD_A": 0.0048276507502448916,
+      "sidechain_RMSD_after_local_fit_A": 0.0694633272333858,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.015643637523251194,
+        "CD1": 0.11988477631046061,
+        "CD2": 0.049705412186524925,
+        "CG": 0.04704151713889935
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_gen",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_gen/tl1a_bg_top7_0_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.5886667370796204,
+      "local_N_CA_C_fit_RMSD_A": 0.007195981015880252,
+      "sidechain_RMSD_after_local_fit_A": 0.5513589307514059,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07866632881383051,
+        "CD1": 0.3306991887058683,
+        "CD2": 0.3714797905501698,
+        "CE1": 0.5801074489120671,
+        "CE2": 0.5952328936926344,
+        "CG": 0.21691975651810588,
+        "CZ": 0.7015086121964076,
+        "OH": 0.9738739245390687
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "A",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.10513358563184738,
+      "local_N_CA_C_fit_RMSD_A": 0.009660328738486162,
+      "sidechain_RMSD_after_local_fit_A": 0.39275591829578543,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06494995470773123,
+        "CG": 0.2956131103960355,
+        "ND2": 0.7005700567821195,
+        "OD1": 0.18607749275827415
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "A",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.07478753477334976,
+      "local_N_CA_C_fit_RMSD_A": 0.005234619752243587,
+      "sidechain_RMSD_after_local_fit_A": 3.2955763956532764,
+      "equivalent_label_swap": {
+        "NH1": "NH2",
+        "NH2": "NH1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.037601234321618,
+        "CD": 0.22198155595308672,
+        "CG": 0.09283268201035003,
+        "CZ": 4.076779810609798,
+        "NE": 2.6013000172202037,
+        "NH1": 4.320287749247289,
+        "NH2": 5.823630933204172
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "A",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.08579690009355545,
+      "local_N_CA_C_fit_RMSD_A": 0.004741420863871485,
+      "sidechain_RMSD_after_local_fit_A": 0.3522445268467016,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.01487724111793521,
+        "CE": 0.6074627177259617,
+        "CG": 0.11746570520668272,
+        "SD": 0.3365625486352141
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "A",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.06285816431045532,
+      "local_N_CA_C_fit_RMSD_A": 0.014562690952654854,
+      "sidechain_RMSD_after_local_fit_A": 0.16735578006727023,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.025430684653237903,
+        "CG": 0.14643226054837613,
+        "ND2": 0.18032329984956086,
+        "OD1": 0.2396376626655825
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "A",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.10658504068851471,
+      "local_N_CA_C_fit_RMSD_A": 0.010790260841461235,
+      "sidechain_RMSD_after_local_fit_A": 0.18706669452732233,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.017545604435475315,
+        "CD1": 0.3301006302807174,
+        "CD2": 0.13655301010394053,
+        "CG": 0.10979432540133471
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "A",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.14603950083255768,
+      "local_N_CA_C_fit_RMSD_A": 0.006165523386557686,
+      "sidechain_RMSD_after_local_fit_A": 0.6509949460106756,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08623630172958838,
+        "CD1": 0.2612834006800748,
+        "CD2": 0.5977575649761255,
+        "CE1": 0.5127125992058752,
+        "CE2": 0.8714879337326797,
+        "CG": 0.24932273139626304,
+        "CZ": 0.8053767325451209,
+        "OH": 1.1064251454194105
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "B",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.09819895774126053,
+      "local_N_CA_C_fit_RMSD_A": 0.00581883343821642,
+      "sidechain_RMSD_after_local_fit_A": 0.36744263944735334,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.025733553713505844,
+        "CG": 0.2539079897616702,
+        "ND2": 0.666284040672125,
+        "OD1": 0.17604109528811326
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "B",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.06359723955392838,
+      "local_N_CA_C_fit_RMSD_A": 0.0028815525716854177,
+      "sidechain_RMSD_after_local_fit_A": 2.703920426835896,
+      "equivalent_label_swap": {
+        "NH1": "NH2",
+        "NH2": "NH1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03445208061920961,
+        "CD": 0.10769225862147641,
+        "CG": 0.06964783121871529,
+        "CZ": 3.3957206073916666,
+        "NE": 2.425644283419688,
+        "NH1": 3.661374207712745,
+        "NH2": 4.510026010096646
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "B",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.07434945553541183,
+      "local_N_CA_C_fit_RMSD_A": 0.011319536948339981,
+      "sidechain_RMSD_after_local_fit_A": 0.6602160180113427,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.024633637992280424,
+        "CE": 1.0741789618567175,
+        "CG": 0.22359263763980888,
+        "SD": 0.7342205635447547
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "B",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.061512790620326996,
+      "local_N_CA_C_fit_RMSD_A": 0.009768734270644341,
+      "sidechain_RMSD_after_local_fit_A": 0.09891595138707467,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.022770430254902174,
+        "CG": 0.0795050766398329,
+        "ND2": 0.14282871625637283,
+        "OD1": 0.10907735723924533
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "B",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.07689102739095688,
+      "local_N_CA_C_fit_RMSD_A": 0.005029258628576471,
+      "sidechain_RMSD_after_local_fit_A": 0.1415425563851516,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03795227241162895,
+        "CD1": 0.22277735545060004,
+        "CD2": 0.13469994033896235,
+        "CG": 0.10451307124989573
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "B",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.08431656658649445,
+      "local_N_CA_C_fit_RMSD_A": 0.00608644090859692,
+      "sidechain_RMSD_after_local_fit_A": 0.5787534671255486,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06382415723687704,
+        "CD1": 0.1649867250947008,
+        "CD2": 0.6057811870239552,
+        "CE1": 0.3283066213221329,
+        "CE2": 0.8506507692903328,
+        "CG": 0.20011690033667554,
+        "CZ": 0.6843502649246898,
+        "OH": 0.9703636374169646
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "C",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.1426786631345749,
+      "local_N_CA_C_fit_RMSD_A": 0.021708525672424806,
+      "sidechain_RMSD_after_local_fit_A": 2.7228134998512896,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03403563977454721,
+        "CG": 2.089927377421549,
+        "ND2": 3.126037581203494,
+        "OD1": 3.938754573862422
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "C",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.04878668114542961,
+      "local_N_CA_C_fit_RMSD_A": 0.010608891329106055,
+      "sidechain_RMSD_after_local_fit_A": 3.2177676139675513,
+      "equivalent_label_swap": {
+        "NH1": "NH2",
+        "NH2": "NH1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.038261492906016686,
+        "CD": 0.2342062365760725,
+        "CG": 0.06954838714865322,
+        "CZ": 3.988997178237972,
+        "NE": 2.5337170422919466,
+        "NH1": 4.081322906936553,
+        "NH2": 5.781697694636699
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "C",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.07340367138385773,
+      "local_N_CA_C_fit_RMSD_A": 0.016497997644088165,
+      "sidechain_RMSD_after_local_fit_A": 0.2470528397320163,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03674905398714388,
+        "CE": 0.4610232499374333,
+        "CG": 0.08192089248424776,
+        "SD": 0.1534159701640429
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "C",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.08842846006155014,
+      "local_N_CA_C_fit_RMSD_A": 0.006458638147770719,
+      "sidechain_RMSD_after_local_fit_A": 0.168125063244422,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0721256889664162,
+        "CG": 0.12089276876270251,
+        "ND2": 0.12433549329265839,
+        "OD1": 0.2789043852710861
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "C",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.11406239122152328,
+      "local_N_CA_C_fit_RMSD_A": 0.006623069477995755,
+      "sidechain_RMSD_after_local_fit_A": 0.08332003018723586,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.01057623066509079,
+        "CD1": 0.08969760093034661,
+        "CD2": 0.12570221912663393,
+        "CG": 0.06172799656967944
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_1_gen",
+      "role": "original_atom14",
+      "path": "results/tl1a_top7_20261103/generation/tl1a_boltzgen_top7_face_1.cif",
+      "native_chain": "C",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.11264564096927643,
+      "local_N_CA_C_fit_RMSD_A": 0.007115565537547156,
+      "sidechain_RMSD_after_local_fit_A": 0.5784066725608185,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08705104470761907,
+        "CD1": 0.16131535318237808,
+        "CD2": 0.5480342464194353,
+        "CE1": 0.37982081049405286,
+        "CE2": 0.7885218952277069,
+        "CG": 0.22065024743621936,
+        "CZ": 0.713706522653035,
+        "OH": 1.00915707825316
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.5904596447944641,
+      "local_N_CA_C_fit_RMSD_A": 0.012771438742816815,
+      "sidechain_RMSD_after_local_fit_A": 0.6015617180137978,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0744916940495597,
+        "CG": 0.4594915892807633,
+        "ND2": 0.17586855990579756,
+        "OD1": 1.0953970599072165
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.8697939515113831,
+      "local_N_CA_C_fit_RMSD_A": 0.017890162380614846,
+      "sidechain_RMSD_after_local_fit_A": 0.7704511615097762,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.05051923366706545,
+        "CD": 0.23554111570700617,
+        "CG": 0.11219724855240433,
+        "CZ": 0.9146703415179227,
+        "NE": 0.38368600437273576,
+        "NH1": 1.469523394221052,
+        "NH2": 0.9701593288701681
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.7729709148406982,
+      "local_N_CA_C_fit_RMSD_A": 0.03954001303967,
+      "sidechain_RMSD_after_local_fit_A": 1.7211612134015373,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.05095000416654132,
+        "CE": 2.0438382536780604,
+        "CG": 0.2084891630723941,
+        "SD": 2.7615657241554885
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.28720152378082275,
+      "local_N_CA_C_fit_RMSD_A": 0.016719002783534057,
+      "sidechain_RMSD_after_local_fit_A": 1.5849844689532233,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06322120124822644,
+        "CG": 0.11188872217794743,
+        "ND2": 2.4858143604009357,
+        "OD1": 1.9628841092836653
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.3944021165370941,
+      "local_N_CA_C_fit_RMSD_A": 0.018323677911430677,
+      "sidechain_RMSD_after_local_fit_A": 0.2095370149564573,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.024271703379747708,
+        "CD1": 0.3680523070505402,
+        "CD2": 0.174422666347608,
+        "CG": 0.09564601247026389
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.4532797634601593,
+      "local_N_CA_C_fit_RMSD_A": 0.0014763595475988944,
+      "sidechain_RMSD_after_local_fit_A": 0.6898190764792499,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.09720560086508014,
+        "CD1": 0.4102425721245459,
+        "CD2": 0.46838010116177514,
+        "CE1": 0.7175607517396136,
+        "CE2": 0.7523010014139714,
+        "CG": 0.2680268236456329,
+        "CZ": 0.878294934841178,
+        "OH": 1.2188455399612548
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.5720149278640747,
+      "local_N_CA_C_fit_RMSD_A": 0.029314900943581357,
+      "sidechain_RMSD_after_local_fit_A": 0.612458249350135,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08583295205064713,
+        "CG": 0.4711633969476586,
+        "ND2": 0.185549598825667,
+        "OD1": 1.1120384583649872
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 1.1213839054107666,
+      "local_N_CA_C_fit_RMSD_A": 0.00854772351031729,
+      "sidechain_RMSD_after_local_fit_A": 0.7396168063720531,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.04351845169778771,
+        "CD": 0.16472646772466448,
+        "CG": 0.09514165748266688,
+        "CZ": 0.8142415846418184,
+        "NE": 0.17451231277614299,
+        "NH1": 1.596623794974695,
+        "NH2": 0.7406072467443887
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.6331100463867188,
+      "local_N_CA_C_fit_RMSD_A": 0.04238735740608109,
+      "sidechain_RMSD_after_local_fit_A": 1.8784112711676488,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.027655036581878532,
+        "CE": 2.5065607046407794,
+        "CG": 0.36074493750551,
+        "SD": 2.774881499733848
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.342108815908432,
+      "local_N_CA_C_fit_RMSD_A": 0.02650012236753368,
+      "sidechain_RMSD_after_local_fit_A": 1.5802491205049263,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.062383717938503946,
+        "CG": 0.08353826517434096,
+        "ND2": 2.313932612687295,
+        "OD1": 2.150254548967715
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.6172980070114136,
+      "local_N_CA_C_fit_RMSD_A": 0.0022194089522595516,
+      "sidechain_RMSD_after_local_fit_A": 0.13345706866025975,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.02032480064554887,
+        "CD1": 0.22724204666017206,
+        "CD2": 0.1008506918929461,
+        "CG": 0.09497499331237716
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.6953672766685486,
+      "local_N_CA_C_fit_RMSD_A": 0.008500447479088498,
+      "sidechain_RMSD_after_local_fit_A": 0.7101463016559227,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07203681421938815,
+        "CD1": 0.35965238738175914,
+        "CD2": 0.5608521660886306,
+        "CE1": 0.6557707779965667,
+        "CE2": 0.8556129407891091,
+        "CG": 0.26796122732864097,
+        "CZ": 0.8982140116797453,
+        "OH": 1.2428464972138709
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.3489547371864319,
+      "local_N_CA_C_fit_RMSD_A": 0.03242894446583695,
+      "sidechain_RMSD_after_local_fit_A": 2.650929813211882,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.019618774730445963,
+        "CG": 1.9309304979054494,
+        "ND2": 3.309405291086205,
+        "OD1": 3.6645156069485703
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.8732143044471741,
+      "local_N_CA_C_fit_RMSD_A": 0.01046425846444813,
+      "sidechain_RMSD_after_local_fit_A": 0.818196887151351,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.052496357619616164,
+        "CD": 0.26573006572138247,
+        "CG": 0.12165255252960416,
+        "CZ": 0.958760967835912,
+        "NE": 0.34660395560894114,
+        "NH1": 1.6321112787752894,
+        "NH2": 0.9459446190372929
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.6895041465759277,
+      "local_N_CA_C_fit_RMSD_A": 0.020092048522338764,
+      "sidechain_RMSD_after_local_fit_A": 1.7092048330994534,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.02199463330967356,
+        "CE": 1.998110187249142,
+        "CG": 0.12010543408956165,
+        "SD": 2.7709513251555054
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.21320512890815735,
+      "local_N_CA_C_fit_RMSD_A": 0.02472361187235466,
+      "sidechain_RMSD_after_local_fit_A": 1.574684240721954,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.05462209508424487,
+        "CG": 0.05137358200007928,
+        "ND2": 2.3988157329538957,
+        "OD1": 2.0392601827737087
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.3926781415939331,
+      "local_N_CA_C_fit_RMSD_A": 0.004744588138197907,
+      "sidechain_RMSD_after_local_fit_A": 0.05928020734714441,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.013796697930337855,
+        "CD1": 0.10771649053353985,
+        "CD2": 0.03374700022355649,
+        "CG": 0.03353387394486127
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if/tl1a_bg_top7_0_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.6174435615539551,
+      "local_N_CA_C_fit_RMSD_A": 0.006127960900105053,
+      "sidechain_RMSD_after_local_fit_A": 0.5366942200959703,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08932928407419762,
+        "CD1": 0.3302128261981724,
+        "CD2": 0.34598729558485286,
+        "CE1": 0.5679825255514778,
+        "CE2": 0.5797604488649258,
+        "CG": 0.2075205715110203,
+        "CZ": 0.681006183320855,
+        "OH": 0.949756553053922
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.8038662672042847,
+      "local_N_CA_C_fit_RMSD_A": 0.026988378247947836,
+      "sidechain_RMSD_after_local_fit_A": 0.5225253195395502,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.052598312881166745,
+        "CG": 0.08220457367616547,
+        "ND2": 0.817615550517973,
+        "OD1": 0.6435149379304281
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.22928771376609802,
+      "local_N_CA_C_fit_RMSD_A": 0.004338183074158058,
+      "sidechain_RMSD_after_local_fit_A": 1.1192930439855617,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.04306099555303349,
+        "CD": 0.31341902864119653,
+        "CG": 0.15749941807812234,
+        "CZ": 0.9870129913904593,
+        "NE": 0.5213111658098213,
+        "NH1": 2.6057873237397127,
+        "NH2": 0.7802173231348963
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.3225487172603607,
+      "local_N_CA_C_fit_RMSD_A": 0.022427763857372083,
+      "sidechain_RMSD_after_local_fit_A": 2.6366068251308996,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.04550455841445341,
+        "CE": 4.490388455644014,
+        "CG": 0.27040265735351393,
+        "SD": 2.7510008100300514
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.31040939688682556,
+      "local_N_CA_C_fit_RMSD_A": 0.00273002505670909,
+      "sidechain_RMSD_after_local_fit_A": 0.26629539166606375,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.052866134761215586,
+        "CG": 0.21792680156590344,
+        "ND2": 0.30243904867251664,
+        "OD1": 0.3766917111950521
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.1790427267551422,
+      "local_N_CA_C_fit_RMSD_A": 0.005239556346815608,
+      "sidechain_RMSD_after_local_fit_A": 0.16867341360523452,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.013643865551822277,
+        "CD1": 0.3016587723937412,
+        "CD2": 0.1369038972293705,
+        "CG": 0.06225780853101755
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.3264249265193939,
+      "local_N_CA_C_fit_RMSD_A": 0.013998164890139938,
+      "sidechain_RMSD_after_local_fit_A": 0.5216192189472003,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07543538615230459,
+        "CD1": 0.2802515862642527,
+        "CD2": 0.33760935932495345,
+        "CE1": 0.524044571617721,
+        "CE2": 0.571885135703174,
+        "CG": 0.1879419605369607,
+        "CZ": 0.6666960802793181,
+        "OH": 0.9471009357712586
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.6655506491661072,
+      "local_N_CA_C_fit_RMSD_A": 0.03790549068888876,
+      "sidechain_RMSD_after_local_fit_A": 0.4964514935486289,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06892281181118365,
+        "CG": 0.0779645884608632,
+        "ND2": 0.7644669652868408,
+        "OD1": 0.624994215757197
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.3698122203350067,
+      "local_N_CA_C_fit_RMSD_A": 0.008712620604132483,
+      "sidechain_RMSD_after_local_fit_A": 1.2184726883637276,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03268584697858183,
+        "CD": 0.2920555730737564,
+        "CG": 0.11139282850749385,
+        "CZ": 1.1454348540244377,
+        "NE": 0.6210801537790372,
+        "NH1": 2.7199250569994518,
+        "NH2": 1.0946244942872478
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.5624441504478455,
+      "local_N_CA_C_fit_RMSD_A": 0.029708267521228585,
+      "sidechain_RMSD_after_local_fit_A": 2.638283903822352,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.039498103837180706,
+        "CE": 4.491671706202923,
+        "CG": 0.4268316536760204,
+        "SD": 2.735563516276312
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.21359293162822723,
+      "local_N_CA_C_fit_RMSD_A": 0.014312083958278153,
+      "sidechain_RMSD_after_local_fit_A": 0.13599033772369715,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.04286921085599121,
+        "CG": 0.09609319730347358,
+        "ND2": 0.1998382572485766,
+        "OD1": 0.15154697934717412
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.18580786883831024,
+      "local_N_CA_C_fit_RMSD_A": 0.019351788331751957,
+      "sidechain_RMSD_after_local_fit_A": 0.13285573782412766,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.019120476572236277,
+        "CD1": 0.18544850155218978,
+        "CD2": 0.15373501068258047,
+        "CG": 0.11050518281645555
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.3790876567363739,
+      "local_N_CA_C_fit_RMSD_A": 0.021286733265152145,
+      "sidechain_RMSD_after_local_fit_A": 0.5161483093768222,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06454708916224645,
+        "CD1": 0.1980957264360821,
+        "CD2": 0.40506720200809787,
+        "CE1": 0.4293208992187335,
+        "CE2": 0.643722292848799,
+        "CG": 0.17468257626425573,
+        "CZ": 0.6524416224218276,
+        "OH": 0.9321459320036463
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.5797243714332581,
+      "local_N_CA_C_fit_RMSD_A": 0.04125797508945373,
+      "sidechain_RMSD_after_local_fit_A": 2.967716326679322,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.02525274878802187,
+        "CG": 2.2567233407358005,
+        "ND2": 3.9573720808971586,
+        "OD1": 3.8046194366780797
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.2532612085342407,
+      "local_N_CA_C_fit_RMSD_A": 0.007492598890353175,
+      "sidechain_RMSD_after_local_fit_A": 1.2169370797827594,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03344190869858477,
+        "CD": 0.21662592362978195,
+        "CG": 0.09511058414965208,
+        "CZ": 1.110616090936062,
+        "NE": 0.4841422305725408,
+        "NH1": 2.8331955123230608,
+        "NH2": 0.9025526055974784
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.41473162174224854,
+      "local_N_CA_C_fit_RMSD_A": 0.0037753268570506456,
+      "sidechain_RMSD_after_local_fit_A": 2.643245599919752,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.029008141297037993,
+        "CE": 4.514759661819329,
+        "CG": 0.1999646105484667,
+        "SD": 2.742828300177799
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.2022378295660019,
+      "local_N_CA_C_fit_RMSD_A": 0.012453700529720014,
+      "sidechain_RMSD_after_local_fit_A": 0.21308133657406358,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.04000370110568166,
+        "CG": 0.15030939934311935,
+        "ND2": 0.22451949175891642,
+        "OD1": 0.32712751362738246
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.09962070733308792,
+      "local_N_CA_C_fit_RMSD_A": 0.015542592120449296,
+      "sidechain_RMSD_after_local_fit_A": 0.05938373151991172,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.014355477911003068,
+        "CD1": 0.06757023827572578,
+        "CD2": 0.0839173956959429,
+        "CG": 0.0478723733465839
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.31098324060440063,
+      "local_N_CA_C_fit_RMSD_A": 0.007217523279572336,
+      "sidechain_RMSD_after_local_fit_A": 0.39929454623653915,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06229723489049076,
+        "CD1": 0.23243341787589422,
+        "CD2": 0.22694916767141748,
+        "CE1": 0.4177729795889641,
+        "CE2": 0.41493660173285807,
+        "CG": 0.14132754173157347,
+        "CZ": 0.512554349097933,
+        "OH": 0.7325877643964446
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.5887028574943542,
+      "local_N_CA_C_fit_RMSD_A": 0.015043571926531054,
+      "sidechain_RMSD_after_local_fit_A": 0.603179763336981,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07733190929408032,
+        "CG": 0.47536151516050845,
+        "ND2": 0.20566368145711234,
+        "OD1": 1.0867644470793894
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.9501684904098511,
+      "local_N_CA_C_fit_RMSD_A": 0.018248549301019476,
+      "sidechain_RMSD_after_local_fit_A": 0.7704375847553481,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.056970968553119415,
+        "CD": 0.24065547693636552,
+        "CG": 0.12271324319975693,
+        "CZ": 0.9311339824284933,
+        "NE": 0.4220474543434165,
+        "NH1": 1.3942773801444035,
+        "NH2": 1.0438655346347923
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.8997890949249268,
+      "local_N_CA_C_fit_RMSD_A": 0.03953136345996273,
+      "sidechain_RMSD_after_local_fit_A": 1.7996459218355336,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.039525492351227244,
+        "CE": 2.216689007566546,
+        "CG": 0.21670753820871433,
+        "SD": 2.8271305590631326
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.28183749318122864,
+      "local_N_CA_C_fit_RMSD_A": 0.016732117945053106,
+      "sidechain_RMSD_after_local_fit_A": 1.5872175161305826,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07126184836202779,
+        "CG": 0.11019207617619209,
+        "ND2": 2.485302539673026,
+        "OD1": 1.9705553825400997
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.34584227204322815,
+      "local_N_CA_C_fit_RMSD_A": 0.021341938354533335,
+      "sidechain_RMSD_after_local_fit_A": 0.19998275877528712,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0374672871853084,
+        "CD1": 0.35638537166224327,
+        "CD2": 0.15636487645904934,
+        "CG": 0.08430960737414993
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.45048314332962036,
+      "local_N_CA_C_fit_RMSD_A": 0.002377647196306828,
+      "sidechain_RMSD_after_local_fit_A": 0.7267061703108859,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.09206688012222287,
+        "CD1": 0.43578457419205935,
+        "CD2": 0.5054618634958695,
+        "CE1": 0.7493375047928308,
+        "CE2": 0.8014666559937013,
+        "CG": 0.29083868704275334,
+        "CZ": 0.9232784992258389,
+        "OH": 1.276735225880081
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.5733470916748047,
+      "local_N_CA_C_fit_RMSD_A": 0.027791245300834197,
+      "sidechain_RMSD_after_local_fit_A": 0.5724488960633608,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08773211983963537,
+        "CG": 0.4792794728222497,
+        "ND2": 0.2934978328538494,
+        "OD1": 0.9936016498609519
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 1.1115442514419556,
+      "local_N_CA_C_fit_RMSD_A": 0.005882855178260285,
+      "sidechain_RMSD_after_local_fit_A": 0.5728805154595898,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0340569970172363,
+        "CD": 0.13842191347139537,
+        "CG": 0.07549246085313058,
+        "CZ": 0.6725502564007455,
+        "NE": 0.19906623800741563,
+        "NH1": 1.1443714679930796,
+        "NH2": 0.6854106118790195
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.823951005935669,
+      "local_N_CA_C_fit_RMSD_A": 0.04340463723253505,
+      "sidechain_RMSD_after_local_fit_A": 1.9074425946820615,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.030373579680022182,
+        "CE": 2.5741432241501965,
+        "CG": 0.41502563175390483,
+        "SD": 2.7845945558080922
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.3494604527950287,
+      "local_N_CA_C_fit_RMSD_A": 0.027394161999880214,
+      "sidechain_RMSD_after_local_fit_A": 1.5853272290258378,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06523847554489286,
+        "CG": 0.0884075296616789,
+        "ND2": 2.35413198466656,
+        "OD1": 2.1210941377365944
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.5079232454299927,
+      "local_N_CA_C_fit_RMSD_A": 0.004878670323078827,
+      "sidechain_RMSD_after_local_fit_A": 0.1280420971799281,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.017715471547897994,
+        "CD1": 0.21864533833945587,
+        "CD2": 0.09422594934450274,
+        "CG": 0.0926334883361535
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.6481121182441711,
+      "local_N_CA_C_fit_RMSD_A": 0.0066680197933742386,
+      "sidechain_RMSD_after_local_fit_A": 0.7046970719623799,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08559184390386428,
+        "CD1": 0.3502600706348131,
+        "CD2": 0.5473886484971138,
+        "CE1": 0.6581914240243569,
+        "CE2": 0.8420118889547187,
+        "CG": 0.26875512140035757,
+        "CZ": 0.8954552737803595,
+        "OH": 1.2356665642927558
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.4404362142086029,
+      "local_N_CA_C_fit_RMSD_A": 0.03173931600300385,
+      "sidechain_RMSD_after_local_fit_A": 2.6838960520554758,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03528396506508975,
+        "CG": 1.9721677620492661,
+        "ND2": 3.34282270845395,
+        "OD1": 3.7078346474651958
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.9271981716156006,
+      "local_N_CA_C_fit_RMSD_A": 0.009951401152593076,
+      "sidechain_RMSD_after_local_fit_A": 0.8801438481730064,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0415298919319453,
+        "CD": 0.24286063523455775,
+        "CG": 0.10649069600117898,
+        "CZ": 1.0335575851204095,
+        "NE": 0.35255107288423926,
+        "NH1": 1.7487583815613277,
+        "NH2": 1.048730970315807
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.7780590057373047,
+      "local_N_CA_C_fit_RMSD_A": 0.01832002537029545,
+      "sidechain_RMSD_after_local_fit_A": 1.7103401601790251,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.036197544442347254,
+        "CE": 2.0000077610167017,
+        "CG": 0.1633272394516159,
+        "SD": 2.7700246859165842
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.2519415020942688,
+      "local_N_CA_C_fit_RMSD_A": 0.02622268437315274,
+      "sidechain_RMSD_after_local_fit_A": 1.5784431603822426,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.05779259229581133,
+        "CG": 0.06190607655900113,
+        "ND2": 2.4167360330294305,
+        "OD1": 2.0293215227873334
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.3306969404220581,
+      "local_N_CA_C_fit_RMSD_A": 0.003820608387525803,
+      "sidechain_RMSD_after_local_fit_A": 0.05818749661280685,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.008556658580132218,
+        "CD1": 0.10821017419357448,
+        "CD2": 0.031423963687127965,
+        "CG": 0.02780315358715654
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_mpnn1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_mpnn1/tl1a_bg_top7_0_if_mpnn1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.6081177592277527,
+      "local_N_CA_C_fit_RMSD_A": 0.006447303181868704,
+      "sidechain_RMSD_after_local_fit_A": 0.5536408972865291,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08421168768802077,
+        "CD1": 0.33864807406721364,
+        "CD2": 0.37175220939163617,
+        "CE1": 0.5810961070479673,
+        "CE2": 0.5972992422524127,
+        "CG": 0.22211189508538978,
+        "CZ": 0.7054609104909608,
+        "OH": 0.9750508976432132
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.5338197946548462,
+      "local_N_CA_C_fit_RMSD_A": 0.013824933732339836,
+      "sidechain_RMSD_after_local_fit_A": 0.5517403399569237,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08677576536980693,
+        "CG": 0.4401455677706619,
+        "ND2": 0.21837814795391694,
+        "OD1": 0.9842369842449888
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.8208287954330444,
+      "local_N_CA_C_fit_RMSD_A": 0.0179205653578885,
+      "sidechain_RMSD_after_local_fit_A": 0.6850167613533736,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.043842497182504755,
+        "CD": 0.21008343183558983,
+        "CG": 0.10086282511635491,
+        "CZ": 0.8237155313550905,
+        "NE": 0.360623247527703,
+        "NH1": 1.2676932629980655,
+        "NH2": 0.9016111183100373
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.3792965412139893,
+      "local_N_CA_C_fit_RMSD_A": 0.03823235313704723,
+      "sidechain_RMSD_after_local_fit_A": 1.802455017330645,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.02714890308710787,
+        "CE": 2.2355684263820197,
+        "CG": 0.22826307099563545,
+        "SD": 2.818646674637723
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.29500457644462585,
+      "local_N_CA_C_fit_RMSD_A": 0.016454707796660153,
+      "sidechain_RMSD_after_local_fit_A": 1.5870049646561222,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06865924756608928,
+        "CG": 0.12732896222115472,
+        "ND2": 2.504898959340266,
+        "OD1": 1.943937621934437
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.38115713000297546,
+      "local_N_CA_C_fit_RMSD_A": 0.019570782062802956,
+      "sidechain_RMSD_after_local_fit_A": 0.20519893055005622,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03407685040342953,
+        "CD1": 0.36464018844079377,
+        "CD2": 0.1543246669289275,
+        "CG": 0.10240411521646701
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.5755473971366882,
+      "local_N_CA_C_fit_RMSD_A": 0.0035211129824676887,
+      "sidechain_RMSD_after_local_fit_A": 0.7243062116495518,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0871472176079572,
+        "CD1": 0.4283661547315076,
+        "CD2": 0.5114908660211608,
+        "CE1": 0.7480760648899474,
+        "CE2": 0.801131748615462,
+        "CG": 0.2846683776443083,
+        "CZ": 0.9195244491876015,
+        "OH": 1.2713180657917036
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.5623477101325989,
+      "local_N_CA_C_fit_RMSD_A": 0.0245680412478886,
+      "sidechain_RMSD_after_local_fit_A": 0.6720565467501892,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08713864759428452,
+        "CG": 0.5635444447273489,
+        "ND2": 0.3225899146501196,
+        "OD1": 1.1736269722520734
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 1.0620272159576416,
+      "local_N_CA_C_fit_RMSD_A": 0.004614578531970755,
+      "sidechain_RMSD_after_local_fit_A": 0.6435853663983614,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0316174915179274,
+        "CD": 0.13079328003439902,
+        "CG": 0.07916255733969378,
+        "CZ": 0.720627890263275,
+        "NE": 0.15116412312816288,
+        "NH1": 1.3716550394207812,
+        "NH2": 0.671899481338808
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.5187909603118896,
+      "local_N_CA_C_fit_RMSD_A": 0.04474261806685672,
+      "sidechain_RMSD_after_local_fit_A": 1.8768351831204666,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03291689228973681,
+        "CE": 2.501015317481628,
+        "CG": 0.4040819941468346,
+        "SD": 2.7695844129265885
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.33705806732177734,
+      "local_N_CA_C_fit_RMSD_A": 0.028128474980817778,
+      "sidechain_RMSD_after_local_fit_A": 1.5826307945251656,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07648894317774876,
+        "CG": 0.08700688625860736,
+        "ND2": 2.34889863627601,
+        "OD1": 2.1185219769766994
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.5444245338439941,
+      "local_N_CA_C_fit_RMSD_A": 0.0024810461367327503,
+      "sidechain_RMSD_after_local_fit_A": 0.14193569161561528,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.026534508178558118,
+        "CD1": 0.24134490058036,
+        "CD2": 0.10352328554745237,
+        "CG": 0.104472247064237
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.6769468188285828,
+      "local_N_CA_C_fit_RMSD_A": 0.007282794352106327,
+      "sidechain_RMSD_after_local_fit_A": 0.7439381278828844,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08474069290863086,
+        "CD1": 0.39715347581783766,
+        "CD2": 0.5802937052492315,
+        "CE1": 0.7004164963091307,
+        "CE2": 0.8879388952984181,
+        "CG": 0.29508675960327085,
+        "CZ": 0.9378577587121147,
+        "OH": 1.2962356000538702
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.39966070652008057,
+      "local_N_CA_C_fit_RMSD_A": 0.029992909674187,
+      "sidechain_RMSD_after_local_fit_A": 2.655057474007887,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03397910704470054,
+        "CG": 1.940652342462803,
+        "ND2": 3.267629374038086,
+        "OD1": 3.7084542522514834
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.85426265001297,
+      "local_N_CA_C_fit_RMSD_A": 0.009972357991960465,
+      "sidechain_RMSD_after_local_fit_A": 0.7930491225465147,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.043258397237796,
+        "CD": 0.22778580433910292,
+        "CG": 0.10346211998462615,
+        "CZ": 0.9223581358785035,
+        "NE": 0.3167191279685881,
+        "NH1": 1.594995773075516,
+        "NH2": 0.9181281231776185
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.516474962234497,
+      "local_N_CA_C_fit_RMSD_A": 0.022497507297380485,
+      "sidechain_RMSD_after_local_fit_A": 1.7325803737740197,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03232588802481292,
+        "CE": 2.065183668035791,
+        "CG": 0.1771949051717574,
+        "SD": 2.77667290586603
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.2764441967010498,
+      "local_N_CA_C_fit_RMSD_A": 0.025389642440931923,
+      "sidechain_RMSD_after_local_fit_A": 1.5783361056244745,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.05013378446426062,
+        "CG": 0.04858852044144921,
+        "ND2": 2.397824470212454,
+        "OD1": 2.0518633040868726
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.3887895345687866,
+      "local_N_CA_C_fit_RMSD_A": 0.006087291811800186,
+      "sidechain_RMSD_after_local_fit_A": 0.0655216051603035,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.016676035670418386,
+        "CD1": 0.11513104650477064,
+        "CD2": 0.041939409374532936,
+        "CG": 0.04336082191888726
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx0",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx0/tl1a_bg_top7_0_if_lmpnn_ctx0_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.6318281292915344,
+      "local_N_CA_C_fit_RMSD_A": 0.007633706239153168,
+      "sidechain_RMSD_after_local_fit_A": 0.5327318147220846,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07420414782937744,
+        "CD1": 0.32177254218319296,
+        "CD2": 0.3415723348457564,
+        "CE1": 0.5730771465654362,
+        "CE2": 0.5682566659266001,
+        "CG": 0.20656217104725566,
+        "CZ": 0.6769625849940786,
+        "OH": 0.944685492992967
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.569135308265686,
+      "local_N_CA_C_fit_RMSD_A": 0.01188833368191124,
+      "sidechain_RMSD_after_local_fit_A": 0.5149636465744835,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07247000980659023,
+        "CG": 0.4095067702303535,
+        "ND2": 0.21697391494381246,
+        "OD1": 0.9169104930260372
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.9374334812164307,
+      "local_N_CA_C_fit_RMSD_A": 0.01876357399524216,
+      "sidechain_RMSD_after_local_fit_A": 0.7403920689641338,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.05279403654592658,
+        "CD": 0.2233755080134745,
+        "CG": 0.11184263278228086,
+        "CZ": 0.8973192962509653,
+        "NE": 0.40754414926197036,
+        "NH1": 1.3349464884434683,
+        "NH2": 1.0093136420769484
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.5057194232940674,
+      "local_N_CA_C_fit_RMSD_A": 0.04130372280976392,
+      "sidechain_RMSD_after_local_fit_A": 1.7769700364225383,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.04413692788865646,
+        "CE": 2.1759147090228708,
+        "CG": 0.2293141812343027,
+        "SD": 2.8002414464316066
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.2732124328613281,
+      "local_N_CA_C_fit_RMSD_A": 0.016744161111916706,
+      "sidechain_RMSD_after_local_fit_A": 1.5895636213000512,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06930690036139352,
+        "CG": 0.13173736171598693,
+        "ND2": 2.5125621724544995,
+        "OD1": 1.9420924734119287
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.36823102831840515,
+      "local_N_CA_C_fit_RMSD_A": 0.018433673955053218,
+      "sidechain_RMSD_after_local_fit_A": 0.22231924310898402,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.025631511693050626,
+        "CD1": 0.38949961775071296,
+        "CD2": 0.18349058206274316,
+        "CG": 0.10801695746899823
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "A",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.49129655957221985,
+      "local_N_CA_C_fit_RMSD_A": 0.00196058680854737,
+      "sidechain_RMSD_after_local_fit_A": 0.7248990091246927,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.089431435536665,
+        "CD1": 0.431940577465025,
+        "CD2": 0.5055158475608043,
+        "CE1": 0.7496309510875435,
+        "CE2": 0.8037433998000377,
+        "CG": 0.289394380974863,
+        "CZ": 0.919646015850888,
+        "OH": 1.2713236226157483
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.5507137179374695,
+      "local_N_CA_C_fit_RMSD_A": 0.023691532178154482,
+      "sidechain_RMSD_after_local_fit_A": 0.6213887141502337,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08207071113407231,
+        "CG": 0.503050693525606,
+        "ND2": 0.25938765793474056,
+        "OD1": 1.1033667465179506
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 1.1066683530807495,
+      "local_N_CA_C_fit_RMSD_A": 0.006176327092782952,
+      "sidechain_RMSD_after_local_fit_A": 0.7378400164608184,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.044938581335699286,
+        "CD": 0.16030676087509657,
+        "CG": 0.09626617837159611,
+        "CZ": 0.8235850496947947,
+        "NE": 0.18804714368774825,
+        "NH1": 1.5677114814177189,
+        "NH2": 0.7762067811894368
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.737872838973999,
+      "local_N_CA_C_fit_RMSD_A": 0.04569684194149886,
+      "sidechain_RMSD_after_local_fit_A": 1.88021726821728,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.029296588184630476,
+        "CE": 2.511410357388261,
+        "CG": 0.3697677070608909,
+        "SD": 2.7741844697763773
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.31995198130607605,
+      "local_N_CA_C_fit_RMSD_A": 0.028351258446109237,
+      "sidechain_RMSD_after_local_fit_A": 1.581304690222973,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0702718112715619,
+        "CG": 0.08416077219106931,
+        "ND2": 2.3389847466866716,
+        "OD1": 2.1258474275019346
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.5278529524803162,
+      "local_N_CA_C_fit_RMSD_A": 0.004977536339653441,
+      "sidechain_RMSD_after_local_fit_A": 0.12658523446956907,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.018257311624189497,
+        "CD1": 0.2236993879457885,
+        "CD2": 0.0873326744994212,
+        "CG": 0.07806116007707098
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "B",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.6359267234802246,
+      "local_N_CA_C_fit_RMSD_A": 0.007963944154439332,
+      "sidechain_RMSD_after_local_fit_A": 0.7333980049617669,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.08764942650529839,
+        "CD1": 0.3654810274662182,
+        "CD2": 0.5754271140599189,
+        "CE1": 0.6798430148858698,
+        "CE2": 0.8855066189547943,
+        "CG": 0.28065877433828423,
+        "CZ": 0.9264463532538944,
+        "OH": 1.2834427187385629
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.44949454069137573,
+      "local_N_CA_C_fit_RMSD_A": 0.03174396527038425,
+      "sidechain_RMSD_after_local_fit_A": 2.674595568644733,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.04620474317010462,
+        "CG": 1.9618878860124953,
+        "ND2": 3.311944681201247,
+        "OD1": 3.7139910199601918
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.8625108003616333,
+      "local_N_CA_C_fit_RMSD_A": 0.011152304896873353,
+      "sidechain_RMSD_after_local_fit_A": 0.8155354997305393,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03986424195189576,
+        "CD": 0.22884540820450328,
+        "CG": 0.10177112421853475,
+        "CZ": 0.9503661367581949,
+        "NE": 0.3193821177367704,
+        "NH1": 1.6365081618575106,
+        "NH2": 0.9528959145808242
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 2.5930047035217285,
+      "local_N_CA_C_fit_RMSD_A": 0.022123732416771843,
+      "sidechain_RMSD_after_local_fit_A": 1.7364480537085747,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.027699190926469396,
+        "CE": 2.048702278163338,
+        "CG": 0.14142658043525708,
+        "SD": 2.8005459513334086
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.30897247791290283,
+      "local_N_CA_C_fit_RMSD_A": 0.025827517734965173,
+      "sidechain_RMSD_after_local_fit_A": 1.5790175569339797,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.053017793488932576,
+        "CG": 0.057788847974198615,
+        "ND2": 2.414270624529216,
+        "OD1": 2.0342892357237954
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.38889452815055847,
+      "local_N_CA_C_fit_RMSD_A": 0.004384575261794998,
+      "sidechain_RMSD_after_local_fit_A": 0.06296814818234378,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.007861927417638808,
+        "CD1": 0.11620585729887074,
+        "CD2": 0.03237439471655968,
+        "CG": 0.035302098174259854
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "af2_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/af2/tl1a_bg_top7_0_if_lmpnn_ctx1/tl1a_bg_top7_0_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+      "native_chain": "C",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.6207610368728638,
+      "local_N_CA_C_fit_RMSD_A": 0.008387647712581537,
+      "sidechain_RMSD_after_local_fit_A": 0.53696805212473,
+      "equivalent_label_swap": {
+        "CD1": "CD2",
+        "CD2": "CD1",
+        "CE1": "CE2",
+        "CE2": "CE1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07849048970801699,
+        "CD1": 0.32265178891548935,
+        "CD2": 0.35687728970705457,
+        "CE1": 0.5680940160288375,
+        "CE2": 0.5792986205763386,
+        "CG": 0.206573402367533,
+        "CZ": 0.6849182121133083,
+        "OH": 0.9481286555883542
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.6850036382675171,
+      "local_N_CA_C_fit_RMSD_A": 0.02104717356921643,
+      "sidechain_RMSD_after_local_fit_A": 2.5346715103900075,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06951444998014181,
+        "CG": 2.207613871829371,
+        "ND2": 2.7814017695623123,
+        "OD1": 3.617133062628078
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.42343267798423767,
+      "local_N_CA_C_fit_RMSD_A": 0.0012050448568319055,
+      "sidechain_RMSD_after_local_fit_A": 1.5188261464912844,
+      "equivalent_label_swap": {
+        "NH1": "NH2",
+        "NH2": "NH1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.03729989608633155,
+        "CD": 0.6926126112837884,
+        "CG": 0.10576746218540257,
+        "CZ": 1.8290253456993368,
+        "NE": 1.9629636502911083,
+        "NH1": 2.025783957648639,
+        "NH2": 2.086427359052564
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.42189839482307434,
+      "local_N_CA_C_fit_RMSD_A": 0.023715545119330536,
+      "sidechain_RMSD_after_local_fit_A": 1.9917810901273747,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.021540443328652223,
+        "CE": 2.4130383694102835,
+        "CG": 2.297466762444973,
+        "SD": 2.1833909307477564
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.3571717143058777,
+      "local_N_CA_C_fit_RMSD_A": 0.0054070675493107685,
+      "sidechain_RMSD_after_local_fit_A": 0.24541221751032946,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.04849216666366258,
+        "CG": 0.2064585230382651,
+        "ND2": 0.27932046922805526,
+        "OD1": 0.34338329825530217
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.23510724306106567,
+      "local_N_CA_C_fit_RMSD_A": 0.0047519029573056416,
+      "sidechain_RMSD_after_local_fit_A": 0.14440063602707634,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.012457956293486254,
+        "CD1": 0.2567309120158928,
+        "CD2": 0.1230612927406312,
+        "CG": 0.046862896939677885
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "A",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.35982516407966614,
+      "local_N_CA_C_fit_RMSD_A": 0.014777292192014317,
+      "sidechain_RMSD_after_local_fit_A": 0.6179160782361168,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07951141466219121,
+        "CD1": 0.3368725671739532,
+        "CD2": 0.44643496420715756,
+        "CE1": 0.6056964388118605,
+        "CE2": 0.707956810385406,
+        "CG": 0.23804596849313994,
+        "CZ": 0.7839611959764387,
+        "OH": 1.0936730808728594
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.7151229977607727,
+      "local_N_CA_C_fit_RMSD_A": 0.03360784605214316,
+      "sidechain_RMSD_after_local_fit_A": 2.533470625802806,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.07628291896825468,
+        "CG": 2.212950161406832,
+        "ND2": 2.797771225229787,
+        "OD1": 3.597694027832553
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.5982232093811035,
+      "local_N_CA_C_fit_RMSD_A": 0.009968449737523269,
+      "sidechain_RMSD_after_local_fit_A": 1.3720475335383981,
+      "equivalent_label_swap": {
+        "NH1": "NH2",
+        "NH2": "NH1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.026131764673233922,
+        "CD": 0.7365229579822801,
+        "CG": 0.08288581716205282,
+        "CZ": 1.5916673953662779,
+        "NE": 1.8268912996408426,
+        "NH1": 1.8019537093878004,
+        "NH2": 1.8733947676939733
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.3700825273990631,
+      "local_N_CA_C_fit_RMSD_A": 0.030599829544193692,
+      "sidechain_RMSD_after_local_fit_A": 2.3283160044474926,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.025259552415934517,
+        "CE": 2.972790837923158,
+        "CG": 2.395080373782092,
+        "SD": 2.666399868429537
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.36000674962997437,
+      "local_N_CA_C_fit_RMSD_A": 0.0165504459196853,
+      "sidechain_RMSD_after_local_fit_A": 0.11443234746177453,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.04027937589465878,
+        "CG": 0.09393729491253047,
+        "ND2": 0.1604906410726891,
+        "OD1": 0.12718159934746662
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.33699682354927063,
+      "local_N_CA_C_fit_RMSD_A": 0.020106538455313034,
+      "sidechain_RMSD_after_local_fit_A": 0.13000744774228523,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0178184632898119,
+        "CD1": 0.16810779827505198,
+        "CD2": 0.1621428103120578,
+        "CG": 0.11287039232262906
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "B",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.7323846817016602,
+      "local_N_CA_C_fit_RMSD_A": 0.020954256217446718,
+      "sidechain_RMSD_after_local_fit_A": 0.5909647288041905,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.06750014562288777,
+        "CD1": 0.26435600606100346,
+        "CD2": 0.4848781596104398,
+        "CE1": 0.5078291550606164,
+        "CE2": 0.7420484066940883,
+        "CG": 0.21317653062234312,
+        "CZ": 0.7400428212366911,
+        "OH": 1.0405447559711618
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 133,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.5631515383720398,
+      "local_N_CA_C_fit_RMSD_A": 0.03621244270269743,
+      "sidechain_RMSD_after_local_fit_A": 1.5816214480065822,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.028732872524722935,
+        "CG": 0.11898807476323224,
+        "ND2": 2.497045866459419,
+        "OD1": 1.9380102734702667
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 156,
+      "resname": "ARG",
+      "CA_deviation_global_A": 0.45878806710243225,
+      "local_N_CA_C_fit_RMSD_A": 0.007937647190150578,
+      "sidechain_RMSD_after_local_fit_A": 1.5052593087477477,
+      "equivalent_label_swap": {
+        "NH1": "NH2",
+        "NH2": "NH1"
+      },
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.025592495185106076,
+        "CD": 0.6543723941452068,
+        "CG": 0.0661767366425847,
+        "CZ": 1.7850208803627017,
+        "NE": 1.8857605492698937,
+        "NH1": 2.1345802206634676,
+        "NH2": 2.0318898662425617
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 158,
+      "resname": "MET",
+      "CA_deviation_global_A": 0.3682404160499573,
+      "local_N_CA_C_fit_RMSD_A": 0.004557502431727727,
+      "sidechain_RMSD_after_local_fit_A": 1.8790560403467005,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.014558722934713844,
+        "CE": 2.180197615934684,
+        "CG": 2.2762947714823434,
+        "SD": 2.0465617321339367
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 229,
+      "resname": "ASN",
+      "CA_deviation_global_A": 0.18268536031246185,
+      "local_N_CA_C_fit_RMSD_A": 0.014631316369831544,
+      "sidechain_RMSD_after_local_fit_A": 0.19130391254063148,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.04018014461240884,
+        "CG": 0.146488360107509,
+        "ND2": 0.19449543793378024,
+        "OD1": 0.292381580760998
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 235,
+      "resname": "LEU",
+      "CA_deviation_global_A": 0.18561889231204987,
+      "local_N_CA_C_fit_RMSD_A": 0.014263744484768586,
+      "sidechain_RMSD_after_local_fit_A": 0.0682790393096167,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.013561768227040095,
+        "CD1": 0.07539289457176662,
+        "CD2": 0.09620537800989792,
+        "CG": 0.05936854359672223
+      }
+    },
+    {
+      "id": "tl1a_bg_top7_0_if_lmpnn_ctx1",
+      "role": "boltz_trimer_deepmsa_predicted_complex",
+      "path": "results/tl1a_top7_20261103/predictions/trimer_deepmsa/tl1a_bg_top7_0_if_lmpnn_ctx1_model_0.cif",
+      "native_chain": "C",
+      "uniprot": 238,
+      "resname": "TYR",
+      "CA_deviation_global_A": 0.6334810853004456,
+      "local_N_CA_C_fit_RMSD_A": 0.008393549522661506,
+      "sidechain_RMSD_after_local_fit_A": 0.4325053868317664,
+      "equivalent_label_swap": {},
+      "atom_displacements_after_local_fit_A": {
+        "CB": 0.0650720317775886,
+        "CD1": 0.2287637884449355,
+        "CD2": 0.295952725723117,
+        "CE1": 0.42408868998423926,
+        "CE2": 0.4864744123959814,
+        "CG": 0.16046727556241705,
+        "CZ": 0.5518008938001345,
+        "OH": 0.7781962973492399
+      }
+    }
+  ]
+}

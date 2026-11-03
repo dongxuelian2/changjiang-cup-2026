@@ -39,7 +39,8 @@ def main(args):
             and not any(k.startswith(('af2.','boltz')) and v is not None for k,v in row['metrics'].items()))
     if screened_family and not supported_followup:
         raise ValueError('local repair is only for a new, independently unscreened family')
-    if row['metrics']['geometry.native_all_chain_BB_clash_pairs2']>10:
+    many_overlaps=row['metrics']['geometry.native_all_chain_BB_clash_pairs2']>10
+    if many_overlaps and not args.localized_sidechain_repair:
         raise ValueError('not a local repair: more than ten backbone/native atom overlaps')
     out=(ROOT/args.out).resolve()
     if out.exists():raise ValueError('choose a fresh refinement directory')
@@ -81,6 +82,20 @@ def main(args):
         raise ValueError('requires genuine atom14/all-atom output; no placeholder IF sidechains')
     fit.apply(list(raw.get_atoms()))
     pose=copy.deepcopy(native);binder=binder.copy();binder.id='D';pose[0].add(binder)
+    localized_admission=None
+    if many_overlaps:
+        bb_names={'N','CA','C','O'}
+        ba=[a for a in binder.get_atoms() if a.name in bb_names]
+        ta=[a for a in native.get_atoms() if a.element!='H']
+        pairs=np.argwhere(np.linalg.norm(np.array([a.coord for a in ba])[:,None]-np.array([a.coord for a in ta]),axis=-1)<2)
+        binder_res=sorted({ba[i].parent.id[1] for i,j in pairs})
+        target_res=sorted({(ta[j].parent.parent.id,ta[j].parent.id[1]) for i,j in pairs})
+        if (not len(pairs) or any(ta[j].name in bb_names for i,j in pairs)
+            or len(target_res)!=1 or len(binder_res)>3 or max(binder_res)-min(binder_res)>2):
+            raise ValueError('large overlap count is not confined to one target sidechain and <=3 adjacent binder residues')
+        localized_admission=dict(overlap_pairs=int(len(pairs)),binder_residues=binder_res,target_residue=list(target_res[0]),
+            all_target_atoms_sidechain=True,
+            reason='pair count can multiply one sidechain occlusion; original backbone-movement and zero-residual-overlap limits still apply')
     writer=PDBIO();writer.set_structure(pose);writer.save(str(out/'input.pdb'))
     original={(c.id,str(r.id[1]),a.name):np.array(a.coord)/10 for c in pose[0] for r in c for a in r if a.element!='H'}
     platform=mm.Platform.getPlatformByName('CPU')
@@ -137,6 +152,7 @@ def main(args):
         target_all_particles_zero_mass=True,unresolved_residues_added=False,
         added_heavy_atoms=new,glycan_heavy_penalty_radius_A=13.,
         source_backbone_overlaps=row['metrics']['geometry.native_all_chain_BB_clash_pairs2'],
+        localized_sidechain_overlap_admission=localized_admission,
         target_max_movement_A=target_move,binder_CA_rms_movement_A=rms,
         binder_CA_max_movement_A=float(displacement.max()),elapsed_seconds=time.monotonic()-started,
         timing_scope='LocalEnergyMinimizer call only; topology and hydrogen preparation excluded',
@@ -176,4 +192,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('candidates');p.add_argument('--id',required=True);p.add_argument('--out',required=True)
     p.add_argument('--iterations',type=int,default=500)
+    p.add_argument('--localized-sidechain-repair',action='store_true',help='allow >10 pairs only if confined to one native sidechain and <=3 adjacent binder residues; retain movement limits')
     main(p.parse_args())
