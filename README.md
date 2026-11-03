@@ -51,6 +51,7 @@ SASA, neighboring-subunit burial, glycan-anchor distance and receptor context.
 | [Two-link Cys-conditioned alpha/beta tests](results/tl1a_cystine_20261102) | 6 sequences / 2 new 72 aa backbones at R156/M158: raw, IF and Cys-preserving MPNN | 6 AF2 model-1 complexes; 1 diagnostic Boltz-2 complex + 1 binder-alone control |
 | [Three-link compact beta conditioning](results/tl1a_cys6_20261103) | 4 sequences / 2 new 56 aa backbones at L235/Y238: raw and IF | 4 AF2 model-1 complexes; 1 diagnostic Boltz-2 complex + 1 binder-alone control |
 | [Fold-preserving Top7 surface tests](results/tl1a_top7_20261103) | 8 sequences / 2 generated poses on one generic 92-aa scaffold family: raw/IF, one MPNN, one AF2 surface refinement and a two-sequence LigandMPNN context ablation | 5 AF2 model-1 complexes; 2 Boltz-2 complexes + 2 binder-alone controls; 3 conditional-likelihood pose audits |
+| [Binding-state / glycan-ensemble alpha3D tests](results/tl1a_a3d_ensemble_20261103) | 5 valid sequences / 2 poses in a NEW generic 73-aa scaffold family; atomic-context LigandMPNN and 55-step binding-state AF2 design | 3 held-out AF2 model-1 complexes; 2 Boltz-2 complexes + 2 apo controls; original generic scaffold: 1 Boltz complex + 1 apo control |
 
 BoltzGen counts include actual atom14-generated sequences and the recorded
 inverse-folding batch (one or two sequences per backbone). Distinct sequences
@@ -59,6 +60,70 @@ Original CIF/NPZ outputs, normalized backbone complexes, FASTA/CSV, metrics and
 resolved generation/prediction provenance are retained. `synthetic: false` means
 real model execution, not validated binding. Weights, environments and logs stay
 in ignored `build/`.
+
+**New binding-state experiment (November 3).** No screened Top7/Cys/helix
+family was extended. The generic experimental [alpha3D scaffold, 2A3D](https://www.rcsb.org/structure/2A3D)
+supplied a new family: 26 packing/cap identities protected, 47 surface positions
+redesigned. Two BoltzGen poses retain its fold within .15/.16 A. One atom14
+output contains unknown residues and is retained as rejected provenance, not a
+candidate. LigandMPNN parsed **366 modelled glycan heavy atoms** plus native
+target sidechains. This is actual model execution, not simulated binding data.
+
+Three native R156/M158/L235/Y238 sidechain states and six modelled
+Man3GlcNAc2 roots use observed 2RE9 protein geometry and generic linked-Asn
+glycan cores from [4BYH](https://www.rcsb.org/structure/4BYH). Internal glycan
+bonds and attachment bonds are checked; the two source glycans number their
+Man arms differently. These are **not measured TL1A glycans or populations**;
+outer branches and unknown conformers remain unmodelled. A minimum three-state
+marginal cover retains the worst single-atom-pair clash over **1,458** allowed
+joint assignments / **20** marginals ([proof, section 20](math/PROOF.md)).
+It does not preserve summed energies or statistical free energies.
+
+AF2 model 3 generation used an intrachain scaffold template and bound-pose
+initial guess for 45 steps, then removed both for 10 more steps and a discrete
+three-recycle prediction. The objective combines interface ipTM/contact terms,
+pose/fold terms and external all-heavy-atom native-sidechain/glycan penalties.
+Full terminal sidechains are supplied through the external loss, not inferred
+to be visible through standard AF2 template features. This changed G29 to D
+in the atomic-context sequence; no further variant was generated after holdout.
+
+| Frozen design | AF2 / Boltz interface ipSAE10 | AF2 / Boltz binder pLDDT | Cross-model pose RMSD (A) | Boltz apo RMSD / pLDDT |
+|---|---|---|---:|---|
+| atomic-context LigandMPNN | 0 / 0 | .399 / .717 | 13.31 | 3.19 A / .805 |
+| binding-state AF2, G29D | 0 / 0 | .415 / .740 | 7.51 | 2.08 A / .812 |
+
+The IF baseline also has AF2 interface ipSAE zero. **Complete-screen survivors:
+0/2 evaluated designs.** AF2/Boltz use the full 180-aa target trimer, no binder
+templates/initial guesses, and the existing MSA/seed settings. All original
+PAE and apo predictions are retained. The generic original-scaffold control
+has Boltz apo pLDDT **.916** but RMSD **3.12 A** to its experimental reference;
+its packing-position RMSD is **1.80 A** (helices 2.15 A), so the overall
+deviation does not imply unfolding. Confidence alone does not establish full
+reference-fold recovery.
+
+The new bottleneck is explicit: soft multi-state penalties still leave an
+infeasible predicted binding state. CPU auditing of the released generator
+output finds **.47 A** minimum native-protein and **.41 A** minimum modelled-glycan
+distances, agreeing with GPU losses within .002. Its apparent AF2/Boltz fold
+consistency (1.58/1.81 A to the generated fold) also differs from agreement
+with the original scaffold (3.28/3.56 A). Conversely the Boltz poses clear the
+sampled glycan cores by 3.11/3.34 A while failing the conservative 12 A ND2
+envelope; neither establishes tolerance of unknown outer glycan branches.
+These failures do not prove physical nonbinding. Further work should use a
+new scaffold with calibrated apo/reference agreement and enforce multistate
+geometric feasibility before confidence optimization; this family is frozen.
+
+A GPU numerical audit also found up to **.426 A** nearest-distance error and
+three false <2 A clashes with default matrix multiplication on a real input.
+Centered highest-precision multiplication reduces the error below **.00003 A**.
+The aborted default-precision run is retained separately and never counted as
+a candidate; it and the corrected trajectory have different initial sequences,
+so they are not a controlled design ablation. See the real
+[atomic/pose audits and complete triage](results/tl1a_a3d_ensemble_20261103).
+The executed entry points are `scripts/prepare_tl1a_ensemble.py`,
+`scripts/redesign_ligandmpnn.py --context-state 0 --contexts 1`, and
+`scripts/run_binding_state_design.py`; generation provenance retains the stages,
+weights, initial sequence and checkpoint. Generation refuses screened families.
 
 The RFdiffusion round exposed adjacent-subunit clashes, noncompact rods and
 target-state prediction errors. Increasing target MSA depth from 64 to 512

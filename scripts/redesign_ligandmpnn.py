@@ -39,6 +39,18 @@ def generate(args):
     out=ROOT/args.out
     if out.exists():raise ValueError('choose a fresh output directory')
     out.mkdir(parents=True)
+    input_pose=parent['structures'][0]['path']
+    if args.context_state is not None:
+        from Bio.PDB import PDBParser,PDBIO
+        parser=PDBParser(QUIET=True)
+        context=parser.get_structure('ensemble',ROOT/f'targets/TL1A/ensemble/state_{args.context_state}.pdb')
+        original=parser.get_structure('binder',ROOT/input_pose)
+        for c in 'ABC':
+            if [(r.id,r.resname) for r in context[0][c]]!=[(r.id,r.resname) for r in original[0][c]]:
+                raise ValueError('ensemble changed native target sequence/order')
+        context[0].add(original[0]['D'].copy())
+        writer=PDBIO();writer.set_structure(context);writer.save(str(out/'atomic_context.pdb'))
+        input_pose=(out/'atomic_context.pdb').relative_to(ROOT).as_posix()
     source=ROOT/'build/models/LigandMPNN-main'
     # Upstream's bundled OpenFold uses NumPy's former builtin-int alias.
     # Replacing only the exact alias preserves its original dtype semantics.
@@ -54,15 +66,15 @@ def generate(args):
         parent_candidates=args.candidates,parent_id=args.id,seed=args.seed,temperature=.1,
         fixed_input_identities=fixed,design_positions=positions,device=args.device,
         gpu_name=torch.cuda.get_device_name(0) if args.device=='cuda' else None,
-        input_pose=parent['structures'][0]['path'],
-        context='observed native ABC sidechain atoms; designed binder has backbone only',
+        input_pose=input_pose,canonical_input_pose=parent['structures'][0]['path'],context_state=args.context_state,
+        context='native-sidechain state plus modelled Man3GlcNAc2 on all six sites; binder backbone only' if args.context_state is not None else 'observed native ABC sidechain atoms; designed binder has backbone only',
         atom_context_ablation='same checkpoint/seed/backbone/fixed identities; toggle fixed-sidechain context only',
         compatibility_changes=['bundled openfold/np/residue_constants.py: exact np.int alias replaced by builtin int for NumPy >=1.24; weights/arithmetic unchanged'],
         environment={p:importlib.metadata.version(p) for p in ('torch','numpy','prody','ml-collections','dm-tree')},
         official_equivalence=False,status='running',trials=[])
     def save():(out/'run.json').write_text(json.dumps(meta,indent=2)+'\n')
     save()
-    for flag in (0,1):
+    for flag in args.contexts:
         folder=out/f'context_{flag}'
         command=[sys.executable,'-u',str(source/'run.py'),'--model_type','ligand_mpnn',
             '--checkpoint_ligand_mpnn',str(checkpoint),'--pdb_path',str(ROOT/meta['input_pose']),
@@ -106,6 +118,7 @@ def import_results(args):
         raise ValueError('freeze the entire initial batch before independent evaluation')
     expected=''.join((ROOT/'targets/TL1A/construct.fasta').read_text().splitlines()[1:])[16:]
     destination=path.parent/'generation'/out.name;destination.mkdir(exist_ok=True)
+    if (out/'atomic_context.pdb').exists():shutil.copyfile(out/'atomic_context.pdb',destination/'atomic_context.pdb')
     seen={r['sequence'] for r in data['candidates']};added=[]
     for trial in meta['trials']:
         flag=trial['native_sidechain_context'];folder=out/f'context_{flag}'
@@ -125,13 +138,14 @@ def import_results(args):
         row.update(sequence=sequence,source_model='native-sidechain-conditioned LigandMPNN' if flag else 'LigandMPNN without atom context',
             source_version=meta['revision'],run_id=out.name)
         row['metrics'].update(sequence_metrics(sequence));row['metrics']['ligandmpnn.score']=trial['score']
-        pose=PDBParser(QUIET=True).get_structure('backbone',ROOT/meta['input_pose'])
+        pose=PDBParser(QUIET=True).get_structure('backbone',ROOT/meta.get('canonical_input_pose',meta['input_pose']))
         for residue,aa in zip(pose[0]['D'],sequence):residue.resname=seq3(aa).upper()
         file=path.parent/'poses'/f"{row['id']}_design.pdb"
         writer=PDBIO();writer.set_structure(pose);writer.save(str(file))
         row['structures']=[dict(path=file.relative_to(ROOT).as_posix(),chain_id='D',role='generated_backbone_complex_not_refolded')]
         row['metadata']=dict(status='generated_not_independently_validated',
             generation=dict(model='LigandMPNN',parent_backbone_id=parent['id'],native_sidechain_context=flag,
+                glycan_ensemble_state=meta.get('context_state'),atomic_context=meta['context'],
                 fixed_input_identities=meta['fixed_input_identities'],design_positions=meta['design_positions'],
                 source_fasta=(retained/fasta.name).relative_to(ROOT).as_posix()),
             backbone_generation=copy.deepcopy(parent['metadata']['generation']),
@@ -151,6 +165,8 @@ if __name__=='__main__':
     p.add_argument('stage',choices=['generate','import']);p.add_argument('--out',required=True)
     p.add_argument('--candidates');p.add_argument('--id');p.add_argument('--seed',type=int,default=20261107)
     p.add_argument('--device',choices=['cpu','cuda'],default='cuda')
+    p.add_argument('--contexts',type=int,nargs='+',choices=[0,1],default=[0,1])
+    p.add_argument('--context-state',type=int,choices=[0,1,2],help='modelled fully glycosylated native-sidechain snapshot as atomic generation context')
     args=p.parse_args()
     if args.stage=='generate':generate(args)
     else:import_results(args)

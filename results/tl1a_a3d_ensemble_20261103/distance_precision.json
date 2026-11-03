@@ -1,0 +1,54 @@
+{
+  "synthetic": false,
+  "candidate": "tl1a_bg_a3d_1_if",
+  "reference": "scipy.spatial.distance.cdist float64",
+  "jax_version": "0.6.2",
+  "results": {
+    "protein": {
+      "default": {
+        "reference_min_A": 2.0912891814454886,
+        "calculated_min_A": 1.7597384452819824,
+        "maximum_nearest_distance_error_A": 0.4264391570335331,
+        "false_atom_clashes2": 3,
+        "missed_atom_clashes2": 0
+      },
+      "highest": {
+        "reference_min_A": 2.0912891814454886,
+        "calculated_min_A": 2.0912997722625732,
+        "maximum_nearest_distance_error_A": 6.936855509653839e-05,
+        "false_atom_clashes2": 0,
+        "missed_atom_clashes2": 0
+      },
+      "highest_centered": {
+        "reference_min_A": 2.0912891814454886,
+        "calculated_min_A": 2.091270685195923,
+        "maximum_nearest_distance_error_A": 2.962080785362531e-05,
+        "false_atom_clashes2": 0,
+        "missed_atom_clashes2": 0
+      }
+    },
+    "glycan": {
+      "default": {
+        "reference_min_A": 6.814277769083695,
+        "calculated_min_A": 6.795743465423584,
+        "maximum_nearest_distance_error_A": 0.1907530146771217,
+        "false_atom_clashes2": 0,
+        "missed_atom_clashes2": 0
+      },
+      "highest": {
+        "reference_min_A": 6.814277769083695,
+        "calculated_min_A": 6.814255714416504,
+        "maximum_nearest_distance_error_A": 6.719596434923147e-05,
+        "false_atom_clashes2": 0,
+        "missed_atom_clashes2": 0
+      },
+      "highest_centered": {
+        "reference_min_A": 6.814277769083695,
+        "calculated_min_A": 6.8142828941345215,
+        "maximum_nearest_distance_error_A": 1.8942566442525788e-05,
+        "false_atom_clashes2": 0,
+        "missed_atom_clashes2": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,1080 @@
+{
+  "synthetic": false,
+  "model": "ColabDesign AF2 binding-state plus native-sidechain/glycan ensemble generation",
+  "upstream_revision": "8fd167defd1b0f98e29f00584ff4f3987e6935dc",
+  "package_version": "1.1.3",
+  "jax_version": "0.6.2",
+  "design_model": "model_3_multimer_v3",
+  "checkpoint": {
+    "url": "https://storage.googleapis.com/alphafold/alphafold_params_colab_2022-12-06.tar",
+    "archive_member": "params_model_3_multimer_v3.npz",
+    "byte_offset": 2980471808,
+    "size": 373043148,
+    "sha256": "46d9bcad288edc7ad5a6362ee8e5f84307a69712e00e6c36b1ef9daf96ebc9ce",
+    "validation": "complete NPZ ZIP CRC; original parameter bytes"
+  },
+  "parent_id": "tl1a_bg_a3d_1_if",
+  "parent_candidates": "results/tl1a_a3d_ensemble_20261103/candidates.json",
+  "structural_group": "tl1a_bg_a3d_backbone_1",
+  "initial_binder_sequence": "MGSLSEFKEKLEEIKEKLKDLGDSEEKLSPFLKKIAEFDNELEKLKGKGNEEVGELKKIANKIKNELSSLFHN",
+  "binder_template": true,
+  "initial_guess": true,
+  "generation_conditioning": "binder intrachain template with interchain template geometry masked; pose initial guess; both withdrawn in release phase",
+  "final_prediction_conditioning": {
+    "binder_template": false,
+    "initial_guess": false
+  },
+  "sidechain_conditioning": "external atomic loss; AF2 template features do not expose full native terminal sidechains",
+  "target_residue_map": [
+    {
+      "chain": "A",
+      "uniprot": 88
+    },
+    {
+      "chain": "A",
+      "uniprot": 89
+    },
+    {
+      "chain": "A",
+      "uniprot": 90
+    },
+    {
+      "chain": "A",
+      "uniprot": 91
+    },
+    {
+      "chain": "A",
+      "uniprot": 92
+    },
+    {
+      "chain": "A",
+      "uniprot": 93
+    },
+    {
+      "chain": "A",
+      "uniprot": 94
+    },
+    {
+      "chain": "A",
+      "uniprot": 95
+    },
+    {
+      "chain": "A",
+      "uniprot": 96
+    },
+    {
+      "chain": "A",
+      "uniprot": 97
+    },
+    {
+      "chain": "A",
+      "uniprot": 98
+    },
+    {
+      "chain": "A",
+      "uniprot": 99
+    },
+    {
+      "chain": "A",
+      "uniprot": 100
+    },
+    {
+      "chain": "A",
+      "uniprot": 101
+    },
+    {
+      "chain": "A",
+      "uniprot": 102
+    },
+    {
+      "chain": "A",
+      "uniprot": 103
+    },
+    {
+      "chain": "A",
+      "uniprot": 104
+    },
+    {
+      "chain": "A",
+      "uniprot": 105
+    },
+    {
+      "chain": "A",
+      "uniprot": 106
+    },
+    {
+      "chain": "A",
+      "uniprot": 107
+    },
+    {
+      "chain": "A",
+      "uniprot": 108
+    },
+    {
+      "chain": "A",
+      "uniprot": 109
+    },
+    {
+      "chain": "A",
+      "uniprot": 110
+    },
+    {
+      "chain": "A",
+      "uniprot": 111
+    },
+    {
+      "chain": "A",
+      "uniprot": 112
+    },
+    {
+      "chain": "A",
+      "uniprot": 113
+    },
+    {
+      "chain": "A",
+      "uniprot": 114
+    },
+    {
+      "chain": "A",
+      "uniprot": 115
+    },
+    {
+      "chain": "A",
+      "uniprot": 116
+    },
+    {
+      "chain": "A",
+      "uniprot": 117
+    },
+    {
+      "chain": "A",
+      "uniprot": 118
+    },
+    {
+      "chain": "A",
+      "uniprot": 119
+    },
+    {
+      "chain": "A",
+      "uniprot": 120
+    },
+    {
+      "chain": "A",
+      "uniprot": 121
+    },
+    {
+      "chain": "A",
+      "uniprot": 122
+    },
+    {
+      "chain": "A",
+      "uniprot": 123
+    },
+    {
+      "chain": "A",
+      "uniprot": 124
+    },
+    {
+      "chain": "A",
+      "uniprot": 125
+    },
+    {
+      "chain": "A",
+      "uniprot": 126
+    },
+    {
+      "chain": "A",
+      "uniprot": 127
+    },
+    {
+      "chain": "A",
+      "uniprot": 128
+    },
+    {
+      "chain": "A",
+      "uniprot": 129
+    },
+    {
+      "chain": "A",
+      "uniprot": 130
+    },
+    {
+      "chain": "A",
+      "uniprot": 131
+    },
+    {
+      "chain": "A",
+      "uniprot": 132
+    },
+    {
+      "chain": "A",
+      "uniprot": 133
+    },
+    {
+      "chain": "A",
+      "uniprot": 134
+    },
+    {
+      "chain": "A",
+      "uniprot": 135
+    },
+    {
+      "chain": "A",
+      "uniprot": 136
+    },
+    {
+      "chain": "A",
+      "uniprot": 137
+    },
+    {
+      "chain": "A",
+      "uniprot": 138
+    },
+    {
+      "chain": "A",
+      "uniprot": 139
+    },
+    {
+      "chain": "A",
+      "uniprot": 140
+    },
+    {
+      "chain": "A",
+      "uniprot": 141
+    },
+    {
+      "chain": "A",
+      "uniprot": 142
+    },
+    {
+      "chain": "A",
+      "uniprot": 143
+    },
+    {
+      "chain": "A",
+      "uniprot": 144
+    },
+    {
+      "chain": "A",
+      "uniprot": 145
+    },
+    {
+      "chain": "A",
+      "uniprot": 146
+    },
+    {
+      "chain": "A",
+      "uniprot": 147
+    },
+    {
+      "chain": "A",
+      "uniprot": 148
+    },
+    {
+      "chain": "A",
+      "uniprot": 149
+    },
+    {
+      "chain": "A",
+      "uniprot": 150
+    },
+    {
+      "chain": "A",
+      "uniprot": 151
+    },
+    {
+      "chain": "A",
+      "uniprot": 152
+    },
+    {
+      "chain": "A",
+      "uniprot": 153
+    },
+    {
+      "chain": "A",
+      "uniprot": 154
+    },
+    {
+      "chain": "A",
+      "uniprot": 155
+    },
+    {
+      "chain": "A",
+      "uniprot": 156
+    },
+    {
+      "chain": "A",
+      "uniprot": 157
+    },
+    {
+      "chain": "A",
+      "uniprot": 158
+    },
+    {
+      "chain": "A",
+      "uniprot": 159
+    },
+    {
+      "chain": "A",
+      "uniprot": 160
+    },
+    {
+      "chain": "A",
+      "uniprot": 161
+    },
+    {
+      "chain": "A",
+      "uniprot": 162
+    },
+    {
+      "chain": "A",
+      "uniprot": 163
+    },
+    {
+      "chain": "A",
+      "uniprot": 164
+    },
+    {
+      "chain": "A",
+      "uniprot": 165
+    },
+    {
+      "chain": "A",
+      "uniprot": 166
+    },
+    {
+      "chain": "A",
+      "uniprot": 167
+    },
+    {
+      "chain": "A",
+      "uniprot": 168
+    },
+    {
+      "chain": "A",
+      "uniprot": 169
+    },
+    {
+      "chain": "A",
+      "uniprot": 170
+    },
+    {
+      "chain": "A",
+      "uniprot": 171
+    },
+    {
+      "chain": "A",
+      "uniprot": 172
+    },
+    {
+      "chain": "A",
+      "uniprot": 173
+    },
+    {
+      "chain": "A",
+      "uniprot": 174
+    },
+    {
+      "chain": "A",
+      "uniprot": 175
+    },
+    {
+      "chain": "A",
+      "uniprot": 176
+    },
+    {
+      "chain": "A",
+      "uniprot": 177
+    },
+    {
+      "chain": "A",
+      "uniprot": 178
+    },
+    {
+      "chain": "A",
+      "uniprot": 179
+    },
+    {
+      "chain": "A",
+      "uniprot": 180
+    },
+    {
+      "chain": "A",
+      "uniprot": 181
+    },
+    {
+      "chain": "A",
+      "uniprot": 182
+    },
+    {
+      "chain": "A",
+      "uniprot": 183
+    },
+    {
+      "chain": "A",
+      "uniprot": 184
+    },
+    {
+      "chain": "A",
+      "uniprot": 185
+    },
+    {
+      "chain": "A",
+      "uniprot": 186
+    },
+    {
+      "chain": "A",
+      "uniprot": 187
+    },
+    {
+      "chain": "A",
+      "uniprot": 188
+    },
+    {
+      "chain": "A",
+      "uniprot": 189
+    },
+    {
+      "chain": "A",
+      "uniprot": 190
+    },
+    {
+      "chain": "A",
+      "uniprot": 191
+    },
+    {
+      "chain": "A",
+      "uniprot": 192
+    },
+    {
+      "chain": "A",
+      "uniprot": 193
+    },
+    {
+      "chain": "A",
+      "uniprot": 194
+    },
+    {
+      "chain": "A",
+      "uniprot": 195
+    },
+    {
+      "chain": "A",
+      "uniprot": 196
+    },
+    {
+      "chain": "A",
+      "uniprot": 197
+    },
+    {
+      "chain": "A",
+      "uniprot": 198
+    },
+    {
+      "chain": "A",
+      "uniprot": 199
+    },
+    {
+      "chain": "A",
+      "uniprot": 200
+    },
+    {
+      "chain": "A",
+      "uniprot": 201
+    },
+    {
+      "chain": "A",
+      "uniprot": 202
+    },
+    {
+      "chain": "A",
+      "uniprot": 203
+    },
+    {
+      "chain": "A",
+      "uniprot": 204
+    },
+    {
+      "chain": "A",
+      "uniprot": 205
+    },
+    {
+      "chain": "A",
+      "uniprot": 206
+    },
+    {
+      "chain": "A",
+      "uniprot": 207
+    },
+    {
+      "chain": "A",
+      "uniprot": 208
+    },
+    {
+      "chain": "A",
+      "uniprot": 209
+    },
+    {
+      "chain": "A",
+      "uniprot": 210
+    },
+    {
+      "chain": "A",
+      "uniprot": 211
+    },
+    {
+      "chain": "A",
+      "uniprot": 212
+    },
+    {
+      "chain": "A",
+      "uniprot": 213
+    },
+    {
+      "chain": "A",
+      "uniprot": 214
+    },
+    {
+      "chain": "A",
+      "uniprot": 215
+    },
+    {
+      "chain": "A",
+      "uniprot": 216
+    },
+    {
+      "chain": "A",
+      "uniprot": 217
+    },
+    {
+      "chain": "A",
+      "uniprot": 218
+    },
+    {
+      "chain": "A",
+      "uniprot": 219
+    },
+    {
+      "chain": "A",
+      "uniprot": 220
+    },
+    {
+      "chain": "A",
+      "uniprot": 221
+    },
+    {
+      "chain": "A",
+      "uniprot": 222
+    },
+    {
+      "chain": "A",
+      "uniprot": 223
+    },
+    {
+      "chain": "A",
+      "uniprot": 224
+    },
+    {
+      "chain": "A",
+      "uniprot": 225
+    },
+    {
+      "chain": "A",
+      "uniprot": 226
+    },
+    {
+      "chain": "A",
+      "uniprot": 227
+    },
+    {
+      "chain": "A",
+      "uniprot": 228
+    },
+    {
+      "chain": "A",
+      "uniprot": 229
+    },
+    {
+      "chain": "A",
+      "uniprot": 230
+    },
+    {
+      "chain": "A",
+      "uniprot": 231
+    },
+    {
+      "chain": "A",
+      "uniprot": 232
+    },
+    {
+      "chain": "A",
+      "uniprot": 233
+    },
+    {
+      "chain": "A",
+      "uniprot": 234
+    },
+    {
+      "chain": "A",
+      "uniprot": 235
+    },
+    {
+      "chain": "A",
+      "uniprot": 236
+    },
+    {
+      "chain": "A",
+      "uniprot": 237
+    },
+    {
+      "chain": "A",
+      "uniprot": 238
+    },
+    {
+      "chain": "A",
+      "uniprot": 239
+    },
+    {
+      "chain": "A",
+      "uniprot": 240
+    },
+    {
+      "chain": "A",
+      "uniprot": 241
+    },
+    {
+      "chain": "A",
+      "uniprot": 242
+    },
+    {
+      "chain": "A",
+      "uniprot": 243
+    },
+    {
+      "chain": "A",
+      "uniprot": 244
+    },
+    {
+      "chain": "A",
+      "uniprot": 245
+    },
+    {
+      "chain": "A",
+      "uniprot": 246
+    },
+    {
+      "chain": "A",
+      "uniprot": 247
+    },
+    {
+      "chain": "A",
+      "uniprot": 248
+    },
+    {
+      "chain": "A",
+      "uniprot": 249
+    },
+    {
+      "chain": "A",
+      "uniprot": 250
+    },
+    {
+      "chain": "A",
+      "uniprot": 251
+    },
+    {
+      "chain": "B",
+      "uniprot": 111
+    },
+    {
+      "chain": "B",
+      "uniprot": 112
+    },
+    {
+      "chain": "B",
+      "uniprot": 113
+    },
+    {
+      "chain": "B",
+      "uniprot": 114
+    },
+    {
+      "chain": "B",
+      "uniprot": 166
+    },
+    {
+      "chain": "B",
+      "uniprot": 170
+    },
+    {
+      "chain": "B",
+      "uniprot": 171
+    },
+    {
+      "chain": "B",
+      "uniprot": 172
+    },
+    {
+      "chain": "B",
+      "uniprot": 173
+    },
+    {
+      "chain": "B",
+      "uniprot": 174
+    },
+    {
+      "chain": "B",
+      "uniprot": 176
+    },
+    {
+      "chain": "B",
+      "uniprot": 178
+    },
+    {
+      "chain": "B",
+      "uniprot": 188
+    },
+    {
+      "chain": "B",
+      "uniprot": 189
+    },
+    {
+      "chain": "B",
+      "uniprot": 190
+    },
+    {
+      "chain": "B",
+      "uniprot": 191
+    },
+    {
+      "chain": "B",
+      "uniprot": 192
+    },
+    {
+      "chain": "B",
+      "uniprot": 193
+    },
+    {
+      "chain": "B",
+      "uniprot": 196
+    },
+    {
+      "chain": "B",
+      "uniprot": 198
+    },
+    {
+      "chain": "C",
+      "uniprot": 163
+    },
+    {
+      "chain": "C",
+      "uniprot": 164
+    },
+    {
+      "chain": "C",
+      "uniprot": 167
+    },
+    {
+      "chain": "C",
+      "uniprot": 168
+    },
+    {
+      "chain": "C",
+      "uniprot": 169
+    },
+    {
+      "chain": "C",
+      "uniprot": 170
+    },
+    {
+      "chain": "C",
+      "uniprot": 171
+    },
+    {
+      "chain": "C",
+      "uniprot": 198
+    },
+    {
+      "chain": "C",
+      "uniprot": 199
+    },
+    {
+      "chain": "C",
+      "uniprot": 200
+    },
+    {
+      "chain": "C",
+      "uniprot": 201
+    },
+    {
+      "chain": "C",
+      "uniprot": 202
+    },
+    {
+      "chain": "C",
+      "uniprot": 203
+    },
+    {
+      "chain": "C",
+      "uniprot": 204
+    },
+    {
+      "chain": "C",
+      "uniprot": 205
+    },
+    {
+      "chain": "C",
+      "uniprot": 206
+    },
+    {
+      "chain": "C",
+      "uniprot": 209
+    },
+    {
+      "chain": "C",
+      "uniprot": 210
+    },
+    {
+      "chain": "C",
+      "uniprot": 211
+    },
+    {
+      "chain": "C",
+      "uniprot": 213
+    }
+  ],
+  "predictor_stoichiometry": "complete primary native protomer + nearest native B/C fragments concatenated as target; binder",
+  "ensemble_source": "targets/TL1A/ensemble/ensemble.json",
+  "ensemble_protein_points": 4144,
+  "ensemble_glycan_points": 1037,
+  "ensemble_constraints": "worst single-pair steric penalty over all covered native/protein and modelled glycan marginal states, not population free energy",
+  "fixed_input_identities": [
+    {
+      "position": 1,
+      "aa": "M"
+    },
+    {
+      "position": 2,
+      "aa": "G"
+    },
+    {
+      "position": 3,
+      "aa": "S"
+    },
+    {
+      "position": 7,
+      "aa": "F"
+    },
+    {
+      "position": 11,
+      "aa": "L"
+    },
+    {
+      "position": 14,
+      "aa": "I"
+    },
+    {
+      "position": 18,
+      "aa": "L"
+    },
+    {
+      "position": 21,
+      "aa": "L"
+    },
+    {
+      "position": 22,
+      "aa": "G"
+    },
+    {
+      "position": 24,
+      "aa": "S"
+    },
+    {
+      "position": 28,
+      "aa": "L"
+    },
+    {
+      "position": 31,
+      "aa": "F"
+    },
+    {
+      "position": 35,
+      "aa": "I"
+    },
+    {
+      "position": 38,
+      "aa": "F"
+    },
+    {
+      "position": 42,
+      "aa": "L"
+    },
+    {
+      "position": 46,
+      "aa": "K"
+    },
+    {
+      "position": 48,
+      "aa": "K"
+    },
+    {
+      "position": 49,
+      "aa": "G"
+    },
+    {
+      "position": 50,
+      "aa": "N"
+    },
+    {
+      "position": 53,
+      "aa": "V"
+    },
+    {
+      "position": 56,
+      "aa": "L"
+    },
+    {
+      "position": 60,
+      "aa": "A"
+    },
+    {
+      "position": 63,
+      "aa": "I"
+    },
+    {
+      "position": 67,
+      "aa": "L"
+    },
+    {
+      "position": 72,
+      "aa": "H"
+    },
+    {
+      "position": 73,
+      "aa": "N"
+    }
+  ],
+  "site": "a3d_bound_ensemble",
+  "loss_weights": {
+    "plddt": 0.2,
+    "pae": 0.2,
+    "con": 0.1,
+    "i_con": 0.2,
+    "i_pae": 0.5,
+    "dgram_cce": 0.0,
+    "rmsd": 0.0,
+    "fape": 0.0,
+    "association": 2.0,
+    "interface_contacts": 1.0,
+    "pose_distance": 0.1,
+    "scaffold_fold": 0.1,
+    "native_target": 0.1,
+    "native_ensemble_steric": 5.0,
+    "glycan_ensemble_steric": 5.0,
+    "glycan_ND2": 1.0
+  },
+  "stages": {
+    "bound_soft": 30,
+    "bound_temp": 10,
+    "bound_hard": 5,
+    "release_hard": 10
+  },
+  "design_recycles": 1,
+  "final_hard_recycles": 3,
+  "pose_anchor_residues": [
+    {
+      "chain": "A",
+      "uniprot": 207
+    },
+    {
+      "chain": "A",
+      "uniprot": 122
+    },
+    {
+      "chain": "B",
+      "uniprot": 189
+    },
+    {
+      "chain": "B",
+      "uniprot": 173
+    },
+    {
+      "chain": "A",
+      "uniprot": 127
+    },
+    {
+      "chain": "A",
+      "uniprot": 158
+    }
+  ],
+  "positive_contact_pairs": 16,
+  "official_equivalence": false,
+  "status": "failed",
+  "trajectories": [
+    {
+      "seed": 20261111,
+      "status": "running",
+      "sequence_count": 0,
+      "progress": {
+        "iteration": 45,
+        "phase": "designing",
+        "loss": 48.654563903808594,
+        "iptm": 0.1283760666847229,
+        "losses": {
+          "association": 0.8716239333152771,
+          "con": 4.489473342895508,
+          "dgram_cce": 374.4603576660156,
+          "exp_res": 0.07300510257482529,
+          "fape": 237.0879669189453,
+          "glycan_ND2": 0.02630350925028324,
+          "glycan_ensemble_steric": 3.370753288269043,
+          "i_con": 6.375394344329834,
+          "i_pae": 0.7735671401023865,
+          "interface_contacts": 4.322951793670654,
+          "native_ensemble_steric": 3.9960007667541504,
+          "native_target": 9.340262413024902,
+          "pae": 0.7262994050979614,
+          "plddt": 0.5690970420837402,
+          "pose_distance": 20.91780662536621,
+          "rmsd": 27.52145767211914,
+          "scaffold_fold": 3.32594633102417,
+          "seq_ent": 0.013942194171249866
+        }
+      }
+    }
+  ],
+  "bound_sequence": "MGSLSEFKEKLEEIKEKLKDLGDSEEILSPFMKKIAEFDNELEILKGKGNEEVGELEKIANKIMNELSFLFHN",
+  "bound_discrete_log": {
+    "association": 0.8903977274894714,
+    "con": 4.568124294281006,
+    "dgram_cce": 375.71563720703125,
+    "exp_res": 0.07933486998081207,
+    "fape": 238.11264038085938,
+    "glycan_ND2": 0.0,
+    "glycan_ensemble_steric": 3.0648632049560547,
+    "i_con": 6.68213415145874,
+    "i_pae": 0.8042452931404114,
+    "interface_contacts": 4.514510631561279,
+    "native_ensemble_steric": 3.9960007667541504,
+    "native_target": 8.982637405395508,
+    "pae": 0.7464529275894165,
+    "plddt": 0.42118507623672485,
+    "pose_distance": 19.708358764648438,
+    "rmsd": 24.8143367767334,
+    "scaffold_fold": 3.8074285984039307,
+    "seq_ent": 2.712939977645874,
+    "loss": 47.30988311767578,
+    "i_ptm": 0.10960227251052856,
+    "ptm": 0.5241761207580566,
+    "hard": 1.0,
+    "soft": 0.0,
+    "temp": 1.0,
+    "seqid": 0.9178082191780822,
+    "recycles": 3,
+    "models": [
+      0
+    ]
+  },
+  "error": "",
+  "elapsed_seconds": 569.3712096959999
+}

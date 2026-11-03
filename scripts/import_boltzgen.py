@@ -130,6 +130,11 @@ def main(args):
         binder = binders[0]
         sequence = sequences[binder.id]
         if not 40 <= len(sequence) <= 100 or not set(sequence) <= set("ACDEFGHIKLMNPQRSTVWY"):
+            if stage == 'atom14' and args.skip_invalid_raw:
+                meta.setdefault('rejected_raw_outputs',[]).append(dict(file=cif.name,reason='noncanonical or invalid sequence; not a candidate'))
+                for artifact in (cif,cif.with_suffix('.npz')):
+                    shutil.copyfile(artifact,out/'generation'/('rejected_'+artifact.name))
+                continue
             raise ValueError(f"invalid generated sequence: {cif}")
         masks = np.load(cif.with_suffix(".npz"))
         fixed=fixed_binder_residues(specification,len(sequence),(ROOT/meta['spec']).parent)
@@ -275,6 +280,7 @@ if __name__ == "__main__":
     p.add_argument("--out", default="results/tl1a_boltzgen_20261101")
     p.add_argument("--raw-only", action="store_true", help="inspect real generation outputs before inverse folding finishes")
     p.add_argument("--append", action="store_true", help="preserve existing sequences and independent evaluations while adding a new real run")
+    p.add_argument('--skip-invalid-raw',action='store_true',help='retain invalid atom14 outputs as rejected provenance; still import independently emitted valid IF sequences')
     p.add_argument('--inherit-refined-backbones',action='store_true',
                    help='thread new IF outputs onto an existing small local repair only if their original backbone is unchanged and the family has no independent evaluations')
     main(p.parse_args())

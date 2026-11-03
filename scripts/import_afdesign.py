@@ -121,7 +121,10 @@ def main(args):
             metadata=dict(status='generated_not_independently_validated',
                 generation=dict(path=(destination/'generated.pdb').relative_to(ROOT).as_posix(),
                     sha256=hashlib.sha256((source/'generated.pdb').read_bytes()).hexdigest(),
-                    seed=trial['seed'],target_template=True,binder_template=False,
+                    seed=trial['seed'],target_template=True,binder_template=meta.get('binder_template',False),
+                    initial_guess=meta.get('initial_guess',False),
+                    final_prediction_conditioning=meta.get('final_prediction_conditioning'),
+                    ensemble_source=meta.get('ensemble_source'),
                     source_target_chain='A',source_binder_chain='B',generator_ipsae_pairs=pair_scores,
                     supervised_scaffold_parent=meta.get('parent_id')),
                 coordinates='native full ABC context + generated binder BACKBONE; original all-atom model retained separately')))
@@ -132,6 +135,8 @@ def main(args):
     save_candidates(dataset,out/'candidates.json');save_csv(dataset,out/'candidates.csv')
     (out/'candidates.fasta').write_text(''.join(f">{r['id']} generated_unvalidated\n{r['sequence']}\n" for r in rows))
     history=json.loads((out/'generation.json').read_text()) if existing else {'runs':{}}
+    if 'runs' not in history:
+        history={'runs':{existing['candidates'][0]['run_id']:history}}
     history['runs'][run.name]=meta
     (out/'generation.json').write_text(json.dumps(history,indent=2)+'\n')
     print(json.dumps(dict(imported=imported,distinct_sequences=len(rows)),indent=2))

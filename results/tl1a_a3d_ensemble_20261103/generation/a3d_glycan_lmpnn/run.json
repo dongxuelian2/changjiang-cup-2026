@@ -1,0 +1,230 @@
+{
+  "synthetic": false,
+  "model": "LigandMPNN",
+  "source_url": "https://github.com/dauparas/LigandMPNN",
+  "revision": "26ec57ac976ade5379920dbd43c7f97a91cf82de",
+  "checkpoint": "build/models/LigandMPNN-main/model_params/ligandmpnn_v_32_010_25.pt",
+  "checkpoint_url": "https://files.ipd.uw.edu/pub/ligandmpnn/ligandmpnn_v_32_010_25.pt",
+  "checkpoint_sha256": "161cd264061fda9680cbb940255522ae42f2966c552d045d87913d9452a80970",
+  "parent_candidates": "results/tl1a_a3d_ensemble_20261103/candidates.json",
+  "parent_id": "tl1a_bg_a3d_1_if",
+  "seed": 20261112,
+  "temperature": 0.1,
+  "fixed_input_identities": [
+    {
+      "position": 1,
+      "aa": "M"
+    },
+    {
+      "position": 2,
+      "aa": "G"
+    },
+    {
+      "position": 3,
+      "aa": "S"
+    },
+    {
+      "position": 7,
+      "aa": "F"
+    },
+    {
+      "position": 11,
+      "aa": "L"
+    },
+    {
+      "position": 14,
+      "aa": "I"
+    },
+    {
+      "position": 18,
+      "aa": "L"
+    },
+    {
+      "position": 21,
+      "aa": "L"
+    },
+    {
+      "position": 22,
+      "aa": "G"
+    },
+    {
+      "position": 24,
+      "aa": "S"
+    },
+    {
+      "position": 28,
+      "aa": "L"
+    },
+    {
+      "position": 31,
+      "aa": "F"
+    },
+    {
+      "position": 35,
+      "aa": "I"
+    },
+    {
+      "position": 38,
+      "aa": "F"
+    },
+    {
+      "position": 42,
+      "aa": "L"
+    },
+    {
+      "position": 46,
+      "aa": "K"
+    },
+    {
+      "position": 48,
+      "aa": "K"
+    },
+    {
+      "position": 49,
+      "aa": "G"
+    },
+    {
+      "position": 50,
+      "aa": "N"
+    },
+    {
+      "position": 53,
+      "aa": "V"
+    },
+    {
+      "position": 56,
+      "aa": "L"
+    },
+    {
+      "position": 60,
+      "aa": "A"
+    },
+    {
+      "position": 63,
+      "aa": "I"
+    },
+    {
+      "position": 67,
+      "aa": "L"
+    },
+    {
+      "position": 72,
+      "aa": "H"
+    },
+    {
+      "position": 73,
+      "aa": "N"
+    }
+  ],
+  "design_positions": [
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    12,
+    13,
+    15,
+    16,
+    17,
+    19,
+    20,
+    23,
+    25,
+    26,
+    27,
+    29,
+    30,
+    32,
+    33,
+    34,
+    36,
+    37,
+    39,
+    40,
+    41,
+    43,
+    44,
+    45,
+    47,
+    51,
+    52,
+    54,
+    55,
+    57,
+    58,
+    59,
+    61,
+    62,
+    64,
+    65,
+    66,
+    68,
+    69,
+    70,
+    71
+  ],
+  "device": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "input_pose": "build/a3d_glycan_lmpnn/atomic_context.pdb",
+  "canonical_input_pose": "results/tl1a_a3d_ensemble_20261103/poses/tl1a_bg_a3d_1_if_design.pdb",
+  "context_state": 0,
+  "context": "native-sidechain state plus modelled Man3GlcNAc2 on all six sites; binder backbone only",
+  "atom_context_ablation": "same checkpoint/seed/backbone/fixed identities; toggle fixed-sidechain context only",
+  "compatibility_changes": [
+    "bundled openfold/np/residue_constants.py: exact np.int alias replaced by builtin int for NumPy >=1.24; weights/arithmetic unchanged"
+  ],
+  "environment": {
+    "torch": "2.7.1+cu128",
+    "numpy": "1.26.4",
+    "prody": "2.6.1",
+    "ml-collections": "0.1.1",
+    "dm-tree": "0.1.9"
+  },
+  "official_equivalence": false,
+  "status": "generated_not_independently_validated",
+  "trials": [
+    {
+      "native_sidechain_context": 1,
+      "command": [
+        "/mnt/e/bio/changjiang-cup-2026/build/env-boltzgen-linux/bin/python",
+        "-u",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/LigandMPNN-main/run.py",
+        "--model_type",
+        "ligand_mpnn",
+        "--checkpoint_ligand_mpnn",
+        "/mnt/e/bio/changjiang-cup-2026/build/models/LigandMPNN-main/model_params/ligandmpnn_v_32_010_25.pt",
+        "--pdb_path",
+        "/mnt/e/bio/changjiang-cup-2026/build/a3d_glycan_lmpnn/atomic_context.pdb",
+        "--chains_to_design",
+        "D",
+        "--redesigned_residues",
+        "D4 D5 D6 D8 D9 D10 D12 D13 D15 D16 D17 D19 D20 D23 D25 D26 D27 D29 D30 D32 D33 D34 D36 D37 D39 D40 D41 D43 D44 D45 D47 D51 D52 D54 D55 D57 D58 D59 D61 D62 D64 D65 D66 D68 D69 D70 D71",
+        "--seed",
+        "20261112",
+        "--batch_size",
+        "1",
+        "--number_of_batches",
+        "1",
+        "--temperature",
+        ".1",
+        "--omit_AA",
+        "C",
+        "--fasta_seq_separation",
+        ":",
+        "--save_stats",
+        "1",
+        "--ligand_mpnn_use_side_chain_context",
+        "1",
+        "--out_folder",
+        "/mnt/e/bio/changjiang-cup-2026/build/a3d_glycan_lmpnn/context_1"
+      ],
+      "status": "generated_not_independently_validated",
+      "exit_code": 0,
+      "elapsed_seconds": 31.026773266999953,
+      "score": 1.4945292472839355,
+      "actual_design_positions": 47
+    }
+  ]
+}

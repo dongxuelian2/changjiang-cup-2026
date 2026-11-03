@@ -1,0 +1,17 @@
+{
+  "status": "frozen_before_independent_screening",
+  "candidates": [
+    "tl1a_bg_a3d_0_gen",
+    "tl1a_bg_a3d_0_if",
+    "tl1a_bg_a3d_1_if",
+    "tl1a_bg_a3d_1_if_lmpnn_ctx1",
+    "tl1a_af_a3d_bound_ensemble_20261113_gen"
+  ],
+  "holdout_ids": [
+    "tl1a_bg_a3d_1_if",
+    "tl1a_bg_a3d_1_if_lmpnn_ctx1",
+    "tl1a_af_a3d_bound_ensemble_20261113_gen"
+  ],
+  "rationale": "two valid initial backbones; independent evaluation of second IF and atomic-context sequence plus released AF2-design diagnostic; first backbone already has native BB clashes; no expansion after holdout",
+  "families_frozen": true
+}

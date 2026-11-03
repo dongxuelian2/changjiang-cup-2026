@@ -87,8 +87,9 @@ def main(args):
 
     def nearest_distance(points, other):
         # Avoid the much larger (atoms, atoms, 3) intermediate on an 8 GB GPU.
+        origin=jnp.array(target_ca.mean(0));points=points-origin;other=other-origin
         d2 = (jnp.sum(points**2,-1)[:, None]+jnp.sum(other**2,-1)[None, :]
-              -2*points@other.T)
+              -2*jnp.matmul(points,other.T,precision='highest'))
         return jnp.sqrt(jnp.maximum(d2.min(-1), 1e-6))
 
     class Context(Select):

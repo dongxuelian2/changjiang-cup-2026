@@ -1,0 +1,45 @@
+{
+  "synthetic": false,
+  "run": "build/tl1a_a3d_bound_precise",
+  "reference": "CPU scipy cdist on saved discrete all-heavy-atom PDB; no target realignment after saving",
+  "phases": {
+    "bound": {
+      "native_protein_min_A": 0.5514281244911268,
+      "modelled_glycan_min_A": 0.8678239463758852,
+      "cpu_losses": {
+        "native_ensemble_steric": 2.0983604785152945,
+        "glycan_ensemble_steric": 2.0511282485743427
+      },
+      "logged_gpu_losses": {
+        "native_ensemble_steric": 2.0988306999206543,
+        "glycan_ensemble_steric": 2.052245855331421
+      },
+      "absolute_loss_errors": {
+        "native_ensemble_steric": 0.0004702214053597942,
+        "glycan_ensemble_steric": 0.0011176067570781711
+      },
+      "fold_to_original_scaffold_CA_rmsd_A": 2.971571473800857,
+      "binder_plddt": 0.4462810754776001,
+      "iptm": 0.14242757856845856
+    },
+    "released": {
+      "native_protein_min_A": 0.47250194607630885,
+      "modelled_glycan_min_A": 0.4143692958483297,
+      "cpu_losses": {
+        "native_ensemble_steric": 2.3332503047406634,
+        "glycan_ensemble_steric": 3.5556031524395237
+      },
+      "logged_gpu_losses": {
+        "native_ensemble_steric": 2.3338146209716797,
+        "glycan_ensemble_steric": 3.5548155307769775
+      },
+      "absolute_loss_errors": {
+        "native_ensemble_steric": 0.0005643162310162708,
+        "glycan_ensemble_steric": 0.0007876216625462007
+      },
+      "fold_to_original_scaffold_CA_rmsd_A": 3.023077708369479,
+      "binder_plddt": 0.4394816756248474,
+      "iptm": 0.15416152775287628
+    }
+  }
+}

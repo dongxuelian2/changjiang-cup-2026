@@ -1,0 +1,39 @@
+# New alpha3D73 scaffold family; R156/L235/Y238 target patch.
+# Native ABC context. Glycan/sidechain ensembles are separate physical design constraints.
+entities:
+- file:
+    path: ../targets/scaffolds/a3d73.pdb
+    include:
+    - chain:
+        id: D
+    structure_groups:
+    - group:
+        id: D
+        visibility: 2
+    design:
+    - chain:
+        id: D
+        res_index: 4,5,6,8,9,10,12,13,15,16,17,19,20,23,25,26,27,29,30,32,33,34,36,37,39,40,41,43,44,45,47,51,52,54,55,57,58,59,61,62,64,65,66,68,69,70,71
+- file:
+    path: ../build/sources/2RE9.cif
+    include:
+    - chain:
+        id: A
+        res_index: 18..181
+    - chain:
+        id: B
+        res_index: 18..181
+    - chain:
+        id: C
+        res_index: 18..181
+    binding_types:
+    - chain:
+        id: A
+        binding: 86,165,168
+        not_binding: 18..19,24..29,34..52,55,57..74,76..77,79..83,85,89..104,107..116,119..128,137,142,144..145,147..148,150..163,166,171..178
+    - chain:
+        id: B
+        not_binding: all
+    - chain:
+        id: C
+        not_binding: all

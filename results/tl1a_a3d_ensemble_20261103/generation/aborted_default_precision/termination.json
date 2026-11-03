@@ -1,0 +1,5 @@
+{
+  "status": "aborted_numerical_diagnostic_not_a_candidate",
+  "reason": "GPU default float32 GEMM nearest-distance error can misclassify 2 A sterics; no independent test; corrected experiment uses a different initial sequence, not a controlled ablation",
+  "audit": "results/tl1a_a3d_ensemble_20261103/distance_precision.json"
+}

@@ -1086,3 +1086,61 @@ They do not distinguish predictor failure from physical nonbinding.
 `scripts/audit_pose_likelihood.py` retains real input structures, raw model
 statistics, per-position NLL, seed and commands. This score is never substituted
 for independent interface validation or an official competition score.
+
+## 20. Marginal covers exactly preserve worst atom-pair clashes (2026-11-03)
+
+Let `L` be a finite set of allowed joint structural states, with component
+states `s_0,...,s_m`. A component may be one native sidechain state or one
+attached glycan/Asn block. For a fixed binder geometry `b`, suppose the
+geometric penalty is
+
+\[
+ C(b,s)=\max_i c_i(b,s_i),
+\]
+
+where `c_i` itself can maximize a nonnegative overlap penalty over every atom
+pair between the binder and block `i`. Choose a subset `S` of `L` covering
+every feasible marginal `(i,a)`: whenever some state in `L` has `s_i=a`, some
+state in `S` does too. Then, for **every** binder geometry, exactly
+
+\[
+ \max_{s\in S}C(b,s)=\max_{s\in L}C(b,s).
+\]
+
+**Proof.** Interchanging the two finite maxima reduces either expression to
+the maximum of `c_i(b,a)` over its covered marginals. The sets of such
+marginals are equal. This is uniform in `b`, so the reduced ensemble can be
+reused during optimization; it is not merely a fit to a few tested poses.
+The lower bound on snapshot count is the largest number of feasible local
+states of any one component, because a snapshot supplies one state per
+component. This statement does not preserve summed energies, cooperative
+contacts, correlated-state probabilities, or free energies.
+
+In the actual TL1A preparation, three locally transferred native
+R156/M158/L235/Y238 sidechain states combine with six modelled Man3GlcNAc2
+roots. Two crystallographic generic glycan cores from 4BYH were grafted via
+their linked Asn geometry, with sampled Asn/glycosidic rotations, retaining
+only geometric clearance >=1.8 A. Three footprint representatives were kept
+per root except A:N229, where only two sampled states survived. Exhaustive
+finite compatibility checking gave **1,458** feasible joint assignments and
+**20** feasible marginals. A three-snapshot cover attains the lower bound of
+three and therefore is minimum. No statistical populations or complete glycan
+conformational coverage are claimed. Native protein backbone coordinates and
+sequences remain unchanged; all six modelled attachment bonds are 1.42-1.44 A.
+The maximum clash loss uses this cover; pair-count sums are reported per
+snapshot and are **not** asserted to be worst sums over all assignments.
+
+`scripts/prepare_tl1a_ensemble.py` retains the finite construction, rejected
+sampling counts, source link lengths and selected assignments in
+`targets/TL1A/ensemble/ensemble.json`. The source glycan is generic structural
+context, not a TL1A binder or measured TL1A glycoform. Additional unoccupied
+native sidechain snapshots are checked separately by the design loss.
+
+Exact reduction is not a feasibility or optimization theorem. The actual
+55-step binding-state AF2 experiment still has a released minimum binder-to-
+protein distance .473 A and modelled-glycan distance .414 A. CPU recalculation
+agrees with its correctly computed GPU overlap losses within .002. Thus a
+finite-state worst-pair objective can be evaluated exactly yet its soft penalty
+can still leave an invalid predicted structure. All three independent AF2
+interfaces and both independently checked Boltz interfaces have ipSAE10 zero;
+no binding or thermodynamic conclusion follows from the cover theorem.

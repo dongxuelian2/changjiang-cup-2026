@@ -119,6 +119,10 @@ def main(args):
                     binder_internal_geometry={k: internal_geometry(v) for k,v in poses.items()},
                     target_contact_CA_deviation_A=target_deviations, comparisons={},
                     atom_sets='design has binder backbone only; independent predictions have all heavy atoms')
+        if args.scaffold_reference:
+            reference=PDBParser(QUIET=True).get_structure('generic_scaffold',ROOT/args.scaffold_reference)[0]['D']
+            item['source_scaffold_reference']=args.scaffold_reference
+            item['fold_to_source_scaffold_CA_rmsd_A']={k:compare(reference,v)['fold_CA_rmsd_A'] for k,v in poses.items()}
         for a, b in combinations(poses, 2):
             # Re-align the second prediction to the FIRST binder, allowing the
             # three equivalent proper trimer rotations; never fit the binder.
@@ -146,4 +150,5 @@ if __name__ == "__main__":
     parser.add_argument("candidates")
     parser.add_argument("--ids", nargs="+")
     parser.add_argument("--out", required=True)
+    parser.add_argument('--scaffold-reference',help='also compare every fold to the original generic scaffold; prevents a deformed generator reference from hiding fold loss')
     main(parser.parse_args())

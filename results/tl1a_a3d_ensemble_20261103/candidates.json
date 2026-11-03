@@ -1,0 +1,4571 @@
+{
+  "schema_version": 1,
+  "synthetic": false,
+  "metric_definitions": {
+    "sequence.length": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "mature designed chain length",
+      "units": "aa",
+      "direction": "unspecified"
+    },
+    "sequence.gravy": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "Kyte-Doolittle mean hydropathy; not solubility",
+      "units": "hydropathy",
+      "direction": "unspecified"
+    },
+    "sequence.pI": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "sequence-only estimated isoelectric point",
+      "units": "pH",
+      "direction": "unspecified"
+    },
+    "sequence.charged_fraction": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "D/E/K/R fraction; extreme charge may explain a score artifact",
+      "units": "fraction",
+      "direction": "unspecified"
+    },
+    "sequence.hydrophobic_fraction": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "A/F/I/L/M/V/W/Y fraction; not all exposed hydrophobicity",
+      "units": "fraction",
+      "direction": "unspecified"
+    },
+    "sequence.entropy": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "single-residue Shannon entropy; not a novelty test",
+      "units": "bits",
+      "direction": "unspecified"
+    },
+    "sequence.instability_index": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "Guruprasad sequence heuristic; not measured stability",
+      "units": "index",
+      "direction": "lower"
+    },
+    "sequence.hydrophobic8_max": {
+      "model": "BioPython ProtParam / explicit counts",
+      "version": "1.85 / local-v1",
+      "meaning": "maximum hydrophobic fraction in eight-residue window; aggregation-risk proxy",
+      "units": "fraction",
+      "direction": "lower"
+    },
+    "geometry.target_CA_rmsd": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "generated target CA versus reference A88-251 after alignment",
+      "units": "angstrom",
+      "direction": "lower"
+    },
+    "geometry.binder_Rg": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder CA radius of gyration; rod/compactness diagnostic, not an affinity score",
+      "units": "angstrom",
+      "direction": "unspecified"
+    },
+    "geometry.binder_nonlocal_CA_pairs8": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder CA pairs within 8 A separated by at least 8 sequence positions",
+      "units": "count",
+      "direction": "higher"
+    },
+    "geometry.CA_contact_pairs8": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "full observed trimer / binder CA pairs within 8 A",
+      "units": "count",
+      "direction": "higher"
+    },
+    "geometry.epitope_residues5": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "target residues with any heavy atom within 5 A of binder BACKBONE",
+      "units": "count",
+      "direction": "higher"
+    },
+    "geometry.other_chain_min_BB_distance": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder backbone to adjacent native trimer B/C heavy atoms",
+      "units": "angstrom",
+      "direction": "higher"
+    },
+    "geometry.other_chain_BB_clash_pairs2": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder backbone / adjacent native trimer B/C atom pairs below 2 A",
+      "units": "count",
+      "direction": "lower"
+    },
+    "geometry.glycan_ND2_min_BB_distance": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "minimum binder backbone distance to six N133/N229 ND2 anchors; not a glycan simulation",
+      "units": "angstrom",
+      "direction": "higher"
+    },
+    "geometry.missing_tail_anchor_distance": {
+      "model": "observed 2RE9 + generated backbone",
+      "version": "local-v1",
+      "meaning": "binder backbone distance to resolved A88 N; proximity flag only",
+      "units": "angstrom",
+      "direction": "higher"
+    },
+    "official.ipsae": {
+      "model": "official ESMFold2 + ipSAE",
+      "version": "unpublished",
+      "meaning": "official admission score; no substitute imputed",
+      "units": "score",
+      "direction": "higher"
+    },
+    "geometry.native_all_chain_BB_clash_pairs2": {
+      "model": "observed 2RE9 + BoltzGen backbone",
+      "version": "local-v1",
+      "meaning": "designed binder BACKBONE vs ALL observed native trimer heavy atoms, distance <2 A",
+      "units": "count",
+      "direction": "lower"
+    },
+    "afdesign.binder_plddt": {
+      "model": "ColabDesign AF2 gradient generation",
+      "version": "8fd167defd1b0f98e29f00584ff4f3987e6935dc; model 3 multimer v3; ipSAE 6174cf9",
+      "meaning": "generator binder confidence with native target template; NOT independent validation or official screening",
+      "units": "fraction",
+      "direction": "higher"
+    },
+    "afdesign.iptm": {
+      "model": "ColabDesign AF2 gradient generation",
+      "version": "8fd167defd1b0f98e29f00584ff4f3987e6935dc; model 3 multimer v3; ipSAE 6174cf9",
+      "meaning": "generator composite-target/binder ipTM; template supplied; actual context in provenance; NOT independent validation or official screening",
+      "units": "fraction",
+      "direction": "higher"
+    },
+    "afdesign.ipsae_10": {
+      "model": "ColabDesign AF2 gradient generation",
+      "version": "8fd167defd1b0f98e29f00584ff4f3987e6935dc; model 3 multimer v3; ipSAE 6174cf9",
+      "meaning": "generator ipSAE PAE/distance 10 A, composite-target/binder; context in provenance; NOT independent validation or official screening",
+      "units": "score",
+      "direction": "higher"
+    },
+    "afdesign.ipsae_15": {
+      "model": "ColabDesign AF2 gradient generation",
+      "version": "8fd167defd1b0f98e29f00584ff4f3987e6935dc; model 3 multimer v3; ipSAE 6174cf9",
+      "meaning": "generator ipSAE PAE/distance 15 A, composite-target/binder; context in provenance; NOT independent validation or official screening",
+      "units": "score",
+      "direction": "higher"
+    },
+    "afdesign.target_beta_CA_rmsd": {
+      "model": "ColabDesign AF2 gradient generation",
+      "version": "8fd167defd1b0f98e29f00584ff4f3987e6935dc; model 3 multimer v3; ipSAE 6174cf9",
+      "meaning": "generator target core RMSD to native before replacing target context; NOT independent validation or official screening",
+      "units": "angstrom",
+      "direction": "lower"
+    },
+    "ligandmpnn.score": {
+      "model": "LigandMPNN v_32_010_25",
+      "version": "26ec57ac976ade5379920dbd43c7f97a91cf82de",
+      "meaning": "sample NLL over 47 designable positions, under recorded context; NOT affinity or independent validation",
+      "units": "nats/residue",
+      "direction": "lower"
+    },
+    "af2.ipsae_10": {
+      "model": "AF2-Multimer-v3 / ipSAE or geometry",
+      "version": "ColabFold 1.6.3; model 1 multimer v3; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE PAE/distance 10 A, maximum binder-target pair only; NOT official ESMFold2 score",
+      "units": "score",
+      "direction": "higher"
+    },
+    "af2.ipsae_15": {
+      "model": "AF2-Multimer-v3 / ipSAE or geometry",
+      "version": "ColabFold 1.6.3; model 1 multimer v3; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE PAE/distance 15 A, maximum binder-target pair only; NOT official ESMFold2 score",
+      "units": "score",
+      "direction": "higher"
+    },
+    "af2.binder_plddt": {
+      "model": "AF2-Multimer-v3 / ipSAE or geometry",
+      "version": "ColabFold 1.6.3; model 1 multimer v3; ipSAE 6174cf9",
+      "meaning": "mean binder pLDDT, original AF2 0-100 divided by 100; NOT official ESMFold2 score",
+      "units": "fraction",
+      "direction": "higher"
+    },
+    "af2.binder_CA_rmsd": {
+      "model": "AF2-Multimer-v3 / ipSAE or geometry",
+      "version": "ColabFold 1.6.3; model 1 multimer v3; ipSAE 6174cf9",
+      "meaning": "generated-pose agreement after symmetry-aware experimental beta-core alignment; NOT official ESMFold2 score",
+      "units": "angstrom",
+      "direction": "lower"
+    },
+    "af2.binder_fold_CA_rmsd": {
+      "model": "AF2-Multimer-v3 / ipSAE or geometry",
+      "version": "ColabFold 1.6.3; model 1 multimer v3; ipSAE 6174cf9",
+      "meaning": "binder-only aligned fold RMSD to generated backbone; NOT official ESMFold2 score",
+      "units": "angstrom",
+      "direction": "lower"
+    },
+    "af2.target_beta_CA_rmsd": {
+      "model": "AF2-Multimer-v3 / ipSAE or geometry",
+      "version": "ColabFold 1.6.3; model 1 multimer v3; ipSAE 6174cf9",
+      "meaning": "experimental beta-core RMSD for chosen target-chain permutation; NOT official ESMFold2 score",
+      "units": "angstrom",
+      "direction": "lower"
+    },
+    "af2.native_all_chain_clash_pairs2": {
+      "model": "AF2-Multimer-v3 / ipSAE or geometry",
+      "version": "ColabFold 1.6.3; model 1 multimer v3; ipSAE 6174cf9",
+      "meaning": "predicted binder / ALL native target heavy-atom pairs below 2 A; NOT official ESMFold2 score",
+      "units": "count",
+      "direction": "lower"
+    },
+    "af2.predicted_clash_pairs2": {
+      "model": "AF2-Multimer-v3 / ipSAE or geometry",
+      "version": "ColabFold 1.6.3; model 1 multimer v3; ipSAE 6174cf9",
+      "meaning": "binder-target heavy-atom pairs below 2 A in predicted complex; NOT official ESMFold2 score",
+      "units": "count",
+      "direction": "lower"
+    },
+    "af2.glycan_ND2_min_distance": {
+      "model": "AF2-Multimer-v3 / ipSAE or geometry",
+      "version": "ColabFold 1.6.3; model 1 multimer v3; ipSAE 6174cf9",
+      "meaning": "binder heavy-atom minimum distance to six native N133/N229 ND2 anchors; NOT official ESMFold2 score",
+      "units": "angstrom",
+      "direction": "higher"
+    },
+    "af2.binder_buried_sasa": {
+      "model": "AF2-Multimer-v3 / ipSAE or geometry",
+      "version": "ColabFold 1.6.3; model 1 multimer v3; ipSAE 6174cf9",
+      "meaning": "binder SASA lost upon binding, Shrake-Rupley 100 points, 1.4 A probe; NOT official ESMFold2 score",
+      "units": "angstrom^2",
+      "direction": "higher"
+    },
+    "af2.boltz_pose_CA_rmsd": {
+      "model": "AF2-Multimer-v3 / ipSAE or geometry",
+      "version": "ColabFold 1.6.3; model 1 multimer v3; ipSAE 6174cf9",
+      "meaning": "AF2 vs Boltz-2 interface pose RMSD, allowing homotrimer relabelling; NOT official ESMFold2 score",
+      "units": "angstrom",
+      "direction": "lower"
+    },
+    "boltz_trimer_deepmsa.iptm": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "maximum directional binder-target pair ipTM; excludes target-target pairs; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.binder_plddt": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "mean designed-chain token pLDDT; NOT official ESMFold2 screening",
+      "units": "fraction",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.ipsae_10": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 10 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.ipsae_15": {
+      "model": "Boltz-2 / ipSAE",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "pinned ipSAE, PAE/distance cutoffs 15 A; maximum over binder-target directional pairs only; NOT official ESMFold2 screening",
+      "units": "score",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.binder_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder CA RMSD to design after experimental target beta-core alignment (pose agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.binder_fold_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "binder-only aligned CA RMSD to design (fold agreement); NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.target_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "predicted target A88-251 versus 2RE9 aligned CA RMSD; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.target_beta_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "aligned CA RMSD over experimental 2RE9 SHEET residues only; separate from flexible loops; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.other_chain_clash_pairs2": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs observed native trimer B/C atom pairs <2 A; NOT official ESMFold2 screening",
+      "units": "count",
+      "direction": "lower",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.glycan_ND2_min_distance": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; ipSAE 6174cf9",
+      "meaning": "all-atom predicted binder vs six native N133/N229 ND2 anchors; NOT official ESMFold2 screening",
+      "units": "angstrom",
+      "direction": "higher",
+      "target_stoichiometry": "trimer",
+      "target_template": false,
+      "msa_depth_cap": 512
+    },
+    "boltz_trimer_deepmsa.target_best_beta_CA_rmsd": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; derived geometry v3",
+      "meaning": "best target-only beta-core RMSD across chain permutations; NOT official screening",
+      "units": "angstrom",
+      "direction": "lower"
+    },
+    "boltz_trimer_deepmsa.native_all_chain_clash_pairs2": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; derived geometry v3",
+      "meaning": "predicted binder / ALL observed native target chains heavy-atom pairs below 2 A; NOT official screening",
+      "units": "count",
+      "direction": "lower"
+    },
+    "boltz_trimer_deepmsa.predicted_clash_pairs2": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; derived geometry v3",
+      "meaning": "binder / target heavy-atom pairs below 2 A in the prediction itself; NOT official screening",
+      "units": "count",
+      "direction": "lower"
+    },
+    "boltz_trimer_deepmsa.binder_buried_sasa": {
+      "model": "Boltz-2 / geometry",
+      "version": "boltz 2.2.1; derived geometry v3",
+      "meaning": "binder solvent area lost upon complex formation; Shrake-Rupley 100 points, probe 1.4 A; NOT official screening",
+      "units": "angstrom^2",
+      "direction": "higher"
+    },
+    "boltz_trimer_deepmsa.binder_alone_plddt": {
+      "model": "Boltz-2 binder-alone control",
+      "version": "boltz 2.2.1",
+      "meaning": "mean pLDDT of sequence-only binder-alone prediction, no MSA/template",
+      "units": "fraction",
+      "direction": "higher"
+    },
+    "boltz_trimer_deepmsa.binder_alone_CA_rmsd": {
+      "model": "Boltz-2 binder-alone control",
+      "version": "boltz 2.2.1",
+      "meaning": "binder-alone CA RMSD to generated fold after binder-only alignment",
+      "units": "angstrom",
+      "direction": "lower"
+    }
+  },
+  "candidates": [
+    {
+      "id": "tl1a_bg_a3d_0_gen",
+      "sequence": "MGSSSSFSSSLSSISSSLSSLGSSSSSLASFSSSIASFSSSLSSSKGKGNSSVAALSSSASSISSSLSSSSHN",
+      "target_id": "TL1A",
+      "design_type": "minibinder",
+      "source_model": "BoltzGen",
+      "source_version": "0.3.2",
+      "run_id": "tl1a_bg_a3d_ensemble",
+      "structural_group": "tl1a_bg_a3d_backbone_0",
+      "epitope_residues": [
+        "A:103",
+        "A:123",
+        "A:238",
+        "A:239",
+        "B:190"
+      ],
+      "metrics": {
+        "geometry.target_CA_rmsd": 0.09866996744678293,
+        "geometry.binder_Rg": 12.841218948364258,
+        "geometry.binder_nonlocal_CA_pairs8": 33,
+        "geometry.CA_contact_pairs8": 13,
+        "geometry.epitope_residues5": 5,
+        "geometry.other_chain_min_BB_distance": 4.567934513092041,
+        "geometry.other_chain_BB_clash_pairs2": 0,
+        "geometry.glycan_ND2_min_BB_distance": 15.343582153320312,
+        "geometry.missing_tail_anchor_distance": 27.325237274169922,
+        "geometry.native_all_chain_BB_clash_pairs2": 2,
+        "sequence.length": 73,
+        "sequence.gravy": 0.12054794520547926,
+        "sequence.pI": 10.000932121276854,
+        "sequence.instability_index": 82.32876712328763,
+        "sequence.charged_fraction": 0.0273972602739726,
+        "sequence.hydrophobic_fraction": 0.273972602739726,
+        "sequence.entropy": 2.176319200616893,
+        "sequence.hydrophobic8_max": 0.625,
+        "official.ipsae": null
+      },
+      "structures": [
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/poses/tl1a_bg_a3d_0_gen_design.pdb",
+          "chain_id": "D",
+          "role": "generated_backbone_complex_not_refolded"
+        }
+      ],
+      "metadata": {
+        "generation": {
+          "file": "build/tl1a_bg_a3d_ensemble/intermediate_designs/tl1a_boltzgen_a3d_ensemble_0.cif",
+          "sha256": "a37687b14b5691fc4dac80719b1b41923cb0d865e8f150fc20bee44766bfc15a",
+          "stage": "atom14",
+          "backbone": "tl1a_boltzgen_a3d_ensemble_0",
+          "original_binder_chain": "A",
+          "original_target_chains": [
+            "B",
+            "C",
+            "D"
+          ],
+          "fixed_binder_AAs": [
+            {
+              "position": 1,
+              "aa": "M"
+            },
+            {
+              "position": 2,
+              "aa": "G"
+            },
+            {
+              "position": 3,
+              "aa": "S"
+            },
+            {
+              "position": 7,
+              "aa": "F"
+            },
+            {
+              "position": 11,
+              "aa": "L"
+            },
+            {
+              "position": 14,
+              "aa": "I"
+            },
+            {
+              "position": 18,
+              "aa": "L"
+            },
+            {
+              "position": 21,
+              "aa": "L"
+            },
+            {
+              "position": 22,
+              "aa": "G"
+            },
+            {
+              "position": 24,
+              "aa": "S"
+            },
+            {
+              "position": 28,
+              "aa": "L"
+            },
+            {
+              "position": 31,
+              "aa": "F"
+            },
+            {
+              "position": 35,
+              "aa": "I"
+            },
+            {
+              "position": 38,
+              "aa": "F"
+            },
+            {
+              "position": 42,
+              "aa": "L"
+            },
+            {
+              "position": 46,
+              "aa": "K"
+            },
+            {
+              "position": 48,
+              "aa": "K"
+            },
+            {
+              "position": 49,
+              "aa": "G"
+            },
+            {
+              "position": 50,
+              "aa": "N"
+            },
+            {
+              "position": 53,
+              "aa": "V"
+            },
+            {
+              "position": 56,
+              "aa": "L"
+            },
+            {
+              "position": 60,
+              "aa": "A"
+            },
+            {
+              "position": 63,
+              "aa": "I"
+            },
+            {
+              "position": 67,
+              "aa": "L"
+            },
+            {
+              "position": 72,
+              "aa": "H"
+            },
+            {
+              "position": 73,
+              "aa": "N"
+            }
+          ],
+          "designable_binder_residues": 47,
+          "binding_sites_uniprot": [
+            "A:156",
+            "A:235",
+            "A:238"
+          ]
+        },
+        "status": "generated_not_independently_validated",
+        "target_trimer_CA_rmsd": 0.15263497934717354,
+        "coordinates": "native target + generated binder BACKBONE only; no inverse-folded sidechains invented"
+      }
+    },
+    {
+      "id": "tl1a_bg_a3d_0_if",
+      "sequence": "MGSLEEFKKKLEEIKEKLKDLGSSEEILGEFKRLIAEFRELLKKLKGKGNEEVGELLKEAEKIEKELEEKLHN",
+      "target_id": "TL1A",
+      "design_type": "minibinder",
+      "source_model": "BoltzGen + BoltzGen-IF",
+      "source_version": "0.3.2",
+      "run_id": "tl1a_bg_a3d_ensemble",
+      "structural_group": "tl1a_bg_a3d_backbone_0",
+      "epitope_residues": [
+        "A:103",
+        "A:123",
+        "A:238",
+        "A:239",
+        "B:190"
+      ],
+      "metrics": {
+        "geometry.target_CA_rmsd": 0.09866996744678293,
+        "geometry.binder_Rg": 12.841206550598145,
+        "geometry.binder_nonlocal_CA_pairs8": 33,
+        "geometry.CA_contact_pairs8": 13,
+        "geometry.epitope_residues5": 5,
+        "geometry.other_chain_min_BB_distance": 4.567934513092041,
+        "geometry.other_chain_BB_clash_pairs2": 0,
+        "geometry.glycan_ND2_min_BB_distance": 15.343582153320312,
+        "geometry.missing_tail_anchor_distance": 27.325237274169922,
+        "geometry.native_all_chain_BB_clash_pairs2": 2,
+        "sequence.length": 73,
+        "sequence.gravy": -0.917808219178082,
+        "sequence.pI": 5.345047950744628,
+        "sequence.instability_index": 35.48356164383559,
+        "sequence.charged_fraction": 0.5068493150684932,
+        "sequence.hydrophobic_fraction": 0.3287671232876712,
+        "sequence.entropy": 3.0879170515643457,
+        "sequence.hydrophobic8_max": 0.625,
+        "official.ipsae": null
+      },
+      "structures": [
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/poses/tl1a_bg_a3d_0_if_design.pdb",
+          "chain_id": "D",
+          "role": "generated_backbone_complex_not_refolded"
+        }
+      ],
+      "metadata": {
+        "generation": {
+          "file": "build/tl1a_bg_a3d_ensemble/intermediate_designs_inverse_folded/tl1a_boltzgen_a3d_ensemble_0.cif",
+          "sha256": "2557fd45a9d031d44a1f69d428605e3558a3edd1f240ef245b7a5fa9224c9e57",
+          "stage": "inverse_folding",
+          "backbone": "tl1a_boltzgen_a3d_ensemble_0",
+          "original_binder_chain": "A",
+          "original_target_chains": [
+            "B",
+            "C",
+            "D"
+          ],
+          "fixed_binder_AAs": [
+            {
+              "position": 1,
+              "aa": "M"
+            },
+            {
+              "position": 2,
+              "aa": "G"
+            },
+            {
+              "position": 3,
+              "aa": "S"
+            },
+            {
+              "position": 7,
+              "aa": "F"
+            },
+            {
+              "position": 11,
+              "aa": "L"
+            },
+            {
+              "position": 14,
+              "aa": "I"
+            },
+            {
+              "position": 18,
+              "aa": "L"
+            },
+            {
+              "position": 21,
+              "aa": "L"
+            },
+            {
+              "position": 22,
+              "aa": "G"
+            },
+            {
+              "position": 24,
+              "aa": "S"
+            },
+            {
+              "position": 28,
+              "aa": "L"
+            },
+            {
+              "position": 31,
+              "aa": "F"
+            },
+            {
+              "position": 35,
+              "aa": "I"
+            },
+            {
+              "position": 38,
+              "aa": "F"
+            },
+            {
+              "position": 42,
+              "aa": "L"
+            },
+            {
+              "position": 46,
+              "aa": "K"
+            },
+            {
+              "position": 48,
+              "aa": "K"
+            },
+            {
+              "position": 49,
+              "aa": "G"
+            },
+            {
+              "position": 50,
+              "aa": "N"
+            },
+            {
+              "position": 53,
+              "aa": "V"
+            },
+            {
+              "position": 56,
+              "aa": "L"
+            },
+            {
+              "position": 60,
+              "aa": "A"
+            },
+            {
+              "position": 63,
+              "aa": "I"
+            },
+            {
+              "position": 67,
+              "aa": "L"
+            },
+            {
+              "position": 72,
+              "aa": "H"
+            },
+            {
+              "position": 73,
+              "aa": "N"
+            }
+          ],
+          "designable_binder_residues": 47,
+          "retained_file": "results/tl1a_a3d_ensemble_20261103/generation/inverse_folding_tl1a_boltzgen_a3d_ensemble_0.cif",
+          "binding_sites_uniprot": [
+            "A:156",
+            "A:235",
+            "A:238"
+          ]
+        },
+        "status": "generated_not_independently_validated",
+        "target_trimer_CA_rmsd": 0.15263495406156563,
+        "coordinates": "native target + generated binder BACKBONE only; no inverse-folded sidechains invented"
+      }
+    },
+    {
+      "id": "tl1a_bg_a3d_1_if",
+      "sequence": "MGSLSEFKEKLEEIKEKLKDLGDSEEKLSPFLKKIAEFDNELEKLKGKGNEEVGELKKIANKIKNELSSLFHN",
+      "target_id": "TL1A",
+      "design_type": "minibinder",
+      "source_model": "BoltzGen + BoltzGen-IF",
+      "source_version": "0.3.2",
+      "run_id": "tl1a_bg_a3d_ensemble",
+      "structural_group": "tl1a_bg_a3d_backbone_1",
+      "epitope_residues": [
+        "A:103",
+        "A:123",
+        "A:156",
+        "A:238",
+        "A:239",
+        "A:240",
+        "B:173",
+        "B:188",
+        "B:190"
+      ],
+      "metrics": {
+        "geometry.target_CA_rmsd": 0.08048874158752062,
+        "geometry.binder_Rg": 12.813281059265137,
+        "geometry.binder_nonlocal_CA_pairs8": 34,
+        "geometry.CA_contact_pairs8": 16,
+        "geometry.epitope_residues5": 9,
+        "geometry.other_chain_min_BB_distance": 4.148456573486328,
+        "geometry.other_chain_BB_clash_pairs2": 0,
+        "geometry.glycan_ND2_min_BB_distance": 14.706239700317383,
+        "geometry.missing_tail_anchor_distance": 26.714155197143555,
+        "geometry.native_all_chain_BB_clash_pairs2": 0,
+        "sequence.length": 73,
+        "sequence.gravy": -0.9095890410958903,
+        "sequence.pI": 5.49362506866455,
+        "sequence.instability_index": 29.261643835616418,
+        "sequence.charged_fraction": 0.4383561643835616,
+        "sequence.hydrophobic_fraction": 0.3150684931506849,
+        "sequence.entropy": 3.2933311465059276,
+        "sequence.hydrophobic8_max": 0.625,
+        "official.ipsae": null,
+        "af2.ipsae_10": 0.0,
+        "af2.ipsae_15": 0.0,
+        "af2.binder_plddt": 0.41999589041095886,
+        "af2.binder_CA_rmsd": 17.067934036254883,
+        "af2.binder_fold_CA_rmsd": 3.0053177682307632,
+        "af2.target_beta_CA_rmsd": 0.6348773388051965,
+        "af2.native_all_chain_clash_pairs2": 24,
+        "af2.predicted_clash_pairs2": 12,
+        "af2.glycan_ND2_min_distance": 11.455933570861816,
+        "af2.binder_buried_sasa": 753.00714933373
+      },
+      "structures": [
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/poses/tl1a_bg_a3d_1_if_design.pdb",
+          "chain_id": "D",
+          "role": "generated_backbone_complex_not_refolded"
+        },
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/predictions/af2/tl1a_bg_a3d_1_if/tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+          "role": "af2_predicted_complex",
+          "chain_id": "D"
+        }
+      ],
+      "metadata": {
+        "generation": {
+          "file": "build/tl1a_bg_a3d_ensemble/intermediate_designs_inverse_folded/tl1a_boltzgen_a3d_ensemble_1.cif",
+          "sha256": "628bfba54edbe3848dbf88138732052b3af024d3ee343b383854a12101e3cd35",
+          "stage": "inverse_folding",
+          "backbone": "tl1a_boltzgen_a3d_ensemble_1",
+          "original_binder_chain": "A",
+          "original_target_chains": [
+            "B",
+            "C",
+            "D"
+          ],
+          "fixed_binder_AAs": [
+            {
+              "position": 1,
+              "aa": "M"
+            },
+            {
+              "position": 2,
+              "aa": "G"
+            },
+            {
+              "position": 3,
+              "aa": "S"
+            },
+            {
+              "position": 7,
+              "aa": "F"
+            },
+            {
+              "position": 11,
+              "aa": "L"
+            },
+            {
+              "position": 14,
+              "aa": "I"
+            },
+            {
+              "position": 18,
+              "aa": "L"
+            },
+            {
+              "position": 21,
+              "aa": "L"
+            },
+            {
+              "position": 22,
+              "aa": "G"
+            },
+            {
+              "position": 24,
+              "aa": "S"
+            },
+            {
+              "position": 28,
+              "aa": "L"
+            },
+            {
+              "position": 31,
+              "aa": "F"
+            },
+            {
+              "position": 35,
+              "aa": "I"
+            },
+            {
+              "position": 38,
+              "aa": "F"
+            },
+            {
+              "position": 42,
+              "aa": "L"
+            },
+            {
+              "position": 46,
+              "aa": "K"
+            },
+            {
+              "position": 48,
+              "aa": "K"
+            },
+            {
+              "position": 49,
+              "aa": "G"
+            },
+            {
+              "position": 50,
+              "aa": "N"
+            },
+            {
+              "position": 53,
+              "aa": "V"
+            },
+            {
+              "position": 56,
+              "aa": "L"
+            },
+            {
+              "position": 60,
+              "aa": "A"
+            },
+            {
+              "position": 63,
+              "aa": "I"
+            },
+            {
+              "position": 67,
+              "aa": "L"
+            },
+            {
+              "position": 72,
+              "aa": "H"
+            },
+            {
+              "position": 73,
+              "aa": "N"
+            }
+          ],
+          "designable_binder_residues": 47,
+          "retained_file": "results/tl1a_a3d_ensemble_20261103/generation/inverse_folding_tl1a_boltzgen_a3d_ensemble_1.cif",
+          "binding_sites_uniprot": [
+            "A:156",
+            "A:235",
+            "A:238"
+          ]
+        },
+        "status": "generated_not_independently_validated",
+        "target_trimer_CA_rmsd": 0.12325752409157331,
+        "coordinates": "native target + generated binder BACKBONE only; no inverse-folded sidechains invented",
+        "af2": {
+          "run": "build/af2_a3d_holdout",
+          "ipsae_pairs": {
+            "10": [
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.065303",
+                "pDockQ": "0.0457",
+                "pDockQ2": "0.0102",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "A",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.053032",
+                "pDockQ": "0.0457",
+                "pDockQ2": "0.0101",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.065303",
+                "pDockQ": "0.0457",
+                "pDockQ2": "0.0102",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.068579",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "B",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.044802",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.068579",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.064777",
+                "pDockQ": "0.0199",
+                "pDockQ2": "0.0100",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "C",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.050376",
+                "pDockQ": "0.0199",
+                "pDockQ2": "0.0105",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.064777",
+                "pDockQ": "0.0199",
+                "pDockQ2": "0.0105",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              }
+            ],
+            "15": [
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.065303",
+                "pDockQ": "0.0457",
+                "pDockQ2": "0.0102",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "A",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.053032",
+                "pDockQ": "0.0457",
+                "pDockQ2": "0.0101",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.065303",
+                "pDockQ": "0.0457",
+                "pDockQ2": "0.0102",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.068579",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "B",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.044802",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.068579",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.064777",
+                "pDockQ": "0.0199",
+                "pDockQ2": "0.0100",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "C",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.050376",
+                "pDockQ": "0.0199",
+                "pDockQ2": "0.0105",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.064777",
+                "pDockQ": "0.0199",
+                "pDockQ2": "0.0105",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if\\tl1a_bg_a3d_1_if_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              }
+            ]
+          },
+          "symmetry_alignment_trials": [
+            {
+              "permutation": [
+                "A",
+                "B",
+                "C"
+              ],
+              "target_beta_CA_rmsd": 19.068030877357085,
+              "binder_pose_CA_rmsd": 63.60039135379514
+            },
+            {
+              "permutation": [
+                "A",
+                "C",
+                "B"
+              ],
+              "target_beta_CA_rmsd": 0.6348773388051965,
+              "binder_pose_CA_rmsd": 17.067933426318007
+            },
+            {
+              "permutation": [
+                "B",
+                "A",
+                "C"
+              ],
+              "target_beta_CA_rmsd": 0.6318810727415799,
+              "binder_pose_CA_rmsd": 54.395903667340946
+            },
+            {
+              "permutation": [
+                "B",
+                "C",
+                "A"
+              ],
+              "target_beta_CA_rmsd": 19.05610103347592,
+              "binder_pose_CA_rmsd": 35.01672238476639
+            },
+            {
+              "permutation": [
+                "C",
+                "A",
+                "B"
+              ],
+              "target_beta_CA_rmsd": 19.070013451538365,
+              "binder_pose_CA_rmsd": 39.382407085752476
+            },
+            {
+              "permutation": [
+                "C",
+                "B",
+                "A"
+              ],
+              "target_beta_CA_rmsd": 0.6354552957493916,
+              "binder_pose_CA_rmsd": 57.57943074566127
+            }
+          ],
+          "target_chain_permutation": [
+            "A",
+            "C",
+            "B"
+          ],
+          "confidence_summary": {
+            "max_pae": 31.578125,
+            "ptm": 0.78,
+            "iptm": 0.74,
+            "ipsae": {
+              "A-B": 0.807227,
+              "A-C": 0.793699,
+              "A-D": 0.0,
+              "B-A": 0.79566,
+              "B-C": 0.803927,
+              "B-D": 0.0,
+              "C-A": 0.803997,
+              "C-B": 0.792986,
+              "C-D": 0.0,
+              "D-A": 0.0,
+              "D-B": 0.0,
+              "D-C": 0.0
+            },
+            "pdockq": {
+              "A-B": 0.4691,
+              "A-C": 0.4512,
+              "A-D": 0.0457,
+              "B-C": 0.4698,
+              "B-D": 0.0,
+              "C-D": 0.0199
+            },
+            "pdockq2": {
+              "A-B": 0.3616,
+              "A-C": 0.3339,
+              "A-D": 0.0102,
+              "B-A": 0.3346,
+              "B-C": 0.3611,
+              "B-D": 0.0,
+              "C-A": 0.3571,
+              "C-B": 0.3343,
+              "C-D": 0.01,
+              "D-A": 0.0101,
+              "D-B": 0.0,
+              "D-C": 0.0105
+            }
+          },
+          "original_score_sha256": "d1ddfe902ac89a5010794ed18c35ca72b8321c4e8e605ebd28818d6842afd1ea",
+          "official_equivalence": false
+        }
+      }
+    },
+    {
+      "id": "tl1a_bg_a3d_1_if_lmpnn_ctx1",
+      "sequence": "MGSLEEFKKRLEEIKKKLEELGDSEKKLGEFFDLIGGFRTELEKIKGKGNEEVGELLKEAEKIEKELEEGLHN",
+      "target_id": "TL1A",
+      "design_type": "minibinder",
+      "source_model": "native-sidechain-conditioned LigandMPNN",
+      "source_version": "26ec57ac976ade5379920dbd43c7f97a91cf82de",
+      "run_id": "a3d_glycan_lmpnn",
+      "structural_group": "tl1a_bg_a3d_backbone_1",
+      "epitope_residues": [
+        "A:103",
+        "A:123",
+        "A:156",
+        "A:238",
+        "A:239",
+        "A:240",
+        "B:173",
+        "B:188",
+        "B:190"
+      ],
+      "metrics": {
+        "geometry.target_CA_rmsd": 0.08048874158752062,
+        "geometry.binder_Rg": 12.813281059265137,
+        "geometry.binder_nonlocal_CA_pairs8": 34,
+        "geometry.CA_contact_pairs8": 16,
+        "geometry.epitope_residues5": 9,
+        "geometry.other_chain_min_BB_distance": 4.148456573486328,
+        "geometry.other_chain_BB_clash_pairs2": 0,
+        "geometry.glycan_ND2_min_BB_distance": 14.706239700317383,
+        "geometry.missing_tail_anchor_distance": 26.714155197143555,
+        "geometry.native_all_chain_BB_clash_pairs2": 0,
+        "sequence.length": 73,
+        "sequence.gravy": -0.9643835616438357,
+        "sequence.pI": 4.91989231109619,
+        "sequence.instability_index": 41.77397260273971,
+        "sequence.charged_fraction": 0.4931506849315068,
+        "sequence.hydrophobic_fraction": 0.3013698630136986,
+        "sequence.entropy": 3.184353162862847,
+        "sequence.hydrophobic8_max": 0.625,
+        "official.ipsae": null,
+        "ligandmpnn.score": 1.4945292472839355,
+        "af2.ipsae_10": 0.0,
+        "af2.ipsae_15": 0.0,
+        "af2.binder_plddt": 0.3987328767123287,
+        "af2.binder_CA_rmsd": 13.748315811157227,
+        "af2.binder_fold_CA_rmsd": 9.864847599296663,
+        "af2.target_beta_CA_rmsd": 0.6211896628427743,
+        "af2.native_all_chain_clash_pairs2": 50,
+        "af2.predicted_clash_pairs2": 30,
+        "af2.glycan_ND2_min_distance": 12.162615776062012,
+        "af2.binder_buried_sasa": 774.903560040797,
+        "boltz_trimer_deepmsa.iptm": 0.4607173502445221,
+        "boltz_trimer_deepmsa.binder_plddt": 0.7167613506317139,
+        "boltz_trimer_deepmsa.binder_CA_rmsd": 4.691718101501465,
+        "boltz_trimer_deepmsa.binder_fold_CA_rmsd": 3.6732125960190527,
+        "boltz_trimer_deepmsa.target_CA_rmsd": 1.906228995291501,
+        "boltz_trimer_deepmsa.target_beta_CA_rmsd": 0.32831206695880355,
+        "boltz_trimer_deepmsa.other_chain_clash_pairs2": 0,
+        "boltz_trimer_deepmsa.glycan_ND2_min_distance": 10.024855613708496,
+        "boltz_trimer_deepmsa.target_best_beta_CA_rmsd": 0.3227835971206253,
+        "boltz_trimer_deepmsa.native_all_chain_clash_pairs2": 19,
+        "boltz_trimer_deepmsa.predicted_clash_pairs2": 11,
+        "boltz_trimer_deepmsa.binder_buried_sasa": 937.3176421788166,
+        "boltz_trimer_deepmsa.ipsae_10": 0.0,
+        "boltz_trimer_deepmsa.ipsae_15": 0.011125,
+        "boltz_trimer_deepmsa.binder_alone_CA_rmsd": 3.1893157720132703,
+        "boltz_trimer_deepmsa.binder_alone_plddt": 0.8050806522369385,
+        "af2.boltz_pose_CA_rmsd": 13.305917739868164
+      },
+      "structures": [
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/poses/tl1a_bg_a3d_1_if_lmpnn_ctx1_design.pdb",
+          "chain_id": "D",
+          "role": "generated_backbone_complex_not_refolded"
+        },
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/predictions/trimer_deepmsa/tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0.cif",
+          "role": "boltz_trimer_deepmsa_predicted_complex",
+          "chain_id": "D"
+        },
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/predictions/boltz_trimer_deepmsa/tl1a_bg_a3d_1_if_lmpnn_ctx1_binder_only_model_0.cif",
+          "chain_id": "A",
+          "role": "boltz_trimer_deepmsa_predicted_binder_alone"
+        },
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/predictions/af2/tl1a_bg_a3d_1_if_lmpnn_ctx1/tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+          "role": "af2_predicted_complex",
+          "chain_id": "D"
+        }
+      ],
+      "metadata": {
+        "status": "generated_not_independently_validated",
+        "generation": {
+          "model": "LigandMPNN",
+          "parent_backbone_id": "tl1a_bg_a3d_1_if",
+          "native_sidechain_context": 1,
+          "glycan_ensemble_state": 0,
+          "atomic_context": "native-sidechain state plus modelled Man3GlcNAc2 on all six sites; binder backbone only",
+          "fixed_input_identities": [
+            {
+              "position": 1,
+              "aa": "M"
+            },
+            {
+              "position": 2,
+              "aa": "G"
+            },
+            {
+              "position": 3,
+              "aa": "S"
+            },
+            {
+              "position": 7,
+              "aa": "F"
+            },
+            {
+              "position": 11,
+              "aa": "L"
+            },
+            {
+              "position": 14,
+              "aa": "I"
+            },
+            {
+              "position": 18,
+              "aa": "L"
+            },
+            {
+              "position": 21,
+              "aa": "L"
+            },
+            {
+              "position": 22,
+              "aa": "G"
+            },
+            {
+              "position": 24,
+              "aa": "S"
+            },
+            {
+              "position": 28,
+              "aa": "L"
+            },
+            {
+              "position": 31,
+              "aa": "F"
+            },
+            {
+              "position": 35,
+              "aa": "I"
+            },
+            {
+              "position": 38,
+              "aa": "F"
+            },
+            {
+              "position": 42,
+              "aa": "L"
+            },
+            {
+              "position": 46,
+              "aa": "K"
+            },
+            {
+              "position": 48,
+              "aa": "K"
+            },
+            {
+              "position": 49,
+              "aa": "G"
+            },
+            {
+              "position": 50,
+              "aa": "N"
+            },
+            {
+              "position": 53,
+              "aa": "V"
+            },
+            {
+              "position": 56,
+              "aa": "L"
+            },
+            {
+              "position": 60,
+              "aa": "A"
+            },
+            {
+              "position": 63,
+              "aa": "I"
+            },
+            {
+              "position": 67,
+              "aa": "L"
+            },
+            {
+              "position": 72,
+              "aa": "H"
+            },
+            {
+              "position": 73,
+              "aa": "N"
+            }
+          ],
+          "design_positions": [
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            12,
+            13,
+            15,
+            16,
+            17,
+            19,
+            20,
+            23,
+            25,
+            26,
+            27,
+            29,
+            30,
+            32,
+            33,
+            34,
+            36,
+            37,
+            39,
+            40,
+            41,
+            43,
+            44,
+            45,
+            47,
+            51,
+            52,
+            54,
+            55,
+            57,
+            58,
+            59,
+            61,
+            62,
+            64,
+            65,
+            66,
+            68,
+            69,
+            70,
+            71
+          ],
+          "source_fasta": "results/tl1a_a3d_ensemble_20261103/generation/a3d_glycan_lmpnn/context_1/atomic_context.fa"
+        },
+        "backbone_generation": {
+          "file": "build/tl1a_bg_a3d_ensemble/intermediate_designs_inverse_folded/tl1a_boltzgen_a3d_ensemble_1.cif",
+          "sha256": "628bfba54edbe3848dbf88138732052b3af024d3ee343b383854a12101e3cd35",
+          "stage": "inverse_folding",
+          "backbone": "tl1a_boltzgen_a3d_ensemble_1",
+          "original_binder_chain": "A",
+          "original_target_chains": [
+            "B",
+            "C",
+            "D"
+          ],
+          "fixed_binder_AAs": [
+            {
+              "position": 1,
+              "aa": "M"
+            },
+            {
+              "position": 2,
+              "aa": "G"
+            },
+            {
+              "position": 3,
+              "aa": "S"
+            },
+            {
+              "position": 7,
+              "aa": "F"
+            },
+            {
+              "position": 11,
+              "aa": "L"
+            },
+            {
+              "position": 14,
+              "aa": "I"
+            },
+            {
+              "position": 18,
+              "aa": "L"
+            },
+            {
+              "position": 21,
+              "aa": "L"
+            },
+            {
+              "position": 22,
+              "aa": "G"
+            },
+            {
+              "position": 24,
+              "aa": "S"
+            },
+            {
+              "position": 28,
+              "aa": "L"
+            },
+            {
+              "position": 31,
+              "aa": "F"
+            },
+            {
+              "position": 35,
+              "aa": "I"
+            },
+            {
+              "position": 38,
+              "aa": "F"
+            },
+            {
+              "position": 42,
+              "aa": "L"
+            },
+            {
+              "position": 46,
+              "aa": "K"
+            },
+            {
+              "position": 48,
+              "aa": "K"
+            },
+            {
+              "position": 49,
+              "aa": "G"
+            },
+            {
+              "position": 50,
+              "aa": "N"
+            },
+            {
+              "position": 53,
+              "aa": "V"
+            },
+            {
+              "position": 56,
+              "aa": "L"
+            },
+            {
+              "position": 60,
+              "aa": "A"
+            },
+            {
+              "position": 63,
+              "aa": "I"
+            },
+            {
+              "position": 67,
+              "aa": "L"
+            },
+            {
+              "position": 72,
+              "aa": "H"
+            },
+            {
+              "position": 73,
+              "aa": "N"
+            }
+          ],
+          "designable_binder_residues": 47,
+          "retained_file": "results/tl1a_a3d_ensemble_20261103/generation/inverse_folding_tl1a_boltzgen_a3d_ensemble_1.cif",
+          "binding_sites_uniprot": [
+            "A:156",
+            "A:235",
+            "A:238"
+          ]
+        },
+        "backbone_refinement": null,
+        "coordinates": "shared parent backbone threaded with actual sequence; NOT a sequence refold",
+        "af2": {
+          "run": "build/af2_a3d_holdout",
+          "ipsae_pairs": {
+            "10": [
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.076321",
+                "pDockQ": "0.0812",
+                "pDockQ2": "0.0113",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "A",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.064437",
+                "pDockQ": "0.0812",
+                "pDockQ2": "0.0112",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.076321",
+                "pDockQ": "0.0812",
+                "pDockQ2": "0.0113",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.079998",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "B",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.050887",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.079998",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.072934",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "C",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.054332",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.072934",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              }
+            ],
+            "15": [
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.076321",
+                "pDockQ": "0.0812",
+                "pDockQ2": "0.0113",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "A",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.064437",
+                "pDockQ": "0.0812",
+                "pDockQ2": "0.0112",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.076321",
+                "pDockQ": "0.0812",
+                "pDockQ2": "0.0113",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.079998",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "B",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.050887",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.079998",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.072934",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "C",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.054332",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.750",
+                "ipTM_d0chn": "0.072934",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              }
+            ]
+          },
+          "symmetry_alignment_trials": [
+            {
+              "permutation": [
+                "A",
+                "B",
+                "C"
+              ],
+              "target_beta_CA_rmsd": 19.062711079954845,
+              "binder_pose_CA_rmsd": 60.75055186619963
+            },
+            {
+              "permutation": [
+                "A",
+                "C",
+                "B"
+              ],
+              "target_beta_CA_rmsd": 0.6211896628427743,
+              "binder_pose_CA_rmsd": 13.748315649910383
+            },
+            {
+              "permutation": [
+                "B",
+                "A",
+                "C"
+              ],
+              "target_beta_CA_rmsd": 0.6183413583651394,
+              "binder_pose_CA_rmsd": 50.72730105414541
+            },
+            {
+              "permutation": [
+                "B",
+                "C",
+                "A"
+              ],
+              "target_beta_CA_rmsd": 19.050195248659076,
+              "binder_pose_CA_rmsd": 34.10858997940659
+            },
+            {
+              "permutation": [
+                "C",
+                "A",
+                "B"
+              ],
+              "target_beta_CA_rmsd": 19.066765425235857,
+              "binder_pose_CA_rmsd": 35.61879406506052
+            },
+            {
+              "permutation": [
+                "C",
+                "B",
+                "A"
+              ],
+              "target_beta_CA_rmsd": 0.6222548940250269,
+              "binder_pose_CA_rmsd": 56.35482162127461
+            }
+          ],
+          "target_chain_permutation": [
+            "A",
+            "C",
+            "B"
+          ],
+          "confidence_summary": {
+            "max_pae": 31.546875,
+            "ptm": 0.78,
+            "iptm": 0.75,
+            "ipsae": {
+              "A-B": 0.807333,
+              "A-C": 0.793285,
+              "A-D": 0.0,
+              "B-A": 0.795552,
+              "B-C": 0.804072,
+              "B-D": 0.0,
+              "C-A": 0.800837,
+              "C-B": 0.795423,
+              "C-D": 0.0,
+              "D-A": 0.0,
+              "D-B": 0.0,
+              "D-C": 0.0
+            },
+            "pdockq": {
+              "A-B": 0.4585,
+              "A-C": 0.4382,
+              "A-D": 0.0812,
+              "B-C": 0.4646,
+              "B-D": 0.0,
+              "C-D": 0.0
+            },
+            "pdockq2": {
+              "A-B": 0.3523,
+              "A-C": 0.2998,
+              "A-D": 0.0113,
+              "B-A": 0.3235,
+              "B-C": 0.3418,
+              "B-D": 0.0,
+              "C-A": 0.3231,
+              "C-B": 0.3168,
+              "C-D": 0.0,
+              "D-A": 0.0112,
+              "D-B": 0.0,
+              "D-C": 0.0
+            }
+          },
+          "original_score_sha256": "05e61fb57cfe2233617d94614e1525d1ae29eb0bc6498e2b2ad42187e55fa148",
+          "official_equivalence": false
+        },
+        "boltz_trimer_deepmsa": {
+          "status": "predicted_complex_unvalidated",
+          "confidence": {
+            "confidence_score": 0.8051093220710754,
+            "ptm": 0.8381277918815613,
+            "iptm": 0.8118394613265991,
+            "ligand_iptm": 0.0,
+            "protein_iptm": 0.8118394613265991,
+            "complex_plddt": 0.8034267425537109,
+            "complex_iplddt": 0.7544771432876587,
+            "complex_pde": 0.8187546730041504,
+            "complex_ipde": 3.338416814804077,
+            "chains_ptm": {
+              "0": 0.9052374362945557,
+              "1": 0.9011628031730652,
+              "2": 0.9021514058113098,
+              "3": 0.9097581505775452
+            },
+            "pair_chains_iptm": {
+              "0": {
+                "0": 0.9052374362945557,
+                "1": 0.8885772824287415,
+                "2": 0.8918666243553162,
+                "3": 0.35700350999832153
+              },
+              "1": {
+                "0": 0.8869180679321289,
+                "1": 0.9011628031730652,
+                "2": 0.8843961954116821,
+                "3": 0.38545697927474976
+              },
+              "2": {
+                "0": 0.886469304561615,
+                "1": 0.8879265189170837,
+                "2": 0.9021514058113098,
+                "3": 0.3128105401992798
+              },
+              "3": {
+                "0": 0.4467514753341675,
+                "1": 0.4607173502445221,
+                "2": 0.43961507081985474,
+                "3": 0.9097581505775452
+              }
+            }
+          },
+          "run": "build\\boltz_a3d_deep",
+          "seed": "2026",
+          "official_equivalence": false,
+          "pae_sha256": "69b4df8756d215345c13dde0a461393a69009c0daae423cdfa95bf4791b3e4c6",
+          "ipsae_pairs": {
+            "10": [
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.357",
+                "ipTM_d0chn": "0.115642",
+                "pDockQ": "0.0298",
+                "pDockQ2": "0.0110",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "A",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.447",
+                "ipTM_d0chn": "0.095334",
+                "pDockQ": "0.0298",
+                "pDockQ2": "0.0114",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.447",
+                "ipTM_d0chn": "0.115642",
+                "pDockQ": "0.0298",
+                "pDockQ2": "0.0114",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.385",
+                "ipTM_d0chn": "0.120286",
+                "pDockQ": "0.0957",
+                "pDockQ2": "0.0148",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "B",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.461",
+                "ipTM_d0chn": "0.108866",
+                "pDockQ": "0.0957",
+                "pDockQ2": "0.0155",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.461",
+                "ipTM_d0chn": "0.120286",
+                "pDockQ": "0.0957",
+                "pDockQ2": "0.0155",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.313",
+                "ipTM_d0chn": "0.112239",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "C",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.440",
+                "ipTM_d0chn": "0.085662",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.440",
+                "ipTM_d0chn": "0.112239",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              }
+            ],
+            "15": [
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.004641",
+                "ipSAE_d0chn": "0.138988",
+                "ipSAE_d0dom": "0.004641",
+                "ipTM_af": "0.357",
+                "ipTM_d0chn": "0.115642",
+                "pDockQ": "0.0298",
+                "pDockQ2": "0.0110",
+                "LIS": "0.0000",
+                "n0res": "4",
+                "n0chn": "253",
+                "n0dom": "22",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "13",
+                "nres2": "9",
+                "dist1": "4",
+                "dist2": "5",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "A",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.004921",
+                "ipSAE_d0chn": "0.146189",
+                "ipSAE_d0dom": "0.034175",
+                "ipTM_af": "0.447",
+                "ipTM_d0chn": "0.095334",
+                "pDockQ": "0.0298",
+                "pDockQ2": "0.0114",
+                "LIS": "0.0000",
+                "n0res": "3",
+                "n0chn": "253",
+                "n0dom": "62",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "2.67",
+                "nres1": "44",
+                "nres2": "18",
+                "dist1": "7",
+                "dist2": "5",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.004921",
+                "ipSAE_d0chn": "0.146189",
+                "ipSAE_d0dom": "0.034175",
+                "ipTM_af": "0.447",
+                "ipTM_d0chn": "0.115642",
+                "pDockQ": "0.0298",
+                "pDockQ2": "0.0114",
+                "LIS": "0.0000",
+                "n0res": "3",
+                "n0chn": "253",
+                "n0dom": "62",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "2.67",
+                "nres1": "18",
+                "nres2": "44",
+                "dist1": "5",
+                "dist2": "7",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.005130",
+                "ipSAE_d0chn": "0.151436",
+                "ipSAE_d0dom": "0.067830",
+                "ipTM_af": "0.385",
+                "ipTM_d0chn": "0.120286",
+                "pDockQ": "0.0957",
+                "pDockQ2": "0.0148",
+                "LIS": "0.0000",
+                "n0res": "2",
+                "n0chn": "253",
+                "n0dom": "105",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "3.76",
+                "nres1": "80",
+                "nres2": "25",
+                "dist1": "31",
+                "dist2": "19",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "B",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.011125",
+                "ipSAE_d0chn": "0.148491",
+                "ipSAE_d0dom": "0.061601",
+                "ipTM_af": "0.461",
+                "ipTM_d0chn": "0.108866",
+                "pDockQ": "0.0957",
+                "pDockQ2": "0.0155",
+                "LIS": "0.0000",
+                "n0res": "34",
+                "n0chn": "253",
+                "n0dom": "98",
+                "d0res": "1.51",
+                "d0chn": "5.88",
+                "d0dom": "3.61",
+                "nres1": "52",
+                "nres2": "46",
+                "dist1": "34",
+                "dist2": "25",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.011125",
+                "ipSAE_d0chn": "0.151436",
+                "ipSAE_d0dom": "0.067830",
+                "ipTM_af": "0.461",
+                "ipTM_d0chn": "0.120286",
+                "pDockQ": "0.0957",
+                "pDockQ2": "0.0155",
+                "LIS": "0.0000",
+                "n0res": "34",
+                "n0chn": "253",
+                "n0dom": "105",
+                "d0res": "1.51",
+                "d0chn": "5.88",
+                "d0dom": "3.76",
+                "nres1": "80",
+                "nres2": "52",
+                "dist1": "31",
+                "dist2": "34",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.004670",
+                "ipSAE_d0chn": "0.139756",
+                "ipSAE_d0dom": "0.004670",
+                "ipTM_af": "0.313",
+                "ipTM_d0chn": "0.112239",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "1",
+                "n0chn": "253",
+                "n0dom": "5",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "3",
+                "nres2": "2",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "C",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.004827",
+                "ipSAE_d0chn": "0.143764",
+                "ipSAE_d0dom": "0.004827",
+                "ipTM_af": "0.440",
+                "ipTM_d0chn": "0.085662",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "3",
+                "n0chn": "253",
+                "n0dom": "20",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "16",
+                "nres2": "4",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.004827",
+                "ipSAE_d0chn": "0.143764",
+                "ipSAE_d0dom": "0.004827",
+                "ipTM_af": "0.440",
+                "ipTM_d0chn": "0.112239",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "3",
+                "n0chn": "253",
+                "n0dom": "20",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "4",
+                "nres2": "16",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_bg_a3d_1_if_lmpnn_ctx1\\predictions\\tl1a_bg_a3d_1_if_lmpnn_ctx1\\tl1a_bg_a3d_1_if_lmpnn_ctx1_model_0"
+              }
+            ]
+          },
+          "target_template": false,
+          "target_chain_permutation": [
+            "B",
+            "A",
+            "C"
+          ],
+          "native_context_geometry_caveat": "alignment unreliable if target core differs substantially from native structure",
+          "geometry_alignment": "2RE9 SHEET core; symmetry-aware derived geometry v3; pose selection only among fits within 0.5 A of best target-only core",
+          "symmetry_alignment_trials": [
+            {
+              "permutation": [
+                "A",
+                "B",
+                "C"
+              ],
+              "target_beta_CA_rmsd": 19.039733751667193,
+              "binder_pose_CA_rmsd": 33.86802179829206
+            },
+            {
+              "permutation": [
+                "A",
+                "C",
+                "B"
+              ],
+              "target_beta_CA_rmsd": 0.3227835971206253,
+              "binder_pose_CA_rmsd": 53.35541244957531
+            },
+            {
+              "permutation": [
+                "B",
+                "A",
+                "C"
+              ],
+              "target_beta_CA_rmsd": 0.32831206695880355,
+              "binder_pose_CA_rmsd": 4.691718803169299
+            },
+            {
+              "permutation": [
+                "B",
+                "C",
+                "A"
+              ],
+              "target_beta_CA_rmsd": 19.056476675414814,
+              "binder_pose_CA_rmsd": 60.29620396967701
+            },
+            {
+              "permutation": [
+                "C",
+                "A",
+                "B"
+              ],
+              "target_beta_CA_rmsd": 19.045168159478646,
+              "binder_pose_CA_rmsd": 35.407665339631805
+            },
+            {
+              "permutation": [
+                "C",
+                "B",
+                "A"
+              ],
+              "target_beta_CA_rmsd": 0.3253365551947143,
+              "binder_pose_CA_rmsd": 51.270870303970376
+            }
+          ],
+          "binder_alone_control": {
+            "id": "tl1a_bg_a3d_1_if_lmpnn_ctx1_binder_only",
+            "confidence": {
+              "confidence_score": 0.7978805899620056,
+              "ptm": 0.769080400466919,
+              "iptm": 0.0,
+              "ligand_iptm": 0.0,
+              "protein_iptm": 0.0,
+              "complex_plddt": 0.8050806522369385,
+              "complex_iplddt": 0.8050806522369385,
+              "complex_pde": 0.7113487124443054,
+              "complex_ipde": 0.0,
+              "chains_ptm": {
+                "0": 0.769080400466919
+              },
+              "pair_chains_iptm": {
+                "0": {
+                  "0": 0.769080400466919
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "tl1a_af_a3d_bound_ensemble_20261113_gen",
+      "sequence": "MGSLEEFKKRLEEIKKKLEELGDSEKKLDEFFDLIGGFRTELEKIKGKGNEEVGELLKEAEKIEKELEEGLHN",
+      "target_id": "TL1A",
+      "design_type": "minibinder",
+      "source_model": "ColabDesign AF2 binding-state plus native-sidechain/glycan ensemble generation",
+      "source_version": "8fd167defd1b0f98e29f00584ff4f3987e6935dc",
+      "run_id": "tl1a_a3d_bound_precise",
+      "structural_group": "tl1a_bg_a3d_backbone_1",
+      "epitope_residues": [
+        "A:104",
+        "A:105",
+        "A:106",
+        "A:107",
+        "A:108",
+        "A:110",
+        "A:118",
+        "A:135",
+        "A:136"
+      ],
+      "metrics": {
+        "geometry.target_CA_rmsd": 9.308017992721935e-15,
+        "geometry.binder_Rg": 12.299895286560059,
+        "geometry.binder_nonlocal_CA_pairs8": 14,
+        "geometry.CA_contact_pairs8": 47,
+        "geometry.epitope_residues5": 9,
+        "geometry.other_chain_min_BB_distance": 20.919086456298828,
+        "geometry.other_chain_BB_clash_pairs2": 0,
+        "geometry.glycan_ND2_min_BB_distance": 8.895663261413574,
+        "geometry.missing_tail_anchor_distance": 31.14974021911621,
+        "geometry.native_all_chain_BB_clash_pairs2": 14,
+        "sequence.length": 73,
+        "sequence.gravy": -1.0068493150684934,
+        "sequence.pI": 4.829404640197754,
+        "sequence.instability_index": 42.80684931506848,
+        "sequence.charged_fraction": 0.5068493150684932,
+        "sequence.hydrophobic_fraction": 0.3013698630136986,
+        "sequence.entropy": 3.2086605260247287,
+        "sequence.hydrophobic8_max": 0.625,
+        "afdesign.ipsae_10": 0.0,
+        "afdesign.ipsae_15": 0.0,
+        "official.ipsae": null,
+        "afdesign.binder_plddt": 0.43948166128707256,
+        "afdesign.iptm": 0.15416152775287628,
+        "afdesign.target_beta_CA_rmsd": 1.2991705953095005,
+        "af2.ipsae_10": 0.0,
+        "af2.ipsae_15": 0.0,
+        "af2.binder_plddt": 0.4146835616438356,
+        "af2.binder_CA_rmsd": 31.168153762817383,
+        "af2.binder_fold_CA_rmsd": 1.5834532468535187,
+        "af2.target_beta_CA_rmsd": 0.6264018054446231,
+        "af2.native_all_chain_clash_pairs2": 42,
+        "af2.predicted_clash_pairs2": 37,
+        "af2.glycan_ND2_min_distance": 12.612654685974121,
+        "af2.binder_buried_sasa": 666.185491573332,
+        "boltz_trimer_deepmsa.iptm": 0.5196714401245117,
+        "boltz_trimer_deepmsa.binder_plddt": 0.7398045063018799,
+        "boltz_trimer_deepmsa.binder_CA_rmsd": 33.027809143066406,
+        "boltz_trimer_deepmsa.binder_fold_CA_rmsd": 1.8120164660500344,
+        "boltz_trimer_deepmsa.target_CA_rmsd": 2.1781587876387842,
+        "boltz_trimer_deepmsa.target_beta_CA_rmsd": 0.3263699713698949,
+        "boltz_trimer_deepmsa.other_chain_clash_pairs2": 1,
+        "boltz_trimer_deepmsa.glycan_ND2_min_distance": 9.117596626281738,
+        "boltz_trimer_deepmsa.target_best_beta_CA_rmsd": 0.3202845485889902,
+        "boltz_trimer_deepmsa.native_all_chain_clash_pairs2": 15,
+        "boltz_trimer_deepmsa.predicted_clash_pairs2": 5,
+        "boltz_trimer_deepmsa.binder_buried_sasa": 1065.36368086348,
+        "boltz_trimer_deepmsa.ipsae_10": 0.0,
+        "boltz_trimer_deepmsa.ipsae_15": 0.053416,
+        "boltz_trimer_deepmsa.binder_alone_CA_rmsd": 2.0766562776772957,
+        "boltz_trimer_deepmsa.binder_alone_plddt": 0.8118555545806885,
+        "af2.boltz_pose_CA_rmsd": 7.508095741271973
+      },
+      "structures": [
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/poses/tl1a_af_a3d_bound_ensemble_20261113_gen_design.pdb",
+          "chain_id": "D",
+          "role": "generated_backbone_complex_not_refolded"
+        },
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/predictions/trimer_deepmsa/tl1a_af_a3d_bound_ensemble_20261113_gen_model_0.cif",
+          "role": "boltz_trimer_deepmsa_predicted_complex",
+          "chain_id": "D"
+        },
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/predictions/boltz_trimer_deepmsa/tl1a_af_a3d_bound_ensemble_20261113_gen_binder_only_model_0.cif",
+          "chain_id": "A",
+          "role": "boltz_trimer_deepmsa_predicted_binder_alone"
+        },
+        {
+          "path": "results/tl1a_a3d_ensemble_20261103/predictions/af2/tl1a_af_a3d_bound_ensemble_20261113_gen/tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026.pdb",
+          "role": "af2_predicted_complex",
+          "chain_id": "D"
+        }
+      ],
+      "metadata": {
+        "status": "generated_not_independently_validated",
+        "generation": {
+          "path": "results/tl1a_a3d_ensemble_20261103/generation/seed_20261113/generated.pdb",
+          "sha256": "3766d26709ee3135f1b3a0fdd47699436f97719eb08228a62002e7337e0b1965",
+          "seed": 20261113,
+          "target_template": true,
+          "binder_template": true,
+          "initial_guess": true,
+          "final_prediction_conditioning": {
+            "binder_template": false,
+            "initial_guess": false
+          },
+          "ensemble_source": "targets/TL1A/ensemble/ensemble.json",
+          "source_target_chain": "A",
+          "source_binder_chain": "B",
+          "generator_ipsae_pairs": {
+            "10": [
+              {
+                "Chn1": "A",
+                "Chn2": "B",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.154",
+                "ipTM_d0chn": "0.085985",
+                "pDockQ": "0.0338",
+                "pDockQ2": "0.0100",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "277",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "6.13",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_a3d_bound_precise\\seed_20261113\\generated"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "A",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.154",
+                "ipTM_d0chn": "0.055711",
+                "pDockQ": "0.0338",
+                "pDockQ2": "0.0098",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "277",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "6.13",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_a3d_bound_precise\\seed_20261113\\generated"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "B",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.154",
+                "ipTM_d0chn": "0.085985",
+                "pDockQ": "0.0338",
+                "pDockQ2": "0.0100",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "277",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "6.13",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_a3d_bound_precise\\seed_20261113\\generated"
+              }
+            ],
+            "15": [
+              {
+                "Chn1": "A",
+                "Chn2": "B",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.154",
+                "ipTM_d0chn": "0.085985",
+                "pDockQ": "0.0338",
+                "pDockQ2": "0.0100",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "277",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "6.13",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_a3d_bound_precise\\seed_20261113\\generated"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "A",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.154",
+                "ipTM_d0chn": "0.055711",
+                "pDockQ": "0.0338",
+                "pDockQ2": "0.0098",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "277",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "6.13",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_a3d_bound_precise\\seed_20261113\\generated"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "B",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.154",
+                "ipTM_d0chn": "0.085985",
+                "pDockQ": "0.0338",
+                "pDockQ2": "0.0100",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "277",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "6.13",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\tl1a_a3d_bound_precise\\seed_20261113\\generated"
+              }
+            ]
+          },
+          "supervised_scaffold_parent": "tl1a_bg_a3d_1_if"
+        },
+        "coordinates": "native full ABC context + generated binder BACKBONE; original all-atom model retained separately",
+        "af2": {
+          "run": "build/af2_a3d_holdout",
+          "ipsae_pairs": {
+            "10": [
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.065516",
+                "pDockQ": "0.0529",
+                "pDockQ2": "0.0101",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "A",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.058575",
+                "pDockQ": "0.0529",
+                "pDockQ2": "0.0100",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.065516",
+                "pDockQ": "0.0529",
+                "pDockQ2": "0.0101",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.069626",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "B",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.047271",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.069626",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.064476",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "C",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.052340",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.064476",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              }
+            ],
+            "15": [
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.065516",
+                "pDockQ": "0.0529",
+                "pDockQ2": "0.0101",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "A",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.058575",
+                "pDockQ": "0.0529",
+                "pDockQ2": "0.0100",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.065516",
+                "pDockQ": "0.0529",
+                "pDockQ2": "0.0101",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.069626",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "B",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.047271",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.069626",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.064476",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "C",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.052340",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.740",
+                "ipTM_d0chn": "0.064476",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\af2_a3d_holdout\\ipsae\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_unrelaxed_rank_001_alphafold2_multimer_v3_model_1_seed_2026"
+              }
+            ]
+          },
+          "symmetry_alignment_trials": [
+            {
+              "permutation": [
+                "A",
+                "B",
+                "C"
+              ],
+              "target_beta_CA_rmsd": 19.05605226762688,
+              "binder_pose_CA_rmsd": 68.28346061817325
+            },
+            {
+              "permutation": [
+                "A",
+                "C",
+                "B"
+              ],
+              "target_beta_CA_rmsd": 0.6264018054446231,
+              "binder_pose_CA_rmsd": 31.168155899977204
+            },
+            {
+              "permutation": [
+                "B",
+                "A",
+                "C"
+              ],
+              "target_beta_CA_rmsd": 0.6237517968245223,
+              "binder_pose_CA_rmsd": 68.5771815929384
+            },
+            {
+              "permutation": [
+                "B",
+                "C",
+                "A"
+              ],
+              "target_beta_CA_rmsd": 19.0465891239208,
+              "binder_pose_CA_rmsd": 24.736936260171582
+            },
+            {
+              "permutation": [
+                "C",
+                "A",
+                "B"
+              ],
+              "target_beta_CA_rmsd": 19.065155288597772,
+              "binder_pose_CA_rmsd": 59.45894067560704
+            },
+            {
+              "permutation": [
+                "C",
+                "B",
+                "A"
+              ],
+              "target_beta_CA_rmsd": 0.628310653248549,
+              "binder_pose_CA_rmsd": 49.86939846925389
+            }
+          ],
+          "target_chain_permutation": [
+            "A",
+            "C",
+            "B"
+          ],
+          "confidence_summary": {
+            "max_pae": 31.546875,
+            "ptm": 0.78,
+            "iptm": 0.74,
+            "ipsae": {
+              "A-B": 0.806453,
+              "A-C": 0.791703,
+              "A-D": 0.0,
+              "B-A": 0.79452,
+              "B-C": 0.803258,
+              "B-D": 0.0,
+              "C-A": 0.799202,
+              "C-B": 0.794524,
+              "C-D": 0.0,
+              "D-A": 0.0,
+              "D-B": 0.0,
+              "D-C": 0.0
+            },
+            "pdockq": {
+              "A-B": 0.4617,
+              "A-C": 0.4478,
+              "A-D": 0.0529,
+              "B-C": 0.4651,
+              "B-D": 0.0,
+              "C-D": 0.0
+            },
+            "pdockq2": {
+              "A-B": 0.3503,
+              "A-C": 0.3142,
+              "A-D": 0.0101,
+              "B-A": 0.3222,
+              "B-C": 0.3534,
+              "B-D": 0.0,
+              "C-A": 0.339,
+              "C-B": 0.3259,
+              "C-D": 0.0,
+              "D-A": 0.01,
+              "D-B": 0.0,
+              "D-C": 0.0
+            }
+          },
+          "original_score_sha256": "2f41b41445e13689cd4e65c7aff57848394f0f982f825c84c9560cfeaa6560e5",
+          "official_equivalence": false
+        },
+        "boltz_trimer_deepmsa": {
+          "status": "predicted_complex_unvalidated",
+          "confidence": {
+            "confidence_score": 0.8146063685417175,
+            "ptm": 0.8531109094619751,
+            "iptm": 0.8285649418830872,
+            "ligand_iptm": 0.0,
+            "protein_iptm": 0.8285649418830872,
+            "complex_plddt": 0.8111166954040527,
+            "complex_iplddt": 0.7624514102935791,
+            "complex_pde": 0.7617941498756409,
+            "complex_ipde": 2.8698225021362305,
+            "chains_ptm": {
+              "0": 0.9112064838409424,
+              "1": 0.9121572971343994,
+              "2": 0.9107384085655212,
+              "3": 0.9089152812957764
+            },
+            "pair_chains_iptm": {
+              "0": {
+                "0": 0.9112064838409424,
+                "1": 0.8944294452667236,
+                "2": 0.8982385396957397,
+                "3": 0.4012780487537384
+              },
+              "1": {
+                "0": 0.8990563154220581,
+                "1": 0.9121572971343994,
+                "2": 0.8954363465309143,
+                "3": 0.4367513358592987
+              },
+              "2": {
+                "0": 0.8944846987724304,
+                "1": 0.8981772065162659,
+                "2": 0.9107384085655212,
+                "3": 0.35284459590911865
+              },
+              "3": {
+                "0": 0.5026330351829529,
+                "1": 0.5196714401245117,
+                "2": 0.49582499265670776,
+                "3": 0.9089152812957764
+              }
+            }
+          },
+          "run": "build\\boltz_a3d_deep",
+          "seed": "2026",
+          "official_equivalence": false,
+          "pae_sha256": "678168accc3e98ea2e35b74c9f6238223954c6e9506cc21d0c6d872628cc7db9",
+          "ipsae_pairs": {
+            "10": [
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.401",
+                "ipTM_d0chn": "0.142091",
+                "pDockQ": "0.0333",
+                "pDockQ2": "0.0127",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "A",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.503",
+                "ipTM_d0chn": "0.109714",
+                "pDockQ": "0.0333",
+                "pDockQ2": "0.0133",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.503",
+                "ipTM_d0chn": "0.142091",
+                "pDockQ": "0.0333",
+                "pDockQ2": "0.0133",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.437",
+                "ipTM_d0chn": "0.151662",
+                "pDockQ": "0.1233",
+                "pDockQ2": "0.0195",
+                "LIS": "0.0042",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "B",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.520",
+                "ipTM_d0chn": "0.128812",
+                "pDockQ": "0.1233",
+                "pDockQ2": "0.0196",
+                "LIS": "0.0229",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.520",
+                "ipTM_d0chn": "0.151662",
+                "pDockQ": "0.1233",
+                "pDockQ2": "0.0196",
+                "LIS": "0.0136",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.353",
+                "ipTM_d0chn": "0.139867",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "C",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "asym",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.496",
+                "ipTM_d0chn": "0.096011",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "10",
+                "Dist": "10",
+                "Type": "max",
+                "ipSAE": "0.000000",
+                "ipSAE_d0chn": "0.000000",
+                "ipSAE_d0dom": "0.000000",
+                "ipTM_af": "0.496",
+                "ipTM_d0chn": "0.139867",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "0",
+                "n0chn": "253",
+                "n0dom": "0",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.00",
+                "nres1": "0",
+                "nres2": "0",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              }
+            ],
+            "15": [
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.029927",
+                "ipSAE_d0chn": "0.150723",
+                "ipSAE_d0dom": "0.107478",
+                "ipTM_af": "0.401",
+                "ipTM_d0chn": "0.142091",
+                "pDockQ": "0.0333",
+                "pDockQ2": "0.0127",
+                "LIS": "0.0000",
+                "n0res": "56",
+                "n0chn": "253",
+                "n0dom": "169",
+                "d0res": "2.48",
+                "d0chn": "5.88",
+                "d0dom": "4.85",
+                "nres1": "111",
+                "nres2": "58",
+                "dist1": "30",
+                "dist2": "18",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "A",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.005442",
+                "ipSAE_d0chn": "0.152698",
+                "ipSAE_d0dom": "0.054001",
+                "ipTM_af": "0.503",
+                "ipTM_d0chn": "0.109714",
+                "pDockQ": "0.0333",
+                "pDockQ2": "0.0133",
+                "LIS": "0.0000",
+                "n0res": "27",
+                "n0chn": "253",
+                "n0dom": "85",
+                "d0res": "1.04",
+                "d0chn": "5.88",
+                "d0dom": "3.31",
+                "nres1": "53",
+                "nres2": "32",
+                "dist1": "12",
+                "dist2": "12",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "A",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.029927",
+                "ipSAE_d0chn": "0.152698",
+                "ipSAE_d0dom": "0.107478",
+                "ipTM_af": "0.503",
+                "ipTM_d0chn": "0.142091",
+                "pDockQ": "0.0333",
+                "pDockQ2": "0.0133",
+                "LIS": "0.0000",
+                "n0res": "56",
+                "n0chn": "253",
+                "n0dom": "169",
+                "d0res": "2.48",
+                "d0chn": "5.88",
+                "d0dom": "4.85",
+                "nres1": "111",
+                "nres2": "58",
+                "dist1": "30",
+                "dist2": "18",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.036077",
+                "ipSAE_d0chn": "0.158161",
+                "ipSAE_d0dom": "0.127473",
+                "ipTM_af": "0.437",
+                "ipTM_d0chn": "0.151662",
+                "pDockQ": "0.1233",
+                "pDockQ2": "0.0195",
+                "LIS": "0.0042",
+                "n0res": "62",
+                "n0chn": "253",
+                "n0dom": "194",
+                "d0res": "2.67",
+                "d0chn": "5.88",
+                "d0dom": "5.19",
+                "nres1": "130",
+                "nres2": "64",
+                "dist1": "47",
+                "dist2": "45",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "B",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.053416",
+                "ipSAE_d0chn": "0.159896",
+                "ipSAE_d0dom": "0.098894",
+                "ipTM_af": "0.520",
+                "ipTM_d0chn": "0.128812",
+                "pDockQ": "0.1233",
+                "pDockQ2": "0.0196",
+                "LIS": "0.0229",
+                "n0res": "81",
+                "n0chn": "253",
+                "n0dom": "144",
+                "d0res": "3.21",
+                "d0chn": "5.88",
+                "d0dom": "4.47",
+                "nres1": "60",
+                "nres2": "84",
+                "dist1": "44",
+                "dist2": "39",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "B",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.053416",
+                "ipSAE_d0chn": "0.159896",
+                "ipSAE_d0dom": "0.127473",
+                "ipTM_af": "0.520",
+                "ipTM_d0chn": "0.151662",
+                "pDockQ": "0.1233",
+                "pDockQ2": "0.0196",
+                "LIS": "0.0136",
+                "n0res": "81",
+                "n0chn": "253",
+                "n0dom": "194",
+                "d0res": "3.21",
+                "d0chn": "5.88",
+                "d0dom": "5.19",
+                "nres1": "130",
+                "nres2": "64",
+                "dist1": "47",
+                "dist2": "45",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.024065",
+                "ipSAE_d0chn": "0.147873",
+                "ipSAE_d0dom": "0.099107",
+                "ipTM_af": "0.353",
+                "ipTM_d0chn": "0.139867",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "49",
+                "n0chn": "253",
+                "n0dom": "158",
+                "d0res": "2.22",
+                "d0chn": "5.88",
+                "d0dom": "4.68",
+                "nres1": "104",
+                "nres2": "54",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "D",
+                "Chn2": "C",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "asym",
+                "ipSAE": "0.004912",
+                "ipSAE_d0chn": "0.145863",
+                "ipSAE_d0dom": "0.012804",
+                "ipTM_af": "0.496",
+                "ipTM_d0chn": "0.096011",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "10",
+                "n0chn": "253",
+                "n0dom": "36",
+                "d0res": "1.00",
+                "d0chn": "5.88",
+                "d0dom": "1.62",
+                "nres1": "26",
+                "nres2": "10",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              },
+              {
+                "Chn1": "C",
+                "Chn2": "D",
+                "PAE": "15",
+                "Dist": "15",
+                "Type": "max",
+                "ipSAE": "0.024065",
+                "ipSAE_d0chn": "0.147873",
+                "ipSAE_d0dom": "0.099107",
+                "ipTM_af": "0.496",
+                "ipTM_d0chn": "0.139867",
+                "pDockQ": "0.0000",
+                "pDockQ2": "0.0000",
+                "LIS": "0.0000",
+                "n0res": "49",
+                "n0chn": "253",
+                "n0dom": "158",
+                "d0res": "2.22",
+                "d0chn": "5.88",
+                "d0dom": "4.68",
+                "nres1": "104",
+                "nres2": "54",
+                "dist1": "0",
+                "dist2": "0",
+                "Model": "E:\\bio\\changjiang-cup-2026\\build\\boltz_a3d_deep\\boltz_results_tl1a_af_a3d_bound_ensemble_20261113_gen\\predictions\\tl1a_af_a3d_bound_ensemble_20261113_gen\\tl1a_af_a3d_bound_ensemble_20261113_gen_model_0"
+              }
+            ]
+          },
+          "target_template": false,
+          "target_chain_permutation": [
+            "B",
+            "A",
+            "C"
+          ],
+          "native_context_geometry_caveat": "alignment unreliable if target core differs substantially from native structure",
+          "geometry_alignment": "2RE9 SHEET core; symmetry-aware derived geometry v3; pose selection only among fits within 0.5 A of best target-only core",
+          "symmetry_alignment_trials": [
+            {
+              "permutation": [
+                "A",
+                "B",
+                "C"
+              ],
+              "target_beta_CA_rmsd": 19.04623352831029,
+              "binder_pose_CA_rmsd": 59.107480693620396
+            },
+            {
+              "permutation": [
+                "A",
+                "C",
+                "B"
+              ],
+              "target_beta_CA_rmsd": 0.3202845485889902,
+              "binder_pose_CA_rmsd": 45.97091034945299
+            },
+            {
+              "permutation": [
+                "B",
+                "A",
+                "C"
+              ],
+              "target_beta_CA_rmsd": 0.3263699713698949,
+              "binder_pose_CA_rmsd": 33.02780857167708
+            },
+            {
+              "permutation": [
+                "B",
+                "C",
+                "A"
+              ],
+              "target_beta_CA_rmsd": 19.06169176058215,
+              "binder_pose_CA_rmsd": 61.78309373027426
+            },
+            {
+              "permutation": [
+                "C",
+                "A",
+                "B"
+              ],
+              "target_beta_CA_rmsd": 19.05295505924529,
+              "binder_pose_CA_rmsd": 25.857283997139607
+            },
+            {
+              "permutation": [
+                "C",
+                "B",
+                "A"
+              ],
+              "target_beta_CA_rmsd": 0.32388944473243064,
+              "binder_pose_CA_rmsd": 68.31765263289539
+            }
+          ],
+          "binder_alone_control": {
+            "id": "tl1a_af_a3d_bound_ensemble_20261113_gen_binder_only",
+            "confidence": {
+              "confidence_score": 0.7962774634361267,
+              "ptm": 0.7339643836021423,
+              "iptm": 0.0,
+              "ligand_iptm": 0.0,
+              "protein_iptm": 0.0,
+              "complex_plddt": 0.811855673789978,
+              "complex_iplddt": 0.811855673789978,
+              "complex_pde": 0.8056366443634033,
+              "complex_ipde": 0.0,
+              "chains_ptm": {
+                "0": 0.7339643836021423
+              },
+              "pair_chains_iptm": {
+                "0": {
+                  "0": 0.7339643836021423
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

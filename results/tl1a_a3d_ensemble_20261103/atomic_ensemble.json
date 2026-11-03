@@ -1,0 +1,1097 @@
+{
+  "synthetic": false,
+  "ensemble": "targets/TL1A/ensemble/ensemble.json",
+  "interpretation": "finite geometric stress states, no glycoform occupancy or probability; design poses have backbone only",
+  "candidates": {
+    "tl1a_bg_a3d_0_gen": {
+      "design_backbone": {
+        "atom_count": 292,
+        "states": [
+          {
+            "state": 0,
+            "native_protein_min_A": 1.6988932595859447,
+            "native_protein_pairs2": 2,
+            "modelled_glycan_min_A": 7.0619767930106985,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 23.476066143877684,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 22.499952476751996,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 26.336743230219295,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 7.0619767930106985,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 50.91938564514124,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 42.411110907486076,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 1,
+            "native_protein_min_A": 1.6988932595859447,
+            "native_protein_pairs2": 2,
+            "modelled_glycan_min_A": 6.509716773668114,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 6.509716773668114,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 20.46073002309721,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 28.90871693544541,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 10.753703474305649,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 41.4461065885615,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 41.956077870876605,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 2,
+            "native_protein_min_A": 1.6988932595859447,
+            "native_protein_pairs2": 2,
+            "modelled_glycan_min_A": 11.302563188115576,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 11.904736392765082,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 22.499952476751996,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 33.51318620871629,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 11.302563188115576,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 49.11240897797056,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 41.20153038792861,
+                "pairs23": 0
+              }
+            }
+          }
+        ],
+        "worst_native_min_A": 1.6988932595859447,
+        "worst_glycan_min_A": 6.509716773668114,
+        "maximum_native_pairs2": 2,
+        "maximum_glycan_pairs23": 0
+      }
+    },
+    "tl1a_bg_a3d_0_if": {
+      "design_backbone": {
+        "atom_count": 292,
+        "states": [
+          {
+            "state": 0,
+            "native_protein_min_A": 1.6988932595859447,
+            "native_protein_pairs2": 2,
+            "modelled_glycan_min_A": 7.0619767930106985,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 23.476066143877684,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 22.499952476751996,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 26.336743230219295,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 7.0619767930106985,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 50.91938564514124,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 42.411110907486076,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 1,
+            "native_protein_min_A": 1.6988932595859447,
+            "native_protein_pairs2": 2,
+            "modelled_glycan_min_A": 6.509716773668114,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 6.509716773668114,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 20.46073002309721,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 28.90871693544541,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 10.753703474305649,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 41.4461065885615,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 41.956077870876605,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 2,
+            "native_protein_min_A": 1.6988932595859447,
+            "native_protein_pairs2": 2,
+            "modelled_glycan_min_A": 11.302563188115576,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 11.904736392765082,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 22.499952476751996,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 33.51318620871629,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 11.302563188115576,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 49.11240897797056,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 41.20153038792861,
+                "pairs23": 0
+              }
+            }
+          }
+        ],
+        "worst_native_min_A": 1.6988932595859447,
+        "worst_glycan_min_A": 6.509716773668114,
+        "maximum_native_pairs2": 2,
+        "maximum_glycan_pairs23": 0
+      }
+    },
+    "tl1a_bg_a3d_1_if": {
+      "design_backbone": {
+        "atom_count": 292,
+        "states": [
+          {
+            "state": 0,
+            "native_protein_min_A": 2.0912891814454886,
+            "native_protein_pairs2": 0,
+            "modelled_glycan_min_A": 6.864750794973319,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 23.536932429602764,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 22.639862887011454,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 25.236049940282374,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 6.864750794973319,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 50.45002004902728,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 41.615455467633204,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 1,
+            "native_protein_min_A": 2.0912891814454886,
+            "native_protein_pairs2": 0,
+            "modelled_glycan_min_A": 6.814277769083695,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 6.814277769083695,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 20.781537152837846,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 28.084884238720576,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 10.059880286617082,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 41.19573219970383,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 41.112207346459314,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 2,
+            "native_protein_min_A": 2.0912891814454886,
+            "native_protein_pairs2": 0,
+            "modelled_glycan_min_A": 10.736793349016876,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 11.382396595347016,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 22.639862887011454,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 32.77553263576273,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 10.736793349016876,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 48.708142257913586,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 40.36813411622019,
+                "pairs23": 0
+              }
+            }
+          }
+        ],
+        "worst_native_min_A": 2.0912891814454886,
+        "worst_glycan_min_A": 6.814277769083695,
+        "maximum_native_pairs2": 0,
+        "maximum_glycan_pairs23": 0
+      },
+      "af2_predicted_complex": {
+        "atom_count": 587,
+        "states": [
+          {
+            "state": 0,
+            "native_protein_min_A": 0.054109117426409135,
+            "native_protein_pairs2": 24,
+            "modelled_glycan_min_A": 6.079411913606034,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 12.258370356840198,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 15.754433032256356,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 16.058282063269534,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 6.079411913606034,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 43.590685291447684,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 39.98203682202946,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 1,
+            "native_protein_min_A": 0.054109117426409135,
+            "native_protein_pairs2": 24,
+            "modelled_glycan_min_A": 0.8109160649537563,
+            "modelled_glycan_pairs23": 28,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 0.8109160649537563,
+                "pairs23": 28
+              },
+              "A:N229": {
+                "min_A": 12.667197923967993,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 19.87083378576879,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 9.679481810904228,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 34.15365415413819,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 40.122471116584904,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 2,
+            "native_protein_min_A": 0.054109117426409135,
+            "native_protein_pairs2": 24,
+            "modelled_glycan_min_A": 0.5441455614491791,
+            "modelled_glycan_pairs23": 40,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 0.5441455614491791,
+                "pairs23": 40
+              },
+              "A:N229": {
+                "min_A": 15.754433032256356,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 23.89595191644841,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 11.85195023398944,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 43.08721028851111,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 39.646176691299274,
+                "pairs23": 0
+              }
+            }
+          }
+        ],
+        "worst_native_min_A": 0.054109117426409135,
+        "worst_glycan_min_A": 0.5441455614491791,
+        "maximum_native_pairs2": 24,
+        "maximum_glycan_pairs23": 40
+      }
+    },
+    "tl1a_bg_a3d_1_if_lmpnn_ctx1": {
+      "design_backbone": {
+        "atom_count": 292,
+        "states": [
+          {
+            "state": 0,
+            "native_protein_min_A": 2.0912891814454886,
+            "native_protein_pairs2": 0,
+            "modelled_glycan_min_A": 6.864750794973319,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 23.536932429602764,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 22.639862887011454,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 25.236049940282374,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 6.864750794973319,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 50.45002004902728,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 41.615455467633204,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 1,
+            "native_protein_min_A": 2.0912891814454886,
+            "native_protein_pairs2": 0,
+            "modelled_glycan_min_A": 6.814277769083695,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 6.814277769083695,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 20.781537152837846,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 28.084884238720576,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 10.059880286617082,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 41.19573219970383,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 41.112207346459314,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 2,
+            "native_protein_min_A": 2.0912891814454886,
+            "native_protein_pairs2": 0,
+            "modelled_glycan_min_A": 10.736793349016876,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 11.382396595347016,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 22.639862887011454,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 32.77553263576273,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 10.736793349016876,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 48.708142257913586,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 40.36813411622019,
+                "pairs23": 0
+              }
+            }
+          }
+        ],
+        "worst_native_min_A": 2.0912891814454886,
+        "worst_glycan_min_A": 6.814277769083695,
+        "maximum_native_pairs2": 0,
+        "maximum_glycan_pairs23": 0
+      },
+      "af2_predicted_complex": {
+        "atom_count": 591,
+        "states": [
+          {
+            "state": 0,
+            "native_protein_min_A": 0.31201430578723566,
+            "native_protein_pairs2": 50,
+            "modelled_glycan_min_A": 6.8332950660895735,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 13.741971854996578,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 16.35809771451286,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 22.695876353645602,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 6.8332950660895735,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 43.354350532637675,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 40.765175610059345,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 1,
+            "native_protein_min_A": 0.31201430578723566,
+            "native_protein_pairs2": 51,
+            "modelled_glycan_min_A": 0.5935641342816886,
+            "modelled_glycan_pairs23": 20,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 0.5935641342816886,
+                "pairs23": 20
+              },
+              "A:N229": {
+                "min_A": 12.544386658544225,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 26.161377752319503,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 10.434389918648757,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 32.504563054829944,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 40.685476874693606,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 2,
+            "native_protein_min_A": 0.31201430578723566,
+            "native_protein_pairs2": 51,
+            "modelled_glycan_min_A": 4.539387417969349,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 4.539387417969349,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 16.35809771451286,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 28.990443835943594,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 12.135284485443123,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 41.66514246497728,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 40.28055547993135,
+                "pairs23": 0
+              }
+            }
+          }
+        ],
+        "worst_native_min_A": 0.31201430578723566,
+        "worst_glycan_min_A": 0.5935641342816886,
+        "maximum_native_pairs2": 51,
+        "maximum_glycan_pairs23": 20
+      },
+      "boltz_trimer_deepmsa_predicted_complex": {
+        "atom_count": 591,
+        "states": [
+          {
+            "state": 0,
+            "native_protein_min_A": 0.6275597784259975,
+            "native_protein_pairs2": 19,
+            "modelled_glycan_min_A": 6.114836511125241,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 21.800093746408635,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 19.28897956433763,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 23.802038756123004,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 6.114836511125241,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 45.3040859223905,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 33.72009494840787,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 1,
+            "native_protein_min_A": 0.5920599115259164,
+            "native_protein_pairs2": 19,
+            "modelled_glycan_min_A": 3.1100915572123835,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 3.1100915572123835,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 15.887569128304774,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 24.78838168522467,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 5.030686300036034,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 39.9536239169482,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 33.53124119057493,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 2,
+            "native_protein_min_A": 0.6275597784259975,
+            "native_protein_pairs2": 18,
+            "modelled_glycan_min_A": 5.99328026497894,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 8.784316490794719,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 19.28897956433763,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 29.536229824639616,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 5.99328026497894,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 43.90868204818069,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 32.419850468503945,
+                "pairs23": 0
+              }
+            }
+          }
+        ],
+        "worst_native_min_A": 0.5920599115259164,
+        "worst_glycan_min_A": 3.1100915572123835,
+        "maximum_native_pairs2": 19,
+        "maximum_glycan_pairs23": 0
+      }
+    },
+    "tl1a_af_a3d_bound_ensemble_20261113_gen": {
+      "design_backbone": {
+        "atom_count": 292,
+        "states": [
+          {
+            "state": 0,
+            "native_protein_min_A": 0.7353234272511339,
+            "native_protein_pairs2": 14,
+            "modelled_glycan_min_A": 3.640890175097297,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 8.348411717997314,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 3.640890175097297,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 37.72631723460301,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 27.338743327896577,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 46.629268402382856,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 48.99717401919939,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 1,
+            "native_protein_min_A": 0.7353234272511339,
+            "native_protein_pairs2": 14,
+            "modelled_glycan_min_A": 0.7867734099641598,
+            "modelled_glycan_pairs23": 31,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 0.7867734099641598,
+                "pairs23": 28
+              },
+              "A:N229": {
+                "min_A": 2.1683016831649686,
+                "pairs23": 3
+              },
+              "B:N133": {
+                "min_A": 41.09337862363169,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 28.520546202298803,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 29.673414881556322,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 48.90231895988392,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 2,
+            "native_protein_min_A": 0.7353234272511339,
+            "native_protein_pairs2": 14,
+            "modelled_glycan_min_A": 3.640890175097297,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 9.149624480217181,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 3.640890175097297,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 42.323098622935774,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 30.499097212555473,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 42.66756398906623,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 48.6008678307854,
+                "pairs23": 0
+              }
+            }
+          }
+        ],
+        "worst_native_min_A": 0.7353234272511339,
+        "worst_glycan_min_A": 0.7867734099641598,
+        "maximum_native_pairs2": 14,
+        "maximum_glycan_pairs23": 31
+      },
+      "af2_predicted_complex": {
+        "atom_count": 595,
+        "states": [
+          {
+            "state": 0,
+            "native_protein_min_A": 0.4927661116391389,
+            "native_protein_pairs2": 42,
+            "modelled_glycan_min_A": 6.139814881768601,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 15.504573963828813,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 16.198499880367176,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 22.98993921795507,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 6.139814881768601,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 46.065301229975894,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 41.56551468074511,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 1,
+            "native_protein_min_A": 0.4805454796074716,
+            "native_protein_pairs2": 42,
+            "modelled_glycan_min_A": 1.6166019978264303,
+            "modelled_glycan_pairs23": 1,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 1.6166019978264303,
+                "pairs23": 1
+              },
+              "A:N229": {
+                "min_A": 14.449448161315457,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 26.66986122641518,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 10.273302169309403,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 34.89996644993053,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 41.54948659745191,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 2,
+            "native_protein_min_A": 0.5797676104660929,
+            "native_protein_pairs2": 42,
+            "modelled_glycan_min_A": 6.589897844752801,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 6.589897844752801,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 16.198499880367176,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 30.197688234016344,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 11.864044474802364,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 44.347341801856466,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 41.01901654562737,
+                "pairs23": 0
+              }
+            }
+          }
+        ],
+        "worst_native_min_A": 0.4805454796074716,
+        "worst_glycan_min_A": 1.6166019978264303,
+        "maximum_native_pairs2": 42,
+        "maximum_glycan_pairs23": 1
+      },
+      "boltz_trimer_deepmsa_predicted_complex": {
+        "atom_count": 595,
+        "states": [
+          {
+            "state": 0,
+            "native_protein_min_A": 0.7701010036764201,
+            "native_protein_pairs2": 15,
+            "modelled_glycan_min_A": 5.480247488778949,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 21.533637550935897,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 19.134560412846458,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 23.265885257567042,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 5.480247488778949,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 44.94164485675145,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 34.146460213525444,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 1,
+            "native_protein_min_A": 0.7701010036764201,
+            "native_protein_pairs2": 15,
+            "modelled_glycan_min_A": 3.338863488855093,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 3.338863488855093,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 15.747771803406321,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 24.12853256433107,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 4.159547653282028,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 40.00011882456138,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 34.03934736165076,
+                "pairs23": 0
+              }
+            }
+          },
+          {
+            "state": 2,
+            "native_protein_min_A": 0.7701010036764201,
+            "native_protein_pairs2": 13,
+            "modelled_glycan_min_A": 4.646845574554978,
+            "modelled_glycan_pairs23": 0,
+            "glycan_roots": {
+              "A:N133": {
+                "min_A": 8.09727586036067,
+                "pairs23": 0
+              },
+              "A:N229": {
+                "min_A": 19.134560412846458,
+                "pairs23": 0
+              },
+              "B:N133": {
+                "min_A": 28.98705062616125,
+                "pairs23": 0
+              },
+              "B:N229": {
+                "min_A": 4.646845574554978,
+                "pairs23": 0
+              },
+              "C:N133": {
+                "min_A": 43.72935729419478,
+                "pairs23": 0
+              },
+              "C:N229": {
+                "min_A": 33.41825955050347,
+                "pairs23": 0
+              }
+            }
+          }
+        ],
+        "worst_native_min_A": 0.7701010036764201,
+        "worst_glycan_min_A": 3.338863488855093,
+        "maximum_native_pairs2": 15,
+        "maximum_glycan_pairs23": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,477 @@
+{
+  "synthetic": false,
+  "modelled": true,
+  "purpose": "finite geometric stress ensemble; not TL1A experimental glycans, populations, or measured binding",
+  "glycan_source": "https://www.rcsb.org/structure/4BYH",
+  "glycan_model": "Man3GlcNAc2 common core only; outer branches/glycoform and occupancy are not known",
+  "source_glycans": [
+    "C:1,2,3,4,8",
+    "D:1,2,3,4,7"
+  ],
+  "native_sidechain_source": "observed 2RE9 ABC, locally transferred R156/M158/L235/Y238 states",
+  "rotations_degrees": {
+    "Asn_chi1": [
+      -180,
+      -150,
+      -120,
+      -90,
+      -60,
+      -30,
+      0,
+      30,
+      60,
+      90,
+      120,
+      150
+    ],
+    "Asn_chi2": [
+      -180,
+      -150,
+      -120,
+      -90,
+      -60,
+      -30,
+      0,
+      30,
+      60,
+      90,
+      120,
+      150
+    ],
+    "glycosidic_phi": [
+      0,
+      -30,
+      30,
+      -60,
+      60,
+      -90,
+      90
+    ]
+  },
+  "geometric_clash_filter_A": 1.8,
+  "sites": [
+    {
+      "chain": "A",
+      "uniprot": 133,
+      "valid_sampled_states": 532,
+      "representatives": [
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            2.430948844974798,
+            2.430948844974798,
+            2.430948844974798
+          ],
+          "template": "C",
+          "chi1": -90,
+          "chi2": 0,
+          "phi": 0,
+          "source_link_A": 1.4241106510162354
+        },
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.9389135207317996,
+            1.9389135207317996,
+            1.9389135207317996
+          ],
+          "template": "D",
+          "chi1": 150,
+          "chi2": 150,
+          "phi": -60,
+          "source_link_A": 1.4437029361724854
+        },
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.9246732562088256,
+            1.9246732562088256,
+            1.9246732562088256
+          ],
+          "template": "C",
+          "chi1": -180,
+          "chi2": 150,
+          "phi": 0,
+          "source_link_A": 1.4241106510162354
+        }
+      ]
+    },
+    {
+      "chain": "A",
+      "uniprot": 229,
+      "valid_sampled_states": 2,
+      "representatives": [
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.9764167555612664,
+            1.9764167555612664,
+            1.9764167555612664
+          ],
+          "template": "C",
+          "chi1": -120,
+          "chi2": 30,
+          "phi": -30,
+          "source_link_A": 1.4241106510162354
+        },
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.8175042656422757,
+            1.8175042656422757,
+            1.8175042656422757
+          ],
+          "template": "C",
+          "chi1": -150,
+          "chi2": -30,
+          "phi": 90,
+          "source_link_A": 1.4241106510162354
+        }
+      ]
+    },
+    {
+      "chain": "B",
+      "uniprot": 133,
+      "valid_sampled_states": 521,
+      "representatives": [
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            2.4460792926717327,
+            2.4460792926717327,
+            2.4460792926717327
+          ],
+          "template": "C",
+          "chi1": -90,
+          "chi2": 0,
+          "phi": 0,
+          "source_link_A": 1.4241106510162354
+        },
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.9433871434810137,
+            1.9433871434810137,
+            1.9433871434810137
+          ],
+          "template": "D",
+          "chi1": 150,
+          "chi2": 150,
+          "phi": -60,
+          "source_link_A": 1.4437029361724854
+        },
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            2.0884171721730955,
+            2.0884171721730955,
+            2.0884171721730955
+          ],
+          "template": "C",
+          "chi1": -180,
+          "chi2": 150,
+          "phi": 0,
+          "source_link_A": 1.4241106510162354
+        }
+      ]
+    },
+    {
+      "chain": "B",
+      "uniprot": 229,
+      "valid_sampled_states": 11,
+      "representatives": [
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.9427401734739542,
+            1.9427401734739542,
+            1.9427401734739542
+          ],
+          "template": "D",
+          "chi1": -120,
+          "chi2": 0,
+          "phi": 0,
+          "source_link_A": 1.4437029361724854
+        },
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.8148822525968602,
+            1.8148822525968602,
+            1.8148822525968602
+          ],
+          "template": "C",
+          "chi1": -120,
+          "chi2": 30,
+          "phi": 0,
+          "source_link_A": 1.4241106510162354
+        },
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.841681860634605,
+            1.841681860634605,
+            1.841681860634605
+          ],
+          "template": "D",
+          "chi1": -120,
+          "chi2": 30,
+          "phi": 30,
+          "source_link_A": 1.4437029361724854
+        }
+      ]
+    },
+    {
+      "chain": "C",
+      "uniprot": 133,
+      "valid_sampled_states": 533,
+      "representatives": [
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.8258729080686997,
+            1.8258729080686997,
+            1.8258729080686997
+          ],
+          "template": "C",
+          "chi1": 0,
+          "chi2": -30,
+          "phi": 0,
+          "source_link_A": 1.4241106510162354
+        },
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.8880091652744162,
+            1.8880091652744162,
+            1.8880091652744162
+          ],
+          "template": "D",
+          "chi1": -180,
+          "chi2": -180,
+          "phi": -30,
+          "source_link_A": 1.4437029361724854
+        },
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            2.5253781273388127,
+            2.5253781273388127,
+            2.5253781273388127
+          ],
+          "template": "D",
+          "chi1": 150,
+          "chi2": 60,
+          "phi": 0,
+          "source_link_A": 1.4437029361724854
+        }
+      ]
+    },
+    {
+      "chain": "C",
+      "uniprot": 229,
+      "valid_sampled_states": 32,
+      "representatives": [
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            2.2263681776668975,
+            2.2263681776668975,
+            2.2263681776668975
+          ],
+          "template": "C",
+          "chi1": -150,
+          "chi2": 0,
+          "phi": 0,
+          "source_link_A": 1.4241106510162354
+        },
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.803770701417661,
+            1.803770701417661,
+            1.803770701417661
+          ],
+          "template": "D",
+          "chi1": -150,
+          "chi2": 30,
+          "phi": 30,
+          "source_link_A": 1.4437029361724854
+        },
+        {
+          "allowed": [
+            true,
+            true,
+            true
+          ],
+          "clearance": [
+            1.9111246333177647,
+            1.9111246333177647,
+            1.9111246333177647
+          ],
+          "template": "C",
+          "chi1": 120,
+          "chi2": -30,
+          "phi": -30,
+          "source_link_A": 1.4241106510162354
+        }
+      ]
+    }
+  ],
+  "compatible_joint_snapshots": 1458,
+  "full_cartesian_assignments": 1458,
+  "selected_assignments": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      2,
+      0,
+      2,
+      2,
+      2,
+      2
+    ]
+  ],
+  "feasible_marginal_states": 20,
+  "covered_marginal_states": 20,
+  "selection": "exact three-snapshot marginal cover when feasible; otherwise greedy feasible-marginal set cover",
+  "proved_minimum_snapshots": 3,
+  "maximum_single_pair_clash_preserved": true,
+  "limits": "marginal coverage preserves worst single-pair sterics, not sums of energies or statistical joint populations",
+  "source_internal_links": {
+    "C": [
+      {
+        "child": 2,
+        "parent": 1,
+        "parent_atom": "O4",
+        "distance_A": 1.4504534006118774
+      },
+      {
+        "child": 3,
+        "parent": 2,
+        "parent_atom": "O4",
+        "distance_A": 1.4546356201171875
+      },
+      {
+        "child": 4,
+        "parent": 3,
+        "parent_atom": "O6",
+        "distance_A": 1.442732334136963
+      },
+      {
+        "child": 5,
+        "parent": 3,
+        "parent_atom": "O3",
+        "distance_A": 1.4388593435287476
+      }
+    ],
+    "D": [
+      {
+        "child": 2,
+        "parent": 1,
+        "parent_atom": "O4",
+        "distance_A": 1.4531923532485962
+      },
+      {
+        "child": 3,
+        "parent": 2,
+        "parent_atom": "O4",
+        "distance_A": 1.4391604661941528
+      },
+      {
+        "child": 4,
+        "parent": 3,
+        "parent_atom": "O3",
+        "distance_A": 1.4279545545578003
+      },
+      {
+        "child": 5,
+        "parent": 3,
+        "parent_atom": "O6",
+        "distance_A": 1.4138866662979126
+      }
+    ]
+  },
+  "atom_order": "Man arms numbered in source residue order, not canonical linkage order; diversity heuristic is label-dependent; clash point sets are label-invariant"
+}

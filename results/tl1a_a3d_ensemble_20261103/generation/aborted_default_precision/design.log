@@ -1,0 +1,35 @@
+Stage 1: running (logits → soft)
+5 models [0] recycles 1 hard 0 soft 0.17 temp 1 seqid 1 loss 60.32 pae 0.76 i_pae 0.83 con 4.57 i_con 7.23 plddt 0.47 ptm 0.54 i_ptm 0.11 rmsd 33.96 association 0.89 glycan_ND2 0.11 glycan_ensemble_steric 5.29 interface_contacts 5.25 native_ensemble_steric 4.00 native_target 8.45 pose_distance 29.22 scaffold_fold 4.36
+10 models [0] recycles 1 hard 0 soft 0.33 temp 1 seqid 1 loss 60.56 pae 0.75 i_pae 0.83 con 4.40 i_con 6.94 plddt 0.47 ptm 0.53 i_ptm 0.10 rmsd 28.81 association 0.90 glycan_ND2 1.82 glycan_ensemble_steric 5.29 interface_contacts 4.47 native_ensemble_steric 4.00 native_target 7.86 pose_distance 23.72 scaffold_fold 4.06
+15 models [0] recycles 1 hard 0 soft 0.50 temp 1 seqid 1 loss 61.10 pae 0.76 i_pae 0.82 con 4.59 i_con 7.39 plddt 0.44 ptm 0.54 i_ptm 0.12 rmsd 34.86 association 0.88 glycan_ND2 0.27 glycan_ensemble_steric 5.29 interface_contacts 5.50 native_ensemble_steric 4.00 native_target 8.04 pose_distance 32.44 scaffold_fold 4.94
+20 models [0] recycles 1 hard 0 soft 0.67 temp 1 seqid 0.99 loss 50.95 pae 0.74 i_pae 0.81 con 4.46 i_con 7.08 plddt 0.47 ptm 0.54 i_ptm 0.13 rmsd 34.76 association 0.87 glycan_ND2 0.03 glycan_ensemble_steric 3.44 interface_contacts 5.12 native_ensemble_steric 4.00 native_target 10.16 pose_distance 29.32 scaffold_fold 4.07
+25 models [0] recycles 1 hard 0 soft 0.83 temp 1 seqid 0.97 loss 58.42 pae 0.73 i_pae 0.80 con 4.42 i_con 6.72 plddt 0.46 ptm 0.53 i_ptm 0.12 rmsd 27.63 association 0.88 glycan_ND2 0.18 glycan_ensemble_steric 5.29 interface_contacts 4.40 native_ensemble_steric 4.00 native_target 8.81 pose_distance 19.32 scaffold_fold 4.20
+30 models [0] recycles 1 hard 0 soft 1 temp 1 seqid 0.95 loss 58.47 pae 0.72 i_pae 0.77 con 4.38 i_con 6.67 plddt 0.46 ptm 0.54 i_ptm 0.14 rmsd 27.79 association 0.86 glycan_ND2 0.12 glycan_ensemble_steric 5.29 interface_contacts 4.56 native_ensemble_steric 4.00 native_target 8.74 pose_distance 20.00 scaffold_fold 3.88
+Stage 2: running (soft → hard)
+35 models [0] recycles 1 hard 0 soft 1 temp 0.26 seqid 0.92 loss 57.81 pae 0.73 i_pae 0.77 con 4.42 i_con 6.14 plddt 0.47 ptm 0.53 i_ptm 0.13 rmsd 26.03 association 0.87 glycan_ND2 0.07 glycan_ensemble_steric 5.29 interface_contacts 4.35 native_ensemble_steric 4.00 native_target 8.66 pose_distance 17.60 scaffold_fold 3.09
+40 models [0] recycles 1 hard 0 soft 1 temp 0.01 seqid 0.92 loss 37.48 pae 0.72 i_pae 0.79 con 4.39 i_con 6.52 plddt 0.49 ptm 0.55 i_ptm 0.13 rmsd 27.59 association 0.87 glycan_ND2 0.01 glycan_ensemble_steric 1.19 interface_contacts 4.43 native_ensemble_steric 4.00 native_target 7.84 pose_distance 18.92 scaffold_fold 2.86
+Stage 3: running (hard)
+45 models [0] recycles 1 hard 1 soft 1 temp 0.01 seqid 0.92 loss 48.65 pae 0.73 i_pae 0.77 con 4.49 i_con 6.38 plddt 0.43 ptm 0.54 i_ptm 0.13 rmsd 27.52 association 0.87 glycan_ND2 0.03 glycan_ensemble_steric 3.37 interface_contacts 4.32 native_ensemble_steric 4.00 native_target 9.34 pose_distance 20.92 scaffold_fold 3.33
+predict models [0] recycles 3 hard 1 soft 0 temp 1 seqid 0.92 loss 47.31 pae 0.75 i_pae 0.80 con 4.57 i_con 6.68 plddt 0.42 ptm 0.52 i_ptm 0.11 rmsd 24.81 association 0.89 glycan_ND2 0 glycan_ensemble_steric 3.06 interface_contacts 4.51 native_ensemble_steric 4.00 native_target 8.98 pose_distance 19.71 scaffold_fold 3.81
+Traceback (most recent call last):
+  File "/mnt/e/bio/changjiang-cup-2026/scripts/run_binding_state_design.py", line 193, in <module>
+
+  File "/mnt/e/bio/changjiang-cup-2026/scripts/run_binding_state_design.py", line 171, in main
+    model.predict(seq=seq,hard=True,soft=False,dropout=False,num_recycles=3,verbose=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/e/bio/changjiang-cup-2026/build/models/ColabDesign/colabdesign/af/design.py", line 362, in design_hard
+    self.design(iters, soft=1, hard=1, **kwargs)
+  File "/mnt/e/bio/changjiang-cup-2026/build/models/ColabDesign/colabdesign/af/design.py", line 348, in design
+    self.step(lr_scale=lr_scale, num_recycles=num_recycles,
+  File "/mnt/e/bio/changjiang-cup-2026/build/models/ColabDesign/colabdesign/af/design.py", line 214, in step
+    self.run(num_recycles=num_recycles, num_models=num_models, sample_models=sample_models,
+  File "/mnt/e/bio/changjiang-cup-2026/build/models/ColabDesign/colabdesign/af/design.py", line 96, in run
+    auxs.append(self._recycle(p, num_recycles=num_recycles, backprop=backprop))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/e/bio/changjiang-cup-2026/build/models/ColabDesign/colabdesign/af/design.py", line 197, in _recycle
+    aux = self._single(model_params, backprop)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/e/bio/changjiang-cup-2026/build/models/ColabDesign/colabdesign/af/design.py", line 140, in _single
+    (loss, aux), grad = self._model["grad_fn"](*flags)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

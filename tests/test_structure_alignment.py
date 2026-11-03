@@ -83,7 +83,7 @@ class PoseAnchorTests(unittest.TestCase):
     def test_retained_new_atom14_and_if_files_match_actual_sequences(self):
         from Bio.PDB import MMCIFParser, PDBParser
         from Bio.SeqUtils import seq1
-        for name in ('tl1a_pose_design_20261102','tl1a_cystine_20261102','tl1a_cys6_20261103','tl1a_top7_20261103'):
+        for name in ('tl1a_pose_design_20261102','tl1a_cystine_20261102','tl1a_cys6_20261103','tl1a_top7_20261103','tl1a_a3d_ensemble_20261103'):
             folder = ROOT/'results'/name
             data = json.loads((folder/'candidates.json').read_text())
             for row in data['candidates']:
@@ -105,6 +105,37 @@ class PoseAnchorTests(unittest.TestCase):
                             retained_filename(inverse, raw, 'inverse_folding'))
         many = Path('intermediate_designs_inverse_folded/design_0_1.cif')
         self.assertEqual(retained_filename(many, raw, 'inverse_folding'), many.name)
+
+    def test_modelled_glycan_links_native_backbone_and_marginal_cover(self):
+        from Bio.PDB import PDBParser
+        parser=PDBParser(QUIET=True)
+        native=parser.get_structure('native',ROOT/'targets/TL1A/observed.pdb')
+        folder=ROOT/'targets/TL1A/ensemble'
+        meta=json.loads((folder/'ensemble.json').read_text())
+        self.assertTrue(meta['modelled'])
+        covered=set().union(*(set(enumerate(s)) for s in meta['selected_assignments']))
+        self.assertEqual(len(covered),meta['feasible_marginal_states'])
+        self.assertEqual(len(meta['selected_assignments']),meta['proved_minimum_snapshots'])
+        for i in range(len(meta['selected_assignments'])):
+            state=parser.get_structure('state',folder/f'state_{i}.pdb')
+            for c in 'ABC':
+                self.assertEqual([r.resname for r in state[0][c]],[r.resname for r in native[0][c]])
+                for r in native[0][c]:
+                    for a in ('N','CA','C','O'):
+                        np.testing.assert_allclose(state[0][c][r.id][a].coord,r[a].coord,atol=.0011)
+            for (c,n),g in zip(((c,n) for c in 'ABC' for n in (133,229)),'EFGHIJ'):
+                link=np.linalg.norm(state[0][c][n]['ND2'].coord-next(iter(state[0][g]))['C1'].coord)
+                self.assertTrue(1.3<link<1.6)
+                self.assertEqual(len(state[0][g]),5)
+                sugars=list(state[0][g])
+                for child,parent,a in ((2,1,'O4'),(3,2,'O4')):
+                    self.assertTrue(1.3<np.linalg.norm(sugars[child-1]['C1'].coord-sugars[parent-1][a].coord)<1.6)
+                arms=[]
+                for child in (4,5):
+                    a=min(('O3','O6'),key=lambda a:np.linalg.norm(sugars[child-1]['C1'].coord-sugars[2][a].coord))
+                    arms.append(a)
+                    self.assertTrue(1.3<np.linalg.norm(sugars[child-1]['C1'].coord-sugars[2][a].coord)<1.6)
+                self.assertEqual(set(arms),{'O3','O6'})
 
     def test_two_anchors_leave_a_rigid_rotation_unobserved(self):
         from scripts.design_context import select_pose_anchors
